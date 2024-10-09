@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://cux2tw0wvffkg"]
+[gd_scene load_steps=2 format=3 uid="uid://cux2tw0wvffkg"]
+
+[ext_resource type="Script" path="res://logic/main.gd" id="1_2bfyf"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_2bfyf")
