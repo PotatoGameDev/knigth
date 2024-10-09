@@ -6,7 +6,7 @@
 
 **Genre:** 2D Pixel Art Platformer with Metroidvania and Souls-like elements.
 
-**fPlatform:** PC (potential for console release later)
+**Platform:** PC (potential for console release later)
 
 **Engine:** Godot
 
