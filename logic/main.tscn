@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://cux2tw0wvffkg"]
+[gd_scene load_steps=13 format=4 uid="uid://cux2tw0wvffkg"]
 
 [ext_resource type="Script" path="res://logic/main.gd" id="1_2bfyf"]
 [ext_resource type="Texture2D" uid="uid://47gkon2vpqqt" path="res://assets/sprites/main-tilemap.png" id="2_unhpw"]
+[ext_resource type="Texture2D" uid="uid://cqawhhuuatu5m" path="res://assets/sprites/knight-sheet.png" id="3_o8x73"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_khjfu"]
 texture = ExtResource("2_unhpw")
@@ -66,9 +67,77 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_khjfu")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rwi4"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnei3"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xr6sn"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4uvw"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kaqaj"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm0gv"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4bo3m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rwi4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnei3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xr6sn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4uvw")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kaqaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rm0gv")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2bfyf")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAFAAUAAAABAAIAAAAGAAUAAAABAAIAAAAHAAUAAAABAAIAAAAIAAUAAAABAAIAAAAJAAUAAAABAAIAAAAKAAUAAAABAAIAAAALAAQAAAACAAEAAAAKAAQAAAABAAEAAAAJAAQAAAABAAEAAAAIAAQAAAABAAEAAAAHAAQAAAABAAEAAAAGAAQAAAABAAEAAAAFAAQAAAABAAEAAAAEAAQAAAAAAAEAAAAEAAUAAAAAAAIAAAAEAAMAAAAAAAAAAAAFAAMAAAABAAAAAAAGAAMAAAABAAAAAAAHAAMAAAABAAAAAAAIAAMAAAABAAAAAAAJAAMAAAABAAAAAAAKAAMAAAABAAAAAAAAAAYAAAABAAEAAAABAAYAAAACAAEAAAAAAAUAAAABAAAAAAD//wYAAAAAAAEAAAAAAAcAAAABAAIAAAD//wUAAAAAAAAAAAAGAAgAAAABAAEAAAAHAAgAAAABAAEAAAAFAAgAAAABAAEAAAAGAAcAAAABAAAAAAAFAAcAAAABAAAAAAAGAAkAAAABAAIAAAAFAAkAAAABAAIAAAAHAAkAAAABAAEAAAAHAAcAAAABAAAAAAAEAAcAAAAAAAAAAAAEAAgAAAAAAAEAAAAEAAkAAAAAAAIAAAAIAAgAAAABAAEAAAAIAAcAAAABAAAAAAAIAAkAAAABAAEAAAAMAAkAAAABAAEAAAALAAkAAAAAAAEAAAANAAkAAAABAAEAAAAMAAgAAAABAAEAAAALAAgAAAAAAAEAAAAMAAoAAAABAAIAAAALAAoAAAAAAAIAAAANAAgAAAABAAEAAAAIAAsAAAABAAEAAAAIAAoAAAABAAEAAAAHAAsAAAAAAAEAAAAHAAoAAAAAAAEAAAAJAAoAAAACAAEAAAAHAAwAAAAAAAIAAAAJAAcAAAACAAAAAAAJAAgAAAACAAEAAAAJAAkAAAACAAEAAAAQAAQAAAABAAEAAAAPAAQAAAAAAAEAAAARAAQAAAACAAEAAAAQAAUAAAABAAIAAAAQAAMAAAABAAAAAAARAAUAAAACAAIAAAAPAAUAAAAAAAIAAAAPAAMAAAAAAAAAAAARAAMAAAACAAAAAAARAAgAAAABAAEAAAAQAAgAAAABAAEAAAASAAgAAAABAAEAAAAQAAcAAAABAAAAAAASAAcAAAABAAAAAAARAAcAAAABAAAAAAANAAoAAAABAAIAAAAOAAkAAAABAAEAAAAOAAgAAAABAAEAAAAOAAoAAAABAAIAAAAPAAkAAAABAAEAAAAPAAoAAAABAAIAAAAPAAgAAAABAAEAAAAPAAcAAAABAAAAAAAOAAcAAAABAAAAAAANAAcAAAABAAAAAAAMAAcAAAABAAAAAAALAAcAAAAAAAAAAAAQAAkAAAABAAEAAAAQAAoAAAABAAIAAAARAAkAAAABAAEAAAARAAoAAAABAAIAAAASAAkAAAABAAEAAAASAAoAAAABAAIAAAD//wcAAAAAAAIAAAABAAUAAAACAAAAAAABAAcAAAACAAIAAAATAAkAAAABAAEAAAATAAgAAAABAAEAAAATAAcAAAACAAAAAAAIAAwAAAABAAIAAAAJAAwAAAACAAIAAAAJAAsAAAACAAEAAAALAAMAAAACAAAAAAALAAUAAAACAAIAAAAVAAkAAAABAAEAAAAVAAoAAAABAAIAAAAVAAgAAAABAAAAAAAWAAkAAAACAAEAAAAUAAkAAAABAAEAAAAUAAgAAAABAAAAAAAWAAgAAAACAAAAAAAWAAoAAAACAAIAAAAUAAoAAAABAAIAAAATAAoAAAABAAIAAAAOAA0AAAAAAAIAAAAPAA0AAAABAAIAAAAQAA0AAAABAAIAAAARAA0AAAACAAIAAAAOAAwAAAAAAAAAAAAPAAwAAAABAAAAAAAQAAwAAAABAAAAAAARAAwAAAACAAAAAAA=")
 tile_set = SubResource("TileSet_1xl4a")
+
+[node name="Knight" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Knight"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Knight"]
+sprite_frames = SubResource("SpriteFrames_4bo3m")
+animation = &"run"
