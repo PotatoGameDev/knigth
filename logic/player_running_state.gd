@@ -3,10 +3,14 @@ extends Node
 class_name RunningState 
 
 func enter(ownr: Knight) -> void:
+	if ownr.queued_jump_timer > 0.0:
+		ownr.change_state(ownr.jumping_state)
+		return
 	ownr.animation.play("run")
 
 func update(ownr: Knight, _delta: float) -> void:
 	ownr.velocity.x = ownr.speed * ownr.direction
+	ownr.coyote_timer = ownr.max_coyote_time
 
 func handle_input(ownr: Knight) -> void:
 	if !ownr.is_on_floor():

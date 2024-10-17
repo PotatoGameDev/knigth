@@ -3,11 +3,14 @@ extends Node
 class_name IdleState 
 
 func enter(ownr) -> void:
+	if ownr.queued_jump_timer > 0.0:
+		ownr.change_state(ownr.jumping_state)
+		return
 	ownr.animation.play("idle")
 	ownr.velocity = Vector2.ZERO
 
-func update(_ownr, _delta: float) -> void:
-	pass 
+func update(ownr, _delta: float) -> void:
+	ownr.coyote_timer = ownr.max_coyote_time
 
 func handle_input(ownr: Knight) -> void:
 	if !ownr.is_on_floor():

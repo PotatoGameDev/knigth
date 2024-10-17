@@ -15,17 +15,16 @@ func update(ownr: Knight, delta: float) -> void:
 		ownr.velocity.y += ownr.gravity * delta
 		ownr.velocity.x = movement * ownr.speed
 
+	ownr.coyote_timer -= delta
+
 func handle_input(ownr: Knight) -> void:
-	if Input.is_action_pressed("left"):
-		ownr.direction = -1
-	elif Input.is_action_pressed("right"):
-		ownr.direction = 1
+	movement = Input.get_action_strength("right") - Input.get_action_strength("left")
+	if movement != 0:
+		ownr.direction = movement
+		ownr.animation.flip_h = ownr.direction == -1
 
 	if Input.is_action_just_pressed("jump") and ownr.coyote_timer > 0.0:
 		ownr.change_state(ownr.jumping_state)
-
-	movement = Input.get_action_strength("right") - Input.get_action_strength("left")
-	ownr.animation.flip_h = ownr.direction == -1
 	
 func exit(ownr) -> void:
 	ownr.velocity.y = 0

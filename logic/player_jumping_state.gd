@@ -8,6 +8,7 @@ func enter(ownr) -> void:
 	ownr.animation.play("jump")
 	ownr.velocity.y = -ownr.jump_force
 	ownr.jump_timer = 0.0
+	ownr.coyote_timer = 0.0
 
 func update(ownr: Knight, delta: float) -> void:
 	if ownr.jump_timer < ownr.jump_hold_time:

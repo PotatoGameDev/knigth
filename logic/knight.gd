@@ -7,9 +7,11 @@ class_name Knight
 @export var max_fall_speed := 900.0
 @export var jump_hold_time = 0.2
 @export var max_coyote_time = 0.2
+@export var max_queued_jump_time = 0.2
 
 var jump_timer := 0.0
 var coyote_timer := 0.0
+var queued_jump_timer := 0.0
 
 var states = {} 
 var current_state = null
@@ -29,8 +31,6 @@ func _ready() -> void:
 func change_state(new_state) -> void:
 	if current_state:
 		current_state.exit(self)
-	
-	print("entering " + new_state.name)
 	current_state = new_state
 	current_state.enter(self)
 
@@ -39,10 +39,10 @@ func _process(delta):
 		return
 	current_state.handle_input(self)
 
-	if is_on_floor():
-		coyote_timer = max_coyote_time
-	else:
-		coyote_timer -= delta
+	# Handle queued jumps
+	queued_jump_timer -= delta
+	if Input.is_action_pressed("jump"):
+		queued_jump_timer = max_queued_jump_time
 
 func _physics_process(delta):
 	current_state.update(self, delta)
