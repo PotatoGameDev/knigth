@@ -41,7 +41,7 @@ func _process(delta):
 
 	# Handle queued jumps
 	queued_jump_timer -= delta
-	if Input.is_action_pressed("jump"):
+	if Input.is_action_just_pressed("jump"):
 		queued_jump_timer = max_queued_jump_time
 
 func _physics_process(delta):
