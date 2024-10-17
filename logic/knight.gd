@@ -1,21 +1,15 @@
 extends CharacterBody2D
 class_name Knight
 
-const GRAVITY = 9.8 * 60
-const JUMP_VELOCITY = -400.0
-
-@export var air_movement_speed := 30.0
-@export var walk_speed := 30.0
-
-
-@export var jump_force := 600.0
+@export var jump_force := 1500.0
 @export var gravity := 1200.0
 @export var speed := 200.0
 @export var max_fall_speed := 900.0
 @export var jump_hold_time = 0.2
+@export var max_coyote_time = 0.2
 
-var is_jumping := false
 var jump_timer := 0.0
+var coyote_timer := 0.0
 
 var states = {} 
 var current_state = null
@@ -44,8 +38,12 @@ func _process(delta):
 	if not current_state:
 		return
 	current_state.handle_input(self)
+
+	if is_on_floor():
+		coyote_timer = max_coyote_time
+	else:
+		coyote_timer -= delta
+
+func _physics_process(delta):
 	current_state.update(self, delta)
-
-
-func _physics_process(_delta):
 	move_and_slide()

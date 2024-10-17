@@ -14,7 +14,7 @@ func handle_input(ownr: Knight) -> void:
 		ownr.change_state(ownr.falling_state)
 	elif Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		ownr.change_state(ownr.running_state)
-	elif Input.is_action_pressed("jump"):
+	elif Input.is_action_just_pressed("jump"):
 		ownr.change_state(ownr.jumping_state)
 
 func exit(_ownr) -> void:
