@@ -2,14 +2,12 @@
 extends Node
 class_name RunningState 
 
-@export var speed = 30.0
-
 func enter(ownr: Knight) -> void:
 	print("entering running state")
 	ownr.animation.play("run")
 
-func update(ownr: Knight, delta: float) -> void:
-	ownr.velocity.x = speed * ownr.direction
+func update(ownr: Knight, _delta: float) -> void:
+	ownr.velocity.x = ownr.walk_speed * ownr.direction
 
 func handle_input(ownr: Knight) -> void:
 	if !ownr.is_on_floor():
