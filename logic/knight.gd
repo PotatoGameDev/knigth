@@ -30,6 +30,7 @@ var movement = 0.0
 @onready var idle_state: IdleState = $States/Idle
 @onready var falling_state: FallingState = $States/Falling
 @onready var jumping_state: JumpingState = $States/Jumping
+@onready var smashing_state: SmashingState = $States/Smashing
 
 func _ready() -> void:
 	change_state(idle_state)

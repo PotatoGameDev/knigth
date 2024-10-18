@@ -19,9 +19,6 @@ func update(ownr: Knight, delta: float) -> void:
 	if not ownr.is_on_floor():
 		ownr.velocity.y += ownr.gravity * delta
 
-	if ownr.velocity.y > ownr.max_fall_speed:
-		ownr.velocity.y = ownr.max_fall_speed
-
 	# Horizontal User Control
 	ownr.velocity.x = ownr.movement * ownr.speed
 
@@ -42,6 +39,10 @@ func handle_input(ownr: Knight) -> void:
 
 	if !Input.is_action_pressed("jump"):
 		ownr.change_state(ownr.falling_state)
+		return
+	if Input.is_action_pressed("smash"):
+		ownr.change_state(ownr.smashing_state)
+		return
 
 func exit(_ownr) -> void:
 	pass

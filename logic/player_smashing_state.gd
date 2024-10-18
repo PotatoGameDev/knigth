@@ -1,21 +1,20 @@
 # The player's idle state.
 extends Node
-class_name FallingState 
+class_name SmashingState
+
+@export var gravity_coefficient := 2.0
+@export var controls_coefficient := 0.5
 
 func enter(ownr) -> void:
-	ownr.animation.play("fall")
+	ownr.animation.play("smash")
+	ownr.velocity.y = ownr.max_fall_speed * 0.5
 
 func update(ownr: Knight, delta: float) -> void:
 	if ownr.is_on_floor():
 		ownr.change_state(ownr.idle_state)
 	else:
-		ownr.velocity.y += ownr.gravity * delta
-		ownr.velocity.x = ownr.movement * ownr.speed
-
-	if ownr.velocity.y > ownr.max_fall_speed:
-		ownr.velocity.y = ownr.max_fall_speed
-
-	ownr.coyote_timer -= delta
+		ownr.velocity.y += ownr.gravity * gravity_coefficient * delta
+		ownr.velocity.x = ownr.movement * controls_coefficient * ownr.speed
 
 func handle_input(ownr: Knight) -> void:
 	if ownr.movement != 0:
@@ -25,10 +24,6 @@ func handle_input(ownr: Knight) -> void:
 
 	if Input.is_action_just_pressed("jump") and ownr.coyote_timer > 0.0:
 		ownr.change_state(ownr.jumping_state)
-		return
-	if Input.is_action_pressed("smash"):
-		ownr.change_state(ownr.smashing_state)
-		return
 	
 func exit(ownr) -> void:
 	ownr.velocity.y = 0

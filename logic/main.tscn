@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://cux2tw0wvffkg"]
+[gd_scene load_steps=24 format=4 uid="uid://cux2tw0wvffkg"]
 
 [ext_resource type="Script" path="res://logic/main.gd" id="1_2bfyf"]
 [ext_resource type="Texture2D" uid="uid://47gkon2vpqqt" path="res://assets/sprites/main-tilemap.png" id="2_unhpw"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://logic/player_running_state.gd" id="6_xapj7"]
 [ext_resource type="Script" path="res://logic/player_falling_state.gd" id="7_mi5q2"]
 [ext_resource type="Script" path="res://logic/player_jumping_state.gd" id="8_b2foh"]
+[ext_resource type="Script" path="res://logic/player_smashing_state.gd" id="9_hsdi7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_khjfu"]
 texture = ExtResource("2_unhpw")
@@ -150,6 +151,14 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("3_o8x73")
 region = Rect2(32, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsdi7"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p3p6"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(32, 128, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_4bo3m"]
 animations = [{
 "frames": [{
@@ -195,6 +204,17 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsdi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2p3p6")
+}],
+"loop": false,
+"name": &"smash",
+"speed": 5.0
 }]
 
 [node name="Main" type="Node2D"]
@@ -216,7 +236,7 @@ shape = SubResource("RectangleShape2D_pnin5")
 
 [node name="Animation" type="AnimatedSprite2D" parent="Knight"]
 sprite_frames = SubResource("SpriteFrames_4bo3m")
-animation = &"fall"
+animation = &"smash"
 autoplay = "idle"
 
 [node name="States" type="Node" parent="Knight"]
@@ -232,6 +252,10 @@ script = ExtResource("7_mi5q2")
 
 [node name="Jumping" type="Node" parent="Knight/States"]
 script = ExtResource("8_b2foh")
+
+[node name="Smashing" type="Node" parent="Knight/States"]
+script = ExtResource("9_hsdi7")
+gravity_coefficient = 4.0
 
 [node name="Camera2D" type="Camera2D" parent="Knight"]
 limit_smoothed = true
