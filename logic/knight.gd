@@ -21,6 +21,11 @@ var movement = 0.0
 
 @onready var animation = $Animation
 
+@onready var jumpRayLeftOuter: RayCast2D = $JumpSlipRays/RayLeftOuter
+@onready var jumpRayLeftInner: RayCast2D = $JumpSlipRays/RayLeftInner
+@onready var jumpRayRightOuter: RayCast2D = $JumpSlipRays/RayRightOuter
+@onready var jumpRayRightInner: RayCast2D = $JumpSlipRays/RayRightInner
+
 @onready var running_state: RunningState =  $States/Running
 @onready var idle_state: IdleState = $States/Idle
 @onready var falling_state: FallingState = $States/Falling

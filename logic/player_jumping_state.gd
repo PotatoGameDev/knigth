@@ -22,7 +22,17 @@ func update(ownr: Knight, delta: float) -> void:
 	if ownr.velocity.y > ownr.max_fall_speed:
 		ownr.velocity.y = ownr.max_fall_speed
 
+	# Horizontal User Control
 	ownr.velocity.x = ownr.movement * ownr.speed
+
+	# Jump Slip
+	if ownr.jumpRayLeftOuter.is_colliding() and not ownr.jumpRayLeftInner.is_colliding():
+		print("Jump Slip Right")
+		ownr.velocity.x += ownr.speed
+	elif ownr.jumpRayRightOuter.is_colliding() and not ownr.jumpRayRightInner.is_colliding():
+		print("Jump Slip Left")
+		ownr.velocity.x -= ownr.speed
+
 
 func handle_input(ownr: Knight) -> void:
 	if ownr.movement != 0:
@@ -32,7 +42,6 @@ func handle_input(ownr: Knight) -> void:
 
 	if !Input.is_action_pressed("jump"):
 		ownr.change_state(ownr.falling_state)
-
 
 func exit(_ownr) -> void:
 	pass

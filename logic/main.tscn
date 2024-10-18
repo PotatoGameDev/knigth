@@ -109,15 +109,14 @@ texture = ExtResource("2_unhpw")
 0:3/0/terrains_peering_bit/right_side = 0
 
 [sub_resource type="TileSet" id="TileSet_1xl4a"]
-physics_layer_0/collision_layer = 1
-physics_layer_0/collision_mask = 128
+physics_layer_0/collision_layer = 128
 terrain_set_0/mode = 2
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_khjfu")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pnin5"]
-size = Vector2(26, 27)
+size = Vector2(18, 27)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sblk5"]
 atlas = ExtResource("3_o8x73")
@@ -207,12 +206,12 @@ tile_set = SubResource("TileSet_1xl4a")
 
 [node name="Knight" type="CharacterBody2D" parent="."]
 position = Vector2(134, 28)
+collision_mask = 128
 script = ExtResource("3_hpcr4")
 jump_force = 300.0
-metadata/_edit_group_ = true
 
 [node name="CollitionShape" type="CollisionShape2D" parent="Knight"]
-position = Vector2(1, 2.5)
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_pnin5")
 
 [node name="Animation" type="AnimatedSprite2D" parent="Knight"]
@@ -237,3 +236,29 @@ script = ExtResource("8_b2foh")
 [node name="Camera2D" type="Camera2D" parent="Knight"]
 limit_smoothed = true
 drag_horizontal_enabled = true
+
+[node name="JumpSlipRays" type="Node2D" parent="Knight"]
+
+[node name="RayLeftOuter" type="RayCast2D" parent="Knight/JumpSlipRays"]
+position = Vector2(-12, -10)
+target_position = Vector2(0, -10)
+collision_mask = 128
+collide_with_areas = true
+
+[node name="RayLeftInner" type="RayCast2D" parent="Knight/JumpSlipRays"]
+position = Vector2(-4, -10)
+target_position = Vector2(0, -10)
+collision_mask = 128
+collide_with_areas = true
+
+[node name="RayRightInner" type="RayCast2D" parent="Knight/JumpSlipRays"]
+position = Vector2(3, -10)
+target_position = Vector2(0, -10)
+collision_mask = 128
+collide_with_areas = true
+
+[node name="RayRightOuter" type="RayCast2D" parent="Knight/JumpSlipRays"]
+position = Vector2(11, -10)
+target_position = Vector2(0, -10)
+collision_mask = 128
+collide_with_areas = true
