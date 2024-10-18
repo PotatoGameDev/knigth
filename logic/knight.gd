@@ -17,6 +17,7 @@ var states = {}
 var current_state = null
 
 var direction = 1
+var movement = 0.0
 
 @onready var animation = $Animation
 
@@ -29,6 +30,7 @@ func _ready() -> void:
 	change_state(idle_state)
 
 func change_state(new_state) -> void:
+	print("Changing state to ", new_state.name)
 	if current_state:
 		current_state.exit(self)
 	current_state = new_state
@@ -37,7 +39,10 @@ func change_state(new_state) -> void:
 func _process(delta):
 	if not current_state:
 		return
+
 	current_state.handle_input(self)
+
+	movement = Input.get_action_strength("right") - Input.get_action_strength("left")
 
 	# Handle queued jumps
 	queued_jump_timer -= delta

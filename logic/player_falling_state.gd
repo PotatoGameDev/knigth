@@ -2,8 +2,6 @@
 extends Node
 class_name FallingState 
 
-var movement := 0.0
-
 func enter(ownr) -> void:
 	ownr.animation.play("fall")
 	ownr.animation.frame = 1
@@ -13,15 +11,15 @@ func update(ownr: Knight, delta: float) -> void:
 		ownr.change_state(ownr.idle_state)
 	else:
 		ownr.velocity.y += ownr.gravity * delta
-		ownr.velocity.x = movement * ownr.speed
+		ownr.velocity.x = ownr.movement * ownr.speed
 
 	ownr.coyote_timer -= delta
 
 func handle_input(ownr: Knight) -> void:
-	movement = Input.get_action_strength("right") - Input.get_action_strength("left")
-	if movement != 0:
-		ownr.direction = movement
-		ownr.animation.flip_h = ownr.direction == -1
+	if ownr.movement != 0:
+		ownr.direction = ownr.movement
+
+	ownr.animation.flip_h = ownr.direction == -1
 
 	if Input.is_action_just_pressed("jump") and ownr.coyote_timer > 0.0:
 		ownr.change_state(ownr.jumping_state)
