@@ -23,4 +23,4 @@ func update(ownr: Zombi, delta: float) -> void:
 	
 
 func exit(ownr: Zombi) -> void:
-	ownr.velocity.y = 0
+	pass

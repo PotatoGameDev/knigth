@@ -25,10 +25,12 @@ func update(ownr: Zombi, delta: float) -> void:
 		return
 	elif ownr.attackRayLeft.is_colliding():
 		ownr.direction = -1
+		ownr.movement = -1.0
 		ownr.change_state(ownr.attacking_state)
 		return
 	elif ownr.attackRayRight.is_colliding():
 		ownr.direction = 1
+		ownr.movement = 1.0
 		ownr.change_state(ownr.attacking_state)
 		return
 	

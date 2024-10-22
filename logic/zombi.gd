@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Zombi 
 
+@export var vitality := 100.0
+
 @export var gravity := 1200.0
 @export var speed := 200.0
 @export var max_fall_speed := 900.0
