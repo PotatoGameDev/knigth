@@ -58,3 +58,4 @@ func _process(delta):
 func _physics_process(delta):
 	current_state.update(self, delta)
 	move_and_slide()
+
