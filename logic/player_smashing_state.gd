@@ -8,10 +8,10 @@ class_name SmashingState
 func enter(ownr) -> void:
 	ownr.animation.play("smash")
 	ownr.velocity.y = ownr.max_fall_speed * 0.5
-	ownr.coyote_timer = 0.0
 
 func update(ownr: Knight, delta: float) -> void:
 	if ownr.is_on_floor():
+ 		# zero out queued jump timer to prevent double jumps when landing after smashing
 		ownr.queued_jump_timer = 0.0
 		ownr.change_state(ownr.idle_state)
 		return
