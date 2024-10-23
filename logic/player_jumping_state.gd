@@ -37,12 +37,13 @@ func handle_input(ownr: Knight) -> void:
 
 	ownr.animation.flip_h = ownr.direction == -1
 
-	if !Input.is_action_pressed("jump"):
-		ownr.change_state(ownr.falling_state)
-		return
-	if Input.is_action_pressed("smash"):
-		ownr.change_state(ownr.smashing_state)
-		return
+	if not Input.is_action_pressed("jump"):
+		if Input.is_action_just_pressed("smash"):
+			ownr.change_state(ownr.smashing_state)
+			return
+		else:
+			ownr.change_state(ownr.falling_state)
+			return
 
 func exit(_ownr) -> void:
 	pass
