@@ -1,0 +1,189 @@
+[gd_scene load_steps=24 format=3 uid="uid://ci1vae7axbcve"]
+
+[ext_resource type="Script" path="res://logic/zombi/zombi.gd" id="1_lvut6"]
+[ext_resource type="Texture2D" uid="uid://dj3ksj5s27f8c" path="res://assets/sprites/zombie-sheet.png" id="2_g5uav"]
+[ext_resource type="Script" path="res://logic/zombi/zombi_attacking_state.gd" id="3_etqux"]
+[ext_resource type="Script" path="res://logic/zombi/zombi_idle_state.gd" id="4_3eb5i"]
+[ext_resource type="Script" path="res://logic/zombi/zombi_running_state.gd" id="5_8lnob"]
+[ext_resource type="Script" path="res://logic/zombi/zombi_dead_state.gd" id="6_rsfqm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pk1f1"]
+atlas = ExtResource("2_g5uav")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7qid"]
+atlas = ExtResource("2_g5uav")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_071tv"]
+atlas = ExtResource("2_g5uav")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lt1t"]
+atlas = ExtResource("2_g5uav")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g7ew"]
+atlas = ExtResource("2_g5uav")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fegvt"]
+atlas = ExtResource("2_g5uav")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gj2wd"]
+atlas = ExtResource("2_g5uav")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpjel"]
+atlas = ExtResource("2_g5uav")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e37i5"]
+atlas = ExtResource("2_g5uav")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnqrp"]
+atlas = ExtResource("2_g5uav")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ystf"]
+atlas = ExtResource("2_g5uav")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lfik"]
+atlas = ExtResource("2_g5uav")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri3ss"]
+atlas = ExtResource("2_g5uav")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvhnq"]
+atlas = ExtResource("2_g5uav")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nuq10"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pk1f1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7qid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_071tv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lt1t")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g7ew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fegvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gj2wd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpjel")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e37i5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnqrp")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ystf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lfik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri3ss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvhnq")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eoh8o"]
+size = Vector2(15.75, 27.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4lt1t"]
+
+[node name="Zombi" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 128
+script = ExtResource("1_lvut6")
+speed = 80.0
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nuq10")
+animation = &"die"
+autoplay = "idle"
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(-0.125, 1.75)
+shape = SubResource("RectangleShape2D_eoh8o")
+
+[node name="States" type="Node" parent="."]
+
+[node name="Attacking" type="Node" parent="States"]
+script = ExtResource("3_etqux")
+
+[node name="Idle" type="Node" parent="States"]
+script = ExtResource("4_3eb5i")
+
+[node name="Running" type="Node" parent="States"]
+script = ExtResource("5_8lnob")
+
+[node name="Dead" type="Node" parent="States"]
+script = ExtResource("6_rsfqm")
+
+[node name="Sensors" type="Node2D" parent="."]
+
+[node name="AttackRayLeft" type="RayCast2D" parent="Sensors"]
+target_position = Vector2(-20, 0)
+
+[node name="AttackRayRight" type="RayCast2D" parent="Sensors"]
+target_position = Vector2(20, 0)
+
+[node name="DetectorLeft" type="ShapeCast2D" parent="Sensors"]
+visible = false
+shape = SubResource("CircleShape2D_4lt1t")
+target_position = Vector2(-100, 0)
+max_results = 1
+
+[node name="DetectorRight" type="ShapeCast2D" parent="Sensors"]
+visible = false
+shape = SubResource("CircleShape2D_4lt1t")
+target_position = Vector2(100, 0)
+max_results = 1
+
+[node name="StepTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[connection signal="timeout" from="StepTimer" to="States/Running" method="_on_step_timer_timeout"]

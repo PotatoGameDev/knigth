@@ -1,19 +1,16 @@
-[gd_scene load_steps=47 format=4 uid="uid://cux2tw0wvffkg"]
+[gd_scene load_steps=27 format=4 uid="uid://cux2tw0wvffkg"]
 
 [ext_resource type="Script" path="res://logic/main.gd" id="1_2bfyf"]
 [ext_resource type="Texture2D" uid="uid://47gkon2vpqqt" path="res://assets/sprites/main-tilemap.png" id="2_unhpw"]
-[ext_resource type="Script" path="res://logic/knight.gd" id="3_hpcr4"]
+[ext_resource type="Script" path="res://logic/knight/knight.gd" id="3_hpcr4"]
 [ext_resource type="Texture2D" uid="uid://cqawhhuuatu5m" path="res://assets/sprites/knight-sheet.png" id="3_o8x73"]
-[ext_resource type="Script" path="res://logic/player_idle_state.gd" id="5_1jjhg"]
-[ext_resource type="Script" path="res://logic/player_running_state.gd" id="6_xapj7"]
-[ext_resource type="Script" path="res://logic/player_falling_state.gd" id="7_mi5q2"]
-[ext_resource type="Script" path="res://logic/player_jumping_state.gd" id="8_b2foh"]
-[ext_resource type="Script" path="res://logic/player_smashing_state.gd" id="9_hsdi7"]
-[ext_resource type="Texture2D" uid="uid://dj3ksj5s27f8c" path="res://assets/sprites/zombie-sheet.png" id="10_2p3p6"]
-[ext_resource type="Script" path="res://logic/zombi.gd" id="10_4lt1t"]
-[ext_resource type="Script" path="res://logic/zombi_attacking_state.gd" id="12_3g7ew"]
-[ext_resource type="Script" path="res://logic/zombi_idle_state.gd" id="13_fegvt"]
-[ext_resource type="Script" path="res://logic/zombi_running_state.gd" id="14_gj2wd"]
+[ext_resource type="Script" path="res://logic/knight/knight_idle_state.gd" id="5_1jjhg"]
+[ext_resource type="Script" path="res://logic/knight/knight_running_state.gd" id="6_xapj7"]
+[ext_resource type="Script" path="res://logic/knight/knight_falling_state.gd" id="7_mi5q2"]
+[ext_resource type="Script" path="res://logic/knight/knight_jumping_state.gd" id="8_b2foh"]
+[ext_resource type="Script" path="res://logic/knight/knight_smashing_state.gd" id="9_hsdi7"]
+[ext_resource type="PackedScene" uid="uid://ci1vae7axbcve" path="res://logic/zombi/zombi.tscn" id="10_2p3p6"]
+[ext_resource type="Script" path="res://logic/knight/knight_bouncing_state.gd" id="10_pk1f1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_khjfu"]
 texture = ExtResource("2_unhpw")
@@ -222,134 +219,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pk1f1"]
-atlas = ExtResource("10_2p3p6")
-region = Rect2(0, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l7qid"]
-atlas = ExtResource("10_2p3p6")
-region = Rect2(32, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_071tv"]
-atlas = ExtResource("10_2p3p6")
-region = Rect2(64, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4lt1t"]
-atlas = ExtResource("10_2p3p6")
-region = Rect2(96, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3g7ew"]
-atlas = ExtResource("10_2p3p6")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fegvt"]
-atlas = ExtResource("10_2p3p6")
-region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gj2wd"]
-atlas = ExtResource("10_2p3p6")
-region = Rect2(64, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kpjel"]
-atlas = ExtResource("10_2p3p6")
-region = Rect2(96, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e37i5"]
-atlas = ExtResource("10_2p3p6")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cnqrp"]
-atlas = ExtResource("10_2p3p6")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ystf"]
-atlas = ExtResource("10_2p3p6")
-region = Rect2(0, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7lfik"]
-atlas = ExtResource("10_2p3p6")
-region = Rect2(32, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ri3ss"]
-atlas = ExtResource("10_2p3p6")
-region = Rect2(64, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nvhnq"]
-atlas = ExtResource("10_2p3p6")
-region = Rect2(96, 64, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_nuq10"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pk1f1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l7qid")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_071tv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4lt1t")
-}],
-"loop": true,
-"name": &"attack",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3g7ew")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fegvt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gj2wd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kpjel")
-}],
-"loop": true,
-"name": &"die",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e37i5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cnqrp")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2ystf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7lfik")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ri3ss")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nvhnq")
-}],
-"loop": true,
-"name": &"run",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eoh8o"]
-size = Vector2(15.75, 2.5)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_4lt1t"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4lt1t"]
-size = Vector2(16, 2)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_3g7ew"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2bfyf")
@@ -360,7 +230,7 @@ tile_set = SubResource("TileSet_1xl4a")
 
 [node name="Knight" type="CharacterBody2D" parent="."]
 position = Vector2(134, 28)
-collision_mask = 132
+collision_mask = 128
 script = ExtResource("3_hpcr4")
 jump_force = 300.0
 
@@ -390,6 +260,9 @@ script = ExtResource("8_b2foh")
 [node name="Smashing" type="Node" parent="Knight/States"]
 script = ExtResource("9_hsdi7")
 gravity_coefficient = 4.0
+
+[node name="Bouncing" type="Node" parent="Knight/States"]
+script = ExtResource("10_pk1f1")
 
 [node name="Camera2D" type="Camera2D" parent="Knight"]
 limit_smoothed = true
@@ -421,65 +294,23 @@ target_position = Vector2(0, -10)
 collision_mask = 128
 collide_with_areas = true
 
-[node name="Zombi" type="CharacterBody2D" parent="."]
+[node name="Sensors" type="Node2D" parent="Knight"]
+
+[node name="EnemySmashSensor" type="ShapeCast2D" parent="Knight/Sensors"]
+position = Vector2(-7, 14)
+shape = SubResource("SegmentShape2D_3g7ew")
+target_position = Vector2(14, 0)
+max_results = 3
+collision_mask = 2
+
+[node name="Zombi" parent="." instance=ExtResource("10_2p3p6")]
 position = Vector2(291, 148)
-collision_layer = 2
-collision_mask = 128
-script = ExtResource("10_4lt1t")
-speed = 80.0
 
-[node name="Animation" type="AnimatedSprite2D" parent="Zombi"]
-sprite_frames = SubResource("SpriteFrames_nuq10")
-animation = &"idle"
-autoplay = "idle"
-frame_progress = 0.779027
+[node name="Zombi2" parent="." instance=ExtResource("10_2p3p6")]
+position = Vector2(291, 148)
 
-[node name="CollisionShape" type="CollisionShape2D" parent="Zombi"]
-position = Vector2(-0.125, 14.25)
-shape = SubResource("RectangleShape2D_eoh8o")
+[node name="Zombi3" parent="." instance=ExtResource("10_2p3p6")]
+position = Vector2(340, 95)
 
-[node name="States" type="Node" parent="Zombi"]
-
-[node name="Attacking" type="Node" parent="Zombi/States"]
-script = ExtResource("12_3g7ew")
-
-[node name="Idle" type="Node" parent="Zombi/States"]
-script = ExtResource("13_fegvt")
-
-[node name="Running" type="Node" parent="Zombi/States"]
-script = ExtResource("14_gj2wd")
-
-[node name="Sensors" type="Node2D" parent="Zombi"]
-
-[node name="AttackRayLeft" type="RayCast2D" parent="Zombi/Sensors"]
-target_position = Vector2(-20, 0)
-
-[node name="AttackRayRight" type="RayCast2D" parent="Zombi/Sensors"]
-target_position = Vector2(20, 0)
-
-[node name="DetectorLeft" type="ShapeCast2D" parent="Zombi/Sensors"]
-visible = false
-shape = SubResource("CircleShape2D_4lt1t")
-target_position = Vector2(-100, 0)
-max_results = 1
-
-[node name="DetectorRight" type="ShapeCast2D" parent="Zombi/Sensors"]
-visible = false
-shape = SubResource("CircleShape2D_4lt1t")
-target_position = Vector2(100, 0)
-max_results = 1
-
-[node name="StepTimer" type="Timer" parent="Zombi"]
-wait_time = 0.25
-autostart = true
-
-[node name="HeadBox" type="AnimatableBody2D" parent="Zombi"]
-collision_layer = 4
-sync_to_physics = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Zombi/HeadBox"]
-position = Vector2(0, -12)
-shape = SubResource("RectangleShape2D_4lt1t")
-one_way_collision = true
-
-[connection signal="timeout" from="Zombi/StepTimer" to="Zombi/States/Running" method="_on_step_timer_timeout"]
+[node name="Zombi4" parent="." instance=ExtResource("10_2p3p6")]
+position = Vector2(83, 151)

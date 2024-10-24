@@ -11,6 +11,18 @@ func enter(ownr) -> void:
 
 func update(ownr: Knight, delta: float) -> void:
 	if ownr.is_on_floor():
+
+		if ownr.enemySmashSensor.is_colliding():
+			var smashed = false
+			for e in range(ownr.enemySmashSensor.get_collision_count()):
+				var enemy = ownr.enemySmashSensor.get_collider(e)
+				if enemy is Zombi and enemy.is_alive():
+					enemy.take_damage(ownr.strength)
+					smashed = true
+			if smashed:
+				ownr.change_state(ownr.bouncing_state)
+				return
+
  		# zero out queued jump timer to prevent double jumps when landing after smashing
 		ownr.queued_jump_timer = 0.0
 		ownr.change_state(ownr.idle_state)
