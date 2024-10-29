@@ -21,6 +21,7 @@ func update(ownr: Knight, delta: float) -> void:
 					smashed = true
 			if smashed:
 				ownr.change_state(ownr.bouncing_state)
+				ownr.bounce_power = 1.5
 				return
 
  		# zero out queued jump timer to prevent double jumps when landing after smashing

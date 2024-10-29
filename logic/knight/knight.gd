@@ -9,6 +9,7 @@ class_name Knight
 @export var max_coyote_time = 0.2
 @export var max_queued_jump_time = 0.2
 
+
 # Character stats
 @export var strength := 100.0
 
@@ -21,6 +22,8 @@ var current_state = null
 
 var direction = 1
 var movement = 0.0
+
+var bounce_power := 1.0
 
 @onready var animation = $Animation
 

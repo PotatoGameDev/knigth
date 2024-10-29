@@ -11,7 +11,7 @@ func enter(ownr) -> void:
 func update(ownr: Knight, delta: float) -> void:
 	if ownr.jump_timer < 0.5 * ownr.jump_hold_time:
 		ownr.jump_timer += delta
-		ownr.velocity.y = -ownr.jump_force
+		ownr.velocity.y = -ownr.jump_force * ownr.bounce_power
 	else:
 		ownr.change_state(ownr.falling_state)
 		return
