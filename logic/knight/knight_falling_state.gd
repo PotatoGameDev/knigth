@@ -39,7 +39,7 @@ func handle_input(ownr: Knight) -> void:
 	if Input.is_action_just_pressed("jump") and ownr.coyote_timer > 0.0:
 		ownr.change_state(ownr.jumping_state)
 		return
-	if Input.is_action_pressed("smash"):
+	if Input.is_action_just_pressed("smash"):
 		ownr.change_state(ownr.smashing_state)
 		return
 	
