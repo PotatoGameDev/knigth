@@ -3,10 +3,11 @@ extends Node
 class_name BouncingState 
 
 func enter(ownr) -> void:
-	ownr.animation.play("jump")
+	ownr.animation.play("bounce")
 	ownr.velocity.y = -ownr.jump_force
 	ownr.jump_timer = 0.0
 	ownr.coyote_timer = 0.0
+	ownr.is_bouncing = true
 
 func update(ownr: Knight, delta: float) -> void:
 	if ownr.jump_timer < 0.5 * ownr.jump_hold_time:

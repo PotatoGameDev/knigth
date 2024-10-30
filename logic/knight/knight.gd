@@ -24,6 +24,7 @@ var direction = 1
 var movement = 0.0
 
 var bounce_power := 1.0
+var is_bouncing := false
 
 @onready var animation = $Animation
 
@@ -40,6 +41,7 @@ var bounce_power := 1.0
 @onready var jumping_state: JumpingState = $States/Jumping
 @onready var smashing_state: SmashingState = $States/Smashing
 @onready var bouncing_state: BouncingState = $States/Bouncing
+@onready var stomping_state: StompingState = $States/Stomping
 
 func _ready() -> void:
 	change_state(idle_state)

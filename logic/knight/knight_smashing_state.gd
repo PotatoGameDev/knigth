@@ -20,7 +20,7 @@ func update(ownr: Knight, delta: float) -> void:
 					enemy.take_damage(ownr.strength)
 					smashed = true
 			if smashed:
-				ownr.change_state(ownr.bouncing_state)
+				ownr.change_state(ownr.stomping_state)
 				ownr.bounce_power = 1.5
 				return
 

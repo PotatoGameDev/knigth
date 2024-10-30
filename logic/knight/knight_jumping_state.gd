@@ -3,7 +3,9 @@ extends Node
 class_name JumpingState 
 
 func enter(ownr) -> void:
-	ownr.animation.play("jump")
+	if not ownr.is_bouncing:
+		ownr.animation.play("jump")
+
 	ownr.velocity.y = -ownr.jump_force
 	ownr.jump_timer = 0.0
 	ownr.coyote_timer = 0.0
