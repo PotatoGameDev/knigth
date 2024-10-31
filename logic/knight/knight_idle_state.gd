@@ -8,6 +8,8 @@ func enter(ownr) -> void:
 	ownr.animation.play("idle")
 	ownr.velocity = Vector2.ZERO
 
+	ownr.is_bouncing = false
+
 func update(ownr, _delta: float) -> void:
 	ownr.coyote_timer = ownr.max_coyote_time
 

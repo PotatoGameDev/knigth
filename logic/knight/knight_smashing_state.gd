@@ -3,7 +3,7 @@ extends Node
 class_name SmashingState
 
 @export var gravity_coefficient := 2.0
-@export var controls_coefficient := 0.5
+@export var controls_coefficient := 2.0
 
 func enter(ownr) -> void:
 	ownr.animation.play("smash")
