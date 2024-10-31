@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://cux2tw0wvffkg"]
+[gd_scene load_steps=39 format=4 uid="uid://cux2tw0wvffkg"]
 
 [ext_resource type="Script" path="res://logic/main.gd" id="1_2bfyf"]
 [ext_resource type="Texture2D" uid="uid://47gkon2vpqqt" path="res://assets/sprites/main-tilemap.png" id="2_unhpw"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ci1vae7axbcve" path="res://logic/zombi/zombi.tscn" id="10_2p3p6"]
 [ext_resource type="Script" path="res://logic/knight/knight_bouncing_state.gd" id="10_pk1f1"]
 [ext_resource type="Script" path="res://logic/knight/knight_stomping_state.gd" id="11_l7qid"]
+[ext_resource type="Script" path="res://logic/debug/line_drawer.gd" id="12_071tv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_khjfu"]
 texture = ExtResource("2_unhpw")
@@ -386,6 +387,10 @@ shape = SubResource("SegmentShape2D_3g7ew")
 target_position = Vector2(14, 0)
 max_results = 3
 collision_mask = 2
+
+[node name="LineDrawer" type="Node2D" parent="Knight"]
+script = ExtResource("12_071tv")
+max_trail_length = 200
 
 [node name="Zombi" parent="." instance=ExtResource("10_2p3p6")]
 position = Vector2(291, 148)

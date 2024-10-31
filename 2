@@ -3,28 +3,25 @@ extends Node
 class_name SmashingState
 
 @export var gravity_coefficient := 2.0
-@export var min_controls_coefficient := 0.0
-@export var max_controls_coefficient := 2.0 
-@export var controls_coefficient_grow_rate := 20.0
+@export var controls_coefficient := 2.0 
+@export var controls_lag := 0.5
 
-var controls_coefficient := 0.0
+var controls_timer := 0.0
 
 func enter(ownr) -> void:
 	ownr.animation.play("smash")
 	ownr.velocity.y = ownr.max_fall_speed * 0.5
-	ownr.velocity.x = 0.0
-	controls_coefficient = min_controls_coefficient
+	controls_timer = controls_lag
 
 func update(ownr: Knight, delta: float) -> void:
-	if Input.is_action_pressed("smash"):
-		controls_coefficient = min(
-			controls_coefficient + delta * controls_coefficient_grow_rate,
-			max_controls_coefficient
-			)
-	else:
-		controls_coefficient = min_controls_coefficient
+
+	if Input.is_action_just_pressed("left") or Input.is_action_just_pressed("right"):
+		controls_timer = controls_lag
+	elif Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+		controls_timer -= delta
 
 	if ownr.is_on_floor():
+
 		if ownr.enemySmashSensor.is_colliding():
 			var smashed = false
 			for e in range(ownr.enemySmashSensor.get_collision_count()):
@@ -45,10 +42,15 @@ func update(ownr: Knight, delta: float) -> void:
 		ownr.velocity.y += ownr.gravity * gravity_coefficient * delta
 		ownr.velocity.x = ownr.movement * controls_coefficient * ownr.speed
 
+		if controls_timer <= 0:
+			controls_coefficient 
+
 
 func handle_input(ownr: Knight) -> void:
 	if ownr.movement != 0:
 		ownr.direction = ownr.movement
+
+	
 
 	ownr.animation.flip_h = ownr.direction == -1
 
