@@ -6,6 +6,11 @@ class_name LineDrawer
 var trail_points = []
 
 func _process(_delta):
+	if trail_points.size() != 0:
+		var last_element = trail_points[trail_points.size() - 1]
+		if last_element == global_position:
+			return
+
 	trail_points.append(global_position)
 	if trail_points.size() > max_trail_length:
 		trail_points.pop_front()  # Limit trail length
