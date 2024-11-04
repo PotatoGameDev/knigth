@@ -48,6 +48,7 @@ func _ready() -> void:
 
 func change_state(new_state) -> void:
 	print("Changing state to ", new_state.name)
+	print("Queued jump timer: ", queued_jump_timer)
 	if current_state:
 		current_state.exit(self)
 	current_state = new_state
