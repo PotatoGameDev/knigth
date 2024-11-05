@@ -34,6 +34,8 @@ var is_bouncing := false
 @onready var jumpRayRightInner: RayCast2D = $JumpSlipRays/RayRightInner
 
 @onready var enemySmashSensor: ShapeCast2D = $Sensors/EnemySmashSensor
+@onready var wallClingSensorRight: ShapeCast2D = $Sensors/WallClingSensorRight
+@onready var wallClingSensorLeft: ShapeCast2D = $Sensors/WallClingSensorLeft
 
 @onready var running_state: RunningState =  $States/Running
 @onready var idle_state: IdleState = $States/Idle
@@ -42,13 +44,13 @@ var is_bouncing := false
 @onready var smashing_state: SmashingState = $States/Smashing
 @onready var bouncing_state: BouncingState = $States/Bouncing
 @onready var stomping_state: StompingState = $States/Stomping
+@onready var clinging_state: ClingingState = $States/Clinging
 
 func _ready() -> void:
 	change_state(idle_state)
 
 func change_state(new_state) -> void:
 	print("Changing state to ", new_state.name)
-	print("Queued jump timer: ", queued_jump_timer)
 	if current_state:
 		current_state.exit(self)
 	current_state = new_state

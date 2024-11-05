@@ -23,6 +23,10 @@ func update(ownr: Knight, delta: float) -> void:
 		ownr.change_state(ownr.idle_state)
 		return
 	else:
+		if ownr.wallClingSensorRight.is_colliding() || ownr.wallClingSensorLeft.is_colliding():
+			ownr.change_state(ownr.clinging_state)
+			return
+
 		ownr.velocity.y += ownr.gravity * delta
 		ownr.velocity.x = ownr.movement * ownr.speed
 

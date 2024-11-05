@@ -12,6 +12,9 @@ func enter(ownr) -> void:
 
 func update(ownr: Knight, delta: float) -> void:
 	if ownr.jump_timer < ownr.jump_hold_time:
+		if ownr.wallClingSensorRight.is_colliding() || ownr.wallClingSensorLeft.is_colliding():
+			ownr.change_state(ownr.clinging_state)
+			return
 		ownr.jump_timer += delta
 		ownr.velocity.y = -ownr.jump_force
 	else:
@@ -49,5 +52,3 @@ func handle_input(ownr: Knight) -> void:
 
 func exit(_ownr) -> void:
 	pass
-
-
