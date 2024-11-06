@@ -22,7 +22,7 @@ func update(ownr, delta: float) -> void:
 
 func handle_input(ownr: Knight) -> void:
 	if Input.is_action_just_pressed("jump"):
-		ownr.change_state(ownr.jumping_state)
+		ownr.change_state(ownr.pushoff_state)
 		return
 
 func exit(_ownr) -> void:

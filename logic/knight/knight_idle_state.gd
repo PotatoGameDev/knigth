@@ -9,6 +9,7 @@ func enter(ownr) -> void:
 	ownr.velocity = Vector2.ZERO
 
 	ownr.is_bouncing = false
+	ownr.cling_blocker = true 
 
 func update(ownr, _delta: float) -> void:
 	ownr.coyote_timer = ownr.max_coyote_time
