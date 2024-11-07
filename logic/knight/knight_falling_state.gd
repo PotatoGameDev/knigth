@@ -24,8 +24,12 @@ func update(ownr: Knight, delta: float) -> void:
 		return
 	else:
 		if ownr.wallClingSensorRight.is_colliding() || ownr.wallClingSensorLeft.is_colliding():
-			ownr.change_state(ownr.clinging_state)
-			return
+			if not ownr.cling_blocker and ownr.jump_stamina_left > 0.0:
+				ownr.change_state(ownr.clinging_state)
+				return
+		else:
+			if not Input.is_action_pressed("jump"):
+				ownr.cling_blocker = false
 
 		ownr.velocity.y += ownr.gravity * delta
 		ownr.velocity.x = ownr.movement * ownr.speed
@@ -33,10 +37,6 @@ func update(ownr: Knight, delta: float) -> void:
 	if ownr.velocity.y > ownr.max_fall_speed:
 		ownr.velocity.y = ownr.max_fall_speed
 	
-	ownr.jump_stamina_left += delta * ownr.jump_stamina_depletion_multiplier
-	if ownr.jump_stamina_left > ownr.stamina:
-		ownr.jump_stamina_left = ownr.stamina
-
 	ownr.coyote_timer -= delta
 
 func handle_input(ownr: Knight) -> void:
@@ -44,6 +44,9 @@ func handle_input(ownr: Knight) -> void:
 		ownr.direction = ownr.movement
 
 	ownr.animation.flip_h = ownr.direction == -1
+
+	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+		ownr.cling_blocker = false
 
 	if Input.is_action_just_pressed("jump") and ownr.coyote_timer > 0.0:
 		ownr.change_state(ownr.jumping_state)

@@ -9,7 +9,6 @@ func enter(ownr) -> void:
 
 	ownr.cling_pushoff_timer = 0.0
 	ownr.coyote_timer = 0.0
-	ownr.cling_blocker = true
 	forced_direction = -ownr.direction
 
 func update(ownr: Knight, delta: float) -> void:
@@ -51,5 +50,5 @@ func update(ownr: Knight, delta: float) -> void:
 func handle_input(_ownr: Knight) -> void:
 	pass
 
-func exit(ownr) -> void:
+func exit(_ownr) -> void:
 	pass

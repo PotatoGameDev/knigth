@@ -11,10 +11,11 @@ class_name Knight
 @export var max_queued_jump_time = 0.2
 @export var jump_stamina_depletion_multiplier = 50.0
 
+@export var jump_cling_debounce_time = 0.2
 
 # Character stats
 @export var strength := 100.0
-@export var stamina := 100.0
+@export var stamina := 1000.0
 
 var jump_stamina_left := 0.0
 var jump_timer := 0.0
@@ -35,6 +36,8 @@ var cling_blocker := false
 
 @export var cling_pushoff_time := 0.1
 var cling_pushoff_timer := 0.0
+
+var last_on_floor_timer := 0.0
 
 
 @onready var animation = $Animation
@@ -62,6 +65,7 @@ var cling_pushoff_timer := 0.0
 
 func _ready() -> void:
 	change_state(idle_state)
+	jump_stamina_left = stamina
 
 func change_state(new_state) -> void:
 	print("Changing state to ", new_state.name)
@@ -84,6 +88,11 @@ func _process(delta):
 		queued_jump_timer = max_queued_jump_time
 
 	stamina_bar.value = (jump_stamina_left / stamina) * 100.0
+
+	if is_on_floor():
+		last_on_floor_timer = 0.0
+	else:
+		last_on_floor_timer += delta
 
 func _physics_process(delta):
 	current_state.update(self, delta)
