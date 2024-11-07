@@ -58,6 +58,8 @@ var cling_pushoff_timer := 0.0
 @onready var clinging_state: ClingingState = $States/Clinging
 @onready var pushoff_state: PushOffState = $States/PushOff
 
+@onready var stamina_bar: ProgressBar = $HUD/StaminaBar
+
 func _ready() -> void:
 	change_state(idle_state)
 
@@ -80,6 +82,8 @@ func _process(delta):
 	queued_jump_timer -= delta
 	if Input.is_action_just_pressed("jump"):
 		queued_jump_timer = max_queued_jump_time
+
+	stamina_bar.value = (jump_stamina_left / stamina) * 100.0
 
 func _physics_process(delta):
 	current_state.update(self, delta)

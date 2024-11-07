@@ -438,6 +438,16 @@ collide_with_areas = true
 script = ExtResource("12_071tv")
 max_trail_length = 200
 
+[node name="HUD" type="Node2D" parent="Knight"]
+
+[node name="StaminaBar" type="ProgressBar" parent="Knight/HUD"]
+offset_left = -9.0
+offset_top = -14.0
+offset_right = 9.0
+offset_bottom = -10.0
+value = 100.0
+show_percentage = false
+
 [node name="Zombi" parent="." instance=ExtResource("10_2p3p6")]
 position = Vector2(291, 148)
 

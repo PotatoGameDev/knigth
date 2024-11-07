@@ -10,9 +10,13 @@ func enter(ownr: Knight) -> void:
 	ownr.is_bouncing = false
 	ownr.cling_blocker = true 
 
-func update(ownr: Knight, _delta: float) -> void:
+func update(ownr: Knight, delta: float) -> void:
 	ownr.velocity.x = ownr.speed * ownr.movement
 	ownr.coyote_timer = ownr.max_coyote_time
+
+	ownr.jump_stamina_left += delta * ownr.jump_stamina_depletion_multiplier
+	if ownr.jump_stamina_left > ownr.stamina:
+		ownr.jump_stamina_left = ownr.stamina
 	
 
 func handle_input(ownr: Knight) -> void:

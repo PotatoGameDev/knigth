@@ -32,6 +32,10 @@ func update(ownr: Knight, delta: float) -> void:
 
 	if ownr.velocity.y > ownr.max_fall_speed:
 		ownr.velocity.y = ownr.max_fall_speed
+	
+	ownr.jump_stamina_left += delta * ownr.jump_stamina_depletion_multiplier
+	if ownr.jump_stamina_left > ownr.stamina:
+		ownr.jump_stamina_left = ownr.stamina
 
 	ownr.coyote_timer -= delta
 
