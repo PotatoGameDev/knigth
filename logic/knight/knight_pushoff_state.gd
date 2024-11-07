@@ -4,7 +4,9 @@ class_name PushOffState
 var forced_direction := 0
 
 func enter(ownr) -> void:
-	ownr.velocity.y = -ownr.pushoff_force
+	ownr.velocity.x = -ownr.pushoff_force
+	ownr.velocity.y = 0.0
+
 	ownr.cling_pushoff_timer = 0.0
 	ownr.coyote_timer = 0.0
 	ownr.cling_blocker = true
@@ -20,9 +22,11 @@ func update(ownr: Knight, delta: float) -> void:
 			ownr.cling_blocker = false
 
 		ownr.cling_pushoff_timer += delta
-		ownr.velocity.y = -ownr.jump_force
+
+		if ownr.jump_stamina_left > 0:
+			ownr.velocity.y = -ownr.jump_force
 	else:
-		if Input.is_action_pressed("jump"):
+		if (Input.is_action_pressed("jump") || ownr.coyote_timer > 0.0) and ownr.jump_stamina_left > 0:
 			ownr.change_state(ownr.jumping_state)
 			return
 		else:
@@ -30,6 +34,7 @@ func update(ownr: Knight, delta: float) -> void:
 			return
 
 	if not ownr.is_on_floor():
+		ownr.jump_stamina_left -= delta * ownr.jump_stamina_depletion_multiplier
 		ownr.velocity.y += ownr.gravity * delta
 
 	# Horizontal User Control
@@ -43,8 +48,8 @@ func update(ownr: Knight, delta: float) -> void:
 		ownr.velocity.x -= ownr.speed
 
 
-func handle_input(ownr: Knight) -> void:
+func handle_input(_ownr: Knight) -> void:
 	pass
 
-func exit(_ownr) -> void:
+func exit(ownr) -> void:
 	pass

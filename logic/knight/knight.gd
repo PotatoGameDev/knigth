@@ -9,11 +9,14 @@ class_name Knight
 @export var jump_hold_time = 0.2
 @export var max_coyote_time = 0.2
 @export var max_queued_jump_time = 0.2
+@export var jump_stamina_depletion_multiplier = 50.0
 
 
 # Character stats
 @export var strength := 100.0
+@export var stamina := 100.0
 
+var jump_stamina_left := 0.0
 var jump_timer := 0.0
 var coyote_timer := 0.0
 var queued_jump_timer := 0.0
@@ -81,3 +84,6 @@ func _process(delta):
 func _physics_process(delta):
 	current_state.update(self, delta)
 	move_and_slide()
+
+
+

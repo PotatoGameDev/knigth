@@ -10,6 +10,7 @@ func enter(ownr) -> void:
 
 	ownr.is_bouncing = false
 	ownr.cling_blocker = true 
+	ownr.jump_stamina_left = ownr.stamina
 
 func update(ownr, _delta: float) -> void:
 	ownr.coyote_timer = ownr.max_coyote_time

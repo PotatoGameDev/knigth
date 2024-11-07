@@ -7,6 +7,12 @@ func enter(ownr) -> void:
 	ownr.animation.play("cling")
 	ownr.velocity = Vector2.ZERO
 
+	if ownr.wallClingSensorRight.is_colliding():
+		ownr.direction = 1
+	elif ownr.wallClingSensorLeft.is_colliding():
+		ownr.direction = -1
+	ownr.animation.flip_h = ownr.direction == -1
+
 	ownr.is_bouncing = false
 
 func update(ownr, delta: float) -> void:
@@ -15,6 +21,7 @@ func update(ownr, delta: float) -> void:
 		if not ownr.wallClingSensorRight.is_colliding() && not ownr.wallClingSensorLeft.is_colliding():
 			ownr.change_state(ownr.falling_state)
 			return
+		ownr.jump_stamina_left -= delta * ownr.jump_stamina_depletion_multiplier
 	else:
 		ownr.change_state(ownr.idle_state)
 		return

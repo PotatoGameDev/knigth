@@ -7,6 +7,8 @@ func enter(ownr: Knight) -> void:
 		ownr.change_state(ownr.jumping_state)
 		return
 	ownr.animation.play("run")
+	ownr.is_bouncing = false
+	ownr.cling_blocker = true 
 
 func update(ownr: Knight, _delta: float) -> void:
 	ownr.velocity.x = ownr.speed * ownr.movement
