@@ -11,7 +11,6 @@ func enter(ownr) -> void:
 	ownr.coyote_timer = 0.0
 
 func update(ownr: Knight, delta: float) -> void:
-
 	if ownr.jump_timer < ownr.jump_hold_time:
 		ownr.jump_timer += delta
 		ownr.velocity.y = -ownr.jump_force
@@ -50,13 +49,14 @@ func handle_input(ownr: Knight) -> void:
 	if Input.is_action_just_pressed("left") or Input.is_action_just_pressed("right"):
 		ownr.cling_blocker = false
 
+	if Input.is_action_just_pressed("smash"):
+		ownr.change_state(ownr.smashing_state)
+		return
+
 	if not Input.is_action_pressed("jump"):
-		if Input.is_action_just_pressed("smash"):
-			ownr.change_state(ownr.smashing_state)
-			return
-		else:
-			ownr.change_state(ownr.falling_state)
-			return
+		ownr.change_state(ownr.falling_state)
+		return
+
 
 func exit(_ownr) -> void:
 	pass

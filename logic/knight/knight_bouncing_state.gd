@@ -27,10 +27,8 @@ func update(ownr: Knight, delta: float) -> void:
 
 	# Jump Slip
 	if ownr.jumpRayLeftOuter.is_colliding() and not ownr.jumpRayLeftInner.is_colliding():
-		print("Jump Slip Right")
 		ownr.velocity.x += ownr.speed
 	elif ownr.jumpRayRightOuter.is_colliding() and not ownr.jumpRayRightInner.is_colliding():
-		print("Jump Slip Left")
 		ownr.velocity.x -= ownr.speed
 
 func handle_input(ownr: Knight) -> void:

@@ -45,7 +45,8 @@ func handle_input(ownr: Knight) -> void:
 		return
 	
 	if ownr.movement != 0.0:
-		ownr.direction = ownr.movement
+		ownr.direction = sign(ownr.movement)
+
 	ownr.animation.flip_h = ownr.direction == -1
 
 	if Input.is_action_just_pressed("jump"):

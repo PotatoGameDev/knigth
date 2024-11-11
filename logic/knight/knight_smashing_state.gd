@@ -1,4 +1,3 @@
-# The player's idle state.
 extends Node
 class_name SmashingState
 

@@ -17,7 +17,7 @@ const RIGHT := 1
 
 # Character stats
 @export var strength := 100.0
-@export var stamina := 100000000.0
+@export var stamina := 1000.0
 
 var jump_stamina_left := 0.0
 var jump_timer := 0.0
@@ -96,13 +96,12 @@ func change_state(new_state) -> void:
 	current_state.enter(self)
 
 func _process(delta):
-	print("Current velocity: ", velocity, " Current position: ", global_position)
 	if not current_state:
 		return
 
 	current_state.handle_input(self)
 
-	movement = Input.get_action_strength("right") - Input.get_action_strength("left")
+	movement = Input.get_axis("left", "right")
 
 	# Handle queued jumps
 	queued_jump_timer -= delta
