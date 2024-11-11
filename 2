@@ -5,7 +5,7 @@ func enter(ownr) -> void:
 	ownr.animation.play("stomp")
 	ownr.jump_timer = 0.0
 	ownr.coyote_timer = 0.0
-	ownr.velocity = Vector2.ZERO
+	ownr.velocity.y = 0.0	
 
 func update(ownr: Knight, _delta: float) -> void:
 	if ownr.animation.frame == ownr.animation.sprite_frames.get_frame_count(ownr.animation.animation) - 1:

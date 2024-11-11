@@ -23,7 +23,7 @@ func update(ownr: Knight, delta: float) -> void:
 		ownr.change_state(ownr.idle_state)
 		return
 	else:
-		if ownr.wallClingSensorRight.is_colliding() || ownr.wallClingSensorLeft.is_colliding():
+		if ownr.can_cling_left() or ownr.can_cling_right():
 			if not ownr.cling_blocker and ownr.jump_stamina_left > 0.0:
 				ownr.change_state(ownr.clinging_state)
 				return
@@ -36,6 +36,8 @@ func update(ownr: Knight, delta: float) -> void:
 
 	if ownr.velocity.y > ownr.max_fall_speed:
 		ownr.velocity.y = ownr.max_fall_speed
+	
+	ownr.move_and_slide()
 	
 	ownr.coyote_timer -= delta
 

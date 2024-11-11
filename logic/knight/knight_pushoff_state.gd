@@ -13,7 +13,7 @@ func enter(ownr) -> void:
 
 func update(ownr: Knight, delta: float) -> void:
 	if ownr.cling_pushoff_timer < ownr.cling_pushoff_time: # TODO: Rename, this is asking for a bug
-		if ownr.wallClingSensorRight.is_colliding() || ownr.wallClingSensorLeft.is_colliding():
+		if ownr.can_cling_left() or ownr.can_cling_right():
 			if not ownr.cling_blocker:
 				ownr.change_state(ownr.clinging_state)
 				return
@@ -35,6 +35,8 @@ func update(ownr: Knight, delta: float) -> void:
 	if not ownr.is_on_floor():
 		ownr.jump_stamina_left -= delta * ownr.jump_stamina_depletion_multiplier
 		ownr.velocity.y += ownr.gravity * delta
+
+	ownr.move_and_slide()
 
 	# Horizontal User Control
 	# Forced to move left or right, depending on the direction

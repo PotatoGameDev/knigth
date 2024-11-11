@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://cux2tw0wvffkg"]
+[gd_scene load_steps=48 format=4 uid="uid://cux2tw0wvffkg"]
 
 [ext_resource type="Script" path="res://logic/main.gd" id="1_2bfyf"]
 [ext_resource type="Texture2D" uid="uid://47gkon2vpqqt" path="res://assets/sprites/main-tilemap.png" id="2_unhpw"]
@@ -123,39 +123,39 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_khjfu")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pnin5"]
-size = Vector2(18, 27)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4lt1t"]
-atlas = ExtResource("3_o8x73")
-region = Rect2(0, 128, 32, 32)
+size = Vector2(14, 27)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3g7ew"]
 atlas = ExtResource("3_o8x73")
-region = Rect2(32, 128, 32, 32)
+region = Rect2(0, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fegvt"]
 atlas = ExtResource("3_o8x73")
-region = Rect2(64, 128, 32, 32)
+region = Rect2(32, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gj2wd"]
 atlas = ExtResource("3_o8x73")
-region = Rect2(96, 128, 32, 32)
+region = Rect2(64, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kpjel"]
 atlas = ExtResource("3_o8x73")
-region = Rect2(128, 128, 32, 32)
+region = Rect2(96, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e37i5"]
 atlas = ExtResource("3_o8x73")
-region = Rect2(160, 128, 32, 32)
+region = Rect2(128, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cnqrp"]
 atlas = ExtResource("3_o8x73")
-region = Rect2(192, 128, 32, 32)
+region = Rect2(160, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ystf"]
 atlas = ExtResource("3_o8x73")
-region = Rect2(224, 128, 32, 32)
+region = Rect2(192, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lfik"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(224, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nuq10"]
 atlas = ExtResource("3_o8x73")
@@ -165,13 +165,13 @@ region = Rect2(0, 96, 32, 32)
 atlas = ExtResource("3_o8x73")
 region = Rect2(32, 96, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7lfik"]
-atlas = ExtResource("3_o8x73")
-region = Rect2(0, 160, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ri3ss"]
 atlas = ExtResource("3_o8x73")
-region = Rect2(32, 160, 32, 32)
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvhnq"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(32, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2rwi4"]
 atlas = ExtResource("3_o8x73")
@@ -197,28 +197,45 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("3_o8x73")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nvhnq"]
-atlas = ExtResource("3_o8x73")
-region = Rect2(0, 192, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ey3lk"]
-atlas = ExtResource("3_o8x73")
-region = Rect2(32, 192, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oh3o3"]
 atlas = ExtResource("3_o8x73")
 region = Rect2(0, 224, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_868o0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oh3o3"]
 atlas = ExtResource("3_o8x73")
 region = Rect2(32, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_868o0"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ublbn"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp5a1"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjxh3"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxjxf"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(128, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ms5ck"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8dv8"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(32, 256, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4bo3m"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4lt1t")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3g7ew")
 }, {
@@ -239,6 +256,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2ystf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lfik")
 }],
 "loop": true,
 "name": &"bounce",
@@ -257,10 +277,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7lfik")
+"texture": SubResource("AtlasTexture_ri3ss")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ri3ss")
+"texture": SubResource("AtlasTexture_nvhnq")
 }],
 "loop": true,
 "name": &"fall",
@@ -301,10 +321,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nvhnq")
+"texture": SubResource("AtlasTexture_ey3lk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ey3lk")
+"texture": SubResource("AtlasTexture_oh3o3")
 }],
 "loop": false,
 "name": &"smash",
@@ -312,10 +332,30 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oh3o3")
+"texture": SubResource("AtlasTexture_868o0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_868o0")
+"texture": SubResource("AtlasTexture_ublbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp5a1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjxh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxjxf")
+}],
+"loop": false,
+"name": &"step",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ms5ck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8dv8")
 }],
 "loop": false,
 "name": &"stomp",
@@ -323,9 +363,6 @@ animations = [{
 }]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_3g7ew"]
-
-[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_4lt1t"]
-length = 10.0
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2bfyf")
@@ -346,8 +383,10 @@ shape = SubResource("RectangleShape2D_pnin5")
 
 [node name="Animation" type="AnimatedSprite2D" parent="Knight"]
 sprite_frames = SubResource("SpriteFrames_4bo3m")
-animation = &"stomp"
+animation = &"step"
 autoplay = "idle"
+frame = 4
+frame_progress = 1.0
 
 [node name="States" type="Node" parent="Knight"]
 
@@ -382,6 +421,7 @@ script = ExtResource("13_3g7ew")
 [node name="Camera2D" type="Camera2D" parent="Knight"]
 limit_smoothed = true
 drag_horizontal_enabled = true
+drag_vertical_enabled = true
 
 [node name="JumpSlipRays" type="Node2D" parent="Knight"]
 
@@ -418,19 +458,29 @@ target_position = Vector2(14, 0)
 max_results = 3
 collision_mask = 2
 
-[node name="WallClingSensorRight" type="ShapeCast2D" parent="Knight/Sensors"]
-position = Vector2(4, 10)
-rotation = 4.71239
-shape = SubResource("SeparationRayShape2D_4lt1t")
-target_position = Vector2(18, 0)
+[node name="ClingBlockerSensors" type="Node2D" parent="Knight/Sensors"]
+
+[node name="RightUp" type="RayCast2D" parent="Knight/Sensors/ClingBlockerSensors"]
+position = Vector2(3, -3)
+target_position = Vector2(7, 0)
 collision_mask = 128
 collide_with_areas = true
 
-[node name="WallClingSensorLeft" type="ShapeCast2D" parent="Knight/Sensors"]
-position = Vector2(-4, 10)
-rotation = 1.5708
-shape = SubResource("SeparationRayShape2D_4lt1t")
-target_position = Vector2(-18, 0)
+[node name="RightDown" type="RayCast2D" parent="Knight/Sensors/ClingBlockerSensors"]
+position = Vector2(3, 15)
+target_position = Vector2(7, 0)
+collision_mask = 128
+collide_with_areas = true
+
+[node name="LeftUp" type="RayCast2D" parent="Knight/Sensors/ClingBlockerSensors"]
+position = Vector2(-3, -3)
+target_position = Vector2(-7, 0)
+collision_mask = 128
+collide_with_areas = true
+
+[node name="LeftDown" type="RayCast2D" parent="Knight/Sensors/ClingBlockerSensors"]
+position = Vector2(-3, 15)
+target_position = Vector2(-7, 0)
 collision_mask = 128
 collide_with_areas = true
 

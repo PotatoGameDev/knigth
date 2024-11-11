@@ -20,6 +20,8 @@ func update(ownr: Knight, delta: float) -> void:
 	if not ownr.is_on_floor():
 		ownr.velocity.y += ownr.gravity * delta
 
+	ownr.move_and_slide()
+
 	# Horizontal User Control
 	ownr.velocity.x = ownr.movement * ownr.speed
 

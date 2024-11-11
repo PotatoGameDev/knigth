@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name Knight
 
+const LEFT := -1
+const RIGHT := 1
+
 @export var jump_force := 1500.0
 @export var pushoff_force := 1000.0
 @export var gravity := 1200.0
@@ -10,22 +13,22 @@ class_name Knight
 @export var max_coyote_time = 0.2
 @export var max_queued_jump_time = 0.2
 @export var jump_stamina_depletion_multiplier = 50.0
-
-@export var jump_cling_debounce_time = 0.2
+@export var step_speed := 100.0
 
 # Character stats
 @export var strength := 100.0
-@export var stamina := 1000.0
+@export var stamina := 100000000.0
 
 var jump_stamina_left := 0.0
 var jump_timer := 0.0
 var coyote_timer := 0.0
 var queued_jump_timer := 0.0
 
+
 var states = {} 
 var current_state = null
 
-var direction = 1
+var direction = RIGHT
 var movement = 0.0
 
 var bounce_power := 1.0
@@ -48,8 +51,26 @@ var last_on_floor_timer := 0.0
 @onready var jumpRayRightInner: RayCast2D = $JumpSlipRays/RayRightInner
 
 @onready var enemySmashSensor: ShapeCast2D = $Sensors/EnemySmashSensor
-@onready var wallClingSensorRight: ShapeCast2D = $Sensors/WallClingSensorRight
-@onready var wallClingSensorLeft: ShapeCast2D = $Sensors/WallClingSensorLeft
+
+# The logic is: If the UP sensor is not colliding and the DOWN sensor is colliding, then the player should auto-jump the step up.
+# If both are colliding, then the player can cling.
+@onready var cling_blocker_sensor_left_up: RayCast2D = $Sensors/ClingBlockerSensors/LeftUp
+@onready var cling_blocker_sensor_left_down: RayCast2D = $Sensors/ClingBlockerSensors/LeftDown
+@onready var cling_blocker_sensor_right_up: RayCast2D = $Sensors/ClingBlockerSensors/RightUp
+@onready var cling_blocker_sensor_right_down: RayCast2D = $Sensors/ClingBlockerSensors/RightDown
+
+func can_cling_left() -> bool:
+	return cling_blocker_sensor_left_up.is_colliding() and cling_blocker_sensor_left_down.is_colliding()
+
+func can_cling_right() -> bool:
+	return cling_blocker_sensor_right_up.is_colliding() and cling_blocker_sensor_right_down.is_colliding()
+
+func can_step_left() -> bool:
+	return not cling_blocker_sensor_left_up.is_colliding() and cling_blocker_sensor_left_down.is_colliding()
+
+func can_step_right() -> bool:
+	return not cling_blocker_sensor_right_up.is_colliding() and cling_blocker_sensor_right_down.is_colliding()
+
 
 @onready var running_state: RunningState =  $States/Running
 @onready var idle_state: IdleState = $States/Idle
@@ -75,6 +96,7 @@ func change_state(new_state) -> void:
 	current_state.enter(self)
 
 func _process(delta):
+	print("Current velocity: ", velocity, " Current position: ", global_position)
 	if not current_state:
 		return
 
@@ -96,7 +118,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	current_state.update(self, delta)
-	move_and_slide()
+
 
 
 
