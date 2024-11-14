@@ -12,11 +12,8 @@ func update(ownr: Knight, _delta: float) -> void:
 		ownr.change_state(ownr.bouncing_state)
 		return
 
-func handle_input(ownr: Knight) -> void:
-	if ownr.movement != 0:
-		ownr.direction = ownr.movement
-
-	ownr.animation.flip_h = ownr.direction == -1
+func handle_input(_ownr: Knight) -> void:
+	pass
 
 func exit(_ownr) -> void:
 	pass

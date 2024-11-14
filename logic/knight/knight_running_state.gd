@@ -21,8 +21,6 @@ func update(ownr: Knight, delta: float) -> void:
 	if is_stepping:
 		ownr.velocity.y = -ownr.step_speed
 	
-	ownr.move_and_slide()
-
 	# TODO: Here is a fun idea: Move repeating logic to ownr, and just set flags, like deplets_stamina.
 	ownr.jump_stamina_left += delta * ownr.jump_stamina_depletion_multiplier
 	if ownr.jump_stamina_left > ownr.stamina:
@@ -33,7 +31,7 @@ func handle_input(ownr: Knight) -> void:
 		ownr.change_state(ownr.idle_state)
 		return
 
-	if ownr.can_step_left() or ownr.can_step_right():
+	if (ownr.can_step_left() and ownr.is_left()) or (ownr.can_step_right() and ownr.is_right()):
 		is_stepping = true
 		ownr.animation.play("step")
 	else:
@@ -44,11 +42,6 @@ func handle_input(ownr: Knight) -> void:
 		ownr.change_state(ownr.falling_state)
 		return
 	
-	if ownr.movement != 0.0:
-		ownr.direction = sign(ownr.movement)
-
-	ownr.animation.flip_h = ownr.direction == -1
-
 	if Input.is_action_just_pressed("jump"):
 		ownr.change_state(ownr.jumping_state)
 

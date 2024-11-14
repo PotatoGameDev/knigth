@@ -1,4 +1,3 @@
-# The player's jumping state.
 extends Node
 class_name JumpingState 
 
@@ -9,6 +8,7 @@ func enter(ownr) -> void:
 	ownr.velocity.y = -ownr.jump_force
 	ownr.jump_timer = 0.0
 	ownr.coyote_timer = 0.0
+	ownr.cling_blocker = true
 
 func update(ownr: Knight, delta: float) -> void:
 	if ownr.jump_timer < ownr.jump_hold_time:
@@ -23,7 +23,6 @@ func update(ownr: Knight, delta: float) -> void:
 		ownr.jump_stamina_left -= delta * ownr.jump_stamina_depletion_multiplier
 		ownr.jump_stamina_left = max(ownr.jump_stamina_left, 0.0)
 
-	ownr.move_and_slide()
 
 	# Horizontal User Control
 	if not ownr.cling_blocker and ownr.is_on_wall() and (Input.is_action_pressed("left") or Input.is_action_pressed("right")) and not ownr.is_on_floor():
@@ -41,12 +40,7 @@ func update(ownr: Knight, delta: float) -> void:
 		ownr.velocity.x -= ownr.speed
 
 func handle_input(ownr: Knight) -> void:
-	if ownr.movement != 0:
-		ownr.direction = ownr.movement
-
-	ownr.animation.flip_h = ownr.direction == -1
-
-	if Input.is_action_just_pressed("left") or Input.is_action_just_pressed("right"):
+	if (Input.is_action_just_pressed("left") and ownr.is_left()) or (Input.is_action_just_pressed("right") and ownr.is_right()):
 		ownr.cling_blocker = false
 
 	if Input.is_action_just_pressed("smash"):

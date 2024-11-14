@@ -42,7 +42,6 @@ var cling_pushoff_timer := 0.0
 
 var last_on_floor_timer := 0.0
 
-
 @onready var animation = $Animation
 
 @onready var jumpRayLeftOuter: RayCast2D = $JumpSlipRays/RayLeftOuter
@@ -70,6 +69,12 @@ func can_step_left() -> bool:
 
 func can_step_right() -> bool:
 	return not cling_blocker_sensor_right_up.is_colliding() and cling_blocker_sensor_right_down.is_colliding()
+
+func is_left() -> bool:
+	return direction == LEFT
+
+func is_right() -> bool:
+	return direction == RIGHT
 
 
 @onready var running_state: RunningState =  $States/Running
@@ -99,9 +104,15 @@ func _process(delta):
 	if not current_state:
 		return
 
+	if Input.is_key_pressed(KEY_T):
+		print("=================== DEBUd ======================")
+
 	current_state.handle_input(self)
 
 	movement = Input.get_axis("left", "right")
+	if movement != 0.0:
+		direction = sign(movement)
+	animation.flip_h = direction == LEFT
 
 	# Handle queued jumps
 	queued_jump_timer -= delta
@@ -117,7 +128,5 @@ func _process(delta):
 
 func _physics_process(delta):
 	current_state.update(self, delta)
-
-
-
+	move_and_slide()
 

@@ -37,16 +37,9 @@ func update(ownr: Knight, delta: float) -> void:
 	if ownr.velocity.y > ownr.max_fall_speed:
 		ownr.velocity.y = ownr.max_fall_speed
 	
-	ownr.move_and_slide()
-	
 	ownr.coyote_timer -= delta
 
 func handle_input(ownr: Knight) -> void:
-	if ownr.movement != 0:
-		ownr.direction = ownr.movement
-
-	ownr.animation.flip_h = ownr.direction == -1
-
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		ownr.cling_blocker = false
 

@@ -36,8 +36,6 @@ func update(ownr: Knight, delta: float) -> void:
 		ownr.jump_stamina_left -= delta * ownr.jump_stamina_depletion_multiplier
 		ownr.velocity.y += ownr.gravity * delta
 
-	ownr.move_and_slide()
-
 	# Horizontal User Control
 	# Forced to move left or right, depending on the direction
 	ownr.velocity.x = forced_direction * ownr.speed

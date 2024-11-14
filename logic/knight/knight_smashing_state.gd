@@ -44,15 +44,8 @@ func update(ownr: Knight, delta: float) -> void:
 		ownr.velocity.y += ownr.gravity * gravity_coefficient * delta
 		ownr.velocity.x = ownr.movement * controls_coefficient * ownr.speed
 
-	ownr.move_and_slide()
-
 
 func handle_input(ownr: Knight) -> void:
-	if ownr.movement != 0:
-		ownr.direction = ownr.movement
-
-	ownr.animation.flip_h = ownr.direction == -1
-
 	if Input.is_action_just_pressed("jump") and ownr.coyote_timer > 0.0:
 		ownr.change_state(ownr.jumping_state)
 		return

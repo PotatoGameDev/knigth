@@ -1,4 +1,3 @@
-# The player's jumping state.
 extends Node
 class_name BouncingState 
 
@@ -20,8 +19,6 @@ func update(ownr: Knight, delta: float) -> void:
 	if not ownr.is_on_floor():
 		ownr.velocity.y += ownr.gravity * delta
 
-	ownr.move_and_slide()
-
 	# Horizontal User Control
 	ownr.velocity.x = ownr.movement * ownr.speed
 
@@ -32,11 +29,6 @@ func update(ownr: Knight, delta: float) -> void:
 		ownr.velocity.x -= ownr.speed
 
 func handle_input(ownr: Knight) -> void:
-	if ownr.movement != 0:
-		ownr.direction = ownr.movement
-
-	ownr.animation.flip_h = ownr.direction == -1
-
 	if Input.is_action_just_pressed("smash"):
 		ownr.change_state(ownr.smashing_state)
 		return

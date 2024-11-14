@@ -31,13 +31,11 @@ func update(ownr, delta: float) -> void:
 		if ownr.jump_stamina_left <= 0.0:
 			ownr.change_state(ownr.falling_state)
 			return
-
-	ownr.move_and_slide()
 	
 
 func handle_input(ownr: Knight) -> void:
 	if Input.is_action_just_pressed("jump"):
-		if Input.is_action_pressed("left") and ownr.direction == ownr.LEFT or Input.is_action_pressed("right") and ownr.direction == ownr.RIGHT:
+		if (Input.is_action_pressed("left") and ownr.direction == ownr.LEFT) or (Input.is_action_pressed("right") and ownr.direction == ownr.RIGHT):
 			ownr.cling_blocker = true
 			ownr.change_state(ownr.jumping_state)
 			return
@@ -61,3 +59,4 @@ func handle_input(ownr: Knight) -> void:
 func exit(ownr) -> void:
 	ownr.cling_blocker = true
 	ownr.coyote_timer = ownr.max_coyote_time
+
