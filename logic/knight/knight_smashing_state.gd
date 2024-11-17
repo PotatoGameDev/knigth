@@ -15,6 +15,11 @@ func enter(ownr) -> void:
 	controls_coefficient = min_controls_coefficient
 
 func update(ownr: Knight, delta: float) -> void:
+	pass
+
+func physics_update(ownr: Knight, delta: float) -> void:
+	ownr.move_and_slide()
+
 	if Input.is_action_pressed("smash"):
 		controls_coefficient = min(
 			controls_coefficient + delta * controls_coefficient_grow_rate,
@@ -45,8 +50,8 @@ func update(ownr: Knight, delta: float) -> void:
 		ownr.velocity.x = ownr.movement * controls_coefficient * ownr.speed
 
 
-func handle_input(ownr: Knight) -> void:
-	if Input.is_action_just_pressed("jump") and ownr.coyote_timer > 0.0:
+func handle_input(ownr: Knight, event: InputEvent) -> void:
+	if event.is_action_pressed("jump") and ownr.coyote_timer > 0.0:
 		ownr.change_state(ownr.jumping_state)
 		return
 	

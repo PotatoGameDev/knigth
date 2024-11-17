@@ -7,12 +7,17 @@ func enter(ownr) -> void:
 	ownr.coyote_timer = 0.0
 	ownr.velocity = Vector2.ZERO
 
-func update(ownr: Knight, _delta: float) -> void:
+func update(ownr: Knight, delta: float) -> void:
+	pass
+
+func physics_update(ownr: Knight, delta: float) -> void:
+	ownr.move_and_slide()
+
 	if ownr.animation.frame == ownr.animation.sprite_frames.get_frame_count(ownr.animation.animation) - 1:
 		ownr.change_state(ownr.bouncing_state)
 		return
 
-func handle_input(_ownr: Knight) -> void:
+func handle_input(_ownr: Knight, _event: InputEvent) -> void:
 	pass
 
 func exit(_ownr) -> void:

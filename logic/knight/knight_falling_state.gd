@@ -1,4 +1,3 @@
-# The player's idle state.
 extends Node
 class_name FallingState 
 
@@ -7,6 +6,11 @@ func enter(ownr) -> void:
 		ownr.animation.play("fall")
 
 func update(ownr: Knight, delta: float) -> void:
+	pass
+
+func physics_update(ownr: Knight, delta: float) -> void:
+	ownr.move_and_slide()
+
 	if ownr.is_on_floor():
 		if ownr.enemySmashSensor.is_colliding():
 			var smashed = false
@@ -23,7 +27,7 @@ func update(ownr: Knight, delta: float) -> void:
 		ownr.change_state(ownr.idle_state)
 		return
 	else:
-		if ownr.can_cling_left() or ownr.can_cling_right():
+		if (ownr.can_cling_left() and ownr.is_left()) or (ownr.can_cling_right() and ownr.is_right()):
 			if not ownr.cling_blocker and ownr.jump_stamina_left > 0.0:
 				ownr.change_state(ownr.clinging_state)
 				return
@@ -39,16 +43,16 @@ func update(ownr: Knight, delta: float) -> void:
 	
 	ownr.coyote_timer -= delta
 
-func handle_input(ownr: Knight) -> void:
-	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+func handle_input(ownr: Knight, event: InputEvent) -> void:
+	if event.is_action_pressed("left") or event.is_action_pressed("right"):
 		ownr.cling_blocker = false
-
-	if Input.is_action_just_pressed("jump") and ownr.coyote_timer > 0.0:
+	elif event.is_action_pressed("jump") and ownr.coyote_timer > 0.0:
 		ownr.change_state(ownr.jumping_state)
 		return
-	if Input.is_action_just_pressed("smash"):
+
+	if event.is_action_pressed("smash"):
 		ownr.change_state(ownr.smashing_state)
 		return
-	
+
 func exit(ownr) -> void:
 	ownr.velocity.y = 0

@@ -40,8 +40,6 @@ var cling_blocker := false
 @export var cling_pushoff_time := 0.1
 var cling_pushoff_timer := 0.0
 
-var last_on_floor_timer := 0.0
-
 @onready var animation = $Animation
 
 @onready var jumpRayLeftOuter: RayCast2D = $JumpSlipRays/RayLeftOuter
@@ -93,12 +91,16 @@ func _ready() -> void:
 	change_state(idle_state)
 	jump_stamina_left = stamina
 
-func change_state(new_state) -> void:
-	print("Changing state to ", new_state.name)
+func change_state(to_state) -> void:
+	print("Changing state to ", to_state.name)
 	if current_state:
 		current_state.exit(self)
-	current_state = new_state
+	current_state = to_state
 	current_state.enter(self)
+
+func _unhandled_input(event):
+	if current_state:
+		current_state.handle_input(self, event)
 
 func _process(delta):
 	if not current_state:
@@ -106,8 +108,6 @@ func _process(delta):
 
 	if Input.is_key_pressed(KEY_T):
 		print("=================== DEBUd ======================")
-
-	current_state.handle_input(self)
 
 	movement = Input.get_axis("left", "right")
 	if movement != 0.0:
@@ -121,12 +121,10 @@ func _process(delta):
 
 	stamina_bar.value = (jump_stamina_left / stamina) * 100.0
 
-	if is_on_floor():
-		last_on_floor_timer = 0.0
-	else:
-		last_on_floor_timer += delta
+	current_state.update(self, delta)
+
 
 func _physics_process(delta):
-	current_state.update(self, delta)
-	move_and_slide()
-
+	if not current_state:
+		return
+	current_state.physics_update(self, delta)

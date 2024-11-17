@@ -12,6 +12,11 @@ func enter(ownr) -> void:
 	forced_direction = -ownr.direction
 
 func update(ownr: Knight, delta: float) -> void:
+	pass
+
+func physics_update(ownr: Knight, delta: float) -> void:
+	ownr.move_and_slide()
+
 	if ownr.cling_pushoff_timer < ownr.cling_pushoff_time: # TODO: Rename, this is asking for a bug
 		if ownr.can_cling_left() or ownr.can_cling_right():
 			if not ownr.cling_blocker:
@@ -47,7 +52,7 @@ func update(ownr: Knight, delta: float) -> void:
 		ownr.velocity.x -= ownr.speed
 
 
-func handle_input(_ownr: Knight) -> void:
+func handle_input(_ownr: Knight, _event: InputEvent) -> void:
 	pass
 
 func exit(_ownr) -> void:

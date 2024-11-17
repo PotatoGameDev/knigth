@@ -9,6 +9,11 @@ func enter(ownr) -> void:
 	ownr.is_bouncing = true
 
 func update(ownr: Knight, delta: float) -> void:
+	pass
+
+func physics_update(ownr: Knight, delta: float) -> void:
+	ownr.move_and_slide()
+
 	if ownr.jump_timer < 0.5 * ownr.jump_hold_time:
 		ownr.jump_timer += delta
 		ownr.velocity.y = -ownr.jump_force * ownr.bounce_power
@@ -28,8 +33,8 @@ func update(ownr: Knight, delta: float) -> void:
 	elif ownr.jumpRayRightOuter.is_colliding() and not ownr.jumpRayRightInner.is_colliding():
 		ownr.velocity.x -= ownr.speed
 
-func handle_input(ownr: Knight) -> void:
-	if Input.is_action_just_pressed("smash"):
+func handle_input(ownr: Knight, event: InputEvent) -> void:
+	if event.is_action_pressed("smash"):
 		ownr.change_state(ownr.smashing_state)
 		return
 

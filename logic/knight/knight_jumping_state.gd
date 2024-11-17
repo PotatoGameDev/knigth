@@ -11,27 +11,10 @@ func enter(ownr) -> void:
 	ownr.cling_blocker = true
 
 func update(ownr: Knight, delta: float) -> void:
-	if ownr.jump_timer < ownr.jump_hold_time:
-		ownr.jump_timer += delta
-		ownr.velocity.y = -ownr.jump_force
-	else:
-		ownr.change_state(ownr.falling_state)
-		return
+	pass
 
-	if not ownr.is_on_floor():
-		ownr.velocity.y += ownr.gravity * delta
-		ownr.jump_stamina_left -= delta * ownr.jump_stamina_depletion_multiplier
-		ownr.jump_stamina_left = max(ownr.jump_stamina_left, 0.0)
-
-
-	# Horizontal User Control
-	if not ownr.cling_blocker and ownr.is_on_wall() and (Input.is_action_pressed("left") or Input.is_action_pressed("right")) and not ownr.is_on_floor():
-		if ownr.jump_stamina_left > 0.0:
-			ownr.change_state(ownr.clinging_state)
-			return
-
-	if not ownr.is_on_wall():
-		ownr.velocity.x = ownr.movement * ownr.speed
+func physics_update(ownr: Knight, delta: float) -> void:
+	ownr.velocity.x = ownr.movement * ownr.speed
 
 	# Jump Slip
 	if ownr.jumpRayLeftOuter.is_colliding() and not ownr.jumpRayLeftInner.is_colliding() and ownr.movement > 0:
@@ -39,18 +22,51 @@ func update(ownr: Knight, delta: float) -> void:
 	elif ownr.jumpRayRightOuter.is_colliding() and not ownr.jumpRayRightInner.is_colliding() and ownr.movement < 0:
 		ownr.velocity.x -= ownr.speed
 
-func handle_input(ownr: Knight) -> void:
-	if (Input.is_action_just_pressed("left") and ownr.is_left()) or (Input.is_action_just_pressed("right") and ownr.is_right()):
+	if ownr.jump_timer < ownr.jump_hold_time:
+		ownr.jump_timer += delta
+		ownr.velocity.y = -ownr.jump_force
+	else:
+		ownr.change_state(ownr.falling_state)
+		return
+	
+	if not ownr.is_on_floor():
+		ownr.velocity.y += ownr.gravity * delta
+		ownr.jump_stamina_left -= delta * ownr.jump_stamina_depletion_multiplier
+		ownr.jump_stamina_left = max(ownr.jump_stamina_left, 0.0)
+
+	ownr.move_and_slide()
+
+	if (Input.is_action_pressed("left") and ownr.is_left()) or (Input.is_action_pressed("right") and ownr.is_right()):
+		ownr.cling_blocker = false
+	if not ownr.is_on_wall():
 		ownr.cling_blocker = false
 
-	if Input.is_action_just_pressed("smash"):
-		ownr.change_state(ownr.smashing_state)
-		return
+	if not can_cling(ownr):
+		ownr.cling_blocker = false
+	else:
+		if not ownr.cling_blocker and not ownr.is_on_floor() and not Input.is_action_pressed("up"):
+			if ownr.jump_stamina_left > 0.0:
+				ownr.change_state(ownr.clinging_state)
+				return
 
 	if not Input.is_action_pressed("jump"):
 		ownr.change_state(ownr.falling_state)
 		return
 
+func can_cling(ownr: Knight) -> bool:
+	return ownr.is_on_wall() and (ownr.can_cling_left() or ownr.can_cling_right())
+
+
+func handle_input(ownr: Knight, event: InputEvent) -> void:
+	if event.is_action_pressed("smash"):
+		ownr.change_state(ownr.smashing_state)
+		return
 
 func exit(_ownr) -> void:
-	pass
+	print("==========exit jumping")
+
+func is_on_wall_simulated(ownr: Knight, delta: float) -> bool:
+	var collision = ownr.move_and_collide(ownr.velocity * delta, true)
+	if collision:
+		return collision.get_normal().x != 0
+	return false
