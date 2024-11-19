@@ -18,12 +18,13 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	ownr.move_and_slide()
 
 	if ownr.cling_pushoff_timer < ownr.cling_pushoff_time: # TODO: Rename, this is asking for a bug
-		if ownr.can_cling_left() or ownr.can_cling_right():
-			if not ownr.cling_blocker:
+		if (ownr.can_cling_left() and ownr.is_left()) or (ownr.can_cling_right() and ownr.is_right()):
+			if not ownr.cling_blocker and ownr.jump_stamina_left > 0.0:
 				ownr.change_state(ownr.clinging_state)
 				return
 		else:
-			ownr.cling_blocker = false
+			if not Input.is_action_pressed("jump"):
+				ownr.cling_blocker = false
 
 		ownr.cling_pushoff_timer += delta
 
@@ -52,8 +53,9 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		ownr.velocity.x -= ownr.speed
 
 
-func handle_input(_ownr: Knight, _event: InputEvent) -> void:
-	pass
+func handle_input(ownr: Knight, event: InputEvent) -> void:
+	if (Input.is_action_pressed("left") and ownr.is_left()) or (Input.is_action_pressed("right") and ownr.is_right()):
+		ownr.cling_blocker = false
 
 func exit(_ownr) -> void:
 	pass

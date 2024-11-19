@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://cux2tw0wvffkg"]
+[gd_scene load_steps=49 format=4 uid="uid://cux2tw0wvffkg"]
 
 [ext_resource type="Script" path="res://logic/main.gd" id="1_2bfyf"]
 [ext_resource type="Texture2D" uid="uid://47gkon2vpqqt" path="res://assets/sprites/main-tilemap.png" id="2_unhpw"]
@@ -189,6 +189,14 @@ region = Rect2(0, 64, 32, 32)
 atlas = ExtResource("3_o8x73")
 region = Rect2(32, 64, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxjxf"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(128, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7jsd"]
+atlas = ExtResource("3_o8x73")
+region = Rect2(0, 32, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_kaqaj"]
 atlas = ExtResource("3_o8x73")
 region = Rect2(0, 0, 32, 32)
@@ -220,10 +228,6 @@ region = Rect2(64, 128, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_yjxh3"]
 atlas = ExtResource("3_o8x73")
 region = Rect2(96, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xxjxf"]
-atlas = ExtResource("3_o8x73")
-region = Rect2(128, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ms5ck"]
 atlas = ExtResource("3_o8x73")
@@ -310,6 +314,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_xxjxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7jsd")
+}],
+"loop": true,
+"name": &"raise",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_kaqaj")
 }, {
 "duration": 1.0,
@@ -342,9 +357,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yjxh3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xxjxf")
 }],
 "loop": false,
 "name": &"step",
@@ -383,10 +395,8 @@ shape = SubResource("RectangleShape2D_pnin5")
 
 [node name="Animation" type="AnimatedSprite2D" parent="Knight"]
 sprite_frames = SubResource("SpriteFrames_4bo3m")
-animation = &"step"
+animation = &"raise"
 autoplay = "idle"
-frame = 4
-frame_progress = 1.0
 
 [node name="States" type="Node" parent="Knight"]
 
@@ -467,7 +477,7 @@ collision_mask = 128
 collide_with_areas = true
 
 [node name="RightDown" type="RayCast2D" parent="Knight/Sensors/ClingBlockerSensors"]
-position = Vector2(3, 15)
+position = Vector2(3, 16)
 target_position = Vector2(7, 0)
 collision_mask = 128
 collide_with_areas = true
@@ -479,7 +489,7 @@ collision_mask = 128
 collide_with_areas = true
 
 [node name="LeftDown" type="RayCast2D" parent="Knight/Sensors/ClingBlockerSensors"]
-position = Vector2(-3, 15)
+position = Vector2(-3, 16)
 target_position = Vector2(-7, 0)
 collision_mask = 128
 collide_with_areas = true

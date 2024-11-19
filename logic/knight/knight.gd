@@ -13,7 +13,8 @@ const RIGHT := 1
 @export var max_coyote_time = 0.2
 @export var max_queued_jump_time = 0.2
 @export var jump_stamina_depletion_multiplier = 50.0
-@export var step_speed := 100.0
+@export var step_speed := 150.0
+@export var step_speed_min := 20.0
 
 # Character stats
 @export var strength := 100.0
@@ -40,7 +41,7 @@ var cling_blocker := false
 @export var cling_pushoff_time := 0.1
 var cling_pushoff_timer := 0.0
 
-@onready var animation = $Animation
+@onready var animation: AnimatedSprite2D = $Animation
 
 @onready var jumpRayLeftOuter: RayCast2D = $JumpSlipRays/RayLeftOuter
 @onready var jumpRayLeftInner: RayCast2D = $JumpSlipRays/RayLeftInner
