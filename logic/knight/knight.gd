@@ -8,16 +8,17 @@ const RIGHT := 1
 @export var pushoff_force := 1000.0
 @export var gravity := 1200.0
 @export var speed := 200.0
-@export var max_fall_speed := 900.0
+@export var max_fall_speed := 2000.0
 @export var jump_hold_time = 0.2
 @export var max_coyote_time = 0.2
 @export var max_queued_jump_time = 0.2
 @export var jump_stamina_depletion_multiplier = 50.0
 @export var step_speed := 150.0
 @export var step_speed_min := 20.0
+@export var smmash_speed_damage_factor := 0.03
 
 # Character stats
-@export var strength := 100.0
+@export var strength := 10.0
 @export var stamina := 1000.0
 
 var jump_stamina_left := 0.0
@@ -128,4 +129,5 @@ func _process(delta):
 func _physics_process(delta):
 	if not current_state:
 		return
+	print("Velocity: ", velocity)
 	current_state.physics_update(self, delta)

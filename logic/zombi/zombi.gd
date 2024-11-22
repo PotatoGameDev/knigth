@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Zombi 
 
-@export var health := 100.0
+@export var health := 1000.0
 
 @export var gravity := 1200.0
 @export var speed := 200.0
@@ -24,6 +24,8 @@ var movement := 0.0
 @onready var attackRayLeft: RayCast2D = $Sensors/AttackRayLeft
 @onready var detectorLeft: ShapeCast2D = $Sensors/DetectorLeft
 @onready var detectorRight: ShapeCast2D = $Sensors/DetectorRight
+
+@onready var life_bar: ProgressBar = $HUD/LifeBar
 
 @onready var stepTimer: Timer = $StepTimer
 
@@ -57,6 +59,11 @@ func _physics_process(delta):
 
 func take_damage(damage: int) -> void:
 	health -= damage
+	update_life_bar()
+	print(health, " - ", damage, " - ", life_bar.value)
+
+func update_life_bar() -> void:
+	life_bar.value = health / 1000.0
 
 func is_alive() -> bool:
 	return health > 0.0

@@ -56,14 +56,13 @@ func physics_update(ownr: Knight, delta: float) -> void:
 func can_cling(ownr: Knight) -> bool:
 	return ownr.is_on_wall() and (ownr.can_cling_left() or ownr.can_cling_right())
 
-
 func handle_input(ownr: Knight, event: InputEvent) -> void:
 	if event.is_action_pressed("smash"):
 		ownr.change_state(ownr.smashing_state)
 		return
 
 func exit(_ownr) -> void:
-	print("==========exit jumping")
+	pass
 
 func is_on_wall_simulated(ownr: Knight, delta: float) -> bool:
 	var collision = ownr.move_and_collide(ownr.velocity * delta, true)

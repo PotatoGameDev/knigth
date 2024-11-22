@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ci1vae7axbcve"]
+[gd_scene load_steps=26 format=3 uid="uid://ci1vae7axbcve"]
 
 [ext_resource type="Script" path="res://logic/zombi/zombi.gd" id="1_lvut6"]
 [ext_resource type="Texture2D" uid="uid://dj3ksj5s27f8c" path="res://assets/sprites/zombie-sheet.png" id="2_g5uav"]
@@ -133,6 +133,14 @@ size = Vector2(15.75, 27.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4lt1t"]
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_lvut6"]
+color = Color(0.180005, 0.180005, 0.180005, 1)
+thickness = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_g5uav"]
+color = Color(0.885087, 0.42656, 0.897375, 1)
+thickness = 2
+
 [node name="Zombi" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 128
@@ -185,5 +193,18 @@ max_results = 1
 [node name="StepTimer" type="Timer" parent="."]
 wait_time = 0.25
 autostart = true
+
+[node name="HUD" type="Node2D" parent="."]
+
+[node name="LifeBar" type="ProgressBar" parent="HUD"]
+offset_left = -9.0
+offset_top = -16.0
+offset_right = 9.0
+offset_bottom = -12.0
+theme_override_styles/background = SubResource("StyleBoxLine_lvut6")
+theme_override_styles/fill = SubResource("StyleBoxLine_g5uav")
+max_value = 1.0
+value = 1.0
+show_percentage = false
 
 [connection signal="timeout" from="StepTimer" to="States/Running" method="_on_step_timer_timeout"]

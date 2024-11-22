@@ -18,6 +18,8 @@ func update(ownr: Knight, delta: float) -> void:
 	pass
 
 func physics_update(ownr: Knight, delta: float) -> void:
+	var last_speed = -ownr.velocity.y
+
 	ownr.move_and_slide()
 
 	if Input.is_action_pressed("smash"):
@@ -34,7 +36,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 			for e in range(ownr.enemySmashSensor.get_collision_count()):
 				var enemy = ownr.enemySmashSensor.get_collider(e)
 				if enemy is Zombi and enemy.is_alive():
-					enemy.take_damage(ownr.strength)
+					enemy.take_damage(ownr.strength * -last_speed * ownr.smmash_speed_damage_factor)
 					smashed = true
 			if smashed:
 				ownr.change_state(ownr.stomping_state)
