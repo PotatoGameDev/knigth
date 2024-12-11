@@ -3,7 +3,6 @@ class_name Zombi
 
 @export var health := 1000.0
 
-@export var gravity := 1200.0
 @export var speed := 200.0
 @export var max_fall_speed := 900.0
 
@@ -12,6 +11,9 @@ var current_state = null
 
 var direction := 1
 var movement := 0.0
+
+# Take gravity from project settings
+var gravity: float = Global.gravity
 
 @onready var animation = $Animation
 
@@ -50,12 +52,13 @@ func _physics_process(delta):
 		return
 	if current_state == dead_state:
 		return
+
+	move_and_slide()
+
 	current_state.update(self, delta)
 
 	if health <= 0:
 		change_state(dead_state)
-
-	move_and_slide()
 
 func take_damage(damage: int) -> void:
 	health -= damage

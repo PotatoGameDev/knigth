@@ -24,7 +24,7 @@ func update(ownr: Knight, delta: float) -> void:
 
 func physics_update(ownr: Knight, delta: float) -> void:
 	if not ownr.is_on_floor():
-		ownr.velocity.y += gravity_coefficient * ownr.gravity * delta
+		ownr.velocity.y += gravity_coefficient * Global.gravity * delta
 
 	ownr.move_and_slide()
 
@@ -68,4 +68,3 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 func exit(ownr) -> void:
 	ownr.cling_blocker = true
 	ownr.coyote_timer = ownr.max_coyote_time
-

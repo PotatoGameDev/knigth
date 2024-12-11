@@ -40,7 +40,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 
 	if not ownr.is_on_floor():
 		ownr.jump_stamina_left -= delta * ownr.jump_stamina_depletion_multiplier
-		ownr.velocity.y += ownr.gravity * delta
+		ownr.velocity.y += Global.gravity * delta
 
 	# Horizontal User Control
 	# Forced to move left or right, depending on the direction

@@ -22,7 +22,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		return
 
 	if not ownr.is_on_floor():
-		ownr.velocity.y += ownr.gravity * delta
+		ownr.velocity.y += Global.gravity * delta
 
 	# Horizontal User Control
 	ownr.velocity.x = ownr.movement * ownr.speed

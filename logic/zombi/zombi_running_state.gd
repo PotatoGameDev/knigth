@@ -16,7 +16,7 @@ func update(ownr: Zombi, delta: float) -> void:
 
 	# TODO: Move to falling state
 	if !ownr.is_on_floor():
-		ownr.velocity.y += ownr.gravity * delta
+		ownr.velocity.y += Global.gravity * delta
 		if ownr.velocity.y > ownr.max_fall_speed:
 			ownr.velocity.y = ownr.max_fall_speed
 	

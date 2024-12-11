@@ -153,8 +153,10 @@ animation = &"die"
 autoplay = "idle"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
+show_behind_parent = true
 position = Vector2(-0.125, 1.75)
 shape = SubResource("RectangleShape2D_eoh8o")
+debug_color = Color(0.949392, 0.0740377, 0.531759, 0.42)
 
 [node name="States" type="Node" parent="."]
 

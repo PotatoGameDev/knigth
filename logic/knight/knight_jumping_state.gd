@@ -30,7 +30,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		return
 	
 	if not ownr.is_on_floor():
-		ownr.velocity.y += ownr.gravity * delta
+		ownr.velocity.y += Global.gravity * delta
 		ownr.jump_stamina_left -= delta * ownr.jump_stamina_depletion_multiplier
 		ownr.jump_stamina_left = max(ownr.jump_stamina_left, 0.0)
 

@@ -6,7 +6,6 @@ const RIGHT := 1
 
 @export var jump_force := 1500.0
 @export var pushoff_force := 1000.0
-@export var gravity := 1200.0
 @export var speed := 200.0
 @export var max_fall_speed := 2000.0
 @export var jump_hold_time = 0.2
@@ -15,7 +14,7 @@ const RIGHT := 1
 @export var jump_stamina_depletion_multiplier = 50.0
 @export var step_speed := 150.0
 @export var step_speed_min := 20.0
-@export var smmash_speed_damage_factor := 0.03
+@export var smash_speed_damage_factor := 0.03
 
 # Character stats
 @export var strength := 10.0
@@ -25,7 +24,6 @@ var jump_stamina_left := 0.0
 var jump_timer := 0.0
 var coyote_timer := 0.0
 var queued_jump_timer := 0.0
-
 
 var states = {} 
 var current_state = null
@@ -49,7 +47,7 @@ var cling_pushoff_timer := 0.0
 @onready var jumpRayRightOuter: RayCast2D = $JumpSlipRays/RayRightOuter
 @onready var jumpRayRightInner: RayCast2D = $JumpSlipRays/RayRightInner
 
-@onready var enemySmashSensor: ShapeCast2D = $Sensors/EnemySmashSensor
+@onready var enemy_smash_sensor: ShapeCast2D = $Sensors/EnemySmashSensor
 
 # The logic is: If the UP sensor is not colliding and the DOWN sensor is colliding, then the player should auto-jump the step up.
 # If both are colliding, then the player can cling.
@@ -129,5 +127,4 @@ func _process(delta):
 func _physics_process(delta):
 	if not current_state:
 		return
-	print("Velocity: ", velocity)
 	current_state.physics_update(self, delta)

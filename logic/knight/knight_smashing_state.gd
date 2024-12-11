@@ -14,11 +14,26 @@ func enter(ownr) -> void:
 	ownr.velocity.x = 0.0
 	controls_coefficient = min_controls_coefficient
 
-func update(ownr: Knight, delta: float) -> void:
+func update(_ownr: Knight, _delta: float) -> void:
 	pass
 
 func physics_update(ownr: Knight, delta: float) -> void:
 	var last_speed = -ownr.velocity.y
+
+	ownr.enemy_smash_sensor.target_position = ownr.velocity * delta
+	ownr.enemy_smash_sensor.force_update_transform()
+
+	if ownr.enemy_smash_sensor.is_colliding():
+		var smashed = false
+		for e in range(ownr.enemy_smash_sensor.get_collision_count()):
+			var enemy = ownr.enemy_smash_sensor.get_collider(e)
+			if enemy is Zombi and enemy.is_alive():
+				enemy.take_damage(ownr.strength * -last_speed * ownr.smash_speed_damage_factor)
+				smashed = true
+		if smashed:
+			ownr.change_state(ownr.stomping_state)
+			ownr.bounce_power = 1.5
+			return
 
 	ownr.move_and_slide()
 
@@ -30,25 +45,14 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	else:
 		controls_coefficient = min_controls_coefficient
 
+
 	if ownr.is_on_floor():
-		if ownr.enemySmashSensor.is_colliding():
-			var smashed = false
-			for e in range(ownr.enemySmashSensor.get_collision_count()):
-				var enemy = ownr.enemySmashSensor.get_collider(e)
-				if enemy is Zombi and enemy.is_alive():
-					enemy.take_damage(ownr.strength * -last_speed * ownr.smmash_speed_damage_factor)
-					smashed = true
-			if smashed:
-				ownr.change_state(ownr.stomping_state)
-				ownr.bounce_power = 1.5
-				return
-	
  		# zero out queued jump timer to prevent double jumps when landing after smashing
 		ownr.queued_jump_timer = 0.0
 		ownr.change_state(ownr.idle_state)
 		return
 	else:
-		ownr.velocity.y += ownr.gravity * gravity_coefficient * delta
+		ownr.velocity.y += Global.gravity * gravity_coefficient * delta
 		ownr.velocity.x = ownr.movement * controls_coefficient * ownr.speed
 
 
@@ -59,3 +63,5 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 	
 func exit(ownr) -> void:
 	ownr.velocity.y = 0
+	ownr.enemy_smash_sensor.target_position = Vector2.ZERO
+	
