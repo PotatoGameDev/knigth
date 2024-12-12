@@ -63,10 +63,12 @@ func _physics_process(delta):
 func take_damage(damage: int) -> void:
 	health -= damage
 	update_life_bar()
-	print(health, " - ", damage, " - ", life_bar.value)
 
 func update_life_bar() -> void:
 	life_bar.value = health / 1000.0
+	if health <= 0:
+		life_bar.visible = false
+
 
 func is_alive() -> bool:
 	return health > 0.0

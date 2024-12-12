@@ -543,9 +543,25 @@ show_percentage = false
 position = Vector2(-49, 1577)
 speed = 0.0
 
-[node name="LineDrawer" type="Node2D" parent="Zombi3"]
-script = ExtResource("12_071tv")
-max_trail_length = 200
+[node name="Zombi4" parent="." instance=ExtResource("10_2p3p6")]
+position = Vector2(1170, 272)
+speed = 0.0
+
+[node name="Zombi5" parent="." instance=ExtResource("10_2p3p6")]
+position = Vector2(1923, 272)
+speed = 0.0
+
+[node name="Zombi6" parent="." instance=ExtResource("10_2p3p6")]
+position = Vector2(1802, 255)
+speed = 0.0
+
+[node name="Brian" parent="." instance=ExtResource("10_2p3p6")]
+position = Vector2(1370, 286)
+speed = 0.0
+
+[node name="Zombi8" parent="." instance=ExtResource("10_2p3p6")]
+position = Vector2(1547, 261)
+speed = 0.0
 
 [node name="Node" type="Node" parent="."]
 process_mode = 3
