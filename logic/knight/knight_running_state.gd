@@ -26,6 +26,8 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		ownr.velocity.y = -max(ownr.step_speed_min, ownr.step_speed * -Input.get_axis("up", "down"))
 		ownr.animation.speed_scale = -Input.get_axis("up", "down") + step_animation_speed_min
 		print(ownr.animation.speed_scale)
+	else:
+		ownr.animation.speed_scale = 1.0
 	
 	ownr.move_and_slide()
 	
@@ -55,5 +57,5 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 		ownr.change_state(ownr.jumping_state)
 		return
 
-func exit(_ownr) -> void:
-	pass
+func exit(ownr) -> void:
+	ownr.animation.speed_scale = 1.0
