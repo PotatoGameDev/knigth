@@ -1,7 +1,7 @@
 extends Node
 class_name BouncingState 
 
-func enter(ownr) -> void:
+func enter(ownr, params: Dictionary = {}) -> void:
 	ownr.animation.play("bounce")
 	ownr.velocity.y = -ownr.jump_force
 	ownr.jump_timer = 0.0

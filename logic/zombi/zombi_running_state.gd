@@ -1,6 +1,8 @@
 extends Node
 class_name ZombiRunningState 
 
+# This means the zombi will move a bit and then stop for a moment
+# TODO: This is not related to stepping on a step, should be renamed.
 var stepping := false
 
 func enter(_ownr: Zombi) -> void:
@@ -24,17 +26,17 @@ func update(ownr: Zombi, delta: float) -> void:
 		ownr.change_state(ownr.idle_state)
 		return
 	elif ownr.attackRayLeft.is_colliding():
-		ownr.direction = -1
+		ownr.direction = Global.LEFT
 		ownr.movement = -1.0
 		ownr.change_state(ownr.attacking_state)
 		return
 	elif ownr.attackRayRight.is_colliding():
-		ownr.direction = 1
+		ownr.direction = Global.RIGHT
 		ownr.movement = 1.0
 		ownr.change_state(ownr.attacking_state)
 		return
 	
-	ownr.animation.flip_h = ownr.direction == -1
+	ownr.animation.flip_h = ownr.direction == Global.LEFT
 	
 func exit(_ownr) -> void:
 	pass

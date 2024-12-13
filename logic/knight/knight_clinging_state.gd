@@ -6,7 +6,7 @@ class_name ClingingState
 var snapped_already := false
 var snapping_speed := 50.0
 
-func enter(ownr) -> void:
+func enter(ownr, params: Dictionary = {}) -> void:
 	ownr.animation.play("cling")
 	ownr.velocity = Vector2.ZERO
 
@@ -42,7 +42,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 
 func handle_input(ownr: Knight, event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
-		if (Input.is_action_pressed("left") and ownr.direction == ownr.LEFT) or (Input.is_action_pressed("right") and ownr.direction == ownr.RIGHT):
+		if (Input.is_action_pressed("left") and ownr.direction == Global.LEFT) or (Input.is_action_pressed("right") and ownr.direction == Global.RIGHT):
 			ownr.cling_blocker = true
 			ownr.change_state(ownr.jumping_state)
 			return

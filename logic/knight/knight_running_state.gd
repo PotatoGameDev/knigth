@@ -4,7 +4,7 @@ class_name RunningState
 @export var step_animation_speed_min := 0.8
 var is_stepping := false
 
-func enter(ownr: Knight) -> void:
+func enter(ownr: Knight, params: Dictionary = {}) -> void:
 	if ownr.queued_jump_timer > 0.0:
 		ownr.change_state(ownr.jumping_state)
 		return

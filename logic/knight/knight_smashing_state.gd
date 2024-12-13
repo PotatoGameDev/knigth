@@ -8,7 +8,7 @@ class_name SmashingState
 
 var controls_coefficient := 0.0
 
-func enter(ownr) -> void:
+func enter(ownr, params: Dictionary = {}) -> void:
 	ownr.animation.play("smash")
 	ownr.velocity.y = ownr.max_fall_speed * 0.5
 	ownr.velocity.x = 0.0

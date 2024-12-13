@@ -1,9 +1,6 @@
 extends CharacterBody2D
 class_name Knight
 
-const LEFT := -1
-const RIGHT := 1
-
 @export var jump_force := 1500.0
 @export var pushoff_force := 1000.0
 @export var speed := 200.0
@@ -28,11 +25,13 @@ var queued_jump_timer := 0.0
 var states = {} 
 var current_state = null
 
-var direction = RIGHT
+var direction = Global.RIGHT
 var movement = 0.0
 
 var bounce_power := 1.0
 var is_bouncing := false
+
+var health := 0.0
 
 # TODO Find a better name:
 var cling_blocker := false
@@ -56,6 +55,7 @@ var cling_pushoff_timer := 0.0
 @onready var cling_blocker_sensor_right_up: RayCast2D = $Sensors/ClingBlockerSensors/RightUp
 @onready var cling_blocker_sensor_right_down: RayCast2D = $Sensors/ClingBlockerSensors/RightDown
 
+
 func can_cling_left() -> bool:
 	return cling_blocker_sensor_left_up.is_colliding() and cling_blocker_sensor_left_down.is_colliding()
 
@@ -69,10 +69,10 @@ func can_step_right() -> bool:
 	return not cling_blocker_sensor_right_up.is_colliding() and cling_blocker_sensor_right_down.is_colliding()
 
 func is_left() -> bool:
-	return direction == LEFT
+	return direction == Global.LEFT
 
 func is_right() -> bool:
-	return direction == RIGHT
+	return direction == Global.RIGHT
 
 
 @onready var running_state: RunningState =  $States/Running
@@ -84,19 +84,22 @@ func is_right() -> bool:
 @onready var stomping_state: StompingState = $States/Stomping
 @onready var clinging_state: ClingingState = $States/Clinging
 @onready var pushoff_state: PushOffState = $States/PushOff
+@onready var pushback_state: PushBackState = $States/PushBack
 
 @onready var stamina_bar: ProgressBar = $HUD/StaminaBar
+@onready var life_bar: ProgressBar = $HUD/LifeBar
 
 func _ready() -> void:
 	change_state(idle_state)
 	jump_stamina_left = stamina
+	health = strength * 100.0
 
-func change_state(to_state) -> void:
+func change_state(to_state, params: Dictionary = {}) -> void:
 	print("Changing state to ", to_state.name)
 	if current_state:
 		current_state.exit(self)
 	current_state = to_state
-	current_state.enter(self)
+	current_state.enter(self, params)
 
 func _unhandled_input(event):
 	if current_state:
@@ -112,7 +115,7 @@ func _process(delta):
 	movement = Input.get_axis("left", "right")
 	if movement != 0.0:
 		direction = sign(movement)
-	animation.flip_h = direction == LEFT
+	animation.flip_h = direction == Global.LEFT
 
 	# Handle queued jumps
 	queued_jump_timer -= delta
@@ -128,3 +131,17 @@ func _physics_process(delta):
 	if not current_state:
 		return
 	current_state.physics_update(self, delta)
+
+func take_damage(damage: int, direction: Vector2) -> void:
+	health -= damage
+	update_life_bar()
+	change_state(pushback_state, {"direction": direction})
+
+func update_life_bar() -> void:
+	life_bar.value = health / 1000.0
+	if health <= 0:
+		life_bar.visible = false
+
+
+func is_alive() -> bool:
+	return health > 0.0

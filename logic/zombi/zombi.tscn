@@ -149,8 +149,9 @@ speed = 80.0
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nuq10")
-animation = &"die"
+animation = &"attack"
 autoplay = "idle"
+frame_progress = 0.911757
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 show_behind_parent = true

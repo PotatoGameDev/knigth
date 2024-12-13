@@ -1,7 +1,7 @@
 extends Node
 class_name IdleState 
 
-func enter(ownr) -> void:
+func enter(ownr, params: Dictionary = {}) -> void:
 	if ownr.queued_jump_timer > 0.0:
 		ownr.change_state(ownr.jumping_state)
 		return

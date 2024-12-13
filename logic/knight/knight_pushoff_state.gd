@@ -3,7 +3,7 @@ class_name PushOffState
 
 var forced_direction := 0
 
-func enter(ownr) -> void:
+func enter(ownr, params: Dictionary = {}) -> void:
 	ownr.velocity.x = -ownr.pushoff_force
 	ownr.velocity.y = 0.0
 

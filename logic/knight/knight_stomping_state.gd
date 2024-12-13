@@ -1,7 +1,7 @@
 extends Node
 class_name StompingState
 
-func enter(ownr) -> void:
+func enter(ownr, params: Dictionary = {}) -> void:
 	ownr.animation.play("stomp")
 	ownr.jump_timer = 0.0
 	ownr.coyote_timer = 0.0

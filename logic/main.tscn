@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://cux2tw0wvffkg"]
+[gd_scene load_steps=55 format=4 uid="uid://cux2tw0wvffkg"]
 
 [ext_resource type="Script" path="res://logic/main.gd" id="1_2bfyf"]
 [ext_resource type="Texture2D" uid="uid://47gkon2vpqqt" path="res://assets/sprites/main-tilemap.png" id="2_unhpw"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://logic/knight/knight_clinging_state.gd" id="12_4lt1t"]
 [ext_resource type="Script" path="res://logic/debug/line_drawer.gd" id="12_071tv"]
 [ext_resource type="Script" path="res://logic/knight/knight_pushoff_state.gd" id="13_3g7ew"]
+[ext_resource type="Script" path="res://logic/knight/knight_pushback_state.gd" id="14_gj2wd"]
 [ext_resource type="Script" path="res://logic/pauser.gd" id="16_fegvt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_khjfu"]
@@ -448,6 +449,9 @@ script = ExtResource("12_4lt1t")
 [node name="PushOff" type="Node" parent="Ritter/States"]
 script = ExtResource("13_3g7ew")
 
+[node name="PushBack" type="Node" parent="Ritter/States"]
+script = ExtResource("14_gj2wd")
+
 [node name="Camera2D" type="Camera2D" parent="Ritter"]
 limit_smoothed = true
 drag_horizontal_enabled = true
@@ -541,27 +545,21 @@ show_percentage = false
 
 [node name="Zombi3" parent="." instance=ExtResource("10_2p3p6")]
 position = Vector2(-49, 1577)
-speed = 0.0
 
 [node name="Zombi4" parent="." instance=ExtResource("10_2p3p6")]
 position = Vector2(1170, 272)
-speed = 0.0
 
 [node name="Zombi5" parent="." instance=ExtResource("10_2p3p6")]
 position = Vector2(1923, 272)
-speed = 0.0
 
 [node name="Zombi6" parent="." instance=ExtResource("10_2p3p6")]
 position = Vector2(1802, 255)
-speed = 0.0
 
 [node name="Brian" parent="." instance=ExtResource("10_2p3p6")]
 position = Vector2(1370, 286)
-speed = 0.0
 
 [node name="Zombi8" parent="." instance=ExtResource("10_2p3p6")]
 position = Vector2(1547, 261)
-speed = 0.0
 
 [node name="Node" type="Node" parent="."]
 process_mode = 3

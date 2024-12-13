@@ -5,11 +5,12 @@ class_name Zombi
 
 @export var speed := 200.0
 @export var max_fall_speed := 900.0
+@export var strength := 100.0
 
 var states = {} 
 var current_state = null
 
-var direction := 1
+var direction := Global.RIGHT
 var movement := 0.0
 
 # Take gravity from project settings
@@ -30,6 +31,12 @@ var gravity: float = Global.gravity
 @onready var life_bar: ProgressBar = $HUD/LifeBar
 
 @onready var stepTimer: Timer = $StepTimer
+
+func is_left() -> bool:
+	return direction == Global.LEFT
+
+func is_right() -> bool:
+	return direction == Global.RIGHT
 
 func _ready() -> void:
 	change_state(idle_state)
