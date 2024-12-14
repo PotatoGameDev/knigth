@@ -1,11 +1,11 @@
 [gd_scene load_steps=26 format=3 uid="uid://ci1vae7axbcve"]
 
-[ext_resource type="Script" path="res://logic/zombi/zombi.gd" id="1_lvut6"]
+[ext_resource type="Script" uid="uid://bi24grd76jemj" path="res://logic/zombi/zombi.gd" id="1_lvut6"]
 [ext_resource type="Texture2D" uid="uid://dj3ksj5s27f8c" path="res://assets/sprites/zombie-sheet.png" id="2_g5uav"]
-[ext_resource type="Script" path="res://logic/zombi/zombi_attacking_state.gd" id="3_etqux"]
-[ext_resource type="Script" path="res://logic/zombi/zombi_idle_state.gd" id="4_3eb5i"]
-[ext_resource type="Script" path="res://logic/zombi/zombi_running_state.gd" id="5_8lnob"]
-[ext_resource type="Script" path="res://logic/zombi/zombi_dead_state.gd" id="6_rsfqm"]
+[ext_resource type="Script" uid="uid://bmnnqoij41imh" path="res://logic/zombi/zombi_attacking_state.gd" id="3_etqux"]
+[ext_resource type="Script" uid="uid://c76dx5bie0yb3" path="res://logic/zombi/zombi_idle_state.gd" id="4_3eb5i"]
+[ext_resource type="Script" uid="uid://fbsddcmao78s" path="res://logic/zombi/zombi_running_state.gd" id="5_8lnob"]
+[ext_resource type="Script" uid="uid://5encostk5e0j" path="res://logic/zombi/zombi_dead_state.gd" id="6_rsfqm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pk1f1"]
 atlas = ExtResource("2_g5uav")
