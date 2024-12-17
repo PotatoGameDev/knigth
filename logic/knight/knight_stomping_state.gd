@@ -1,4 +1,4 @@
-extends Node
+extends KnightState
 class_name StompingState
 
 func enter(ownr, params: Dictionary = {}) -> void:

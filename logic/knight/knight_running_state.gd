@@ -1,4 +1,4 @@
-extends Node
+extends KnightState
 class_name RunningState 
 
 @export var step_animation_speed_min := 0.8
@@ -13,10 +13,6 @@ func enter(ownr: Knight, params: Dictionary = {}) -> void:
 	ownr.cling_blocker = true 
 	
 	is_stepping = false
-
-
-func update(ownr: Knight, delta: float) -> void:
-	pass
 
 func physics_update(ownr: Knight, delta: float) -> void:
 	ownr.velocity.x = ownr.speed * ownr.movement
@@ -33,8 +29,8 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	
 	# TODO: Here is a fun idea: Move repeating logic to ownr, and just set flags, like deplets_stamina.
 	ownr.jump_stamina_left += delta * ownr.jump_stamina_depletion_multiplier
-	if ownr.jump_stamina_left > ownr.stamina:
-		ownr.jump_stamina_left = ownr.stamina
+	if ownr.jump_stamina_left > ownr.max_stamina:
+		ownr.jump_stamina_left = ownr.max_stamina
 	
 	if not Input.is_action_pressed("left") and not Input.is_action_pressed("right"):
 		ownr.change_state(ownr.idle_state)
@@ -59,3 +55,10 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 
 func exit(ownr) -> void:
 	ownr.animation.speed_scale = 1.0
+
+func take_damage(ownr: Knight, damage: int, direction: Vector2) -> void:
+	ownr.health -= damage
+	ownr.change_state(ownr.pushback_state, {"direction": direction})
+	return
+
+

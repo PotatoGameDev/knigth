@@ -1,25 +1,27 @@
-extends Node
+extends KnightState
 class_name PushBackState
 
 var forced_direction := 0
 var pushback_force := 100.0
-var incapacitation_time := 1.0
+var incapacitation_time : float
 
 func enter(ownr, params: Dictionary = {}) -> void:
-	forced_direction = -ownr.direction
-	incapacitation_time = 1.0
+	incapacitation_time = 0.5
 
 	#pushback_force = params["pushback_force"]
 	
 	var attack_direction: Vector2 = params["direction"]
 
 	if attack_direction.x > 0:
-		forced_direction = Global.LEFT
-		pushback_force = -pushback_force
-	elif attack_direction.x < 0:
 		forced_direction = Global.RIGHT
-		pushback_force = -pushback_force
+	elif attack_direction.x < 0:
+		forced_direction = Global.LEFT
 
+	if ownr.direction == forced_direction:
+		ownr.animation.play("push_forward")
+	else:
+		ownr.animation.play("push_back")
+	
 	ownr.velocity.x = pushback_force * forced_direction
 	ownr.velocity.y = 0.0
 
@@ -39,8 +41,3 @@ func physics_update(ownr: Knight, delta: float) -> void:
 
 	ownr.velocity.x = pushback_force * forced_direction
 
-func handle_input(ownr: Knight, event: InputEvent) -> void:
-	pass
-
-func exit(_ownr) -> void:
-	pass

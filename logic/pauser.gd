@@ -6,6 +6,7 @@ var next_frame: bool = false
 var process_slowmo: bool = false
 
 func _process(delta: float) -> void:
+
 	if not enabled:
 		return
 
@@ -32,6 +33,10 @@ func _process(delta: float) -> void:
 		next_frame = false
 		get_tree().paused = false
 		print("process_slowmo")
+		
+	if (Input.is_key_pressed(KEY_0)):
+		get_tree().paused = false
+		
 
 	# Toggle pause with MMB
 	if Input.is_action_just_pressed("MMB"):

@@ -15,7 +15,8 @@ class_name Knight
 
 # Character stats
 @export var strength := 10.0
-@export var stamina := 1000.0
+@export var max_stamina := 1000.0
+@export var max_health := 1000.0
 
 var jump_stamina_left := 0.0
 var jump_timer := 0.0
@@ -31,6 +32,7 @@ var movement = 0.0
 var bounce_power := 1.0
 var is_bouncing := false
 
+# Current stats
 var health := 0.0
 
 # TODO Find a better name:
@@ -41,10 +43,10 @@ var cling_pushoff_timer := 0.0
 
 @onready var animation: AnimatedSprite2D = $Animation
 
-@onready var jumpRayLeftOuter: RayCast2D = $JumpSlipRays/RayLeftOuter
-@onready var jumpRayLeftInner: RayCast2D = $JumpSlipRays/RayLeftInner
-@onready var jumpRayRightOuter: RayCast2D = $JumpSlipRays/RayRightOuter
-@onready var jumpRayRightInner: RayCast2D = $JumpSlipRays/RayRightInner
+@onready var jump_ray_left_outer: RayCast2D = $JumpSlipRays/RayLeftOuter
+@onready var jump_ray_left_inner: RayCast2D = $JumpSlipRays/RayLeftInner
+@onready var jump_ray_right_outer: RayCast2D = $JumpSlipRays/RayRightOuter
+@onready var jump_ray_right_inner: RayCast2D = $JumpSlipRays/RayRightInner
 
 @onready var enemy_smash_sensor: ShapeCast2D = $Sensors/EnemySmashSensor
 
@@ -91,8 +93,9 @@ func is_right() -> bool:
 
 func _ready() -> void:
 	change_state(idle_state)
-	jump_stamina_left = stamina
-	health = strength * 100.0
+	jump_stamina_left = max_stamina
+	health = max_health
+	update_life_bar()
 
 func change_state(to_state, params: Dictionary = {}) -> void:
 	print("Changing state to ", to_state.name)
@@ -122,26 +125,31 @@ func _process(delta):
 	if Input.is_action_just_pressed("jump"):
 		queued_jump_timer = max_queued_jump_time
 
-	stamina_bar.value = (jump_stamina_left / stamina) * 100.0
+	stamina_bar.value = jump_stamina_left / max_stamina
 
 	current_state.update(self, delta)
-
 
 func _physics_process(delta):
 	if not current_state:
 		return
 	current_state.physics_update(self, delta)
 
-func take_damage(damage: int, direction: Vector2) -> void:
-	health -= damage
+func take_damage(damage: int, dir: Vector2) -> void:
+	current_state.take_damage(self, damage, dir)
 	update_life_bar()
-	change_state(pushback_state, {"direction": direction})
 
 func update_life_bar() -> void:
-	life_bar.value = health / 1000.0
+	life_bar.value = health / max_health
 	if health <= 0:
 		life_bar.visible = false
 
-
 func is_alive() -> bool:
 	return health > 0.0
+
+func jump_slip():
+	if jump_ray_left_outer.is_colliding() and not jump_ray_left_inner.is_colliding():
+		velocity.x += speed
+	elif jump_ray_right_outer.is_colliding() and not jump_ray_right_inner.is_colliding():
+		velocity.x -= speed
+
+

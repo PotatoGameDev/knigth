@@ -1,4 +1,4 @@
-extends Node
+extends KnightState
 class_name JumpingState 
 
 func enter(ownr, params: Dictionary = {}) -> void:
@@ -16,11 +16,7 @@ func update(ownr: Knight, delta: float) -> void:
 func physics_update(ownr: Knight, delta: float) -> void:
 	ownr.velocity.x = ownr.movement * ownr.speed
 
-	# Jump Slip
-	if ownr.jumpRayLeftOuter.is_colliding() and not ownr.jumpRayLeftInner.is_colliding() and ownr.movement > 0:
-		ownr.velocity.x += ownr.speed
-	elif ownr.jumpRayRightOuter.is_colliding() and not ownr.jumpRayRightInner.is_colliding() and ownr.movement < 0:
-		ownr.velocity.x -= ownr.speed
+	ownr.jump_slip()
 
 	if ownr.jump_timer < ownr.jump_hold_time:
 		ownr.jump_timer += delta

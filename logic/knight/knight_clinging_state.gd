@@ -1,4 +1,4 @@
-extends Node
+extends KnightState
 class_name ClingingState
 
 @export var gravity_coefficient := 0.2

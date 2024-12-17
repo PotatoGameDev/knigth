@@ -1,12 +1,9 @@
-extends Node
+extends KnightState
 class_name FallingState 
 
 func enter(ownr, params: Dictionary = {}) -> void:
 	if not ownr.is_bouncing:
 		ownr.animation.play("fall")
-
-func update(ownr: Knight, delta: float) -> void:
-	pass
 
 func physics_update(ownr: Knight, delta: float) -> void:
 	var last_speed = -ownr.velocity.y

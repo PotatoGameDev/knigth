@@ -1,4 +1,4 @@
-extends Node
+extends KnightState
 class_name PushOffState
 
 var forced_direction := 0
@@ -46,12 +46,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	# Forced to move left or right, depending on the direction
 	ownr.velocity.x = forced_direction * ownr.speed
 
-	# Jump Slip
-	if ownr.jumpRayLeftOuter.is_colliding() and not ownr.jumpRayLeftInner.is_colliding():
-		ownr.velocity.x += ownr.speed
-	elif ownr.jumpRayRightOuter.is_colliding() and not ownr.jumpRayRightInner.is_colliding():
-		ownr.velocity.x -= ownr.speed
-
+	ownr.jump_slip()
 
 func handle_input(ownr: Knight, event: InputEvent) -> void:
 	if (Input.is_action_pressed("left") and ownr.is_left()) or (Input.is_action_pressed("right") and ownr.is_right()):

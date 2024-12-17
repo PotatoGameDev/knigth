@@ -1,4 +1,4 @@
-extends Node
+extends KnightState
 class_name SmashingState
 
 @export var gravity_coefficient := 2.0
