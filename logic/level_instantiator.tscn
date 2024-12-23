@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlxceewry8dqh"]
+
+[ext_resource type="Script" uid="uid://cct50u1iuwxrf" path="res://level_instantiator.gd" id="1_go3xl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mn1ce"]
+radius = 1753.07
+
+[node name="LevelInstantiator" type="Area2D"]
+collision_layer = 64
+script = ExtResource("1_go3xl")
+
+[node name="Sensor" type="CollisionShape2D" parent="."]
+position = Vector2(248, 130)
+shape = SubResource("CircleShape2D_mn1ce")
