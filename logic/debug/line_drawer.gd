@@ -1,13 +1,12 @@
 extends Node2D
 class_name LineDrawer
 
-@export var max_trail_length = 20  # Adjust for longer or shorter trail
+@export var max_trail_length := 20  # Adjust for longer or shorter trail
+@export var enabled := true
 
-var trail_points = []
+var trail_points := []
 
-func _physics_process(delta):
-
-#func _process(_delta):
+func _physics_process(_delta):
 	if trail_points.size() != 0:
 		var last_element = trail_points[trail_points.size() - 1]
 		if last_element == global_position:
@@ -19,6 +18,8 @@ func _physics_process(delta):
 	queue_redraw()
 
 func _draw():
+	if !enabled:
+		return
 	for i in range(trail_points.size() - 1):
 		var point1 = to_local(trail_points[i])
 		draw_circle(point1, 2, Color(1, 0, 0))

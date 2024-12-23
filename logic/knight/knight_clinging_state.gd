@@ -4,29 +4,29 @@ class_name ClingingState
 @export var gravity_coefficient := 0.2
 
 var snapped_already := false
-var snapping_speed := 50.0
 
 func enter(ownr, params: Dictionary = {}) -> void:
 	ownr.animation.play("cling")
 	ownr.velocity = Vector2.ZERO
 
 	if ownr.can_cling_right():
-		ownr.direction = 1
+		ownr.direction = Global.RIGHT
 	elif ownr.can_cling_left():
-		ownr.direction = -1
-	ownr.animation.flip_h = ownr.direction == -1
+		ownr.direction = Global.LEFT
+	ownr.animation.flip_h = ownr.direction == Global.LEFT
 
 	ownr.is_bouncing = false
 	snapped_already = false
-
-func update(ownr: Knight, delta: float) -> void:
-	pass
 
 func physics_update(ownr: Knight, delta: float) -> void:
 	if not ownr.is_on_floor():
 		ownr.velocity.y += gravity_coefficient * Global.gravity * delta
 
 	ownr.move_and_slide()
+
+	if not snapped_already:
+		while not ownr.move_and_collide(Vector2(ownr.direction * ownr.speed * delta, 0.0)):
+			pass
 
 	if not ownr.is_on_floor():
 		if not ownr.can_cling_right() and not ownr.can_cling_left():

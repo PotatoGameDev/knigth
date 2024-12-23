@@ -16,12 +16,14 @@ func update(ownr: Knight, delta: float) -> void:
 func physics_update(ownr: Knight, delta: float) -> void:
 	ownr.velocity.x = ownr.movement * ownr.speed
 
+    # This causes a jiggling effect when the knight is clinging
 	ownr.jump_slip()
 
 	if ownr.jump_timer < ownr.jump_hold_time:
 		ownr.jump_timer += delta
 		ownr.velocity.y = -ownr.jump_force
 	else:
+		print("2")
 		ownr.change_state(ownr.falling_state)
 		return
 	
@@ -40,7 +42,10 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	if not can_cling(ownr):
 		ownr.cling_blocker = false
 	else:
-		if not ownr.cling_blocker and not ownr.is_on_floor() and not Input.is_action_pressed("up"):
+		if \
+		not ownr.cling_blocker \
+		and not ownr.is_on_floor() \
+		and not Input.is_action_pressed("up"): # This is to prevent the player from clinging immediately after jumping
 			if ownr.jump_stamina_left > 0.0:
 				ownr.change_state(ownr.clinging_state)
 				return
@@ -57,11 +62,3 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 		ownr.change_state(ownr.smashing_state)
 		return
 
-func exit(_ownr) -> void:
-	pass
-
-func is_on_wall_simulated(ownr: Knight, delta: float) -> bool:
-	var collision = ownr.move_and_collide(ownr.velocity * delta, true)
-	if collision:
-		return collision.get_normal().x != 0
-	return false

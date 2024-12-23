@@ -24,7 +24,8 @@ var coyote_timer := 0.0
 var queued_jump_timer := 0.0
 
 var states = {} 
-var current_state = null
+var current_state: KnightState = null
+var current_state_entered_time: int = 0
 
 var direction = Global.RIGHT
 var movement = 0.0
@@ -96,13 +97,22 @@ func _ready() -> void:
 	jump_stamina_left = max_stamina
 	health = max_health
 	update_life_bar()
+	current_state_entered_time = Time.get_ticks_msec()
 
 func change_state(to_state, params: Dictionary = {}) -> void:
-	print("Changing state to ", to_state.name)
+	var elapsed_time = Time.get_ticks_msec() - current_state_entered_time
+	if elapsed_time > 1000:
+		print("[", elapsed_time / 1000.0, "s] Changing state to ", to_state.name)
+	else:
+		print("[", elapsed_time, "ms] Changing state to ", to_state.name)
+
 	if current_state:
 		current_state.exit(self)
 	current_state = to_state
 	current_state.enter(self, params)
+
+
+	current_state_entered_time = Time.get_ticks_msec()
 
 func _unhandled_input(event):
 	if current_state:

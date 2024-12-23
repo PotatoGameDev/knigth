@@ -461,7 +461,7 @@ shape = SubResource("RectangleShape2D_pnin5")
 
 [node name="Animation" type="AnimatedSprite2D" parent="Ritter"]
 sprite_frames = SubResource("SpriteFrames_4bo3m")
-animation = &"push_forward"
+animation = &"fall"
 autoplay = "idle"
 
 [node name="States" type="Node" parent="Ritter"]
