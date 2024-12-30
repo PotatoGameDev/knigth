@@ -489,8 +489,7 @@ script = ExtResource("16_fegvt")
 [node name="level1_0" parent="." instance_placeholder="res://logic/world/level_1_0.tscn"]
 position = Vector2(2048, 0)
 
-[node name="LevelInstantiator" parent="." instance=ExtResource("17_gj2wd")]
-position = Vector2(2833, 708)
-level_scene = "level1_0"
+[node name="LevelInstantiator" parent="level1_0" instance=ExtResource("17_gj2wd")]
+position = Vector2(785, 708)
 
-[editable path="LevelInstantiator"]
+[editable path="level1_0/LevelInstantiator"]
