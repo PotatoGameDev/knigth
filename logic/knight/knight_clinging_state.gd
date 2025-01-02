@@ -61,8 +61,9 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 		return
 
 	if event.is_action_pressed("down"):
-		ownr.change_state(ownr.falling_state)
-		return
+		if (!ownr.is_left() or ownr.movement >= 0.0) and (!ownr.is_right() or ownr.movement <= 0.0):
+			ownr.change_state(ownr.falling_state)
+			return
 
 
 func exit(ownr) -> void:
