@@ -343,7 +343,6 @@ collision_mask = 192
 platform_floor_layers = 4278190208
 script = ExtResource("3_hpcr4")
 jump_force = 300.0
-metadata/_edit_group_ = true
 
 [node name="CollisionShape" type="CollisionShape2D" parent="Ritter"]
 position = Vector2(0, 2.5)
@@ -395,13 +394,13 @@ drag_vertical_enabled = true
 [node name="JumpSlipRays" type="Node2D" parent="Ritter"]
 
 [node name="RayLeftOuter" type="RayCast2D" parent="Ritter/JumpSlipRays"]
-position = Vector2(-12, -10)
+position = Vector2(-7, -10)
 target_position = Vector2(0, -10)
 collision_mask = 128
 collide_with_areas = true
 
 [node name="RayLeftInner" type="RayCast2D" parent="Ritter/JumpSlipRays"]
-position = Vector2(-4, -10)
+position = Vector2(-3, -10)
 target_position = Vector2(0, -10)
 collision_mask = 128
 collide_with_areas = true
@@ -413,7 +412,7 @@ collision_mask = 128
 collide_with_areas = true
 
 [node name="RayRightOuter" type="RayCast2D" parent="Ritter/JumpSlipRays"]
-position = Vector2(11, -10)
+position = Vector2(7, -10)
 target_position = Vector2(0, -10)
 collision_mask = 128
 collide_with_areas = true
