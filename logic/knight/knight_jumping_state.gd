@@ -23,7 +23,6 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		ownr.jump_timer += delta
 		ownr.velocity.y = -ownr.jump_force
 	else:
-		print("2")
 		ownr.change_state(ownr.falling_state)
 		return
 	
@@ -46,7 +45,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		not ownr.cling_blocker \
 		and not ownr.is_on_floor() \
 		and not Input.is_action_pressed("up"): # This is to prevent the player from clinging immediately after jumping
-			if ownr.jump_stamina_left > 0.0:
+			if ownr.jump_stamina_left > 0.0 and (ownr.can_cling_left() and ownr.is_left()) or (ownr.can_cling_right() and ownr.is_right()):
 				ownr.change_state(ownr.clinging_state)
 				return
 

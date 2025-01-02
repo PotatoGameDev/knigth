@@ -139,10 +139,14 @@ func _process(delta):
 
 	current_state.update(self, delta)
 
+	print("DIR: ", direction, " MOV: ", movement, " VEL: ", velocity)
+
+
 func _physics_process(delta):
 	if not current_state:
 		return
 	current_state.physics_update(self, delta)
+
 
 func take_damage(damage: int, dir: Vector2) -> void:
 	current_state.take_damage(self, damage, dir)
