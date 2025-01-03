@@ -27,6 +27,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	if not snapped_already:
 		while not ownr.move_and_collide(Vector2(ownr.direction * ownr.speed * delta, 0.0)):
 			pass
+		snapped_already = true
 
 	if not ownr.is_on_floor():
 		if not ownr.can_cling_right() and not ownr.can_cling_left():
@@ -38,17 +39,17 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		if ownr.jump_stamina_left <= 0.0:
 			ownr.change_state(ownr.falling_state)
 			return
-	
 
 func handle_input(ownr: Knight, event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
-		if (Input.is_action_pressed("left") and ownr.direction == Global.LEFT) or (Input.is_action_pressed("right") and ownr.direction == Global.RIGHT):
-			ownr.cling_blocker = true
-			ownr.change_state(ownr.jumping_state)
-			return
-		else:
-			ownr.change_state(ownr.pushoff_state)
-			return
+		# TODO: Remove this if jump pushoff is cool
+#		if (Input.is_action_pressed("left") and ownr.is_left()) or (Input.is_action_pressed("right") and ownr.is_right()):
+#			ownr.change_state(ownr.jumping_state)
+#			return
+#		else:
+#			ownr.change_state(ownr.pushoff_state, {"pushoff_force": 200})
+#			return
+		ownr.change_state(ownr.jumping_state)
 	if event.is_action_pressed("smash"):
 		if ownr.is_on_floor():
 			ownr.change_state(ownr.idle_state)

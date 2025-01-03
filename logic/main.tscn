@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://cux2tw0wvffkg"]
+[gd_scene load_steps=57 format=3 uid="uid://cux2tw0wvffkg"]
 
 [ext_resource type="Script" uid="uid://btrloldap2l5n" path="res://logic/main.gd" id="1_2bfyf"]
 [ext_resource type="Script" uid="uid://b0ky8ye32athn" path="res://logic/knight/knight.gd" id="3_hpcr4"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://dxbrg61ibikfi" path="res://logic/knight/knight_stomping_state.gd" id="11_l7qid"]
 [ext_resource type="Script" uid="uid://bv36n3aos541i" path="res://logic/knight/knight_clinging_state.gd" id="12_4lt1t"]
 [ext_resource type="Script" uid="uid://ctagqb4dj246q" path="res://logic/debug/line_drawer.gd" id="12_071tv"]
-[ext_resource type="Script" uid="uid://bdehfy83gpc6x" path="res://logic/knight/knight_pushoff_state.gd" id="13_3g7ew"]
 [ext_resource type="Script" uid="uid://do4mgq2osoheu" path="res://logic/knight/knight_pushback_state.gd" id="14_gj2wd"]
 [ext_resource type="Script" uid="uid://cx805rh2a2sx5" path="res://logic/pauser.gd" id="16_fegvt"]
 [ext_resource type="PackedScene" uid="uid://bqmopo6dshmdi" path="res://logic/world/level_0_0.tscn" id="16_gj2wd"]
@@ -379,9 +378,6 @@ script = ExtResource("11_l7qid")
 
 [node name="Clinging" type="Node" parent="Ritter/States"]
 script = ExtResource("12_4lt1t")
-
-[node name="PushOff" type="Node" parent="Ritter/States"]
-script = ExtResource("13_3g7ew")
 
 [node name="PushBack" type="Node" parent="Ritter/States"]
 script = ExtResource("14_gj2wd")

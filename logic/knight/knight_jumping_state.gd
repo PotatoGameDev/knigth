@@ -16,7 +16,6 @@ func update(ownr: Knight, delta: float) -> void:
 func physics_update(ownr: Knight, delta: float) -> void:
 	ownr.velocity.x = ownr.movement * ownr.speed
 
-    # This causes a jiggling effect when the knight is clinging
 	ownr.jump_slip()
 
 	if ownr.jump_timer < ownr.jump_hold_time:
@@ -35,8 +34,6 @@ func physics_update(ownr: Knight, delta: float) -> void:
 
 	if (Input.is_action_pressed("left") and ownr.is_left()) or (Input.is_action_pressed("right") and ownr.is_right()):
 		ownr.cling_blocker = false
-	if not ownr.is_on_wall():
-		ownr.cling_blocker = false
 
 	if not can_cling(ownr):
 		ownr.cling_blocker = false
@@ -54,7 +51,10 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		return
 
 func can_cling(ownr: Knight) -> bool:
-	return ownr.is_on_wall() and (ownr.can_cling_left() or ownr.can_cling_right())
+	#https://github.com/godotengine/godot/issues/76756
+	# TODO: This is a workaround for the above issue is to NOT TRUST the is_on_wall() function
+	#return ownr.is_on_wall() and (ownr.can_cling_left() or ownr.can_cling_right())
+	return ownr.can_cling_left() or ownr.can_cling_right()
 
 func handle_input(ownr: Knight, event: InputEvent) -> void:
 	if event.is_action_pressed("smash"):

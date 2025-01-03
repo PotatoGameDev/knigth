@@ -2,7 +2,6 @@ extends CharacterBody2D
 class_name Knight
 
 @export var jump_force := 1500.0
-@export var pushoff_force := 1000.0
 @export var speed := 200.0
 @export var max_fall_speed := 2000.0
 @export var jump_hold_time = 0.2
@@ -28,7 +27,10 @@ var current_state: KnightState = null
 var current_state_entered_time: int = 0
 
 var direction = Global.RIGHT
+# TODO: Change to vector?
 var movement = 0.0
+var movement_vertical = 0.0
+
 
 var bounce_power := 1.0
 var is_bouncing := false
@@ -38,9 +40,6 @@ var health := 0.0
 
 # TODO Find a better name:
 var cling_blocker := false
-
-@export var cling_pushoff_time := 0.1
-var cling_pushoff_timer := 0.0
 
 @onready var animation: AnimatedSprite2D = $Animation
 
@@ -86,7 +85,6 @@ func is_right() -> bool:
 @onready var bouncing_state: BouncingState = $States/Bouncing
 @onready var stomping_state: StompingState = $States/Stomping
 @onready var clinging_state: ClingingState = $States/Clinging
-@onready var pushoff_state: PushOffState = $States/PushOff
 @onready var pushback_state: PushBackState = $States/PushBack
 
 @onready var stamina_bar: ProgressBar = $HUD/StaminaBar
@@ -115,6 +113,7 @@ func change_state(to_state, params: Dictionary = {}) -> void:
 	current_state_entered_time = Time.get_ticks_msec()
 
 func _unhandled_input(event):
+	# DO NOT use precalculated movement here
 	if current_state:
 		current_state.handle_input(self, event)
 
@@ -130,6 +129,8 @@ func _process(delta):
 		direction = sign(movement)
 	animation.flip_h = direction == Global.LEFT
 
+	movement_vertical = Input.get_axis("down", "up")
+
 	# Handle queued jumps
 	queued_jump_timer -= delta
 	if Input.is_action_just_pressed("jump"):
@@ -138,8 +139,6 @@ func _process(delta):
 	stamina_bar.value = jump_stamina_left / max_stamina
 
 	current_state.update(self, delta)
-
-	print("DIR: ", direction, " MOV: ", movement, " VEL: ", velocity)
 
 
 func _physics_process(delta):
