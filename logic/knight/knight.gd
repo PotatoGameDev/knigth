@@ -33,7 +33,6 @@ var movement_vertical = 0.0
 
 
 var bounce_power := 1.0
-var is_bouncing := false
 
 # Current stats
 var health := 0.0

@@ -9,7 +9,6 @@ func enter(ownr: Knight, params: Dictionary = {}) -> void:
 		ownr.change_state(ownr.jumping_state)
 		return
 	ownr.animation.play("run")
-	ownr.is_bouncing = false
 	ownr.cling_blocker = true 
 	
 	is_stepping = false

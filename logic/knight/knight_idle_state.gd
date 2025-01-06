@@ -8,7 +8,6 @@ func enter(ownr, params: Dictionary = {}) -> void:
 	ownr.animation.play("idle")
 	ownr.velocity = Vector2.ZERO
 
-	ownr.is_bouncing = false
 	ownr.cling_blocker = true 
 
 func update(ownr: Knight, delta: float) -> void:

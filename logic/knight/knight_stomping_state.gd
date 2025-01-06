@@ -14,7 +14,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	ownr.move_and_slide()
 
 	if ownr.animation.frame == ownr.animation.sprite_frames.get_frame_count(ownr.animation.animation) - 1:
-		ownr.change_state(ownr.bouncing_state)
+		ownr.change_state(ownr.jumping_state, {"bouncing": true})
 		return
 
 func handle_input(_ownr: Knight, _event: InputEvent) -> void:

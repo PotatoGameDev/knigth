@@ -15,7 +15,6 @@ func enter(ownr, params: Dictionary = {}) -> void:
 		ownr.direction = Global.LEFT
 	ownr.animation.flip_h = ownr.direction == Global.LEFT
 
-	ownr.is_bouncing = false
 	snapped_already = false
 
 func physics_update(ownr: Knight, delta: float) -> void:

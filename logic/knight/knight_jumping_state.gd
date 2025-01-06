@@ -1,8 +1,20 @@
 extends KnightState
 class_name JumpingState 
 
+# INFO: Jumping entails initial jump and upward movement afterwards.
+
+var is_bouncing := false
+var is_falling := false
+
 func enter(ownr, params: Dictionary = {}) -> void:
-	if not ownr.is_bouncing:
+	is_falling = false
+	is_bouncing = false
+	if "bouncing" in params:
+		is_bouncing = params["bouncing"]
+
+	if is_bouncing:
+		ownr.animation.play("bounce")
+	else:
 		ownr.animation.play("jump")
 
 	ownr.velocity.y = -ownr.jump_force
@@ -19,11 +31,11 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	ownr.jump_slip()
 
 	if ownr.jump_timer < ownr.jump_hold_time:
-		ownr.jump_timer += delta
-		ownr.velocity.y = -ownr.jump_force
+		if not is_falling:
+			ownr.jump_timer += delta
+			ownr.velocity.y = -ownr.jump_force
 	else:
-		ownr.change_state(ownr.falling_state)
-		return
+		is_falling = true
 	
 	if not ownr.is_on_floor():
 		ownr.velocity.y += Global.gravity * delta
@@ -46,9 +58,13 @@ func physics_update(ownr: Knight, delta: float) -> void:
 				ownr.change_state(ownr.clinging_state)
 				return
 
-	if not Input.is_action_pressed("jump"):
-		ownr.change_state(ownr.falling_state)
+	if not Input.is_action_pressed("jump") and not Input.is_action_pressed("smash"):
+		is_falling = true
+
+	if is_falling and ownr.velocity.y >= 0.0:
+		ownr.change_state(ownr.falling_state, {"bouncing": is_bouncing})
 		return
+
 
 func can_cling(ownr: Knight) -> bool:
 	#https://github.com/godotengine/godot/issues/76756
@@ -60,4 +76,3 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 	if event.is_action_pressed("smash"):
 		ownr.change_state(ownr.smashing_state)
 		return
-

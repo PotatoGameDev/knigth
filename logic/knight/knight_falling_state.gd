@@ -1,8 +1,19 @@
 extends KnightState
 class_name FallingState 
 
+var is_bouncing := false
+
 func enter(ownr, params: Dictionary = {}) -> void:
-	if not ownr.is_bouncing:
+	# INFO: This is by design. We allow the player to maintain inertia.
+	# Gravity will pull them downwards anyway. Setting velocity to zero
+	# will cause an invisible wall effect when jump ends.
+	# ownr.velocity.y = 0.0
+
+	is_bouncing = false
+	if "bouncing" in params:
+		is_bouncing = params["bouncing"]
+
+	if not is_bouncing:
 		ownr.animation.play("fall")
 
 func physics_update(ownr: Knight, delta: float) -> void:
