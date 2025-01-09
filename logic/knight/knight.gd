@@ -31,7 +31,6 @@ var direction = Global.RIGHT
 var movement = 0.0
 var movement_vertical = 0.0
 
-
 var bounce_power := 1.0
 
 # Current stats
@@ -123,17 +122,22 @@ func _process(delta):
 	if Input.is_key_pressed(KEY_T):
 		print("=================== DEBUd ======================")
 
-	movement = Input.get_axis("left", "right")
-	if movement != 0.0:
-		direction = sign(movement)
+
+	if current_state.options.calculate_movement:
+		movement = Input.get_axis("left", "right")
+		if current_state.options.calculate_direction:
+			if movement != 0.0:
+				direction = sign(movement)
+
 	animation.flip_h = direction == Global.LEFT
 
 	movement_vertical = Input.get_axis("down", "up")
 
 	# Handle queued jumps
-	queued_jump_timer -= delta
-	if Input.is_action_just_pressed("jump"):
-		queued_jump_timer = max_queued_jump_time
+	if current_state.options.calculate_queued_jump_timer:
+		queued_jump_timer -= delta
+		if Input.is_action_just_pressed("jump"):
+			queued_jump_timer = max_queued_jump_time
 
 	stamina_bar.value = jump_stamina_left / max_stamina
 
@@ -163,5 +167,3 @@ func jump_slip():
 		velocity.x += speed
 	elif jump_ray_right_outer.is_colliding() and not jump_ray_right_inner.is_colliding():
 		velocity.x -= speed
-
-

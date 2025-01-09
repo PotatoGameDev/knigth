@@ -15,12 +15,10 @@ func enter(ownr: Knight, params: Dictionary = {}) -> void:
 
 func physics_update(ownr: Knight, delta: float) -> void:
 	ownr.velocity.x = ownr.speed * ownr.movement
-	ownr.coyote_timer = ownr.max_coyote_time
 
 	if is_stepping:
 		ownr.velocity.y = -max(ownr.step_speed_min, ownr.step_speed * -Input.get_axis("up", "down"))
 		ownr.animation.speed_scale = -Input.get_axis("up", "down") + step_animation_speed_min
-		print(ownr.animation.speed_scale)
 	else:
 		ownr.animation.speed_scale = 1.0
 	
@@ -53,6 +51,7 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 		return
 
 func exit(ownr) -> void:
+	ownr.coyote_timer = ownr.max_coyote_time
 	ownr.animation.speed_scale = 1.0
 
 func take_damage(ownr: Knight, damage: int, direction: Vector2) -> void:

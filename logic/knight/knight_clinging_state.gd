@@ -17,6 +17,11 @@ func enter(ownr, params: Dictionary = {}) -> void:
 
 	snapped_already = false
 
+func update(ownr: Knight, delta: float) -> void:
+	if ownr.queued_jump_timer > 0.0:
+		ownr.change_state(ownr.jumping_state, {"forced_direction": -ownr.direction})
+		return
+
 func physics_update(ownr: Knight, delta: float) -> void:
 	if not ownr.is_on_floor():
 		ownr.velocity.y += gravity_coefficient * Global.gravity * delta
@@ -38,17 +43,17 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		if ownr.jump_stamina_left <= 0.0:
 			ownr.change_state(ownr.falling_state)
 			return
+	
 
 func handle_input(ownr: Knight, event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		# TODO: Remove this if jump pushoff is cool
-#		if (Input.is_action_pressed("left") and ownr.is_left()) or (Input.is_action_pressed("right") and ownr.is_right()):
-#			ownr.change_state(ownr.jumping_state)
-#			return
-#		else:
-#			ownr.change_state(ownr.pushoff_state, {"pushoff_force": 200})
-#			return
-		ownr.change_state(ownr.jumping_state)
+		if (Input.is_action_pressed("left") and ownr.is_left()) or (Input.is_action_pressed("right") and ownr.is_right()):
+			ownr.change_state(ownr.jumping_state)
+			return
+		else:
+			ownr.change_state(ownr.jumping_state, {"forced_direction": -ownr.direction})
+			return
 	if event.is_action_pressed("smash"):
 		if ownr.is_on_floor():
 			ownr.change_state(ownr.idle_state)
@@ -60,6 +65,7 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 		ownr.change_state(ownr.falling_state)
 		return
 
+	# TODO: Maybe merge with the above?:
 	if event.is_action_pressed("down"):
 		if (!ownr.is_left() or ownr.movement >= 0.0) and (!ownr.is_right() or ownr.movement <= 0.0):
 			ownr.change_state(ownr.falling_state)

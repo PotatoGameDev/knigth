@@ -16,8 +16,6 @@ func update(ownr: Knight, delta: float) -> void:
 func physics_update(ownr: Knight, delta: float) -> void:
 	ownr.move_and_slide()
 
-	ownr.coyote_timer = ownr.max_coyote_time
-
 	ownr.jump_stamina_left += delta * ownr.jump_stamina_depletion_multiplier
 	if ownr.jump_stamina_left > ownr.max_stamina:
 		ownr.jump_stamina_left = ownr.max_stamina
@@ -38,6 +36,9 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 		ownr.change_state(ownr.jumping_state)
 		return
 	
+func exit(ownr) -> void:
+	ownr.coyote_timer = ownr.max_coyote_time
+
 func take_damage(ownr: Knight, damage: int, direction: Vector2) -> void:
 	ownr.health -= damage
 	ownr.change_state(ownr.pushback_state, {"direction": direction})
