@@ -157,6 +157,7 @@ frame_progress = 0.911757
 show_behind_parent = true
 position = Vector2(-0.125, 1.75)
 shape = SubResource("RectangleShape2D_eoh8o")
+one_way_collision = true
 debug_color = Color(0.949392, 0.0740377, 0.531759, 0.42)
 
 [node name="States" type="Node" parent="."]

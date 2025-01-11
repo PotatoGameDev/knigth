@@ -17,6 +17,7 @@ var movement := 0.0
 var gravity: float = Global.gravity
 
 @onready var animation = $Animation
+@onready var collision_shape: CollisionShape2D = $CollisionShape
 
 @onready var running_state: ZombiRunningState =  $States/Running
 @onready var idle_state: ZombiIdleState = $States/Idle

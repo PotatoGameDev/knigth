@@ -24,7 +24,8 @@ func enter(ownr, params: Dictionary = {}) -> void:
 		ownr.direction = params["forced_direction"]
 		options.calculate_direction = false
 	else:
-		forced_direction = 0
+		forced_direction = 0.0
+		options.calculate_direction = true 
 
 	if is_bouncing:
 		ownr.animation.play("bounce")

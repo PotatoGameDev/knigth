@@ -12,6 +12,7 @@ func update(ownr: Knight, delta: float) -> void:
 
 func physics_update(ownr: Knight, delta: float) -> void:
 	ownr.move_and_slide()
+	print("FRODO LIVES")
 
 	if ownr.animation.frame == ownr.animation.sprite_frames.get_frame_count(ownr.animation.animation) - 1:
 		ownr.change_state(ownr.jumping_state, {"bouncing": true})

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cux2tw0wvffkg"]
+[gd_scene load_steps=56 format=3 uid="uid://cux2tw0wvffkg"]
 
 [ext_resource type="Script" uid="uid://btrloldap2l5n" path="res://logic/main.gd" id="1_2bfyf"]
 [ext_resource type="Script" uid="uid://b0ky8ye32athn" path="res://logic/knight/knight.gd" id="3_hpcr4"]
@@ -314,9 +314,6 @@ animations = [{
 "speed": 20.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fegvt"]
-size = Vector2(14, 27)
-
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_3g7ew"]
 color = Color(0.180392, 0.180392, 0.180392, 1)
 thickness = 2
@@ -338,7 +335,7 @@ script = ExtResource("1_2bfyf")
 
 [node name="Ritter" type="CharacterBody2D" parent="."]
 position = Vector2(128, 78)
-collision_mask = 192
+collision_mask = 194
 platform_floor_layers = 4278190208
 script = ExtResource("3_hpcr4")
 jump_force = 300.0
@@ -368,7 +365,7 @@ script = ExtResource("8_b2foh")
 
 [node name="Smashing" type="Node" parent="Ritter/States"]
 script = ExtResource("9_hsdi7")
-gravity_coefficient = 4.0
+gravity_coefficient = 10.0
 
 [node name="Bouncing" type="Node" parent="Ritter/States"]
 script = ExtResource("10_pk1f1")
@@ -414,12 +411,6 @@ collision_mask = 128
 collide_with_areas = true
 
 [node name="Sensors" type="Node2D" parent="Ritter"]
-
-[node name="EnemySmashSensor" type="ShapeCast2D" parent="Ritter/Sensors"]
-shape = SubResource("RectangleShape2D_fegvt")
-target_position = Vector2(0, 0)
-max_results = 3
-collision_mask = 2
 
 [node name="ClingBlockerSensors" type="Node2D" parent="Ritter/Sensors"]
 

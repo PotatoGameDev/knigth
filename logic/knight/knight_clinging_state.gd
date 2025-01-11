@@ -19,6 +19,7 @@ func enter(ownr, params: Dictionary = {}) -> void:
 
 func update(ownr: Knight, delta: float) -> void:
 	if ownr.queued_jump_timer > 0.0:
+		print("1")
 		ownr.change_state(ownr.jumping_state, {"forced_direction": -ownr.direction})
 		return
 
@@ -48,7 +49,10 @@ func physics_update(ownr: Knight, delta: float) -> void:
 func handle_input(ownr: Knight, event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		# TODO: Remove this if jump pushoff is cool
-		if (Input.is_action_pressed("left") and ownr.is_left()) or (Input.is_action_pressed("right") and ownr.is_right()):
+		if \
+				(Input.is_action_pressed("left") and ownr.is_left()) \
+				or (Input.is_action_pressed("right") and ownr.is_right()) \
+				or Input.is_action_pressed("up"):
 			ownr.change_state(ownr.jumping_state)
 			return
 		else:
