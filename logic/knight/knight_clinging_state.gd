@@ -9,6 +9,8 @@ func enter(ownr, params: Dictionary = {}) -> void:
 	ownr.animation.play("cling")
 	ownr.velocity = Vector2.ZERO
 
+	ownr.current_jump = 0
+
 	if ownr.can_cling_right():
 		ownr.direction = Global.RIGHT
 	elif ownr.can_cling_left():

@@ -16,11 +16,13 @@ class_name Knight
 @export var strength := 10.0
 @export var max_stamina := 1000.0
 @export var max_health := 1000.0
+@export var max_jumps := 2
 
 var jump_stamina_left := 0.0
 var jump_timer := 0.0
 var coyote_timer := 0.0
 var queued_jump_timer := 0.0
+var current_jump := 0
 
 var states = {} 
 var current_state: KnightState = null
@@ -36,7 +38,6 @@ var bounce_power := 1.0
 # Current stats
 var health := 0.0
 
-# TODO Find a better name:
 var cling_blocker := false
 
 @onready var animation: AnimatedSprite2D = $Animation

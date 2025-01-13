@@ -74,7 +74,7 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 	if (Input.is_action_pressed("left") and ownr.is_left()) or (Input.is_action_pressed("right") and ownr.is_right()):
 		ownr.cling_blocker = false
 		# TODO: I think we need to copy the stuff from jumping state here
-	if event.is_action_pressed("jump") and ownr.coyote_timer > 0.0:
+	if event.is_action_pressed("jump") and (ownr.coyote_timer > 0.0 or ownr.current_jump < ownr.max_jumps):
 		ownr.change_state(ownr.jumping_state)
 		return
 

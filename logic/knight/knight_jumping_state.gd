@@ -15,6 +15,7 @@ func enter(ownr, params: Dictionary = {}) -> void:
 	is_bouncing = false
 	
 	ownr.queued_jump_timer = 0.0
+	ownr.current_jump += 1
 
 	if "bouncing" in params:
 		is_bouncing = params["bouncing"]
@@ -94,6 +95,10 @@ func can_cling(ownr: Knight) -> bool:
 func handle_input(ownr: Knight, event: InputEvent) -> void:
 	if event.is_action_pressed("smash"):
 		ownr.change_state(ownr.smashing_state)
+		return
+
+	if event.is_action_pressed("jump") and ownr.current_jump < ownr.max_jumps:
+		ownr.change_state(ownr.jumping_state)
 		return
 
 func exit(ownr: Knight) -> void:
