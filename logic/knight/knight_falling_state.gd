@@ -13,11 +13,29 @@ func enter(ownr, params: Dictionary = {}) -> void:
 	if "bouncing" in params:
 		is_bouncing = params["bouncing"]
 
+	if "forced_direction" in params:
+		ownr.direction = params["forced_direction"]
+		options.calculate_direction = ownr.direction == 0
+	else:
+		options.calculate_direction = true 
+
 	if not is_bouncing:
 		ownr.animation.play("fall")
 
+func update(ownr: Knight, delta: float) -> void:
+	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+		options.calculate_direction = true
+
 func physics_update(ownr: Knight, delta: float) -> void:
+	# This is not last speed actoually:
 	var last_speed = -ownr.velocity.y
+
+	print("calculate_direction", options.calculate_direction)
+
+	if ownr.movement != 0.0 or options.calculate_direction:
+		ownr.velocity.x = ownr.movement * ownr.speed
+	else:
+		ownr.velocity.x = ownr.direction * ownr.speed
 
 	ownr.move_and_slide()
 	
@@ -66,3 +84,4 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 
 func exit(ownr) -> void:
 	ownr.velocity.y = 0
+	options.calculate_direction = true

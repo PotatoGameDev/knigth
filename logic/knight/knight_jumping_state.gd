@@ -5,7 +5,6 @@ class_name JumpingState
 
 var is_bouncing := false
 var is_falling := false
-
 var forced_direction := 0
 
 func _init():
@@ -21,11 +20,12 @@ func enter(ownr, params: Dictionary = {}) -> void:
 		is_bouncing = params["bouncing"]
 
 	if "forced_direction" in params:
-		ownr.direction = params["forced_direction"]
-		options.calculate_direction = false
+		forced_direction = params["forced_direction"]
+		ownr.direction = forced_direction
+		options.calculate_direction = forced_direction == 0.0
 	else:
-		forced_direction = 0.0
 		options.calculate_direction = true 
+		forced_direction = 0
 
 	if is_bouncing:
 		ownr.animation.play("bounce")
@@ -38,7 +38,7 @@ func enter(ownr, params: Dictionary = {}) -> void:
 	ownr.cling_blocker = true
 
 func update(ownr: Knight, delta: float) -> void:
-	if Input.is_action_pressed("left") and Input.is_action_pressed("right"):
+	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		options.calculate_direction = true
 
 func physics_update(ownr: Knight, delta: float) -> void:
@@ -81,7 +81,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		is_falling = true
 
 	if is_falling and ownr.velocity.y >= 0.0:
-		ownr.change_state(ownr.falling_state, {"bouncing": is_bouncing})
+		ownr.change_state(ownr.falling_state, {"bouncing": is_bouncing, "forced_direction": forced_direction})
 		return
 
 
