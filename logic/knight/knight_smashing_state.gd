@@ -7,6 +7,7 @@ class_name SmashingState
 @export var controls_coefficient_grow_rate := 20.0
 
 var controls_coefficient := 0.0
+const BOUNCE_POWER := 1.5
 
 func enter(ownr, params: Dictionary = {}) -> void:
 	ownr.animation.play("smash")
@@ -22,13 +23,28 @@ func physics_update(ownr: Knight, delta: float) -> void:
 
 	ownr.move_and_slide()
 
+	ownr.enemy_smash_sensor.target_position = ownr.velocity * delta
+	ownr.enemy_smash_sensor.force_update_transform()
+	if ownr.enemy_smash_sensor.is_colliding():
+		var smashed = false
+		for e in range(ownr.enemy_smash_sensor.get_collision_count()):
+			var enemy = ownr.enemy_smash_sensor.get_collider(e)
+			if enemy is Zombi:
+				enemy.take_damage(ownr.strength * -last_speed * ownr.smash_speed_damage_factor)
+				ownr.bounce_power = BOUNCE_POWER
+				smashed = true
+		if smashed:
+			ownr.change_state(ownr.stomping_state)
+			return
+
+
 	if ownr.is_on_floor():
 		var collision = ownr.get_last_slide_collision()
 		if collision:
 			var enemy = collision.get_collider()
 			if enemy is Zombi:
 				enemy.take_damage(ownr.strength * -last_speed * ownr.smash_speed_damage_factor)
-				ownr.bounce_power = 1.5
+				ownr.bounce_power = BOUNCE_POWER
 				ownr.change_state(ownr.stomping_state)
 				return
 
@@ -40,7 +56,6 @@ func physics_update(ownr: Knight, delta: float) -> void:
 			)
 	else:
 		controls_coefficient = min_controls_coefficient
-
 
 	if ownr.is_on_floor():
  		# zero out queued jump timer to prevent double jumps when landing after smashing
@@ -58,4 +73,5 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 	
 func exit(ownr) -> void:
 	ownr.velocity.y = 0
+	ownr.enemy_smash_sensor.target_position = Vector2.ZERO
 	

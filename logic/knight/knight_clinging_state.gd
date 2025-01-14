@@ -21,7 +21,6 @@ func enter(ownr, params: Dictionary = {}) -> void:
 
 func update(ownr: Knight, delta: float) -> void:
 	if ownr.queued_jump_timer > 0.0:
-		print("1")
 		ownr.change_state(ownr.jumping_state, {"forced_direction": -ownr.direction})
 		return
 

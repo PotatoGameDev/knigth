@@ -2,6 +2,7 @@ extends KnightState
 class_name FallingState 
 
 var is_bouncing := false
+const BOUNCE_POWER := 1.0
 
 func enter(ownr, params: Dictionary = {}) -> void:
 	# INFO: This is by design. We allow the player to maintain inertia.
@@ -30,14 +31,26 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	# This is not last speed actoually:
 	var last_speed = -ownr.velocity.y
 
-	print("calculate_direction", options.calculate_direction)
-
 	if ownr.movement != 0.0 or options.calculate_direction:
 		ownr.velocity.x = ownr.movement * ownr.speed
 	else:
 		ownr.velocity.x = ownr.direction * ownr.speed
 
 	ownr.move_and_slide()
+
+	ownr.enemy_smash_sensor.target_position = ownr.velocity * delta
+	ownr.enemy_smash_sensor.force_update_transform()
+	if ownr.enemy_smash_sensor.is_colliding():
+		var smashed = false
+		for e in range(ownr.enemy_smash_sensor.get_collision_count()):
+			var enemy = ownr.enemy_smash_sensor.get_collider(e)
+			if enemy is Zombi:
+				enemy.take_damage(ownr.strength * -last_speed * ownr.smash_speed_damage_factor)
+				ownr.bounce_power = BOUNCE_POWER
+				smashed = true
+		if smashed:
+			ownr.change_state(ownr.stomping_state)
+			return
 	
 	if ownr.is_on_floor():
 		var collision = ownr.get_last_slide_collision()
@@ -45,7 +58,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 			var enemy = collision.get_collider()
 			if enemy is Zombi:
 				enemy.take_damage(ownr.strength * -last_speed * ownr.smash_speed_damage_factor)
-				ownr.bounce_power = 1.0
+				ownr.bounce_power = BOUNCE_POWER
 				ownr.change_state(ownr.stomping_state)
 				return
 
@@ -85,3 +98,4 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 func exit(ownr) -> void:
 	ownr.velocity.y = 0
 	options.calculate_direction = true
+	ownr.enemy_smash_sensor.target_position = Vector2.ZERO
