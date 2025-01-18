@@ -42,7 +42,9 @@ func update(ownr: Knight, delta: float) -> void:
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		options.calculate_direction = true
 
-func physics_update(ownr: Knight, delta: float) -> void:
+func integrate_forces(ownr: Knight, state: PhysicsDirectBodyState2D) -> void:
+	var delta = state.get_step()
+
 	if ownr.movement != 0.0 or options.calculate_direction:
 		ownr.velocity.x = ownr.movement * ownr.speed
 	else:
@@ -57,12 +59,9 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	else:
 		is_falling = true
 	
-	if not ownr.is_on_floor():
-		ownr.velocity.y += Global.gravity * delta
-		ownr.jump_stamina_left -= delta * ownr.jump_stamina_depletion_multiplier
-		ownr.jump_stamina_left = max(ownr.jump_stamina_left, 0.0)
-
-	ownr.move_and_slide()
+	# if not ownr.is_on_floor():
+	ownr.jump_stamina_left -= delta * ownr.jump_stamina_depletion_multiplier
+	ownr.jump_stamina_left = max(ownr.jump_stamina_left, 0.0)
 
 	if (Input.is_action_pressed("left") and ownr.is_left()) or (Input.is_action_pressed("right") and ownr.is_right()):
 		ownr.cling_blocker = false

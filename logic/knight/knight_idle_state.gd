@@ -15,8 +15,9 @@ func enter(ownr, params: Dictionary = {}) -> void:
 func update(ownr: Knight, delta: float) -> void:
 	pass
 
-func physics_update(ownr: Knight, delta: float) -> void:
-	ownr.move_and_slide()
+func integrate_forces(ownr: Knight, state: PhysicsDirectBodyState2D) -> void:
+	# ownr.move_and_slide()
+	var delta = state.get_step()
 
 	ownr.jump_stamina_left += delta * ownr.jump_stamina_depletion_multiplier
 	if ownr.jump_stamina_left > ownr.max_stamina:

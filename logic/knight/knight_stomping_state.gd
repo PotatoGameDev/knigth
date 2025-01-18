@@ -10,8 +10,9 @@ func enter(ownr, params: Dictionary = {}) -> void:
 func update(ownr: Knight, delta: float) -> void:
 	pass
 
-func physics_update(ownr: Knight, delta: float) -> void:
-	ownr.move_and_slide()
+func integrate_forces(ownr: Knight, state: PhysicsDirectBodyState2D) -> void:
+	var delta = state.get_step()
+	# ownr.move_and_slide()
 
 	if ownr.animation.frame == ownr.animation.sprite_frames.get_frame_count(ownr.animation.animation) - 1:
 		ownr.change_state(ownr.jumping_state, {"bouncing": true})

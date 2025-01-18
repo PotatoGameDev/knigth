@@ -11,8 +11,8 @@ func enter(ownr, params: Dictionary = {}) -> void:
 func update(ownr: Knight, delta: float) -> void:
 	pass
 
-func physics_update(ownr: Knight, delta: float) -> void:
-	ownr.move_and_slide()
+func integrate_forces(ownr: Knight, state: PhysicsDirectBodyState2D) -> void:
+	var delta = state.get_step()
 
 	if ownr.jump_timer < 0.5 * ownr.jump_hold_time:
 		ownr.jump_timer += delta
@@ -20,9 +20,6 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	else:
 		ownr.change_state(ownr.falling_state)
 		return
-
-	if not ownr.is_on_floor():
-		ownr.velocity.y += Global.gravity * delta
 
 	# Horizontal User Control
 	ownr.velocity.x = ownr.movement * ownr.speed

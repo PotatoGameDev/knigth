@@ -1,9 +1,8 @@
-extends CharacterBody2D
+extends RigidBody2D
 class_name Knight
 
 @export var jump_force := 1500.0
 @export var speed := 200.0
-@export var max_fall_speed := 2000.0
 @export var jump_hold_time = 0.2
 @export var max_coyote_time = 0.2
 @export var max_queued_jump_time = 0.2
@@ -27,6 +26,8 @@ var current_jump := 0
 var states = {} 
 var current_state: KnightState = null
 var current_state_entered_time: int = 0
+var new_state: KnightState = null
+var new_state_params: Dictionary = {}
 
 var direction = Global.RIGHT
 # TODO: Change to vector?
@@ -40,14 +41,18 @@ var health := 0.0
 
 var cling_blocker := false
 
+var velocity = Vector2.ZERO
+var old_velocity = Vector2.ZERO
+
+var on_floor := false
+var floor_collision: Node2D = null
+
 @onready var animation: AnimatedSprite2D = $Animation
 
 @onready var jump_ray_left_outer: RayCast2D = $JumpSlipRays/RayLeftOuter
 @onready var jump_ray_left_inner: RayCast2D = $JumpSlipRays/RayLeftInner
 @onready var jump_ray_right_outer: RayCast2D = $JumpSlipRays/RayRightOuter
 @onready var jump_ray_right_inner: RayCast2D = $JumpSlipRays/RayRightInner
-
-@onready var enemy_smash_sensor: ShapeCast2D = $Sensors/EnemySmashSensor
 
 # The logic is: If the UP sensor is not colliding and the DOWN sensor is colliding, then the player should auto-jump the step up.
 # If both are colliding, then the player can cling.
@@ -97,24 +102,60 @@ func _ready() -> void:
 	current_state_entered_time = Time.get_ticks_msec()
 
 func change_state(to_state, params: Dictionary = {}) -> void:
-	var elapsed_time = Time.get_ticks_msec() - current_state_entered_time
-	if elapsed_time > 1000:
-		print("[", elapsed_time / 1000.0, "s] Changing state to ", to_state.name)
-	else:
-		print("[", elapsed_time, "ms] Changing state to ", to_state.name)
-
-	if current_state:
-		current_state.exit(self)
-	current_state = to_state
-	current_state.enter(self, params)
-
-
-	current_state_entered_time = Time.get_ticks_msec()
+	new_state = to_state
+	new_state_params = params
 
 func _unhandled_input(event):
 	# DO NOT use precalculated movement here
 	if current_state:
 		current_state.handle_input(self, event)
+
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	if new_state:
+		var elapsed_time = Time.get_ticks_msec() - current_state_entered_time
+		if elapsed_time > 1000:
+			print("[", elapsed_time / 1000.0, "s] Changing state to ", new_state.name)
+		else:
+			print("[", elapsed_time, "ms] Changing state to ", new_state.name)
+
+		current_state = new_state
+		current_state.enter(self, new_state_params)
+		new_state = null
+		new_state_params = {}
+		current_state_entered_time = Time.get_ticks_msec()
+
+	if not current_state:
+		return
+
+	# ============
+	
+	old_velocity = velocity
+	velocity = state.get_linear_velocity()
+	var step = state.get_step()
+	floor_collision = null
+
+	for contact_index in state.get_contact_count():
+		var collision_normal = state.get_contact_local_normal(contact_index)
+
+		if collision_normal.dot(Vector2(0, -1)) > 0.6:
+			floor_collision = state.get_contact_collider_object(contact_index)
+
+	current_state.integrate_forces(self, state)
+
+	velocity += state.get_total_gravity() * step
+	state.set_linear_velocity(velocity)
+
+	# ============
+
+	if new_state:
+		current_state.exit(self)
+
+
+func is_on_floor() -> bool:
+	return floor_collision != null
+
+func get_floor_collision_object() -> CollisionShape2D:
+	return floor_collision
 
 func _process(delta):
 	if not current_state:
@@ -122,7 +163,6 @@ func _process(delta):
 
 	if Input.is_key_pressed(KEY_T):
 		print("=================== DEBUd ======================")
-
 
 	if current_state.options.calculate_movement:
 		movement = Input.get_axis("left", "right")
@@ -143,12 +183,6 @@ func _process(delta):
 	stamina_bar.value = jump_stamina_left / max_stamina
 
 	current_state.update(self, delta)
-
-
-func _physics_process(delta):
-	if not current_state:
-		return
-	current_state.physics_update(self, delta)
 
 
 func take_damage(damage: int, dir: Vector2) -> void:

@@ -13,7 +13,9 @@ func enter(ownr: Knight, params: Dictionary = {}) -> void:
 	
 	is_stepping = false
 
-func physics_update(ownr: Knight, delta: float) -> void:
+func integrate_forces(ownr: Knight, state: PhysicsDirectBodyState2D) -> void:
+	var delta = state.get_step()
+
 	ownr.velocity.x = ownr.speed * ownr.movement
 
 	if is_stepping:
@@ -22,7 +24,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	else:
 		ownr.animation.speed_scale = 1.0
 	
-	ownr.move_and_slide()
+	# ownr.move_and_slide()
 	
 	# TODO: Here is a fun idea: Move repeating logic to ownr, and just set flags, like deplets_stamina.
 	ownr.jump_stamina_left += delta * ownr.jump_stamina_depletion_multiplier

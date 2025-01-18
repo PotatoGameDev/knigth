@@ -27,40 +27,21 @@ func update(ownr: Knight, delta: float) -> void:
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		options.calculate_direction = true
 
-func physics_update(ownr: Knight, delta: float) -> void:
-	# This is not last speed actoually:
-	var last_speed = -ownr.velocity.y
+func integrate_forces(ownr: Knight, state: PhysicsDirectBodyState2D) -> void:
+	var delta = state.get_step()
 
 	if ownr.movement != 0.0 or options.calculate_direction:
 		ownr.velocity.x = ownr.movement * ownr.speed
 	else:
 		ownr.velocity.x = ownr.direction * ownr.speed
 
-	ownr.move_and_slide()
-
-	ownr.enemy_smash_sensor.target_position = ownr.velocity * delta
-	ownr.enemy_smash_sensor.force_update_transform()
-	if ownr.enemy_smash_sensor.is_colliding():
-		var smashed = false
-		for e in range(ownr.enemy_smash_sensor.get_collision_count()):
-			var enemy = ownr.enemy_smash_sensor.get_collider(e)
-			if enemy is Zombi:
-				enemy.take_damage(ownr.strength * -last_speed * ownr.smash_speed_damage_factor)
-				ownr.bounce_power = BOUNCE_POWER
-				smashed = true
-		if smashed:
+	if ownr.is_on_floor():
+		var enemy = ownr.get_floor_collision_object()
+		if enemy is Zombi:
+			enemy.take_damage(ownr.strength * ownr.old_velocity.length() * ownr.smash_speed_damage_factor)
+			ownr.bounce_power = BOUNCE_POWER
 			ownr.change_state(ownr.stomping_state)
 			return
-	
-	if ownr.is_on_floor():
-		var collision = ownr.get_last_slide_collision()
-		if collision:
-			var enemy = collision.get_collider()
-			if enemy is Zombi:
-				enemy.take_damage(ownr.strength * -last_speed * ownr.smash_speed_damage_factor)
-				ownr.bounce_power = BOUNCE_POWER
-				ownr.change_state(ownr.stomping_state)
-				return
 
 	if ownr.is_on_floor():
 		ownr.change_state(ownr.idle_state)
@@ -74,11 +55,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 			if not Input.is_action_pressed("jump"):
 				ownr.cling_blocker = false
 
-		ownr.velocity.y += Global.gravity * delta
 		ownr.velocity.x = ownr.movement * ownr.speed
-
-	if ownr.velocity.y > ownr.max_fall_speed:
-		ownr.velocity.y = ownr.max_fall_speed
 	
 	ownr.coyote_timer -= delta
 
@@ -98,4 +75,3 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 func exit(ownr) -> void:
 	ownr.velocity.y = 0
 	options.calculate_direction = true
-	ownr.enemy_smash_sensor.target_position = Vector2.ZERO

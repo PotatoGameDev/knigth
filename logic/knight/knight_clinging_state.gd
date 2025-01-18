@@ -24,16 +24,15 @@ func update(ownr: Knight, delta: float) -> void:
 		ownr.change_state(ownr.jumping_state, {"forced_direction": -ownr.direction})
 		return
 
-func physics_update(ownr: Knight, delta: float) -> void:
-	if not ownr.is_on_floor():
-		ownr.velocity.y += gravity_coefficient * Global.gravity * delta
+func integrate_forces(ownr: Knight, state: PhysicsDirectBodyState2D) -> void:
+	var delta = state.get_step()
 
-	ownr.move_and_slide()
+	ownr.velocity += state.get_total_gravity() * gravity_coefficient * delta
 
-	if not snapped_already:
-		while not ownr.move_and_collide(Vector2(ownr.direction * ownr.speed * delta, 0.0)):
-			pass
-		snapped_already = true
+	#if not snapped_already:
+	#	while not ownr.move_and_collide(Vector2(ownr.direction * ownr.speed * delta, 0.0)):
+		#	pass
+		#snapped_already = true
 
 	if not ownr.is_on_floor():
 		if not ownr.can_cling_right() and not ownr.can_cling_left():

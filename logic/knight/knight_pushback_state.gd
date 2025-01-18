@@ -33,11 +33,5 @@ func update(ownr: Knight, delta: float) -> void:
 		ownr.change_state(ownr.idle_state)
 		return
 
-func physics_update(ownr: Knight, delta: float) -> void:
-	ownr.move_and_slide()
-
-	if not ownr.is_on_floor():
-		ownr.velocity.y += Global.gravity * delta
-
+func integrate_forces(ownr: Knight, state: PhysicsDirectBodyState2D) -> void:
 	ownr.velocity.x = pushback_force * forced_direction
-

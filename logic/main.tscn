@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cux2tw0wvffkg"]
+[gd_scene load_steps=56 format=3 uid="uid://cux2tw0wvffkg"]
 
 [ext_resource type="Script" uid="uid://btrloldap2l5n" path="res://logic/main.gd" id="1_2bfyf"]
 [ext_resource type="Script" uid="uid://b0ky8ye32athn" path="res://logic/knight/knight.gd" id="3_hpcr4"]
@@ -314,9 +314,6 @@ animations = [{
 "speed": 20.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fegvt"]
-size = Vector2(14, 27)
-
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_3g7ew"]
 color = Color(0.180392, 0.180392, 0.180392, 1)
 thickness = 2
@@ -336,12 +333,17 @@ thickness = 2
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2bfyf")
 
-[node name="Ritter" type="CharacterBody2D" parent="."]
-position = Vector2(147, -411)
+[node name="Ritter" type="RigidBody2D" parent="."]
+position = Vector2(143, -159)
 collision_mask = 194
-platform_floor_layers = 4278190208
+lock_rotation = true
+custom_integrator = true
+continuous_cd = 1
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("3_hpcr4")
 jump_force = 300.0
+metadata/_custom_type_script = ExtResource("3_hpcr4")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="Ritter"]
 position = Vector2(0, 2.5)
@@ -441,12 +443,6 @@ target_position = Vector2(-7, 0)
 collision_mask = 128
 collide_with_areas = true
 
-[node name="EnemySmashSensor" type="ShapeCast2D" parent="Ritter/Sensors"]
-shape = SubResource("RectangleShape2D_fegvt")
-target_position = Vector2(0, 0)
-max_results = 1
-collision_mask = 2
-
 [node name="LineDrawer" type="Node2D" parent="Ritter"]
 script = ExtResource("12_071tv")
 max_trail_length = 200
@@ -482,7 +478,7 @@ script = ExtResource("16_fegvt")
 [node name="level0_0" parent="." instance=ExtResource("16_gj2wd")]
 
 [node name="level1_0" parent="." instance_placeholder="res://logic/world/level_1_0.tscn"]
-position = Vector2(2048, 0)
+position = Vector2(2066, -4)
 
 [node name="LevelInstantiator" parent="level1_0" instance=ExtResource("17_gj2wd")]
 position = Vector2(785, 708)
