@@ -111,6 +111,11 @@ func _unhandled_input(event):
 		current_state.handle_input(self, event)
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	old_velocity = velocity
+	velocity = state.get_linear_velocity()
+	var step = state.get_step()
+	floor_collision = null
+
 	if new_state:
 		var elapsed_time = Time.get_ticks_msec() - current_state_entered_time
 		if elapsed_time > 1000:
@@ -128,12 +133,6 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		return
 
 	# ============
-	
-	old_velocity = velocity
-	velocity = state.get_linear_velocity()
-	var step = state.get_step()
-	floor_collision = null
-
 	for contact_index in state.get_contact_count():
 		var collision_normal = state.get_contact_local_normal(contact_index)
 
@@ -142,7 +141,9 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 	current_state.integrate_forces(self, state)
 
-	velocity += state.get_total_gravity() * step
+	if current_state.options.use_gravity:
+		velocity += state.get_total_gravity() * step
+
 	state.set_linear_velocity(velocity)
 
 	# ============

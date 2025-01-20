@@ -56,9 +56,9 @@ func exit(ownr) -> void:
 	ownr.coyote_timer = ownr.max_coyote_time
 	ownr.animation.speed_scale = 1.0
 
+	ownr.constant_force = Vector2.ZERO
+
 func take_damage(ownr: Knight, damage: int, direction: Vector2) -> void:
 	ownr.health -= damage
 	ownr.change_state(ownr.pushback_state, {"direction": direction})
 	return
-
-

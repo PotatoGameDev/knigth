@@ -6,6 +6,7 @@ func enter(ownr, params: Dictionary = {}) -> void:
 		ownr.change_state(ownr.jumping_state)
 		return
 	ownr.animation.play("idle")
+	print("enter idle, clearing velocity")
 	ownr.velocity = Vector2.ZERO
 
 	ownr.current_jump = 0
