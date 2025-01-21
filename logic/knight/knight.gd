@@ -47,7 +47,7 @@ var cling_blocker := false
 @onready var jump_ray_right_outer: RayCast2D = $JumpSlipRays/RayRightOuter
 @onready var jump_ray_right_inner: RayCast2D = $JumpSlipRays/RayRightInner
 
-@onready var floor_sensor: ShapeCast2D = $Sensors/EnemySmashSensor
+@onready var enemy_smashing_sensor: ShapeCast2D = $Sensors/EnemySmashSensor
 
 # The logic is: If the UP sensor is not colliding and the DOWN sensor is colliding, then the player should auto-jump the step up.
 # If both are colliding, then the player can cling.

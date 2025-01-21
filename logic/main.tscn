@@ -339,6 +339,7 @@ script = ExtResource("1_2bfyf")
 [node name="Ritter" type="CharacterBody2D" parent="."]
 position = Vector2(147, -411)
 collision_mask = 194
+floor_block_on_wall = false
 platform_floor_layers = 4278190208
 script = ExtResource("3_hpcr4")
 jump_force = 300.0
@@ -445,7 +446,7 @@ collide_with_areas = true
 shape = SubResource("RectangleShape2D_fegvt")
 target_position = Vector2(0, 0)
 max_results = 1
-collision_mask = 130
+collision_mask = 2
 
 [node name="LineDrawer" type="Node2D" parent="Ritter"]
 script = ExtResource("12_071tv")

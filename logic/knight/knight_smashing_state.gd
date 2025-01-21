@@ -21,17 +21,17 @@ func update(_ownr: Knight, _delta: float) -> void:
 func physics_update(ownr: Knight, delta: float) -> void:
 	var current_speed = -ownr.velocity.length()
 
-	ownr.floor_sensor.target_position = ownr.velocity * delta
-	ownr.floor_sensor.force_update_transform()
+	ownr.enemy_smashing_sensor.target_position = ownr.velocity * delta
+	ownr.enemy_smashing_sensor.force_update_transform()
 
 	var smashed_enemy = null 
-	if ownr.floor_sensor.is_colliding():
-		for e in range(ownr.floor_sensor.get_collision_count()):
-			var enemy = ownr.floor_sensor.get_collider(e)
+	if ownr.enemy_smashing_sensor.is_colliding():
+		for e in range(ownr.enemy_smashing_sensor.get_collision_count()):
+			var enemy = ownr.enemy_smashing_sensor.get_collider(e)
 			if enemy is Zombi:
 				smashed_enemy = enemy
 
-		ownr.velocity = ownr.velocity * ownr.floor_sensor.get_closest_collision_safe_fraction()
+		ownr.velocity = ownr.velocity * ownr.enemy_smashing_sensor.get_closest_collision_safe_fraction()
 
 	ownr.move_and_slide()
 
@@ -70,7 +70,7 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 		ownr.change_state(ownr.jumping_state)
 		return
 	
-func exit(ownr) -> void:
+func exit(ownr: Knight) -> void:
 	ownr.velocity.y = 0
-	ownr.floor_sensor.target_position = Vector2.ZERO
+	ownr.enemy_smashing_sensor.target_position = Vector2.ZERO
 	
