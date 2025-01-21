@@ -445,7 +445,7 @@ collide_with_areas = true
 shape = SubResource("RectangleShape2D_fegvt")
 target_position = Vector2(0, 0)
 max_results = 1
-collision_mask = 2
+collision_mask = 130
 
 [node name="LineDrawer" type="Node2D" parent="Ritter"]
 script = ExtResource("12_071tv")
