@@ -29,7 +29,7 @@ func integrate_forces(ownr: Knight, state: PhysicsDirectBodyState2D) -> void:
 
 	ownr.velocity += state.get_total_gravity() * gravity_coefficient * delta
 
-	if not snapped_already:
+	if false and not snapped_already:
 		while not ownr.move_and_collide(Vector2(ownr.direction * ownr.speed * delta, 0.0)):
 			pass
 		snapped_already = true
