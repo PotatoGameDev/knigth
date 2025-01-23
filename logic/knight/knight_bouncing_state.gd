@@ -25,9 +25,12 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		ownr.velocity.y += Global.gravity * delta
 
 	# Horizontal User Control
-	ownr.velocity.x = ownr.movement * ownr.speed
+	var new_velocity_x = ownr.velocity.x + ownr.movement * ownr.acceleration * delta
 
-	ownr.jump_slip()
+	if abs(new_velocity_x) <= ownr.max_speed:
+		ownr.velocity.x = new_velocity_x
+
+	ownr.jump_slip(delta)
 
 func handle_input(ownr: Knight, event: InputEvent) -> void:
 	if event.is_action_pressed("smash"):
@@ -36,5 +39,3 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 
 func exit(_ownr) -> void:
 	pass
-
-

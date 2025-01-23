@@ -14,7 +14,9 @@ func enter(ownr: Knight, params: Dictionary = {}) -> void:
 	is_stepping = false
 
 func physics_update(ownr: Knight, delta: float) -> void:
-	ownr.velocity.x = ownr.speed * ownr.movement
+	var new_velocity_x = ownr.velocity.x + ownr.movement * ownr.acceleration * delta
+	if abs(new_velocity_x) <= ownr.max_speed:
+		ownr.velocity.x = new_velocity_x
 
 	if is_stepping:
 		ownr.velocity.y = -max(ownr.step_speed_min, ownr.step_speed * -Input.get_axis("up", "down"))
@@ -58,5 +60,3 @@ func take_damage(ownr: Knight, damage: int, direction: Vector2) -> void:
 	ownr.health -= damage
 	ownr.change_state(ownr.pushback_state, {"direction": direction})
 	return
-
-

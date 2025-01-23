@@ -22,7 +22,8 @@ func enter(ownr, params: Dictionary = {}) -> void:
 
 	if "forced_direction" in params:
 		forced_direction = params["forced_direction"]
-		ownr.direction = forced_direction
+		if forced_direction != 0.0:
+			ownr.direction = forced_direction
 		options.calculate_direction = forced_direction == 0.0
 	else:
 		options.calculate_direction = true 
@@ -43,12 +44,19 @@ func update(ownr: Knight, delta: float) -> void:
 		options.calculate_direction = true
 
 func physics_update(ownr: Knight, delta: float) -> void:
+	var new_velocity_x
 	if ownr.movement != 0.0 or options.calculate_direction:
-		ownr.velocity.x = ownr.movement * ownr.speed
+		new_velocity_x = ownr.velocity.x + ownr.movement * ownr.acceleration * delta
 	else:
-		ownr.velocity.x = ownr.direction * ownr.speed
+		new_velocity_x = ownr.velocity.x + ownr.direction * ownr.acceleration * delta
 
-	ownr.jump_slip()
+
+	if abs(new_velocity_x) <= ownr.max_speed:
+		ownr.velocity.x = new_velocity_x
+
+	ownr.jump_slip(delta)
+
+	ownr.jump_slip(delta)
 
 	if ownr.jump_timer < ownr.jump_hold_time:
 		if not is_falling:
@@ -83,6 +91,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 
 	if is_falling and ownr.velocity.y >= 0.0:
 		ownr.change_state(ownr.falling_state, {"bouncing": is_bouncing, "forced_direction": forced_direction})
+		print("FORDED", forced_direction)
 		return
 
 
@@ -101,5 +110,5 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 		ownr.change_state(ownr.jumping_state)
 		return
 
-func exit(ownr: Knight) -> void:
+func exit(_ownr: Knight) -> void:
 	options.calculate_direction = true

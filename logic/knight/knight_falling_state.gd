@@ -15,8 +15,11 @@ func enter(ownr, params: Dictionary = {}) -> void:
 		is_bouncing = params["bouncing"]
 
 	if "forced_direction" in params:
-		ownr.direction = params["forced_direction"]
-		options.calculate_direction = ownr.direction == 0
+		var forced_direction = params["forced_direction"]
+		if forced_direction != 0.0:
+			ownr.direction = forced_direction
+		
+		options.calculate_direction = forced_direction == 0.0
 	else:
 		options.calculate_direction = true 
 
@@ -29,11 +32,14 @@ func update(ownr: Knight, delta: float) -> void:
 
 func physics_update(ownr: Knight, delta: float) -> void:
 	var current_speed = -ownr.velocity.length()
-
+	var new_velocity_x
 	if ownr.movement != 0.0 or options.calculate_direction:
-		ownr.velocity.x = ownr.movement * ownr.speed
+		new_velocity_x = ownr.velocity.x + ownr.movement * ownr.acceleration * delta
 	else:
-		ownr.velocity.x = ownr.direction * ownr.speed
+		new_velocity_x = ownr.velocity.x + ownr.direction * ownr.acceleration * delta
+
+	if abs(new_velocity_x) <= ownr.max_speed:
+		ownr.velocity.x = new_velocity_x
 
 	ownr.enemy_smashing_sensor.target_position = ownr.velocity * delta
 	ownr.enemy_smashing_sensor.force_update_transform()
@@ -75,13 +81,8 @@ func physics_update(ownr: Knight, delta: float) -> void:
 				ownr.cling_blocker = false
 
 		ownr.velocity.y += Global.gravity * delta
-		ownr.velocity.x = ownr.movement * ownr.speed
 
-	if ownr.velocity.y > ownr.max_fall_speed:
-		ownr.velocity.y = ownr.max_fall_speed
-	
 	ownr.coyote_timer -= delta
-
 
 func handle_input(ownr: Knight, event: InputEvent) -> void:
 	if (Input.is_action_pressed("left") and ownr.is_left()) or (Input.is_action_pressed("right") and ownr.is_right()):

@@ -31,7 +31,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	ownr.move_and_slide()
 
 	if not snapped_already:
-		while not ownr.move_and_collide(Vector2(ownr.direction * ownr.speed * delta, 0.0)):
+		while not ownr.move_and_collide(Vector2(ownr.direction * ownr.acceleration * delta, 0.0)):
 			pass
 		snapped_already = true
 

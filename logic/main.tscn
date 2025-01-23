@@ -483,7 +483,7 @@ script = ExtResource("16_fegvt")
 [node name="level0_0" parent="." instance=ExtResource("16_gj2wd")]
 
 [node name="level1_0" parent="." instance_placeholder="res://logic/world/level_1_0.tscn"]
-position = Vector2(2048, 0)
+position = Vector2(2068, -4)
 
 [node name="LevelInstantiator" parent="level1_0" instance=ExtResource("17_gj2wd")]
 position = Vector2(785, 708)

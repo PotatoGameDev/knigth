@@ -2,8 +2,8 @@ extends CharacterBody2D
 class_name Knight
 
 @export var jump_force := 1500.0
-@export var speed := 200.0
-@export var max_fall_speed := 2000.0
+@export var acceleration := 1000
+@export var max_speed := 200
 @export var jump_hold_time = 0.2
 @export var max_coyote_time = 0.2
 @export var max_queued_jump_time = 0.2
@@ -56,7 +56,6 @@ var cling_blocker := false
 @onready var cling_blocker_sensor_right_up: RayCast2D = $Sensors/ClingBlockerSensors/RightUp
 @onready var cling_blocker_sensor_right_down: RayCast2D = $Sensors/ClingBlockerSensors/RightDown
 
-
 func can_cling_left() -> bool:
 	return cling_blocker_sensor_left_up.is_colliding() and cling_blocker_sensor_left_down.is_colliding()
 
@@ -74,7 +73,6 @@ func is_left() -> bool:
 
 func is_right() -> bool:
 	return direction == Global.RIGHT
-
 
 @onready var running_state: RunningState =  $States/Running
 @onready var idle_state: IdleState = $States/Idle
@@ -150,7 +148,6 @@ func _physics_process(delta):
 		return
 	current_state.physics_update(self, delta)
 
-
 func take_damage(damage: int, dir: Vector2) -> void:
 	current_state.take_damage(self, damage, dir)
 	update_life_bar()
@@ -163,8 +160,8 @@ func update_life_bar() -> void:
 func is_alive() -> bool:
 	return health > 0.0
 
-func jump_slip():
+func jump_slip(delta: float) -> void:
 	if jump_ray_left_outer.is_colliding() and not jump_ray_left_inner.is_colliding():
-		velocity.x += speed
+		velocity.x += acceleration * delta
 	elif jump_ray_right_outer.is_colliding() and not jump_ray_right_inner.is_colliding():
-		velocity.x -= speed
+		velocity.x -= acceleration * delta
