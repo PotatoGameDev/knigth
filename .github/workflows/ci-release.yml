@@ -1,38 +1,86 @@
-name: Release Artifacts
+name: Build & Release Game
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'  # e.g. v1.0.0
+  # Triggers when you manually press "Run workflow" in GitHub Actions
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version (tag) to release"
+        required: true
+        default: "v0.1.0"
 
 jobs:
-  build-and-release:
+  build:
+    # This job runs twice: once for Linux, once for Windows
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [linux, windows]
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Build
+        id: build
+        uses: felix-schindler/build-godot-action@v2.0.0
+        with:
+          name: example
+          preset: ${{ matrix.platform }}
+          debugMode: "true"
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          # Give each platform artifact a unique name
+          name: Client-${{ matrix.platform }}
+          path: exports/${{ matrix.platform }}
+  
+  release:
+    # This job will only run after the `build` job completes successfully
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Build
-        run: |
-          # Your build steps here
-          make build
-          # Suppose the build output is in dist/ folder
-          tar -czf my-artifact.tar.gz dist
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          # This downloads *all* artifacts from the build job into the `builds` folder.
+          # If you only want specific artifacts or want them in different folders, you can do that too.
+          path: builds
 
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
         with:
-          tag_name: ${{ github.ref_name }}  # The tag that triggered this workflow
-          release_name: "Release ${{ github.ref_name }}"
+          tag_name: ${{ github.event.inputs.version }}       # e.g., "v0.1.0"
+          release_name: "Release ${{ github.event.inputs.version }}"
           draft: false
           prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload Release Asset
+      - name: Upload Linux Asset
+        if: ${{ always() && env.UPLOAD_LINUX != 'false' }}
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./my-artifact.tar.gz
-          asset_name: my-artifact.tar.gz
-          asset_content_type: application/gzip
+          asset_path: "builds/Client-linux"    # or whatever your final path is
+          asset_name: "Client-linux.zip"       # rename as needed
+          asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Windows Asset
+        if: ${{ always() && env.UPLOAD_WINDOWS != 'false' }}
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: "builds/Client-windows"  # or whatever your final path is
+          asset_name: "Client-windows.zip"     # rename as needed
+          asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
