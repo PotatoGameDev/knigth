@@ -1,0 +1,105 @@
+name: Build & Release Game
+
+on:
+  # Manually trigger from Actions tab
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version (tag) to release"
+        required: true
+        default: "v0.1.0"
+
+permissions:
+  contents: write  # needed to create releases
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [linux, windows]
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Build
+        id: build
+        uses: felix-schindler/build-godot-action@v2.0.0
+        with:
+          name: example
+          preset: ${{ matrix.platform }}
+          debugMode: "true"
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Client-${{ matrix.platform }}
+          path: exports/${{ matrix.platform }}  # This is the unzipped folder
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: builds
+          # This yields:
+          #   builds/Client-linux/...
+          #   builds/Client-windows/...
+
+      - name: Show directory structure (debug)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tree
+          tree builds
+
+      - name: Zip Linux build
+        run: |
+          cd builds
+          zip -r Client-linux.zip Client-linux
+          ls -lh
+
+      - name: Zip Windows build
+        run: |
+          cd builds
+          zip -r Client-windows.zip Client-windows
+          ls -lh
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.event.inputs.version }}
+          release_name: "Release ${{ github.event.inputs.version }}"
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Linux Asset
+        if: ${{ always() && env.UPLOAD_LINUX != 'false' }}
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: "builds/Client-linux.zip"  # the zipped file
+          asset_name: "Client-linux.zip"
+          asset_content_type: application/zip
+
+      - name: Upload Windows Asset
+        if: ${{ always() && env.UPLOAD_WINDOWS != 'false' }}
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: "builds/Client-windows.zip"
+          asset_name: "Client-windows.zip"
+          asset_content_type: application/zip
