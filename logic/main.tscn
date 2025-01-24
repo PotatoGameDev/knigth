@@ -448,6 +448,11 @@ target_position = Vector2(0, 0)
 max_results = 1
 collision_mask = 2
 
+[node name="FloorSensor" type="RayCast2D" parent="Ritter/Sensors"]
+position = Vector2(0, 14)
+target_position = Vector2(0, 6)
+collision_mask = 128
+
 [node name="LineDrawer" type="Node2D" parent="Ritter"]
 script = ExtResource("12_071tv")
 max_trail_length = 200

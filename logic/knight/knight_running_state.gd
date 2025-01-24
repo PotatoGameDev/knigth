@@ -15,6 +15,12 @@ func enter(ownr: Knight, params: Dictionary = {}) -> void:
 
 func physics_update(ownr: Knight, delta: float) -> void:
 	var new_velocity_x = ownr.velocity.x + ownr.movement * ownr.acceleration * delta
+
+	var floor_tileset = ownr.get_floor()
+	if floor_tileset != null:
+		var max_ground_friction = floor_tileset.get_physics_layer_physics_material(0).friction
+		new_velocity_x *= max_ground_friction
+
 	if abs(new_velocity_x) <= ownr.max_speed:
 		ownr.velocity.x = new_velocity_x
 
@@ -23,8 +29,10 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		ownr.animation.speed_scale = -Input.get_axis("up", "down") + step_animation_speed_min
 	else:
 		ownr.animation.speed_scale = 1.0
-	
+
 	ownr.move_and_slide()
+	
+	# TODO: Check friction on enemies?
 	
 	# TODO: Here is a fun idea: Move repeating logic to ownr, and just set flags, like deplets_stamina.
 	ownr.jump_stamina_left += delta * ownr.jump_stamina_depletion_multiplier
