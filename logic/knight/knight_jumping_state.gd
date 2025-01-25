@@ -15,10 +15,10 @@ func enter(ownr, params: Dictionary = {}) -> void:
 	is_bouncing = false
 	
 	ownr.queued_jump_timer = 0.0
-	ownr.current_jump += 1
 
 	if "bouncing" in params:
 		is_bouncing = params["bouncing"]
+
 
 	if "forced_direction" in params:
 		forced_direction = params["forced_direction"]
@@ -31,8 +31,13 @@ func enter(ownr, params: Dictionary = {}) -> void:
 
 	if is_bouncing:
 		ownr.animation.play("bounce")
+		# RULE: Bouncing resets jumps counter:
+		ownr.current_jump = 0
 	else:
 		ownr.animation.play("jump")
+
+	# RULE: Jumping increases jumps counter, bouncing too:
+	ownr.current_jump += 1
 
 	ownr.velocity.y = -ownr.jump_force
 	ownr.jump_timer = 0.0

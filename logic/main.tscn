@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cux2tw0wvffkg"]
+[gd_scene load_steps=56 format=3 uid="uid://cux2tw0wvffkg"]
 
 [ext_resource type="Script" uid="uid://btrloldap2l5n" path="res://logic/main.gd" id="1_2bfyf"]
 [ext_resource type="Script" uid="uid://b0ky8ye32athn" path="res://logic/knight/knight.gd" id="3_hpcr4"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://dkn4uff2knkf8" path="res://logic/knight/knight_falling_state.gd" id="7_mi5q2"]
 [ext_resource type="Script" uid="uid://cthal78kab61u" path="res://logic/knight/knight_jumping_state.gd" id="8_b2foh"]
 [ext_resource type="Script" uid="uid://c21wwj012tc43" path="res://logic/knight/knight_smashing_state.gd" id="9_hsdi7"]
-[ext_resource type="Script" uid="uid://bpdlj2krmsdp2" path="res://logic/knight/knight_bouncing_state.gd" id="10_pk1f1"]
 [ext_resource type="Script" uid="uid://dxbrg61ibikfi" path="res://logic/knight/knight_stomping_state.gd" id="11_l7qid"]
 [ext_resource type="Script" uid="uid://bv36n3aos541i" path="res://logic/knight/knight_clinging_state.gd" id="12_4lt1t"]
 [ext_resource type="Script" uid="uid://ctagqb4dj246q" path="res://logic/debug/line_drawer.gd" id="12_071tv"]
@@ -370,9 +369,6 @@ script = ExtResource("8_b2foh")
 [node name="Smashing" type="Node" parent="Ritter/States"]
 script = ExtResource("9_hsdi7")
 gravity_coefficient = 10.0
-
-[node name="Bouncing" type="Node" parent="Ritter/States"]
-script = ExtResource("10_pk1f1")
 
 [node name="Stomping" type="Node" parent="Ritter/States"]
 script = ExtResource("11_l7qid")

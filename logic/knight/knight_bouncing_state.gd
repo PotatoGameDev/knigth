@@ -38,5 +38,10 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 		ownr.change_state(ownr.smashing_state)
 		return
 
+	print("JUMPING ", ownr.current_jump, " / ", ownr.max_jumps)
+	if event.is_action_pressed("jump") and ownr.current_jump < ownr.max_jumps:
+		ownr.change_state(ownr.jumping_state)
+		return
+
 func exit(_ownr) -> void:
 	pass

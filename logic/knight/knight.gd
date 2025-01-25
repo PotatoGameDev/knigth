@@ -94,7 +94,6 @@ func get_floor() -> TileSet:
 @onready var falling_state: FallingState = $States/Falling
 @onready var jumping_state: JumpingState = $States/Jumping
 @onready var smashing_state: SmashingState = $States/Smashing
-@onready var bouncing_state: BouncingState = $States/Bouncing
 @onready var stomping_state: StompingState = $States/Stomping
 @onready var clinging_state: ClingingState = $States/Clinging
 @onready var pushback_state: PushBackState = $States/PushBack
@@ -154,8 +153,6 @@ func _process(delta):
 			queued_jump_timer = max_queued_jump_time
 
 	stamina_bar.value = jump_stamina_left / max_stamina
-
-	print("VEL: ", velocity)
 
 	current_state.update(self, delta)
 
