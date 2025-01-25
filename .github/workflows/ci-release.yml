@@ -53,12 +53,6 @@ jobs:
           #   builds/Client-linux/...
           #   builds/Client-windows/...
 
-      - name: Show directory structure (debug)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y tree
-          tree builds
-
       - name: Zip Linux build
         run: |
           cd builds
