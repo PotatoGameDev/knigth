@@ -30,8 +30,12 @@ func update(ownr: Knight, delta: float) -> void:
 	if incapacitation_time > 0.0:
 		incapacitation_time -= delta
 	else:
-		ownr.change_state(ownr.idle_state)
-		return
+		if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+			ownr.change_state(ownr.running_state)
+			return
+		else:
+			ownr.change_state(ownr.idle_state)
+			return
 
 func physics_update(ownr: Knight, delta: float) -> void:
 	ownr.move_and_slide()

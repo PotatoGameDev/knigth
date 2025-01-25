@@ -26,7 +26,7 @@ func enter(ownr, params: Dictionary = {}) -> void:
 	if not is_bouncing:
 		ownr.animation.play("fall")
 
-func update(ownr: Knight, delta: float) -> void:
+func update(_ownr: Knight, _delta: float) -> void:
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		options.calculate_direction = true
 
@@ -37,6 +37,8 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		new_velocity_x = ownr.velocity.x + ownr.movement * ownr.acceleration * delta
 	else:
 		new_velocity_x = ownr.velocity.x + ownr.direction * ownr.acceleration * delta
+
+	new_velocity_x *= 1.0 - ownr.air_drag
 
 	if abs(new_velocity_x) <= ownr.max_speed:
 		ownr.velocity.x = new_velocity_x
@@ -69,8 +71,12 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		return
 
 	if ownr.is_on_floor():
-		ownr.change_state(ownr.idle_state)
-		return
+		if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+			ownr.change_state(ownr.running_state)
+			return
+		else:
+			ownr.change_state(ownr.idle_state)
+			return
 	else:
 		if (ownr.can_cling_left() and ownr.is_left()) or (ownr.can_cling_right() and ownr.is_right()):
 			if not ownr.cling_blocker and ownr.jump_stamina_left > 0.0:
@@ -97,6 +103,5 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 		return
 
 func exit(ownr: Knight) -> void:
-	ownr.velocity.y = 0
 	options.calculate_direction = true
 	ownr.enemy_smashing_sensor.target_position = Vector2.ZERO

@@ -3,7 +3,7 @@ class_name Knight
 
 @export var jump_force := 1500.0
 @export var acceleration := 2000
-@export var max_speed := 200
+@export var max_speed := 500
 @export var jump_hold_time = 0.2
 @export var max_coyote_time = 0.2
 @export var max_queued_jump_time = 0.2
@@ -38,6 +38,8 @@ var bounce_power := 1.0
 # Current stats
 var health := 0.0
 
+var air_drag := 0.1
+
 var cling_blocker := false
 
 @onready var animation: AnimatedSprite2D = $Animation
@@ -48,7 +50,8 @@ var cling_blocker := false
 @onready var jump_ray_right_inner: RayCast2D = $JumpSlipRays/RayRightInner
 
 @onready var enemy_smashing_sensor: ShapeCast2D = $Sensors/EnemySmashSensor
-@onready var floor_sensor: RayCast2D = $Sensors/FloorSensor
+@onready var floor_sensor_right: RayCast2D = $Sensors/FloorSensorRight
+@onready var floor_sensor_left: RayCast2D = $Sensors/FloorSensorLeft
 
 # The logic is: If the UP sensor is not colliding and the DOWN sensor is colliding, then the player should auto-jump the step up.
 # If both are colliding, then the player can cling.
@@ -76,8 +79,12 @@ func is_right() -> bool:
 	return direction == Global.RIGHT
 
 func get_floor() -> TileSet:
-	if floor_sensor.is_colliding():
-		var tilemap = floor_sensor.get_collider()
+	if floor_sensor_left.is_colliding():
+		var tilemap = floor_sensor_left.get_collider()
+		if tilemap is TileMapLayer:
+			return tilemap.tile_set
+	if floor_sensor_right.is_colliding():
+		var tilemap = floor_sensor_right.get_collider()
 		if tilemap is TileMapLayer:
 			return tilemap.tile_set
 	return null
@@ -148,6 +155,8 @@ func _process(delta):
 
 	stamina_bar.value = jump_stamina_left / max_stamina
 
+	print("VEL: ", velocity)
+
 	current_state.update(self, delta)
 
 
@@ -173,3 +182,5 @@ func jump_slip(delta: float) -> void:
 		velocity.x += acceleration * delta
 	elif jump_ray_right_outer.is_colliding() and not jump_ray_right_inner.is_colliding():
 		velocity.x -= acceleration * delta
+
+

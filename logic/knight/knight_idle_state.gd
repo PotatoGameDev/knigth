@@ -1,6 +1,7 @@
 extends KnightState 
 class_name IdleState 
 
+# IMPORTANT: Do not enter this state if the player should go into "running" state instead.
 func enter(ownr, params: Dictionary = {}) -> void:
 	if ownr.queued_jump_timer > 0.0:
 		ownr.change_state(ownr.jumping_state)
@@ -19,7 +20,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	var floor_tileset = ownr.get_floor()
 	if floor_tileset != null:
 		var max_ground_friction = floor_tileset.get_physics_layer_physics_material(0).friction
-		ownr.velocity.x *= max_ground_friction
+		ownr.velocity.x *= 1.0 - max_ground_friction
 
 	ownr.move_and_slide()
 

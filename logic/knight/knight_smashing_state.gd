@@ -57,8 +57,13 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	if ownr.is_on_floor():
  		# zero out queued jump timer to prevent double jumps when landing after smashing
 		ownr.queued_jump_timer = 0.0
-		ownr.change_state(ownr.idle_state)
-		return
+
+		if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+			ownr.change_state(ownr.running_state)
+			return
+		else:
+			ownr.change_state(ownr.idle_state)
+			return
 	else:
 		ownr.velocity.y += Global.gravity * gravity_coefficient * delta
 		var new_velocity_x = ownr.velocity.x + ownr.movement * controls_coefficient * ownr.acceleration * delta

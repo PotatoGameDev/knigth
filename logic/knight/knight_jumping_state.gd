@@ -44,19 +44,18 @@ func update(ownr: Knight, delta: float) -> void:
 		options.calculate_direction = true
 
 func physics_update(ownr: Knight, delta: float) -> void:
+	ownr.jump_slip(delta)
+
 	var new_velocity_x
 	if ownr.movement != 0.0 or options.calculate_direction:
 		new_velocity_x = ownr.velocity.x + ownr.movement * ownr.acceleration * delta
 	else:
 		new_velocity_x = ownr.velocity.x + ownr.direction * ownr.acceleration * delta
 
+	new_velocity_x *= 1.0 - ownr.air_drag
 
 	if abs(new_velocity_x) <= ownr.max_speed:
 		ownr.velocity.x = new_velocity_x
-
-	ownr.jump_slip(delta)
-
-	ownr.jump_slip(delta)
 
 	if ownr.jump_timer < ownr.jump_hold_time:
 		if not is_falling:

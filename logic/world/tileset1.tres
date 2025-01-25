@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://47gkon2vpqqt" path="res://assets/sprites/main-tilemap.png" id="1_n0axf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_va0kd"]
-friction = 0.9
+friction = 0.75
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pexbh"]
 texture = ExtResource("1_n0axf")

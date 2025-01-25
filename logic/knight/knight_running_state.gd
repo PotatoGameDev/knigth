@@ -3,6 +3,7 @@ class_name RunningState
 
 @export var step_animation_speed_min := 0.8
 var is_stepping := false
+var dyn_friction_factor := 0.1
 
 func enter(ownr: Knight, params: Dictionary = {}) -> void:
 	if ownr.queued_jump_timer > 0.0:
@@ -19,7 +20,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	var floor_tileset = ownr.get_floor()
 	if floor_tileset != null:
 		var max_ground_friction = floor_tileset.get_physics_layer_physics_material(0).friction
-		new_velocity_x *= max_ground_friction
+		new_velocity_x *= 1.0 - (max_ground_friction * dyn_friction_factor)
 
 	if abs(new_velocity_x) <= ownr.max_speed:
 		ownr.velocity.x = new_velocity_x
