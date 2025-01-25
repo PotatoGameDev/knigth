@@ -4,6 +4,7 @@ class_name IdleState
 # IMPORTANT: Do not enter this state if the player should go into "running" state instead.
 func enter(ownr, params: Dictionary = {}) -> void:
 	if ownr.queued_jump_timer > 0.0:
+		ownr.current_jump = 0
 		ownr.change_state(ownr.jumping_state)
 		return
 	ownr.animation.play("idle")
@@ -12,6 +13,8 @@ func enter(ownr, params: Dictionary = {}) -> void:
 	ownr.current_jump = 0
 
 	ownr.cling_blocker = true 
+
+	ownr.potential_energy = 0.0
 
 func update(_ownr: Knight, _delta: float) -> void:
 	pass

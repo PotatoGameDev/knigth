@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cux2tw0wvffkg"]
+[gd_scene load_steps=57 format=3 uid="uid://cux2tw0wvffkg"]
 
 [ext_resource type="Script" uid="uid://btrloldap2l5n" path="res://logic/main.gd" id="1_2bfyf"]
 [ext_resource type="Script" uid="uid://b0ky8ye32athn" path="res://logic/knight/knight.gd" id="3_hpcr4"]
@@ -320,6 +320,10 @@ size = Vector2(14, 27)
 color = Color(0.180392, 0.180392, 0.180392, 1)
 thickness = 2
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_e37i5"]
+color = Color(0.72091, 0.40969, 0, 1)
+thickness = 2
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_fegvt"]
 color = Color(0.251477, 0.558609, 0.517269, 1)
 thickness = 2
@@ -459,6 +463,17 @@ script = ExtResource("12_071tv")
 max_trail_length = 200
 
 [node name="HUD" type="Node2D" parent="Ritter"]
+
+[node name="PotentialEnergyBar" type="ProgressBar" parent="Ritter/HUD"]
+offset_left = -9.0
+offset_top = -18.0
+offset_right = 9.0
+offset_bottom = -14.0
+theme_override_styles/background = SubResource("StyleBoxLine_3g7ew")
+theme_override_styles/fill = SubResource("StyleBoxLine_e37i5")
+max_value = 1.0
+value = 1.0
+show_percentage = false
 
 [node name="StaminaBar" type="ProgressBar" parent="Ritter/HUD"]
 offset_left = -9.0

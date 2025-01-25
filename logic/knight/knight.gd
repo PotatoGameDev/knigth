@@ -11,6 +11,7 @@ class_name Knight
 @export var step_speed := 150.0
 @export var step_speed_min := 20.0
 @export var smash_speed_damage_factor := 0.03
+@export var max_potential_energy := 8000.0 
 
 # Character stats
 @export var strength := 10.0
@@ -40,7 +41,10 @@ var health := 0.0
 
 var air_drag := 0.1
 
+# current state 
 var cling_blocker := false
+var potential_energy := 0.0
+
 
 @onready var animation: AnimatedSprite2D = $Animation
 
@@ -72,6 +76,9 @@ func can_step_left() -> bool:
 func can_step_right() -> bool:
 	return not cling_blocker_sensor_right_up.is_colliding() and cling_blocker_sensor_right_down.is_colliding()
 
+func can_smash() -> bool:
+	return potential_energy >= max_potential_energy
+
 func is_left() -> bool:
 	return direction == Global.LEFT
 
@@ -100,6 +107,7 @@ func get_floor() -> TileSet:
 
 @onready var stamina_bar: ProgressBar = $HUD/StaminaBar
 @onready var life_bar: ProgressBar = $HUD/LifeBar
+@onready var potential_energy_bar: ProgressBar = $HUD/PotentialEnergyBar
 
 func _ready() -> void:
 	change_state(idle_state)
@@ -162,6 +170,16 @@ func _physics_process(delta):
 		return
 	current_state.physics_update(self, delta)
 
+	# RULE: Potential energy is a non-negative number that represents the amount of energy that can be used to smash enemies.
+	if velocity.y < 0.0:
+		potential_energy += -velocity.y
+	# RULE: Potential energy does not decrease, it's consumable only.
+	#else:
+	#	potential_energy -= velocity.y
+	
+	potential_energy = clamp(potential_energy, 0.0, max_potential_energy)
+	update_potential_energy_bar()
+
 func take_damage(damage: int, dir: Vector2) -> void:
 	current_state.take_damage(self, damage, dir)
 	update_life_bar()
@@ -170,6 +188,10 @@ func update_life_bar() -> void:
 	life_bar.value = health / max_health
 	if health <= 0:
 		life_bar.visible = false
+
+func update_potential_energy_bar() -> void:
+	potential_energy_bar.value = potential_energy / max_potential_energy
+	potential_energy_bar.visible = potential_energy > 0.0
 
 func is_alive() -> bool:
 	return health > 0.0

@@ -71,6 +71,8 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		if abs(new_velocity_x) <= ownr.max_speed:
 			ownr.velocity.x = new_velocity_x
 
+	ownr.potential_energy -= ownr.velocity.y
+
 func handle_input(ownr: Knight, event: InputEvent) -> void:
 	if event.is_action_pressed("jump") and ownr.coyote_timer > 0.0:
 		ownr.change_state(ownr.jumping_state)

@@ -106,7 +106,7 @@ func can_cling(ownr: Knight) -> bool:
 	return ownr.can_cling_left() or ownr.can_cling_right()
 
 func handle_input(ownr: Knight, event: InputEvent) -> void:
-	if event.is_action_pressed("smash"):
+	if event.is_action_pressed("smash") and ownr.can_smash():
 		ownr.change_state(ownr.smashing_state)
 		return
 

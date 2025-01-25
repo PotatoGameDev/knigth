@@ -64,8 +64,9 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 			ownr.change_state(ownr.idle_state)
 			return
 		else:
-			ownr.change_state(ownr.smashing_state)
-			return
+			if ownr.can_smash():
+				ownr.change_state(ownr.smashing_state)
+				return
 	if (event.is_action_pressed("left") and ownr.is_right()) or (event.is_action_pressed("right") and ownr.is_left()):
 		ownr.change_state(ownr.falling_state)
 		return

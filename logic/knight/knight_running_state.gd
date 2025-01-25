@@ -6,13 +6,18 @@ var is_stepping := false
 var dyn_friction_factor := 0.1
 
 func enter(ownr: Knight, params: Dictionary = {}) -> void:
+	ownr.current_jump = 0
+
 	if ownr.queued_jump_timer > 0.0:
 		ownr.change_state(ownr.jumping_state)
 		return
+
 	ownr.animation.play("run")
 	ownr.cling_blocker = true 
 	
 	is_stepping = false
+
+	ownr.potential_energy = 0.0
 
 func physics_update(ownr: Knight, delta: float) -> void:
 	var new_velocity_x = ownr.velocity.x + ownr.movement * ownr.acceleration * delta
