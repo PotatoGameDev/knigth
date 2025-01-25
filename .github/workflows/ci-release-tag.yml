@@ -1,13 +1,9 @@
 name: Build & Release Game
 
 on:
-  # Manually trigger from Actions tab
-  workflow_dispatch:
-    inputs:
-      version:
-        description: "Version (tag) to release"
-        required: true
-        default: "v0.1.0"
+  push:
+    tags:
+      - "v*.*.*" # Matches semantic versioning tags like v0.1.0, v1.0.0, etc.
 
 permissions:
   contents: write  # needed to create releases
@@ -75,8 +71,8 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         with:
-          tag_name: ${{ github.event.inputs.version }}
-          release_name: "Release ${{ github.event.inputs.version }}"
+          tag_name: ${{ github.ref_name }}
+          release_name: ${{ github.ref_name }}
           draft: false
           prerelease: false
         env:
