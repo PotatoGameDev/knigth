@@ -41,7 +41,8 @@ func physics_update(ownr: Knight, delta: float) -> void:
 				smashed_enemy = enemy
 
 	if smashed_enemy:
-		smashed_enemy.take_damage(ownr.strength * -current_speed * ownr.smash_speed_damage_factor)
+		var damage = ownr.weight * -current_speed * ownr.smash_speed_damage_factor
+		smashed_enemy.take_damage(max(damage, ownr.min_damage))
 		ownr.bounce_power = BOUNCE_POWER
 		ownr.change_state(ownr.stomping_state)
 		return

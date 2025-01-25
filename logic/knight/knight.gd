@@ -15,6 +15,7 @@ class_name Knight
 
 # Character stats
 @export var strength := 10.0
+@export var weight := 10.0
 @export var max_stamina := 1000.0
 @export var max_health := 1000.0
 @export var max_jumps := 2
@@ -38,8 +39,8 @@ var bounce_power := 1.0
 
 # Current stats
 var health := 0.0
-
 var air_drag := 0.1
+var min_damage := 0.0
 
 # current state 
 var cling_blocker := false
@@ -115,6 +116,7 @@ func _ready() -> void:
 	health = max_health
 	update_life_bar()
 	current_state_entered_time = Time.get_ticks_msec()
+	min_damage = weight
 
 func change_state(to_state, params: Dictionary = {}) -> void:
 	var elapsed_time = Time.get_ticks_msec() - current_state_entered_time
