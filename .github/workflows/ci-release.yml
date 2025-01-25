@@ -8,6 +8,10 @@ on:
         description: "Version (tag) to release"
         required: true
         default: "v0.1.0"
+  # Automatically trigger on tag
+  push:
+    tags:
+      - "v*.*.*" # Matches semantic versioning tags like v0.1.0, v1.0.0, etc.
 
 permissions:
   contents: write  # needed to create releases
