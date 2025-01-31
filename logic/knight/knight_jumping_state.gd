@@ -44,7 +44,7 @@ func enter(ownr, params: Dictionary = {}) -> void:
 	ownr.coyote_timer = 0.0
 	ownr.cling_blocker = true
 
-func update(ownr: Knight, delta: float) -> void:
+func update(_ownr: Knight, _delta: float) -> void:
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		options.calculate_direction = true
 

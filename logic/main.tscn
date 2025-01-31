@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cux2tw0wvffkg"]
+[gd_scene load_steps=59 format=3 uid="uid://cux2tw0wvffkg"]
 
 [ext_resource type="Script" uid="uid://btrloldap2l5n" path="res://logic/main.gd" id="1_2bfyf"]
 [ext_resource type="Script" uid="uid://b0ky8ye32athn" path="res://logic/knight/knight.gd" id="3_hpcr4"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://do4mgq2osoheu" path="res://logic/knight/knight_pushback_state.gd" id="14_gj2wd"]
 [ext_resource type="Script" uid="uid://cx805rh2a2sx5" path="res://logic/pauser.gd" id="16_fegvt"]
 [ext_resource type="PackedScene" uid="uid://bqmopo6dshmdi" path="res://logic/world/level_0_0.tscn" id="16_gj2wd"]
+[ext_resource type="PackedScene" uid="uid://ksxw1oepr2oa" path="res://logic/millipedes/millipedes.tscn" id="16_kpjel"]
 [ext_resource type="PackedScene" uid="uid://dlxceewry8dqh" path="res://logic/level_instantiator.tscn" id="17_gj2wd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pnin5"]
@@ -336,16 +337,23 @@ thickness = 2
 color = Color(0.885087, 0.42656, 0.897375, 1)
 thickness = 2
 
+[sub_resource type="Curve2D" id="Curve2D_fegvt"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 543.103, -53, -102.638, 22.8189, 102.638, -22.8189, 1128.52, -29, 36.1816, 56.1217, -36.1816, -56.1217, 1179.78, -390, 0, 0, 0, 0, 152.485, -415)
+}
+point_count = 4
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2bfyf")
 
 [node name="Ritter" type="CharacterBody2D" parent="."]
-position = Vector2(147, -411)
+position = Vector2(213, -211)
 collision_mask = 194
 floor_block_on_wall = false
 platform_floor_layers = 4278190208
 script = ExtResource("3_hpcr4")
 jump_force = 300.0
+metadata/_edit_group_ = true
 
 [node name="CollisionShape" type="CollisionShape2D" parent="Ritter"]
 position = Vector2(0, 2.5)
@@ -509,4 +517,27 @@ position = Vector2(2068, -4)
 [node name="LevelInstantiator" parent="level1_0" instance=ExtResource("17_gj2wd")]
 position = Vector2(785, 708)
 
+[node name="Millipedes" parent="." instance=ExtResource("16_kpjel")]
+position = Vector2(536, -52)
+
+[node name="Head" parent="Millipedes" index="0"]
+position = Vector2(-1.00012, -1)
+rotation = 0.0420066
+scale = Vector2(0.97542, 0.999959)
+skew = -0.00204086
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(5.26918, 0)
+scale = Vector2(0.975378, 1)
+curve = SubResource("Curve2D_fegvt")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(543.103, -53)
+rotation = 0.0409735
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
+remote_path = NodePath("../../../Millipedes/Head")
+
 [editable path="level1_0/LevelInstantiator"]
+[editable path="Millipedes"]

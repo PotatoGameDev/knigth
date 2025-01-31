@@ -5,7 +5,7 @@ class_name ClingingState
 
 var snapped_already := false
 
-func enter(ownr, params: Dictionary = {}) -> void:
+func enter(ownr, _params: Dictionary = {}) -> void:
 	ownr.animation.play("cling")
 	ownr.velocity = Vector2.ZERO
 
@@ -19,7 +19,7 @@ func enter(ownr, params: Dictionary = {}) -> void:
 
 	snapped_already = false
 
-func update(ownr: Knight, delta: float) -> void:
+func update(ownr: Knight, _delta: float) -> void:
 	if ownr.queued_jump_timer > 0.0:
 		ownr.change_state(ownr.jumping_state, {"forced_direction": -ownr.direction})
 		return

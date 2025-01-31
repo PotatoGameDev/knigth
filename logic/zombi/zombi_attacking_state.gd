@@ -6,7 +6,7 @@ var damage_lock = false
 func enter(ownr: Zombi) -> void:
 	ownr.animation.play("attack")
 
-func update(ownr: Zombi, delta: float) -> void:
+func update(ownr: Zombi, _delta: float) -> void:
 	var player = null
 	########var dir_to_player = ownr.global_position - ownr.attackRayLeft.get_collider().global_position
 	var dir_to_player = null
@@ -36,5 +36,5 @@ func update(ownr: Zombi, delta: float) -> void:
 	ownr.animation.flip_h = ownr.direction == Global.LEFT 
 	
 
-func exit(ownr: Zombi) -> void:
+func exit(_ownr: Zombi) -> void:
 	pass

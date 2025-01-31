@@ -9,7 +9,7 @@ class_name SmashingState
 var controls_coefficient := 0.0
 const BOUNCE_POWER := 1.5
 
-func enter(ownr, params: Dictionary = {}) -> void:
+func enter(ownr, _params: Dictionary = {}) -> void:
 	ownr.animation.play("smash")
 	controls_coefficient = min_controls_coefficient
 

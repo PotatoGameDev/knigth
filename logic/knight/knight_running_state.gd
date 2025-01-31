@@ -5,7 +5,7 @@ class_name RunningState
 var is_stepping := false
 var dyn_friction_factor := 0.1
 
-func enter(ownr: Knight, params: Dictionary = {}) -> void:
+func enter(ownr: Knight, _params: Dictionary = {}) -> void:
 	ownr.current_jump = 0
 
 	if ownr.queued_jump_timer > 0.0:

@@ -1,0 +1,100 @@
+[gd_scene load_steps=15 format=3 uid="uid://cd42717mtba07"]
+
+[ext_resource type="Texture2D" uid="uid://drv5lyxoo86kd" path="res://assets/sprites/millipede.png" id="1_0noab"]
+[ext_resource type="Script" uid="uid://b8aaqj6uwlh45" path="res://logic/millipedes/segment.gd" id="1_5xe3a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b0bt"]
+atlas = ExtResource("1_0noab")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03loo"]
+atlas = ExtResource("1_0noab")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nyub"]
+atlas = ExtResource("1_0noab")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwe2w"]
+atlas = ExtResource("1_0noab")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2byf2"]
+atlas = ExtResource("1_0noab")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg3aa"]
+atlas = ExtResource("1_0noab")
+region = Rect2(320, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgnnd"]
+atlas = ExtResource("1_0noab")
+region = Rect2(384, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ndee"]
+atlas = ExtResource("1_0noab")
+region = Rect2(448, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pt7e5"]
+atlas = ExtResource("1_0noab")
+region = Rect2(512, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sg1lk"]
+atlas = ExtResource("1_0noab")
+region = Rect2(576, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_86cgl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8b0bt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03loo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nyub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwe2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2byf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg3aa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgnnd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ndee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pt7e5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sg1lk")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xthsj"]
+radius = 20.0
+height = 52.0
+
+[node name="Segment" type="AnimatableBody2D"]
+collision_layer = 2
+sync_to_physics = false
+script = ExtResource("1_5xe3a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_86cgl")
+animation = &"walking"
+autoplay = "walking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("CapsuleShape2D_xthsj")
