@@ -11,10 +11,11 @@ radius = 26.0
 [node name="Millipedes" type="Node2D"]
 script = ExtResource("1_8b0bt")
 
-[node name="Head" type="AnimatableBody2D" parent="."]
+[node name="Head" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("follower")]
 collision_layer = 2
 sync_to_physics = false
 script = ExtResource("2_6nyub")
+follower = NodePath("../Segment")
 
 [node name="Sprite2D" type="Sprite2D" parent="Head"]
 texture = ExtResource("2_03loo")
@@ -24,61 +25,60 @@ region_rect = Rect2(0, 128, 64, 64)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
 shape = SubResource("CircleShape2D_tkmq5")
 
-[node name="Segment" parent="." node_paths=PackedStringArray("leader") instance=ExtResource("3_03loo")]
+[node name="Segment" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
 position = Vector2(-20, 14)
-leader = NodePath("../Head")
+follower = NodePath("../Segment2")
 
-[node name="Segment2" parent="." node_paths=PackedStringArray("leader") instance=ExtResource("3_03loo")]
+[node name="Segment2" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
 position = Vector2(-40, 14)
 animation_delay = 1
-leader = NodePath("../Segment")
+follower = NodePath("../Segment3")
 
-[node name="Segment3" parent="." node_paths=PackedStringArray("leader") instance=ExtResource("3_03loo")]
+[node name="Segment3" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
 position = Vector2(-60, 14)
 animation_delay = 2
-leader = NodePath("../Segment2")
+follower = NodePath("../Segment4")
 
-[node name="Segment4" parent="." node_paths=PackedStringArray("leader") instance=ExtResource("3_03loo")]
+[node name="Segment4" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
 position = Vector2(-80, 14)
 animation_delay = 3
-leader = NodePath("../Segment3")
+follower = NodePath("../Segment5")
 
-[node name="Segment5" parent="." node_paths=PackedStringArray("leader") instance=ExtResource("3_03loo")]
+[node name="Segment5" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
 position = Vector2(-100, 14)
 animation_delay = 4
-leader = NodePath("../Segment4")
+follower = NodePath("../Segment6")
 
-[node name="Segment6" parent="." node_paths=PackedStringArray("leader") instance=ExtResource("3_03loo")]
+[node name="Segment6" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
 position = Vector2(-120, 14)
 animation_delay = 5
-leader = NodePath("../Segment5")
+follower = NodePath("../Segment7")
 
-[node name="Segment7" parent="." node_paths=PackedStringArray("leader") instance=ExtResource("3_03loo")]
+[node name="Segment7" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
 position = Vector2(-140, 14)
 animation_delay = 6
-leader = NodePath("../Segment6")
+follower = NodePath("../Segment8")
 
-[node name="Segment8" parent="." node_paths=PackedStringArray("leader") instance=ExtResource("3_03loo")]
+[node name="Segment8" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
 position = Vector2(-160, 14)
 animation_delay = 7
-leader = NodePath("../Segment7")
+follower = NodePath("../Segment9")
 
-[node name="Segment9" parent="." node_paths=PackedStringArray("leader") instance=ExtResource("3_03loo")]
+[node name="Segment9" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
 position = Vector2(-180, 14)
 animation_delay = 8
-leader = NodePath("../Segment8")
+follower = NodePath("../Segment10")
 
-[node name="Segment10" parent="." node_paths=PackedStringArray("leader") instance=ExtResource("3_03loo")]
+[node name="Segment10" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
 position = Vector2(-200, 14)
 animation_delay = 9
-leader = NodePath("../Segment9")
+follower = NodePath("../Segment11")
 
-[node name="Segment11" parent="." node_paths=PackedStringArray("leader") instance=ExtResource("3_03loo")]
+[node name="Segment11" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
 position = Vector2(-220, 14)
 animation_delay = 10
-leader = NodePath("../Segment10")
+follower = NodePath("../Segment12")
 
-[node name="Segment12" parent="." node_paths=PackedStringArray("leader") instance=ExtResource("3_03loo")]
+[node name="Segment12" parent="." instance=ExtResource("3_03loo")]
 position = Vector2(-240, 14)
 animation_delay = 11
-leader = NodePath("../Segment11")

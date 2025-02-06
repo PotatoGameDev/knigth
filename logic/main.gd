@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var millipedes_path: PathFollow2D = $Path2D/PathFollow2D
+@onready var millipedes_head: Node2D = $Millipedes/Head
 @onready var camera: Camera2D = $Ritter/Camera2D
 @export var millipedes_speed := 100.0
 
@@ -19,8 +20,10 @@ func _process(delta: float) -> void:
 		millipedes_direction = -1.0
 	elif millipedes_path.progress_ratio <= 0.0 and millipedes_direction == -1.0:
 		millipedes_direction = 1.0
-
+	
+	millipedes_head.direction = millipedes_direction
 	millipedes_path.progress += delta * millipedes_speed * millipedes_direction
+
 
 	if Input.is_key_pressed(KEY_5):
 		if camera.zoom < Vector2(0.5, 0.5):
