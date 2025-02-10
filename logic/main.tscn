@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://cux2tw0wvffkg"]
+[gd_scene load_steps=62 format=3 uid="uid://cux2tw0wvffkg"]
 
 [ext_resource type="Script" uid="uid://btrloldap2l5n" path="res://logic/main.gd" id="1_2bfyf"]
 [ext_resource type="Script" uid="uid://b0ky8ye32athn" path="res://logic/knight/knight.gd" id="3_hpcr4"]
@@ -337,6 +337,32 @@ thickness = 2
 color = Color(0.885087, 0.42656, 0.897375, 1)
 thickness = 2
 
+[sub_resource type="SkeletonModification2DPhysicalBones" id="SkeletonModification2DPhysicalBones_fegvt"]
+physical_bone_chain_length = 13
+fetch_bones = null
+joint_0_nodepath = NodePath("PhysicalHeadBone")
+joint_1_nodepath = NodePath("PhysicalHeadBone/PhysicalBone1")
+joint_2_nodepath = NodePath("PhysicalHeadBone/PhysicalBone1/PhysicalBone2")
+joint_3_nodepath = NodePath("PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3")
+joint_4_nodepath = NodePath("PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4")
+joint_5_nodepath = NodePath("PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5")
+joint_6_nodepath = NodePath("PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6")
+joint_7_nodepath = NodePath("PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7")
+joint_8_nodepath = NodePath("PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8")
+joint_9_nodepath = NodePath("PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8/PhysicalBone9")
+joint_10_nodepath = NodePath("PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8/PhysicalBone9/PhysicalBone10")
+joint_11_nodepath = NodePath("PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8/PhysicalBone9/PhysicalBone10/PhysicalBone11")
+joint_12_nodepath = NodePath("PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8/PhysicalBone9/PhysicalBone10/PhysicalBone11/PhysicalBone12")
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_gj2wd"]
+enabled = true
+strength = 0.444
+modification_count = 1
+modifications/0 = SubResource("SkeletonModification2DPhysicalBones_fegvt")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fegvt"]
+radius = 19.6469
+
 [sub_resource type="Curve2D" id="Curve2D_fegvt"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 543.103, -53, -102.638, 22.8189, 102.638, -22.8189, 1128.52, -29, 36.1816, 56.1217, -36.1816, -56.1217, 1179.78, -390, 0, 0, 0, 0, 152.485, -415)
@@ -521,10 +547,308 @@ position = Vector2(785, 708)
 position = Vector2(536, -52)
 
 [node name="Head" parent="Millipedes" index="0"]
+position = Vector2(-0.556091, -0.556)
+rotation = 0.0233557
+scale = Vector2(0.986333, 0.999977)
+skew = -0.00113475
+
+[node name="Segment" parent="Millipedes" index="1"]
+position = Vector2(-21.0065, 12.0816)
+rotation = 0.0233557
+scale = Vector2(0.986333, 0.999977)
+skew = -0.00113475
+
+[node name="Segment2" parent="Millipedes" index="2"]
+position = Vector2(-40.7278, 11.6209)
+rotation = 0.0233557
+scale = Vector2(0.986333, 0.999977)
+skew = -0.00113475
+
+[node name="Segment3" parent="Millipedes" index="3"]
+position = Vector2(-61.1303, 11.1443)
+rotation = 0.0233557
+scale = Vector2(0.986333, 0.999977)
+skew = -0.00113475
+
+[node name="Segment4" parent="Millipedes" index="4"]
+position = Vector2(-79.976, 10.704)
+rotation = 0.0233557
+scale = Vector2(0.986333, 0.999977)
+skew = -0.00113475
+
+[node name="Segment5" parent="Millipedes" index="5"]
+position = Vector2(-100.135, 10.2331)
+rotation = 0.0233557
+scale = Vector2(0.986333, 0.999977)
+skew = -0.00113475
+
+[node name="Segment6" parent="Millipedes" index="6"]
+position = Vector2(-118.941, 8.01736)
+rotation = 0.0233557
+scale = Vector2(0.986333, 0.999977)
+skew = -0.00113475
+
+[node name="Segment7" parent="Millipedes" index="7"]
+position = Vector2(-138.663, 7.55668)
+rotation = 0.0233557
+scale = Vector2(0.986333, 0.999977)
+skew = -0.00113475
+
+[node name="Segment8" parent="Millipedes" index="8"]
+position = Vector2(-157.936, 6.66234)
+rotation = 0.0233557
+scale = Vector2(0.986333, 0.999977)
+skew = -0.00113475
+
+[node name="Segment9" parent="Millipedes" index="9"]
+position = Vector2(-177.648, 5.75777)
+rotation = 0.0233557
+scale = Vector2(0.986333, 0.999977)
+skew = -0.00113475
+
+[node name="Segment10" parent="Millipedes" index="10"]
+position = Vector2(-196.377, 4.33643)
+rotation = 0.013124
+scale = Vector2(0.986323, 0.999987)
+skew = -0.000857234
+
+[node name="Segment11" parent="Millipedes" index="11"]
+position = Vector2(-215.659, 3.63933)
+rotation = 0.013124
+scale = Vector2(0.986323, 0.999987)
+skew = -0.000857234
+
+[node name="Segment12" parent="Millipedes" index="12"]
+position = Vector2(-235.821, 3.3747)
+rotation = 0.013124
+scale = Vector2(0.986323, 0.999987)
+skew = -0.000857234
+
+[node name="Skeleton2D" parent="Millipedes" index="13"]
+modification_stack = SubResource("SkeletonModificationStack2D_gj2wd")
+
+[node name="BoneHead" parent="Millipedes/Skeleton2D" index="0"]
 position = Vector2(-1.00012, -1)
 rotation = 0.0420066
 scale = Vector2(0.97542, 0.999959)
 skew = -0.00204086
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Bone1" parent="Millipedes/Skeleton2D/BoneHead" index="0"]
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Bone2" parent="Millipedes/Skeleton2D/BoneHead/Bone1" index="0"]
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Bone3" parent="Millipedes/Skeleton2D/BoneHead/Bone1/Bone2" index="0"]
+position = Vector2(-20.444, 0)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Bone4" parent="Millipedes/Skeleton2D/BoneHead/Bone1/Bone2/Bone3" index="0"]
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Bone5" parent="Millipedes/Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4" index="0"]
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Bone6" parent="Millipedes/Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5" index="0"]
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Bone7" parent="Millipedes/Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6" index="0"]
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Bone8" parent="Millipedes/Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7" index="0"]
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Bone9" parent="Millipedes/Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8" index="0"]
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Bone10" parent="Millipedes/Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8/Bone9" index="0"]
+position = Vector2(-19.0295, -0.970457)
+rotation = -0.018151
+scale = Vector2(1, 1)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Bone11" parent="Millipedes/Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8/Bone9/Bone10" index="0"]
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Bone12" parent="Millipedes/Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8/Bone9/Bone10/Bone11" index="0"]
+metadata/_local_pose_override_enabled_ = true
+
+[node name="PhysicalHeadBone" type="PhysicalBone2D" parent="Millipedes/Skeleton2D" index="1"]
+bone2d_nodepath = NodePath("../BoneHead")
+bone2d_index = 0
+simulate_physics = true
+
+[node name="PhysicalBone1" type="PhysicalBone2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone"]
+position = Vector2(-21, 12)
+bone2d_nodepath = NodePath("../../BoneHead/Bone1")
+bone2d_index = 1
+simulate_physics = true
+
+[node name="PhysicalBone2" type="PhysicalBone2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1"]
+position = Vector2(-20, 0)
+bone2d_nodepath = NodePath("../../../BoneHead/Bone1/Bone2")
+bone2d_index = 2
+simulate_physics = true
+
+[node name="PhysicalBone3" type="PhysicalBone2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2"]
+position = Vector2(-21, 0)
+bone2d_nodepath = NodePath("../../../../BoneHead/Bone1/Bone2/Bone3")
+bone2d_index = 3
+simulate_physics = true
+
+[node name="PhysicalBone4" type="PhysicalBone2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3"]
+position = Vector2(-18, 0)
+bone2d_nodepath = NodePath("../../../../../BoneHead/Bone1/Bone2/Bone3/Bone4")
+bone2d_index = 4
+simulate_physics = true
+
+[node name="PhysicalBone5" type="PhysicalBone2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4"]
+position = Vector2(-21, 0)
+bone2d_nodepath = NodePath("../../../../../../BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5")
+bone2d_index = 5
+simulate_physics = true
+
+[node name="PhysicalBone6" type="PhysicalBone2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5"]
+position = Vector2(-18, -4)
+bone2d_nodepath = NodePath("../../../../../../../BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6")
+bone2d_index = 6
+simulate_physics = true
+
+[node name="PhysicalBone7" type="PhysicalBone2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6"]
+position = Vector2(-20, 0)
+bone2d_nodepath = NodePath("../../../../../../../../BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7")
+bone2d_index = 7
+simulate_physics = true
+
+[node name="PhysicalBone8" type="PhysicalBone2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7"]
+position = Vector2(-19, -1)
+bone2d_nodepath = NodePath("../../../../../../../../../BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8")
+bone2d_index = 8
+simulate_physics = true
+
+[node name="PhysicalBone9" type="PhysicalBone2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8"]
+position = Vector2(-20, -1)
+bone2d_nodepath = NodePath("../../../../../../../../../../BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8/Bone9")
+bone2d_index = 9
+simulate_physics = true
+
+[node name="PhysicalBone10" type="PhysicalBone2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8/PhysicalBone9"]
+position = Vector2(-19, -1)
+bone2d_nodepath = NodePath("../../../../../../../../../../../BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8/Bone9/Bone10")
+bone2d_index = 10
+simulate_physics = true
+
+[node name="PhysicalBone11" type="PhysicalBone2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8/PhysicalBone9/PhysicalBone10"]
+position = Vector2(-19, -1)
+bone2d_nodepath = NodePath("../../../../../../../../../../../../BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8/Bone9/Bone10/Bone11")
+bone2d_index = 11
+simulate_physics = true
+
+[node name="PhysicalBone12" type="PhysicalBone2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8/PhysicalBone9/PhysicalBone10/PhysicalBone11"]
+position = Vector2(-21, 0)
+bone2d_nodepath = NodePath("../../../../../../../../../../../../../BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8/Bone9/Bone10/Bone11/Bone12")
+bone2d_index = 12
+simulate_physics = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8/PhysicalBone9/PhysicalBone10/PhysicalBone11/PhysicalBone12"]
+shape = SubResource("CircleShape2D_fegvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8/PhysicalBone9/PhysicalBone10/PhysicalBone11"]
+shape = SubResource("CircleShape2D_fegvt")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8/PhysicalBone9/PhysicalBone10/PhysicalBone11"]
+node_a = NodePath("..")
+node_b = NodePath("../PhysicalBone12")
+softness = 5.8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8/PhysicalBone9/PhysicalBone10"]
+shape = SubResource("CircleShape2D_fegvt")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8/PhysicalBone9/PhysicalBone10"]
+node_a = NodePath("..")
+node_b = NodePath("../PhysicalBone11")
+softness = 5.8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8/PhysicalBone9"]
+shape = SubResource("CircleShape2D_fegvt")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8/PhysicalBone9"]
+node_a = NodePath("..")
+node_b = NodePath("../PhysicalBone10")
+softness = 5.05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8"]
+shape = SubResource("CircleShape2D_fegvt")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7/PhysicalBone8"]
+node_a = NodePath("..")
+node_b = NodePath("../PhysicalBone9")
+softness = 5.05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7"]
+shape = SubResource("CircleShape2D_fegvt")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6/PhysicalBone7"]
+node_a = NodePath("..")
+node_b = NodePath("../PhysicalBone8")
+softness = 5.05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6"]
+shape = SubResource("CircleShape2D_fegvt")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5/PhysicalBone6"]
+node_a = NodePath("..")
+node_b = NodePath("../PhysicalBone7")
+softness = 5.05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5"]
+shape = SubResource("CircleShape2D_fegvt")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4/PhysicalBone5"]
+node_a = NodePath("..")
+node_b = NodePath("../PhysicalBone6")
+softness = 5.05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4"]
+shape = SubResource("CircleShape2D_fegvt")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3/PhysicalBone4"]
+node_a = NodePath("..")
+node_b = NodePath("../PhysicalBone5")
+softness = 5.05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3"]
+shape = SubResource("CircleShape2D_fegvt")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2/PhysicalBone3"]
+node_a = NodePath("..")
+node_b = NodePath("../PhysicalBone4")
+softness = 5.05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2"]
+shape = SubResource("CircleShape2D_fegvt")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1/PhysicalBone2"]
+node_a = NodePath("..")
+node_b = NodePath("../PhysicalBone3")
+softness = 5.05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1"]
+shape = SubResource("CircleShape2D_fegvt")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone/PhysicalBone1"]
+node_a = NodePath("..")
+node_b = NodePath("../PhysicalBone2")
+softness = 5.05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone"]
+shape = SubResource("CircleShape2D_fegvt")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Millipedes/Skeleton2D/PhysicalHeadBone"]
+node_a = NodePath("..")
+node_b = NodePath("../PhysicalBone1")
+softness = 5.05
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(5.26918, 0)
@@ -537,7 +861,13 @@ rotation = 0.0409735
 loop = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
-remote_path = NodePath("../../../Millipedes/Head")
+remote_path = NodePath("../../../Millipedes/Skeleton2D/BoneHead")
+
+[node name="Target" type="Node2D" parent="."]
+position = Vector2(535, -53)
+rotation = 0.0420066
+scale = Vector2(0.97542, 0.999959)
+skew = -0.00204086
 
 [editable path="level1_0/LevelInstantiator"]
 [editable path="Millipedes"]

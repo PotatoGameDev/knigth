@@ -82,3 +82,98 @@ follower = NodePath("../Segment12")
 [node name="Segment12" parent="." instance=ExtResource("3_03loo")]
 position = Vector2(-240, 14)
 animation_delay = 11
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+
+[node name="BoneHead" type="Bone2D" parent="Skeleton2D"]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+
+[node name="Bone1" type="Bone2D" parent="Skeleton2D/BoneHead"]
+position = Vector2(-20, 14)
+rest = Transform2D(1, 0, 0, 1, -20, 14)
+
+[node name="Bone2" type="Bone2D" parent="Skeleton2D/BoneHead/Bone1"]
+position = Vector2(-20, 0)
+rest = Transform2D(1, 0, 0, 1, -20, 0)
+
+[node name="Bone3" type="Bone2D" parent="Skeleton2D/BoneHead/Bone1/Bone2"]
+position = Vector2(-20, 0)
+rest = Transform2D(1, 0, 0, 1, -20, 0)
+
+[node name="Bone4" type="Bone2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3"]
+position = Vector2(-20, 0)
+rest = Transform2D(1, 0, 0, 1, -20, 0)
+
+[node name="Bone5" type="Bone2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4"]
+position = Vector2(-20, 0)
+rest = Transform2D(1, 0, 0, 1, -20, 0)
+
+[node name="Bone6" type="Bone2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5"]
+position = Vector2(-20, 0)
+rest = Transform2D(1, 0, 0, 1, -20, 0)
+
+[node name="Bone7" type="Bone2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6"]
+position = Vector2(-20, 0)
+rest = Transform2D(1, 0, 0, 1, -20, 0)
+
+[node name="Bone8" type="Bone2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7"]
+position = Vector2(-20, 0)
+rest = Transform2D(1, 0, 0, 1, -20, 0)
+
+[node name="Bone9" type="Bone2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8"]
+position = Vector2(-20, 0)
+rest = Transform2D(1, 0, 0, 1, -20, 0)
+
+[node name="Bone10" type="Bone2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8/Bone9"]
+position = Vector2(-20, 0)
+rest = Transform2D(1, 0, 0, 1, -20, 0)
+
+[node name="Bone11" type="Bone2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8/Bone9/Bone10"]
+position = Vector2(-20, 0)
+rest = Transform2D(1, 0, 0, 1, -20, 0)
+
+[node name="Bone12" type="Bone2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8/Bone9/Bone10/Bone11"]
+position = Vector2(-20, 0)
+rest = Transform2D(1, 0, 0, 1, -20, 0)
+auto_calculate_length_and_angle = false
+length = 9.525
+bone_angle = -183.0
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8/Bone9/Bone10/Bone11/Bone12"]
+remote_path = NodePath("../../../../../../../../../../../../../../../Segment12")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8/Bone9/Bone10/Bone11"]
+remote_path = NodePath("../../../../../../../../../../../../../../Segment11")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8/Bone9/Bone10"]
+remote_path = NodePath("../../../../../../../../../../../../../Segment10")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8/Bone9"]
+remote_path = NodePath("../../../../../../../../../../../../Segment9")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7/Bone8"]
+remote_path = NodePath("../../../../../../../../../../../Segment8")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6/Bone7"]
+remote_path = NodePath("../../../../../../../../../../Segment7")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5/Bone6"]
+remote_path = NodePath("../../../../../../../../../Segment6")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4/Bone5"]
+remote_path = NodePath("../../../../../../../../Segment5")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3/Bone4"]
+remote_path = NodePath("../../../../../../../Segment4")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/BoneHead/Bone1/Bone2/Bone3"]
+remote_path = NodePath("../../../../../../Segment3")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/BoneHead/Bone1/Bone2"]
+remote_path = NodePath("../../../../../Segment2")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/BoneHead/Bone1"]
+remote_path = NodePath("../../../../Segment")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/BoneHead"]
+remote_path = NodePath("../../../Head")
