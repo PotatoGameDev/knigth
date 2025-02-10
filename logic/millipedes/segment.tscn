@@ -91,10 +91,11 @@ sync_to_physics = false
 script = ExtResource("1_5xe3a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_86cgl")
 animation = &"walking"
 autoplay = "walking"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_xthsj")

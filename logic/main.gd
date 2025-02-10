@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var millipedes_path: PathFollow2D = $Path2D/PathFollow2D
+@onready var millipedes_path_follows: Array[PathFollow2D] = []
 @onready var millipedes_head: Node2D = $Millipedes/Head
 @onready var camera: Camera2D = $Ritter/Camera2D
 @export var millipedes_speed := 100.0
@@ -9,20 +9,23 @@ var millipedes_path_progress_goal := 1.0
 var millipedes_direction := 1.0
 
 func _ready() -> void:
-	pass # Replace with function body.
+	for child in $Path2D.get_children():
+		if child is PathFollow2D:
+			millipedes_path_follows.append(child)
 
 func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_R):
 		get_tree().reload_current_scene()
 
 
-	if millipedes_path.progress_ratio >= 1.0 and millipedes_direction == 1.0:
-		millipedes_direction = -1.0
-	elif millipedes_path.progress_ratio <= 0.0 and millipedes_direction == -1.0:
-		millipedes_direction = 1.0
-	
-	millipedes_head.direction = millipedes_direction
-	millipedes_path.progress += delta * millipedes_speed * millipedes_direction
+	for millipedes_path_follow in millipedes_path_follows:
+		if millipedes_path_follow.progress_ratio >= 1.0 and millipedes_direction == 1.0:
+			millipedes_direction = -1.0
+		elif millipedes_path_follow.progress_ratio <= 0.0 and millipedes_direction == -1.0:
+			millipedes_direction = 1.0
+
+		millipedes_head.direction = millipedes_direction
+		millipedes_path_follow.progress += delta * millipedes_speed * millipedes_direction
 
 
 	if Input.is_key_pressed(KEY_5):
