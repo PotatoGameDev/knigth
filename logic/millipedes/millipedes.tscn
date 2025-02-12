@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ksxw1oepr2oa"]
+[gd_scene load_steps=7 format=3 uid="uid://ksxw1oepr2oa"]
 
 [ext_resource type="Script" uid="uid://tvu3a53u5pr2" path="res://logic/millipedes/millipedes.gd" id="1_8b0bt"]
 [ext_resource type="Texture2D" uid="uid://drv5lyxoo86kd" path="res://assets/sprites/millipede.png" id="2_03loo"]
 [ext_resource type="Script" uid="uid://c1ax32f7s8qho" path="res://logic/millipedes/head.gd" id="2_6nyub"]
 [ext_resource type="PackedScene" uid="uid://cd42717mtba07" path="res://logic/millipedes/segment.tscn" id="3_03loo"]
+[ext_resource type="PackedScene" uid="uid://dvd1h1iiiwbej" path="res://logic/millipedes/antenna.tscn" id="4_pwe2w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkmq5"]
 radius = 26.0
@@ -24,6 +25,9 @@ region_rect = Rect2(0, 128, 64, 64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
 shape = SubResource("CircleShape2D_tkmq5")
+
+[node name="Antenna" parent="Head" instance=ExtResource("4_pwe2w")]
+position = Vector2(11, -18)
 
 [node name="Segment" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
 position = Vector2(-16, 0)

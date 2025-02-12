@@ -95,7 +95,6 @@ func physics_update(ownr: Knight, delta: float) -> void:
 
 	if is_falling and ownr.velocity.y >= 0.0:
 		ownr.change_state(ownr.falling_state, {"bouncing": is_bouncing, "forced_direction": forced_direction})
-		print("FORDED", forced_direction)
 		return
 
 

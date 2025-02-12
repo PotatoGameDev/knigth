@@ -27,8 +27,6 @@ func _process(delta):
 
 		path_follow.progress += delta * speed * direction
 
-		print(path_follow.progress, " ", distance_to_follower)
-
 		if follower:
 			follower.update_progress(path_follow.progress - distance_to_follower)
 

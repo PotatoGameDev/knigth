@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://j3kkttry7sa1"]
+
+[ext_resource type="Texture2D" uid="uid://i10ugj8umpw2" path="res://assets/sprites/millipedes-antennae.png" id="1_chfe0"]
+
+[node name="Bone2D" type="Bone2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("1_chfe0")
+vframes = 2
+frame = 1

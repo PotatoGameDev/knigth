@@ -339,15 +339,16 @@ thickness = 2
 
 [sub_resource type="Curve2D" id="Curve2D_fegvt"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 543.103, -53, 0, 0, 0, 0, 877.332, -53, -102.638, 22.8189, 102.638, -22.8189, 1128.52, -29, 36.1816, 56.1217, -36.1816, -56.1217, 1179.78, -390, 0, 0, 0, 0, 152.485, -415)
+"points": PackedVector2Array(179.126, -97.6067, -179.126, 97.6067, 402.645, -130, -70.0494, -11.7128, 70.0494, 11.7128, 649.728, -32, -102.638, 22.8189, 102.638, -22.8189, 1128.52, -29, 36.1816, 56.1217, -36.1816, -56.1217, 1155.17, -252, 23.0162, -112.248, -23.0162, 112.248, 351.383, -226, -11.0078, -93.7024, 11.0078, 93.7024, 1079.31, -154, 0, 0, 0, 0, 469.286, -143, 0, 0, 0, 0, 402.645, -130)
 }
-point_count = 5
+point_count = 8
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2bfyf")
 
 [node name="Ritter" type="CharacterBody2D" parent="."]
-position = Vector2(867, -42)
+unique_name_in_owner = true
+position = Vector2(646, -55)
 collision_mask = 194
 floor_block_on_wall = false
 platform_floor_layers = 4278190208
@@ -517,204 +518,216 @@ position = Vector2(2068, -4)
 [node name="LevelInstantiator" parent="level1_0" instance=ExtResource("17_gj2wd")]
 position = Vector2(785, 708)
 
-[node name="Path2D" type="Path2D" parent="."]
+[node name="MillipedesPath" type="Path2D" parent="."]
 position = Vector2(5.26918, 0)
 scale = Vector2(0.975378, 1)
 curve = SubResource("Curve2D_fegvt")
 
-[node name="PathFollowHead" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollowHead" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollowHead"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollowHead"]
 remote_path = NodePath("../../../Millipedes/Head")
+update_position = false
+update_rotation = false
+update_scale = false
 
-[node name="PathFollow1" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow1" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow1"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow1"]
 remote_path = NodePath("../../../Millipedes/Segment")
+update_position = false
+update_rotation = false
+update_scale = false
 
-[node name="PathFollow2" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow2" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow2"]
 remote_path = NodePath("../../../Millipedes/Segment2")
+update_position = false
+update_rotation = false
+update_scale = false
 
-[node name="PathFollow3" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow3" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow3"]
-remote_path = NodePath("../../../Millipedes/Segment3")
-
-[node name="PathFollow4" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow4"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow3"]
 remote_path = NodePath("../../../Millipedes/Segment3")
 update_position = false
 update_rotation = false
 update_scale = false
 
-[node name="PathFollow5" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow4" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow5"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow4"]
 remote_path = NodePath("../../../Millipedes/Segment3")
 update_position = false
 update_rotation = false
 update_scale = false
 
-[node name="PathFollow6" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow5" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow6"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow5"]
 remote_path = NodePath("../../../Millipedes/Segment3")
 update_position = false
 update_rotation = false
 update_scale = false
 
-[node name="PathFollow7" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow6" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow7"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow6"]
 remote_path = NodePath("../../../Millipedes/Segment3")
 update_position = false
 update_rotation = false
 update_scale = false
 
-[node name="PathFollow8" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow7" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow8"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow7"]
 remote_path = NodePath("../../../Millipedes/Segment3")
 update_position = false
 update_rotation = false
 update_scale = false
 
-[node name="PathFollow9" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow8" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow9"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow8"]
 remote_path = NodePath("../../../Millipedes/Segment3")
 update_position = false
 update_rotation = false
 update_scale = false
 
-[node name="PathFollow10" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow9" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow10"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow9"]
 remote_path = NodePath("../../../Millipedes/Segment3")
 update_position = false
 update_rotation = false
 update_scale = false
 
-[node name="PathFollow11" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow10" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow11"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow10"]
 remote_path = NodePath("../../../Millipedes/Segment3")
 update_position = false
 update_rotation = false
 update_scale = false
 
-[node name="PathFollow12" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow11" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow12"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow11"]
 remote_path = NodePath("../../../Millipedes/Segment3")
 update_position = false
 update_rotation = false
 update_scale = false
 
-[node name="PathFollow13" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow12" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow13"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow12"]
 remote_path = NodePath("../../../Millipedes/Segment3")
 update_position = false
 update_rotation = false
 update_scale = false
 
-[node name="PathFollow14" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow13" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow14"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow13"]
 remote_path = NodePath("../../../Millipedes/Segment3")
 update_position = false
 update_rotation = false
 update_scale = false
 
-[node name="PathFollow15" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow14" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow15"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow14"]
 remote_path = NodePath("../../../Millipedes/Segment3")
 update_position = false
 update_rotation = false
 update_scale = false
 
-[node name="PathFollow16" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow15" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow16"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow15"]
 remote_path = NodePath("../../../Millipedes/Segment3")
 update_position = false
 update_rotation = false
 update_scale = false
 
-[node name="PathFollow17" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow16" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow17"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow16"]
 remote_path = NodePath("../../../Millipedes/Segment3")
 update_position = false
 update_rotation = false
 update_scale = false
 
-[node name="PathFollow18" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow17" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow18"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow17"]
 remote_path = NodePath("../../../Millipedes/Segment3")
 update_position = false
 update_rotation = false
 update_scale = false
 
-[node name="PathFollow19" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow18" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow19"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow18"]
 remote_path = NodePath("../../../Millipedes/Segment3")
 update_position = false
 update_rotation = false
 update_scale = false
 
-[node name="PathFollow20" type="PathFollow2D" parent="Path2D"]
-position = Vector2(543.103, -53)
-loop = false
+[node name="PathFollow19" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow20"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow19"]
+remote_path = NodePath("../../../Millipedes/Segment3")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow20" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(402.645, -130)
+rotation = 2.64267
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow20"]
 remote_path = NodePath("../../../Millipedes/Segment3")
 update_position = false
 update_rotation = false
@@ -732,81 +745,84 @@ position = Vector2(534, -52)
 [node name="Head" parent="Millipedes" index="0" node_paths=PackedStringArray("path_follow")]
 position = Vector2(0.999878, -1)
 scale = Vector2(0.975378, 1)
-path_follow = NodePath("../../Path2D/PathFollowHead")
+path_follow = NodePath("../../MillipedesPath/PathFollowHead")
+
+[node name="Antenna" parent="Millipedes/Head" index="2" node_paths=PackedStringArray("ritter")]
+ritter = NodePath("../../../Ritter")
 
 [node name="Segment" parent="Millipedes" index="1" node_paths=PackedStringArray("path_follow")]
 position = Vector2(-16, -5.96046e-08)
 scale = Vector2(0.975378, 1)
-path_follow = NodePath("../../Path2D/PathFollow1")
+path_follow = NodePath("../../MillipedesPath/PathFollow1")
 
 [node name="Segment2" parent="Millipedes" index="2" node_paths=PackedStringArray("path_follow")]
 position = Vector2(-24, -5.96046e-08)
 scale = Vector2(0.975378, 1)
-path_follow = NodePath("../../Path2D/PathFollow2")
+path_follow = NodePath("../../MillipedesPath/PathFollow2")
 
 [node name="Segment3" parent="Millipedes" index="3" node_paths=PackedStringArray("path_follow")]
 position = Vector2(-32, -5.96046e-08)
 scale = Vector2(0.975378, 1)
-path_follow = NodePath("../../Path2D/PathFollow3")
+path_follow = NodePath("../../MillipedesPath/PathFollow3")
 
 [node name="Segment4" parent="Millipedes" index="4" node_paths=PackedStringArray("path_follow")]
-path_follow = NodePath("../../Path2D/PathFollow4")
+path_follow = NodePath("../../MillipedesPath/PathFollow4")
 
 [node name="Segment5" parent="Millipedes" index="5" node_paths=PackedStringArray("path_follow")]
-path_follow = NodePath("../../Path2D/PathFollow5")
+path_follow = NodePath("../../MillipedesPath/PathFollow5")
 
 [node name="Segment6" parent="Millipedes" index="6" node_paths=PackedStringArray("path_follow")]
-path_follow = NodePath("../../Path2D/PathFollow6")
+path_follow = NodePath("../../MillipedesPath/PathFollow6")
 
 [node name="Segment7" parent="Millipedes" index="7" node_paths=PackedStringArray("path_follow")]
-path_follow = NodePath("../../Path2D/PathFollow7")
+path_follow = NodePath("../../MillipedesPath/PathFollow7")
 
 [node name="Segment8" parent="Millipedes" index="8" node_paths=PackedStringArray("path_follow")]
-path_follow = NodePath("../../Path2D/PathFollow8")
+path_follow = NodePath("../../MillipedesPath/PathFollow8")
 
 [node name="Segment9" parent="Millipedes" index="9" node_paths=PackedStringArray("path_follow")]
-path_follow = NodePath("../../Path2D/PathFollow9")
+path_follow = NodePath("../../MillipedesPath/PathFollow9")
 
 [node name="Segment10" parent="Millipedes" index="10" node_paths=PackedStringArray("path_follow")]
-path_follow = NodePath("../../Path2D/PathFollow10")
+path_follow = NodePath("../../MillipedesPath/PathFollow10")
 
 [node name="Segment11" parent="Millipedes" index="11" node_paths=PackedStringArray("path_follow")]
-path_follow = NodePath("../../Path2D/PathFollow11")
+path_follow = NodePath("../../MillipedesPath/PathFollow11")
 
 [node name="Segment12" parent="Millipedes" index="12" node_paths=PackedStringArray("follower", "path_follow")]
 follower = NodePath("../Segment13")
-path_follow = NodePath("../../Path2D/PathFollow12")
+path_follow = NodePath("../../MillipedesPath/PathFollow12")
 
 [node name="Segment13" parent="Millipedes" index="13" node_paths=PackedStringArray("follower", "path_follow")]
 follower = NodePath("../Segment14")
-path_follow = NodePath("../../Path2D/PathFollow13")
+path_follow = NodePath("../../MillipedesPath/PathFollow13")
 
 [node name="Segment14" parent="Millipedes" index="14" node_paths=PackedStringArray("follower", "path_follow")]
 follower = NodePath("../Segment15")
-path_follow = NodePath("../../Path2D/PathFollow14")
+path_follow = NodePath("../../MillipedesPath/PathFollow14")
 
 [node name="Segment15" parent="Millipedes" index="15" node_paths=PackedStringArray("follower", "path_follow")]
 follower = NodePath("../Segment16")
-path_follow = NodePath("../../Path2D/PathFollow15")
+path_follow = NodePath("../../MillipedesPath/PathFollow15")
 
 [node name="Segment16" parent="Millipedes" index="16" node_paths=PackedStringArray("follower", "path_follow")]
 follower = NodePath("../Segment17")
-path_follow = NodePath("../../Path2D/PathFollow16")
+path_follow = NodePath("../../MillipedesPath/PathFollow16")
 
 [node name="Segment17" parent="Millipedes" index="17" node_paths=PackedStringArray("follower", "path_follow")]
 follower = NodePath("../Segment18")
-path_follow = NodePath("../../Path2D/PathFollow17")
+path_follow = NodePath("../../MillipedesPath/PathFollow17")
 
 [node name="Segment18" parent="Millipedes" index="18" node_paths=PackedStringArray("follower", "path_follow")]
 follower = NodePath("../Segment19")
-path_follow = NodePath("../../Path2D/PathFollow18")
+path_follow = NodePath("../../MillipedesPath/PathFollow18")
 
 [node name="Segment19" parent="Millipedes" index="19" node_paths=PackedStringArray("follower", "path_follow")]
 follower = NodePath("../Segment20")
-path_follow = NodePath("../../Path2D/PathFollow19")
+path_follow = NodePath("../../MillipedesPath/PathFollow19")
 
 [node name="Segment20" parent="Millipedes" index="20" node_paths=PackedStringArray("path_follow")]
-path_follow = NodePath("../../Path2D/PathFollow20")
+path_follow = NodePath("../../MillipedesPath/PathFollow20")
 
 [editable path="level1_0/LevelInstantiator"]
 [editable path="Millipedes"]
