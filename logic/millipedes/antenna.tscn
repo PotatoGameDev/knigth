@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvd1h1iiiwbej"]
+[gd_scene load_steps=6 format=3 uid="uid://dvd1h1iiiwbej"]
 
 [ext_resource type="PackedScene" uid="uid://j3kkttry7sa1" path="res://logic/millipedes/antenna_segment.tscn" id="1_3n04v"]
 [ext_resource type="Script" uid="uid://g621ckcypxp5" path="res://logic/millipedes/antenna.gd" id="1_t6kd4"]
 
 [sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_3n04v"]
+enabled = false
 target_nodepath = NodePath("../Target")
 tip_nodepath = NodePath("Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Sprite2D")
 ccdik_data_chain_length = 7
@@ -65,17 +66,43 @@ joint_data/6/bone_index = 6
 joint_data/6/bone2d_node = NodePath("Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D")
 joint_data/6/rotate_from_joint = false
 joint_data/6/enable_constraint = true
-joint_data/6/constraint_angle_min = -90.0
-joint_data/6/constraint_angle_max = 90.0
+joint_data/6/constraint_angle_min = -45.0
+joint_data/6/constraint_angle_max = 45.0
 joint_data/6/constraint_angle_invert = true
 joint_data/6/constraint_in_localspace = true
 joint_data/6/editor_draw_gizmo = true
 
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_t6kd4"]
+target_nodepath = NodePath("../Target")
+fabrik_data_chain_length = 7
+joint_data/0/bone_index = 0
+joint_data/0/bone2d_node = NodePath("Bone2D")
+joint_data/1/bone_index = 1
+joint_data/1/bone2d_node = NodePath("Bone2D/Bone2D")
+joint_data/1/magnet_position = Vector2(0, 0)
+joint_data/2/bone_index = 2
+joint_data/2/bone2d_node = NodePath("Bone2D/Bone2D/Bone2D")
+joint_data/2/magnet_position = Vector2(0, 0)
+joint_data/3/bone_index = 3
+joint_data/3/bone2d_node = NodePath("Bone2D/Bone2D/Bone2D/Bone2D")
+joint_data/3/magnet_position = Vector2(0, 0)
+joint_data/4/bone_index = 4
+joint_data/4/bone2d_node = NodePath("Bone2D/Bone2D/Bone2D/Bone2D/Bone2D")
+joint_data/4/magnet_position = Vector2(0, 0)
+joint_data/5/bone_index = 5
+joint_data/5/bone2d_node = NodePath("Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D")
+joint_data/5/magnet_position = Vector2(0, 0)
+joint_data/6/bone_index = 6
+joint_data/6/bone2d_node = NodePath("Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D")
+joint_data/6/magnet_position = Vector2(0, 0)
+joint_data/6/use_target_rotation = false
+
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_t6kd4"]
 enabled = true
-strength = 0.412
-modification_count = 1
+strength = 0.788
+modification_count = 2
 modifications/0 = SubResource("SkeletonModification2DCCDIK_3n04v")
+modifications/1 = SubResource("SkeletonModification2DFABRIK_t6kd4")
 
 [node name="Antenna" type="Node2D"]
 script = ExtResource("1_t6kd4")
@@ -116,14 +143,14 @@ metadata/_local_pose_override_enabled_ = true
 position = Vector2(0, -10)
 rest = Transform2D(1, 0, 0, 1, 0, -10)
 auto_calculate_length_and_angle = false
-length = 12.0
+length = 11.0
 bone_angle = 270.0
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Sprite2D" parent="Skeleton2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D" index="0"]
 frame = 0
 
-[node name="Target" type="Node2D" parent="."]
-position = Vector2(0, -128)
+[node name="Target" type="Marker2D" parent="."]
+position = Vector2(0, -72)
 
 [editable path="Skeleton2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D"]
