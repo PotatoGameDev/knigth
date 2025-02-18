@@ -18,6 +18,9 @@ sync_to_physics = false
 script = ExtResource("2_6nyub")
 follower = NodePath("../Segment")
 
+[node name="Antenna2" parent="Head" instance=ExtResource("4_pwe2w")]
+position = Vector2(0, -18)
+
 [node name="Sprite2D" type="Sprite2D" parent="Head"]
 texture = ExtResource("2_03loo")
 region_enabled = true

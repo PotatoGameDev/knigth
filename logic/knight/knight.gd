@@ -86,16 +86,20 @@ func is_left() -> bool:
 func is_right() -> bool:
 	return direction == Global.RIGHT
 
-func get_floor() -> TileSet:
+func get_floor_friction() -> float:
 	if floor_sensor_left.is_colliding():
-		var tilemap = floor_sensor_left.get_collider()
-		if tilemap is TileMapLayer:
-			return tilemap.tile_set
+		var fl = floor_sensor_left.get_collider()
+		if fl is TileMapLayer:
+			return fl.tile_set.get_physics_layer_physics_material(0).friction
+		if fl is AnimatableBody2D: 
+			return fl.get_friction()
 	if floor_sensor_right.is_colliding():
-		var tilemap = floor_sensor_right.get_collider()
-		if tilemap is TileMapLayer:
-			return tilemap.tile_set
-	return null
+		var fl = floor_sensor_right.get_collider()
+		if fl is TileMapLayer:
+			return fl.tile_set.get_physics_layer_physics_material(0).friction
+		if fl is AnimatableBody2D: 
+			return fl.get_friction()
+	return 1.0
 
 @onready var running_state: RunningState =  $States/Running
 @onready var idle_state: IdleState = $States/Idle

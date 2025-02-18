@@ -20,10 +20,8 @@ func update(_ownr: Knight, _delta: float) -> void:
 	pass
 
 func physics_update(ownr: Knight, delta: float) -> void:
-	var floor_tileset = ownr.get_floor()
-	if floor_tileset != null:
-		var max_ground_friction = floor_tileset.get_physics_layer_physics_material(0).friction
-		ownr.velocity.x *= 1.0 - max_ground_friction
+	var floor_friction = ownr.get_floor_friction()
+	ownr.velocity.x *= 1.0 - floor_friction
 
 	ownr.move_and_slide()
 

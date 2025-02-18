@@ -523,8 +523,9 @@ scale = Vector2(0.975378, 1)
 curve = SubResource("Curve2D_fegvt")
 
 [node name="PathFollowHead" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(402.645, -130)
+position = Vector2(405.037, -125.61)
 rotation = 2.64267
+v_offset = -5.0
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollowHead"]
 remote_path = NodePath("../../../Millipedes/Head")
@@ -746,7 +747,7 @@ position = Vector2(0.999878, -1)
 scale = Vector2(0.975378, 1)
 path_follow = NodePath("../../MillipedesPath/PathFollowHead")
 
-[node name="Antenna" parent="Millipedes/Head" index="2" node_paths=PackedStringArray("ritter")]
+[node name="Antenna" parent="Millipedes/Head" index="3" node_paths=PackedStringArray("ritter")]
 ritter = NodePath("../../../Ritter")
 
 [node name="Segment" parent="Millipedes" index="1" node_paths=PackedStringArray("path_follow")]
@@ -822,6 +823,69 @@ path_follow = NodePath("../../MillipedesPath/PathFollow19")
 
 [node name="Segment20" parent="Millipedes" index="20" node_paths=PackedStringArray("path_follow")]
 path_follow = NodePath("../../MillipedesPath/PathFollow20")
+
+[node name="RemoteTransformHead" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1/BoneHead" index="0"]
+update_scale = false
+
+[node name="RemoteTransform1" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1" index="1"]
+update_scale = false
+
+[node name="RemoteTransform2" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2" index="1"]
+update_scale = false
+
+[node name="RemoteTransform3" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3" index="1"]
+update_scale = false
+
+[node name="RemoteTransform4" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4" index="1"]
+update_scale = false
+
+[node name="RemoteTransform5" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5" index="1"]
+update_scale = false
+
+[node name="RemoteTransform6" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6" index="1"]
+update_scale = false
+
+[node name="RemoteTransform7" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7" index="1"]
+update_scale = false
+
+[node name="RemoteTransform8" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8" index="1"]
+update_scale = false
+
+[node name="RemoteTransform9" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9" index="1"]
+update_scale = false
+
+[node name="RemoteTransform10" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10" index="1"]
+update_scale = false
+
+[node name="RemoteTransform11" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11" index="1"]
+update_scale = false
+
+[node name="RemoteTransform12" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12" index="1"]
+update_scale = false
+
+[node name="RemoteTransform13" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13" index="1"]
+update_scale = false
+
+[node name="RemoteTransform14" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14" index="1"]
+update_scale = false
+
+[node name="RemoteTransform15" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15" index="1"]
+update_scale = false
+
+[node name="RemoteTransform16" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16" index="1"]
+update_scale = false
+
+[node name="RemoteTransform17" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17" index="1"]
+update_scale = false
+
+[node name="RemoteTransform18" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18" index="1"]
+update_scale = false
+
+[node name="RemoteTransform19" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19" index="1"]
+update_scale = false
+
+[node name="RemoteTransform20" parent="Millipedes/Skeleton2D/Bone2D20" index="1"]
+update_scale = false
 
 [editable path="level1_0/LevelInstantiator"]
 [editable path="Millipedes"]

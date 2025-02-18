@@ -9,6 +9,7 @@ extends AnimatableBody2D
 
 var direction := 1.0
 var distance_to_follower : float
+var friction := 0.3
 
 func _ready() -> void:
 	animation.play("walking")
@@ -35,3 +36,6 @@ func update_progress(progress: float) -> void:
 		path_follow.progress = progress
 		if follower:
 			follower.update_progress(path_follow.progress - distance_to_follower)
+
+func get_friction() -> float:
+	return friction

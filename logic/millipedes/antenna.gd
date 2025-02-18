@@ -6,23 +6,26 @@ extends Node2D
 
 var distance_to_target : float
 
+var target_destination : Vector2
+
 func _ready():
 	# Distance to target from the target's parent center
 	# Target should be initially set up on the farthest segment of the antenna
 	distance_to_target = target.position.length()
+	target_destination = target.position
 
 func _process(delta):
-	if not ritter:
-		return
+	if not ritter or global_position.distance_to(ritter.global_position) > distance_to_target * 2:
+		target.position = target.position.lerp(target_destination, 0.05)
+		if target.position.distance_to(target_destination) < 1.0:
+			var angle = randf_range(-PI, PI)
+			var radius = distance_to_target
+			target_destination = position + Vector2(radius * cos(angle), radius * sin(angle))
+	else:
+		var distance_to_ritter = global_position.distance_to(ritter.global_position)
+		var direction_to_ritter = global_position.direction_to(ritter.global_position)
 
-	var distance_to_ritter = global_position.distance_to(ritter.global_position)
-	var direction_to_ritter = global_position.direction_to(ritter.global_position)
-
-	target.global_position = global_position + direction_to_ritter * min(
-		distance_to_ritter, distance_to_target
-		)
-	queue_redraw()
-
-func _draw() -> void:
-	draw_line(Vector2.ZERO, target.position, Color.RED)
-
+		var new_target_pos = global_position + direction_to_ritter * min(
+			distance_to_ritter, distance_to_target
+			)
+		target.global_position = target.global_position.lerp(new_target_pos, 0.5)

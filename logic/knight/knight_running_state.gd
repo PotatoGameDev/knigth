@@ -22,10 +22,8 @@ func enter(ownr: Knight, _params: Dictionary = {}) -> void:
 func physics_update(ownr: Knight, delta: float) -> void:
 	var new_velocity_x = ownr.velocity.x + ownr.movement * ownr.acceleration * delta
 
-	var floor_tileset = ownr.get_floor()
-	if floor_tileset != null:
-		var max_ground_friction = floor_tileset.get_physics_layer_physics_material(0).friction
-		new_velocity_x *= 1.0 - (max_ground_friction * dyn_friction_factor)
+	var floor_friction = ownr.get_floor_friction()
+	new_velocity_x *= 1.0 - (floor_friction * dyn_friction_factor)
 
 	if abs(new_velocity_x) <= ownr.max_speed:
 		ownr.velocity.x = new_velocity_x

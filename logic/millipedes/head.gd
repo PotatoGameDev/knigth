@@ -5,6 +5,7 @@ extends AnimatableBody2D
 @export var follower : Node2D = null
 @export var path_follow : PathFollow2D = null
 @export var speed := 100.0
+@export var friction := 0.3
 
 var direction := Global.RIGHT
 var distance_to_follower : float
@@ -33,3 +34,6 @@ func _process(delta):
 	animation.flip_h = direction == Global.LEFT
 	if follower:
 		follower.direction = direction
+
+func get_friction() -> float:
+	return friction
