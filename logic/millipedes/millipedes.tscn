@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ksxw1oepr2oa"]
+[gd_scene load_steps=8 format=3 uid="uid://ksxw1oepr2oa"]
 
 [ext_resource type="Script" uid="uid://tvu3a53u5pr2" path="res://logic/millipedes/millipedes.gd" id="1_8b0bt"]
 [ext_resource type="Texture2D" uid="uid://drv5lyxoo86kd" path="res://assets/sprites/millipede.png" id="2_03loo"]
@@ -9,6 +9,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkmq5"]
 radius = 26.0
 
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_pwe2w"]
+
 [node name="Millipedes" type="Node2D"]
 script = ExtResource("1_8b0bt")
 
@@ -17,9 +19,6 @@ collision_layer = 2
 sync_to_physics = false
 script = ExtResource("2_6nyub")
 follower = NodePath("../Segment")
-
-[node name="Antenna2" parent="Head" instance=ExtResource("4_pwe2w")]
-position = Vector2(0, -18)
 
 [node name="Sprite2D" type="Sprite2D" parent="Head"]
 texture = ExtResource("2_03loo")
@@ -30,7 +29,9 @@ region_rect = Rect2(0, 128, 64, 64)
 shape = SubResource("CircleShape2D_tkmq5")
 
 [node name="Antenna" parent="Head" instance=ExtResource("4_pwe2w")]
-position = Vector2(11, -18)
+
+[node name="Antenna2" parent="Head" instance=ExtResource("4_pwe2w")]
+position = Vector2(18, 0)
 
 [node name="Segment" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
 position = Vector2(-16, 0)
@@ -129,6 +130,7 @@ position = Vector2(-168, 0)
 animation_delay = 19
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
+modification_stack = SubResource("SkeletonModificationStack2D_pwe2w")
 
 [node name="Bone2D20" type="Bone2D" parent="Skeleton2D"]
 position = Vector2(-168, 0)
@@ -212,6 +214,9 @@ rest = Transform2D(1, 0, 0, 1, 8, 0)
 
 [node name="BoneHead" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1"]
 rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
 
 [node name="RemoteTransformHead" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1/BoneHead"]
 remote_path = NodePath("..")

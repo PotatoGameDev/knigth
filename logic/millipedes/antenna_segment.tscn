@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://i10ugj8umpw2" path="res://assets/sprites/millipedes-antennae.png" id="1_chfe0"]
 
 [node name="Bone2D" type="Bone2D"]
+auto_calculate_length_and_angle = false
+length = 10.0
+bone_angle = -90.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -6)

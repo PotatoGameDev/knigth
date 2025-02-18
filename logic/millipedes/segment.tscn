@@ -78,7 +78,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walking",
-"speed": 7.0
+"speed": 15.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xthsj"]
