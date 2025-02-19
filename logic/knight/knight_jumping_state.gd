@@ -47,6 +47,7 @@ func enter(ownr, params: Dictionary = {}) -> void:
 func update(_ownr: Knight, _delta: float) -> void:
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		options.calculate_direction = true
+		forced_direction = 0
 
 func physics_update(ownr: Knight, delta: float) -> void:
 	ownr.jump_slip(delta)
@@ -115,3 +116,4 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 
 func exit(_ownr: Knight) -> void:
 	options.calculate_direction = true
+	forced_direction = 0
