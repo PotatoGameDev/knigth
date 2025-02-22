@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvd1h1iiiwbej"]
+[gd_scene load_steps=6 format=3 uid="uid://dvd1h1iiiwbej"]
 
 [ext_resource type="PackedScene" uid="uid://j3kkttry7sa1" path="res://logic/millipedes/antenna_segment.tscn" id="1_3n04v"]
 [ext_resource type="Script" uid="uid://g621ckcypxp5" path="res://logic/millipedes/antenna.gd" id="1_t6kd4"]
@@ -36,6 +36,8 @@ strength = 0.668
 modification_count = 1
 modifications/0 = SubResource("SkeletonModification2DFABRIK_t6kd4")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_t6kd4"]
+
 [node name="Antenna" type="Node2D"]
 script = ExtResource("1_t6kd4")
 
@@ -47,32 +49,32 @@ rest = Transform2D(1, 0, 0, 1, 0, 0)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone2D" parent="Skeleton2D/Bone2D" instance=ExtResource("1_3n04v")]
-position = Vector2(-5.56716e-07, -10)
+position = Vector2(-5.62422e-07, -10)
 rest = Transform2D(1, 0, 0, 1, 0, -10)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone2D" parent="Skeleton2D/Bone2D/Bone2D" instance=ExtResource("1_3n04v")]
-position = Vector2(-5.62972e-07, -10)
+position = Vector2(-5.64156e-07, -10)
 rest = Transform2D(1, 0, 0, 1, 0, -10)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone2D" parent="Skeleton2D/Bone2D/Bone2D/Bone2D" instance=ExtResource("1_3n04v")]
-position = Vector2(-5.68874e-07, -10)
+position = Vector2(-5.6626e-07, -10)
 rest = Transform2D(1, 0, 0, 1, 0, -10)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone2D" parent="Skeleton2D/Bone2D/Bone2D/Bone2D/Bone2D" instance=ExtResource("1_3n04v")]
-position = Vector2(-5.71588e-07, -10)
+position = Vector2(-5.67705e-07, -10)
 rest = Transform2D(1, 0, 0, 1, 0, -10)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone2D" parent="Skeleton2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D" instance=ExtResource("1_3n04v")]
-position = Vector2(-5.70236e-07, -10)
+position = Vector2(-5.68074e-07, -10)
 rest = Transform2D(1, 0, 0, 1, 0, -10)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone2D" parent="Skeleton2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D" instance=ExtResource("1_3n04v")]
-position = Vector2(-5.66306e-07, -10)
+position = Vector2(-5.67719e-07, -10)
 rest = Transform2D(1, 0, 0, 1, 0, -10)
 length = 11.0
 bone_angle = 270.0
@@ -81,7 +83,17 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Sprite2D" parent="Skeleton2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D" index="0"]
 frame = 0
 
+[node name="Area2D" type="Area2D" parent="Skeleton2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D"]
+position = Vector2(9.75594e-07, -12)
+collision_layer = 64
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Area2D"]
+shape = SubResource("CircleShape2D_t6kd4")
+
 [node name="Target" type="Marker2D" parent="."]
 position = Vector2(0, -72)
+
+[connection signal="body_entered" from="Skeleton2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Area2D" to="." method="_on_area_2d_body_entered"]
 
 [editable path="Skeleton2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D/Bone2D"]

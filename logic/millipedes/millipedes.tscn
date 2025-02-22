@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ksxw1oepr2oa"]
+[gd_scene load_steps=9 format=3 uid="uid://ksxw1oepr2oa"]
 
 [ext_resource type="Script" uid="uid://tvu3a53u5pr2" path="res://logic/millipedes/millipedes.gd" id="1_8b0bt"]
 [ext_resource type="Texture2D" uid="uid://drv5lyxoo86kd" path="res://assets/sprites/millipede.png" id="2_03loo"]
@@ -11,14 +11,25 @@ radius = 26.0
 
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_pwe2w"]
 
-[node name="Millipedes" type="Node2D"]
-script = ExtResource("1_8b0bt")
+[sub_resource type="Curve2D" id="Curve2D_2byf2"]
+_data = {
+"points": PackedVector2Array(-36.5579, -3.84173, 36.5579, 3.84173, 338.054, -31.2053, -74.4525, -1.16517, 74.4525, 1.16517, 832.222, -26.8391, -37.6922, 21.6469, 37.6922, -21.6469, 1153.12, -41.0292, 6.69597, 45.4896, -6.69597, -45.4896, 1185.18, -113.52, 32.5075, -11.4492, -32.5075, 11.4492, 1093.93, -157.182, 12.959, -8.43148, -12.959, 8.43148, 524.925, -158.273, 91.5405, -33.5481, -91.5405, 33.5481, 452.132, -156.09, 61.2814, 1.42887, -61.2814, -1.42887, 342.431, -129.893, 31.3705, -30.9857, -31.3705, 30.9857, 291.169, -85.1402, 0, 0, 0, 0, 279.891, -49.1193, -32.013, -3.87868, 32.013, 3.87868, 305.247, -32.2968, 0, 0, 0, 0, 338.054, -31.2053)
+}
+point_count = 12
 
-[node name="Head" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("follower")]
+[node name="Millipedes" type="Node2D" node_paths=PackedStringArray("segments")]
+script = ExtResource("1_8b0bt")
+segments = [NodePath("Head"), NodePath("Segment"), NodePath("Segment2"), NodePath("Segment3"), NodePath("Segment4"), NodePath("Segment5"), NodePath("Segment6"), NodePath("Segment7"), NodePath("Segment8"), NodePath("Segment9"), NodePath("Segment10"), NodePath("Segment11"), NodePath("Segment12"), NodePath("Segment13"), NodePath("Segment14"), NodePath("Segment15"), NodePath("Segment16"), NodePath("Segment17"), NodePath("Segment18"), NodePath("Segment19"), NodePath("Segment20")]
+
+[node name="Head" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone")]
 collision_layer = 2
 sync_to_physics = false
 script = ExtResource("2_6nyub")
-follower = NodePath("../Segment")
+path_follow = NodePath("../MillipedesPath/PathFollowHead")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1/BoneHead")
+
+[node name="Antenna" parent="Head" instance=ExtResource("4_pwe2w")]
+position = Vector2(0, -22)
 
 [node name="Sprite2D" type="Sprite2D" parent="Head"]
 texture = ExtResource("2_03loo")
@@ -28,106 +39,130 @@ region_rect = Rect2(0, 128, 64, 64)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
 shape = SubResource("CircleShape2D_tkmq5")
 
-[node name="Antenna" parent="Head" instance=ExtResource("4_pwe2w")]
-
 [node name="Antenna2" parent="Head" instance=ExtResource("4_pwe2w")]
-position = Vector2(18, 0)
+position = Vector2(12, -18)
 
-[node name="Segment" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Head"]
+update_scale = false
+
+[node name="Segment" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-16, 0)
-follower = NodePath("../Segment2")
+path_follow = NodePath("../MillipedesPath/PathFollow1")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1")
 
-[node name="Segment2" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
+[node name="Segment2" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-24, 0)
 animation_delay = 1
-follower = NodePath("../Segment3")
+path_follow = NodePath("../MillipedesPath/PathFollow2")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2")
 
-[node name="Segment3" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
+[node name="Segment3" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-32, 0)
 animation_delay = 2
-follower = NodePath("../Segment4")
+path_follow = NodePath("../MillipedesPath/PathFollow3")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3")
 
-[node name="Segment4" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
+[node name="Segment4" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-40, 0)
 animation_delay = 3
-follower = NodePath("../Segment5")
+path_follow = NodePath("../MillipedesPath/PathFollow4")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4")
 
-[node name="Segment5" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
+[node name="Segment5" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-48, 0)
 animation_delay = 4
-follower = NodePath("../Segment6")
+path_follow = NodePath("../MillipedesPath/PathFollow5")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5")
 
-[node name="Segment6" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
+[node name="Segment6" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-56, 0)
 animation_delay = 5
-follower = NodePath("../Segment7")
+path_follow = NodePath("../MillipedesPath/PathFollow6")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6")
 
-[node name="Segment7" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
+[node name="Segment7" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-64, 0)
 animation_delay = 6
-follower = NodePath("../Segment8")
+path_follow = NodePath("../MillipedesPath/PathFollow7")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7")
 
-[node name="Segment8" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
+[node name="Segment8" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-72, 0)
 animation_delay = 7
-follower = NodePath("../Segment9")
+path_follow = NodePath("../MillipedesPath/PathFollow8")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8")
 
-[node name="Segment9" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
+[node name="Segment9" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-80, 0)
 animation_delay = 8
-follower = NodePath("../Segment10")
+path_follow = NodePath("../MillipedesPath/PathFollow9")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9")
 
-[node name="Segment10" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
+[node name="Segment10" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-88, 0)
 animation_delay = 9
-follower = NodePath("../Segment11")
+path_follow = NodePath("../MillipedesPath/PathFollow10")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10")
 
-[node name="Segment11" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
+[node name="Segment11" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-96, 0)
 animation_delay = 10
-follower = NodePath("../Segment12")
+path_follow = NodePath("../MillipedesPath/PathFollow11")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11")
 
-[node name="Segment12" parent="." instance=ExtResource("3_03loo")]
+[node name="Segment12" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-104, 0)
 animation_delay = 11
+path_follow = NodePath("../MillipedesPath/PathFollow12")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12")
 
-[node name="Segment13" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
+[node name="Segment13" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-112, 0)
 animation_delay = 12
-follower = NodePath("../Segment7")
+path_follow = NodePath("../MillipedesPath/PathFollow13")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13")
 
-[node name="Segment14" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
+[node name="Segment14" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-120, 0)
 animation_delay = 13
-follower = NodePath("../Segment8")
+path_follow = NodePath("../MillipedesPath/PathFollow14")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14")
 
-[node name="Segment15" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
+[node name="Segment15" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-128, 0)
 animation_delay = 14
-follower = NodePath("../Segment9")
+path_follow = NodePath("../MillipedesPath/PathFollow15")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15")
 
-[node name="Segment16" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
+[node name="Segment16" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-136, 0)
 animation_delay = 15
-follower = NodePath("../Segment10")
+path_follow = NodePath("../MillipedesPath/PathFollow16")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16")
 
-[node name="Segment17" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
+[node name="Segment17" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-144, 0)
 animation_delay = 16
-follower = NodePath("../Segment11")
+path_follow = NodePath("../MillipedesPath/PathFollow17")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17")
 
-[node name="Segment18" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_03loo")]
+[node name="Segment18" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-152, 0)
 animation_delay = 17
-follower = NodePath("../Segment12")
+path_follow = NodePath("../MillipedesPath/PathFollow18")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18")
 
-[node name="Segment19" parent="." instance=ExtResource("3_03loo")]
+[node name="Segment19" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-160, 0)
 animation_delay = 18
+path_follow = NodePath("../MillipedesPath/PathFollow19")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19")
 
-[node name="Segment20" parent="." instance=ExtResource("3_03loo")]
+[node name="Segment20" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(-168, 0)
 animation_delay = 19
+path_follow = NodePath("../MillipedesPath/PathFollow20")
+controlling_bone = NodePath("../Skeleton2D/Bone2D20")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
 modification_stack = SubResource("SkeletonModificationStack2D_pwe2w")
@@ -213,70 +248,355 @@ position = Vector2(8, 0)
 rest = Transform2D(1, 0, 0, 1, 8, 0)
 
 [node name="BoneHead" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1"]
-rest = Transform2D(1, 0, 0, 1, 0, 0)
+position = Vector2(16, 0)
+rest = Transform2D(1, 0, 0, 1, 16, 0)
 auto_calculate_length_and_angle = false
-length = 16.0
+length = 1.0
 bone_angle = 0.0
 
 [node name="RemoteTransformHead" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1/BoneHead"]
-remote_path = NodePath("..")
+position = Vector2(0, -4)
+remote_path = NodePath("../../../../../../../../../../../../../../../../../../../../../../../Head")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform1" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../../../../../../../../../../../../../../../../../../Segment")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform2" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../../../../../../../../../../../../../../../../../Segment2")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform3" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../../../../../../../../../../../../../../../../Segment3")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform4" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../../../../../../../../../../../../../../../Segment4")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform5" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../../../../../../../../../../../../../../Segment5")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform6" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../../../../../../../../../../../../../Segment6")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform7" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../../../../../../../../../../../../Segment7")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform8" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../../../../../../../../../../../Segment8")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform9" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../../../../../../../../../../Segment9")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform10" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../../../../../../../../../Segment10")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform11" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../../../../../../../../Segment11")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform12" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../../../../../../../Segment12")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform13" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../../../../../../Segment13")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform14" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../../../../../Segment14")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform15" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../../../../Segment15")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform16" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../../../Segment16")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform17" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../../Segment17")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform18" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../../Segment18")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform19" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../../Segment19")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [node name="RemoteTransform20" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../Segment20")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="MillipedesPath" type="Path2D" parent="."]
+position = Vector2(20, 1)
+scale = Vector2(0.975378, 0.916136)
+curve = SubResource("Curve2D_2byf2")
+
+[node name="PathFollowHead" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(347.055, -40.3145)
+rotation = 0.104702
+h_offset = 8.0
+v_offset = -10.0
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollowHead"]
+remote_path = NodePath("../../../Head")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow1" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow1"]
+remote_path = NodePath("../../../Segment")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow2" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow2"]
+remote_path = NodePath("../../../Segment2")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow3" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow3"]
+remote_path = NodePath("../../../Segment3")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow4" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow4"]
+remote_path = NodePath("../../../Segment4")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow5" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow5"]
+remote_path = NodePath("../../../Segment5")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow6" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow6"]
+remote_path = NodePath("../../../Segment6")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow7" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow7"]
+remote_path = NodePath("../../../Segment7")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow8" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow8"]
+remote_path = NodePath("../../../Segment8")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow9" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow9"]
+remote_path = NodePath("../../../Segment9")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow10" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow10"]
+remote_path = NodePath("../../../Segment10")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow11" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow11"]
+remote_path = NodePath("../../../Segment11")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow12" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow12"]
+remote_path = NodePath("../../../Segment12")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow13" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow13"]
+remote_path = NodePath("../../../Segment13")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow14" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow14"]
+remote_path = NodePath("../../../Segment14")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow15" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow15"]
+remote_path = NodePath("../../../Segment15")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow16" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow16"]
+remote_path = NodePath("../../../Segment16")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow17" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow17"]
+remote_path = NodePath("../../../Segment17")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow18" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow18"]
+remote_path = NodePath("../../../Segment18")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow19" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow19"]
+remote_path = NodePath("../../../Segment19")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow20" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(338.054, -31.2053)
+rotation = 0.104702
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow20"]
+remote_path = NodePath("../../../Segment20")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[connection signal="ritter_detected" from="Head/Antenna" to="." method="_on_antenna_ritter_detected"]
+[connection signal="ritter_detected" from="Head/Antenna2" to="." method="_on_antenna_ritter_detected"]

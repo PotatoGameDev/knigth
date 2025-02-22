@@ -2,38 +2,16 @@
 extends AnimatableBody2D
 
 @onready var animation: Sprite2D = $Sprite2D
-@export var follower : Node2D = null
 @export var path_follow : PathFollow2D = null
-@export var speed := 100.0
+@export var controlling_bone : Bone2D = null
 @export var friction := 0.3
 
-var direction := Global.RIGHT
-var distance_to_follower : float
+@onready var remote_transform_for_controlling_bone: RemoteTransform2D = $RemoteTransform2D
 
 func _ready() -> void:
-	if follower:
-		distance_to_follower = follower.global_position.distance_to(global_position)
-
-	if path_follow:
-		path_follow.get_children()[0].update_position = true
-		path_follow.get_children()[0].update_rotation = true
-		path_follow.get_children()[0].remote_path = get_path()
-
-func _process(delta):
-	if path_follow:
-		if path_follow.progress_ratio >= 1.0 and direction == Global.RIGHT:
-			direction = Global.LEFT
-		elif path_follow.progress_ratio <= 0.0 and direction == Global.LEFT:
-			direction = Global.RIGHT
-
-		path_follow.progress += delta * speed * direction
-
-		if follower:
-			follower.update_progress(path_follow.progress - distance_to_follower)
-
-	animation.flip_h = direction == Global.LEFT
-	if follower:
-		follower.direction = direction
+	remote_transform_for_controlling_bone.remote_path = controlling_bone.get_path()
 
 func get_friction() -> float:
 	return friction
+
+

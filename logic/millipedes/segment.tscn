@@ -99,3 +99,8 @@ autoplay = "walking"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_xthsj")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+update_position = false
+update_rotation = false
+update_scale = false

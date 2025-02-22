@@ -1,12 +1,12 @@
 extends Node2D
 
 @export var ritter : Knight
-
 @onready var target: Node2D = $Target
 
 var distance_to_target : float
-
 var target_destination : Vector2
+
+signal ritter_detected
 
 func _ready():
 	# Distance to target from the target's parent center
@@ -29,3 +29,10 @@ func _process(delta):
 			distance_to_ritter, distance_to_target
 			)
 		target.global_position = target.global_position.lerp(new_target_pos, 0.5)
+
+func _on_area_2d_body_entered(body:Node2D):
+	if body is Knight:
+		ritter = body
+		ritter_detected.emit()
+
+
