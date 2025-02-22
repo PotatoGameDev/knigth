@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ksxw1oepr2oa"]
+[gd_scene load_steps=10 format=3 uid="uid://ksxw1oepr2oa"]
 
 [ext_resource type="Script" uid="uid://tvu3a53u5pr2" path="res://logic/millipedes/millipedes.gd" id="1_8b0bt"]
 [ext_resource type="Texture2D" uid="uid://drv5lyxoo86kd" path="res://assets/sprites/millipede.png" id="2_03loo"]
@@ -9,11 +9,63 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkmq5"]
 radius = 26.0
 
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_pwe2w"]
+target_nodepath = NodePath("../AttackTarget")
+fabrik_data_chain_length = 15
+joint_data/0/bone_index = 6
+joint_data/0/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14")
+joint_data/1/bone_index = 7
+joint_data/1/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13")
+joint_data/1/magnet_position = Vector2(0, 0)
+joint_data/2/bone_index = 8
+joint_data/2/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12")
+joint_data/2/magnet_position = Vector2(0, 0)
+joint_data/3/bone_index = 9
+joint_data/3/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11")
+joint_data/3/magnet_position = Vector2(0, 0)
+joint_data/4/bone_index = 10
+joint_data/4/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10")
+joint_data/4/magnet_position = Vector2(0, 0)
+joint_data/5/bone_index = 11
+joint_data/5/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9")
+joint_data/5/magnet_position = Vector2(0, 0)
+joint_data/6/bone_index = 12
+joint_data/6/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8")
+joint_data/6/magnet_position = Vector2(0, 0)
+joint_data/7/bone_index = 13
+joint_data/7/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7")
+joint_data/7/magnet_position = Vector2(0, 0)
+joint_data/8/bone_index = 14
+joint_data/8/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6")
+joint_data/8/magnet_position = Vector2(0, 0)
+joint_data/9/bone_index = 15
+joint_data/9/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5")
+joint_data/9/magnet_position = Vector2(0, 0)
+joint_data/10/bone_index = 16
+joint_data/10/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4")
+joint_data/10/magnet_position = Vector2(0, 0)
+joint_data/11/bone_index = 17
+joint_data/11/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3")
+joint_data/11/magnet_position = Vector2(0, 0)
+joint_data/12/bone_index = 18
+joint_data/12/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2")
+joint_data/12/magnet_position = Vector2(0, 0)
+joint_data/13/bone_index = 19
+joint_data/13/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1")
+joint_data/13/magnet_position = Vector2(0, 0)
+joint_data/14/bone_index = 20
+joint_data/14/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1/BoneHead")
+joint_data/14/magnet_position = Vector2(0, 0)
+joint_data/14/use_target_rotation = false
+
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_pwe2w"]
+strength = 0.7
+modification_count = 1
+modifications/0 = SubResource("SkeletonModification2DFABRIK_pwe2w")
 
 [sub_resource type="Curve2D" id="Curve2D_2byf2"]
 _data = {
-"points": PackedVector2Array(-36.5579, -3.84173, 36.5579, 3.84173, 338.054, -31.2053, -74.4525, -1.16517, 74.4525, 1.16517, 832.222, -26.8391, -37.6922, 21.6469, 37.6922, -21.6469, 1153.12, -41.0292, 6.69597, 45.4896, -6.69597, -45.4896, 1185.18, -113.52, 32.5075, -11.4492, -32.5075, 11.4492, 1093.93, -157.182, 12.959, -8.43148, -12.959, 8.43148, 524.925, -158.273, 91.5405, -33.5481, -91.5405, 33.5481, 452.132, -156.09, 61.2814, 1.42887, -61.2814, -1.42887, 342.431, -129.893, 31.3705, -30.9857, -31.3705, 30.9857, 291.169, -85.1402, 0, 0, 0, 0, 279.891, -49.1193, -32.013, -3.87868, 32.013, 3.87868, 305.247, -32.2968, 0, 0, 0, 0, 338.054, -31.2053)
+"points": PackedVector2Array(-36.5579, -3.84173, 36.5579, 3.84173, 343.457, -16.3731, -74.4525, -1.16517, 74.4525, 1.16517, 833.523, -12.007, -37.6922, 21.6469, 37.6922, -21.6469, 1157.5, -16.3731, 6.69597, 45.4896, -6.69597, -45.4896, 1185.18, -113.52, 32.5075, -11.4492, -32.5075, 11.4492, 1141.1, -199.752, 65.7235, 6.09693, -65.7235, -6.09693, 571.061, -191.02, 100.638, -10.3026, -100.638, 10.3026, 444.956, -184.47, 65.8301, -15.0367, -65.8301, 15.0367, 352.684, -172.463, 31.3705, -30.9857, -31.3705, 30.9857, 269.639, -113.52, 0, 0, 0, 0, 279.891, -49.1193, -28.3741, -13.5643, 28.3741, 13.5643, 305.247, -32.2968, 0, 0, 0, 0, 343.457, -17.4647)
 }
 point_count = 12
 
@@ -387,7 +439,7 @@ scale = Vector2(0.975378, 0.916136)
 curve = SubResource("Curve2D_2byf2")
 
 [node name="PathFollowHead" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(347.055, -40.3145)
+position = Vector2(352.458, -25.4823)
 rotation = 0.104702
 h_offset = 8.0
 v_offset = -10.0
@@ -399,7 +451,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow1" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow1"]
@@ -409,7 +461,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow2" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow2"]
@@ -419,7 +471,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow3" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow3"]
@@ -429,7 +481,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow4" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow4"]
@@ -439,7 +491,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow5" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow5"]
@@ -449,7 +501,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow6" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow6"]
@@ -459,7 +511,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow7" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow7"]
@@ -469,7 +521,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow8" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow8"]
@@ -479,7 +531,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow9" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow9"]
@@ -489,7 +541,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow10" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow10"]
@@ -499,7 +551,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow11" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow11"]
@@ -509,7 +561,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow12" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow12"]
@@ -519,7 +571,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow13" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow13"]
@@ -529,7 +581,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow14" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow14"]
@@ -539,7 +591,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow15" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow15"]
@@ -549,7 +601,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow16" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow16"]
@@ -559,7 +611,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow17" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow17"]
@@ -569,7 +621,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow18" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow18"]
@@ -579,7 +631,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow19" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow19"]
@@ -589,7 +641,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PathFollow20" type="PathFollow2D" parent="MillipedesPath"]
-position = Vector2(338.054, -31.2053)
+position = Vector2(343.457, -16.3731)
 rotation = 0.104702
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow20"]
@@ -597,6 +649,8 @@ remote_path = NodePath("../../../Segment20")
 update_position = false
 update_rotation = false
 update_scale = false
+
+[node name="AttackTarget" type="Node2D" parent="."]
 
 [connection signal="ritter_detected" from="Head/Antenna" to="." method="_on_antenna_ritter_detected"]
 [connection signal="ritter_detected" from="Head/Antenna2" to="." method="_on_antenna_ritter_detected"]

@@ -511,6 +511,7 @@ position = Vector2(2068, -4)
 [node name="LevelInstantiator" parent="level1_0" instance=ExtResource("17_gj2wd")]
 position = Vector2(785, 708)
 
-[node name="Millipedes" parent="." instance=ExtResource("16_kpjel")]
+[node name="Millipedes" parent="." node_paths=PackedStringArray("ritter") instance=ExtResource("16_kpjel")]
+ritter = NodePath("../Ritter")
 
 [editable path="level1_0/LevelInstantiator"]

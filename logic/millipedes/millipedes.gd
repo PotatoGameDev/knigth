@@ -6,19 +6,23 @@ class_name Millipedes
 @export var speed := 100.0
 
 @onready var skeleton: Skeleton2D = $Skeleton2D
+@onready var attack_target: Node2D = $AttackTarget
+
+@export var ritter: Knight = null
+
+var follow_ritter := false
 
 func _on_antenna_ritter_detected():
-	pass
+	follow_ritter = true
+	attack_mode()
 
 var direction := Global.RIGHT
 var head_index := 0
 
 func _ready() -> void:
-	head_index = 15
+	follow_mode()
 
-	stuff()
-
-func stuff():
+func reset(fabrik: bool):
 	for i in range(0, segments.size()):
 		var segment = segments[i]
 		segment.remote_transform_for_controlling_bone.update_position = head_index == i
@@ -42,6 +46,8 @@ func stuff():
 		var bone = skeleton.get_bone(i)
 		bone.apply_rest()
 
+	skeleton.get_modification_stack().enabled = fabrik
+
 func _process(delta):
 	var current_progress = 0.0
 
@@ -62,10 +68,13 @@ func _process(delta):
 	elif Input.is_key_pressed(KEY_6):
 		follow_mode()
 
+	if follow_ritter:
+		attack_target.global_position = ritter.global_position
+
 func attack_mode() -> void:
 	head_index = 15
-	stuff()
+	reset(true)
 
 func follow_mode() -> void:
 	head_index = 0
-	stuff()
+	reset(false)
