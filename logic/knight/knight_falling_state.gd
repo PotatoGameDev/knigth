@@ -57,7 +57,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 
 	ownr.move_and_slide()
 
-	if ownr.is_on_floor():
+	if ownr.is_touching_floor():
 		var collision = ownr.get_last_slide_collision()
 		if collision:
 			var enemy = collision.get_collider()
@@ -71,7 +71,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		ownr.change_state(ownr.stomping_state)
 		return
 
-	if ownr.is_on_floor():
+	if ownr.is_touching_floor():
 		if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 			ownr.change_state(ownr.running_state)
 			return
@@ -86,8 +86,6 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		else:
 			if not Input.is_action_pressed("jump"):
 				ownr.cling_blocker = false
-
-		ownr.velocity.y += Global.gravity * delta
 
 	ownr.coyote_timer -= delta
 

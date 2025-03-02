@@ -29,7 +29,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	if ownr.jump_stamina_left > ownr.max_stamina:
 		ownr.jump_stamina_left = ownr.max_stamina
 
-	if !ownr.is_on_floor():
+	if !ownr.is_touching_floor():
 		ownr.change_state(ownr.falling_state)
 		return
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):

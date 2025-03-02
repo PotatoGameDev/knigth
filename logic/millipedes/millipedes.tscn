@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cd42717mtba07" path="res://logic/millipedes/segment.tscn" id="3_03loo"]
 [ext_resource type="PackedScene" uid="uid://dvd1h1iiiwbej" path="res://logic/millipedes/antenna.tscn" id="4_pwe2w"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tkmq5"]
-radius = 26.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pwe2w"]
+height = 50.0
 
 [sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_pwe2w"]
 target_nodepath = NodePath("../AttackTarget")
@@ -69,7 +69,8 @@ _data = {
 }
 point_count = 12
 
-[node name="Millipedes" type="Node2D" node_paths=PackedStringArray("segments")]
+[node name="Millipedes" type="AnimatableBody2D" node_paths=PackedStringArray("segments")]
+collision_layer = 2
 script = ExtResource("1_8b0bt")
 segments = [NodePath("Head"), NodePath("Segment"), NodePath("Segment2"), NodePath("Segment3"), NodePath("Segment4"), NodePath("Segment5"), NodePath("Segment6"), NodePath("Segment7"), NodePath("Segment8"), NodePath("Segment9"), NodePath("Segment10"), NodePath("Segment11"), NodePath("Segment12"), NodePath("Segment13"), NodePath("Segment14"), NodePath("Segment15"), NodePath("Segment16"), NodePath("Segment17"), NodePath("Segment18"), NodePath("Segment19"), NodePath("Segment20")]
 
@@ -89,7 +90,7 @@ region_enabled = true
 region_rect = Rect2(0, 128, 64, 64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
-shape = SubResource("CircleShape2D_tkmq5")
+shape = SubResource("CapsuleShape2D_pwe2w")
 
 [node name="Antenna2" parent="Head" instance=ExtResource("4_pwe2w")]
 position = Vector2(12, -18)

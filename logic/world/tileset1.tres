@@ -1,6 +1,9 @@
-[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://c21f2onevmyrp"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://c21f2onevmyrp"]
 
 [ext_resource type="Texture2D" uid="uid://47gkon2vpqqt" path="res://assets/sprites/main-tilemap.png" id="1_n0axf"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_n0axf"]
+tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 1, 131072, 0, 1, 196608, 0, 2, 1, 65536, 0, 65537, 65536, 1, 131073, 65536, 1, 196609, 65536, 2, 2, 131072, 0, 65538, 131072, 1, 131074, 131072, 1, 196610, 131072, 2)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_va0kd"]
 friction = 0.75
@@ -111,3 +114,4 @@ terrain_set_0/mode = 2
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_pexbh")
+pattern_0 = SubResource("TileMapPattern_n0axf")

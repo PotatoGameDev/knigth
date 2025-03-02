@@ -12,9 +12,14 @@ class_name Millipedes
 
 var follow_ritter := false
 
-func _on_antenna_ritter_detected():
-	follow_ritter = true
-	attack_mode()
+func _on_antenna_ritter_detected(detected_ritter: Knight):
+	#ritter = detected_ritter
+	#attack_mode()
+	pass
+
+func _on_antenna_ritter_lost():
+	ritter = null
+	follow_mode()
 
 var direction := Global.RIGHT
 var head_index := 0
@@ -68,7 +73,7 @@ func _process(delta):
 	elif Input.is_key_pressed(KEY_6):
 		follow_mode()
 
-	if follow_ritter:
+	if ritter:
 		attack_target.global_position = ritter.global_position
 
 func attack_mode() -> void:
@@ -78,3 +83,6 @@ func attack_mode() -> void:
 func follow_mode() -> void:
 	head_index = 0
 	reset(false)
+
+func get_friction() -> float:
+	return 1.0

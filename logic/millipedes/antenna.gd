@@ -6,8 +6,8 @@ extends Node2D
 var distance_to_target : float
 var target_destination : Vector2
 
-signal ritter_detected
-
+signal ritter_detected(ritter: Knight)
+signal ritter_lost
 func _ready():
 	# Distance to target from the target's parent center
 	# Target should be initially set up on the farthest segment of the antenna
@@ -30,9 +30,12 @@ func _process(delta):
 			)
 		target.global_position = target.global_position.lerp(new_target_pos, 0.5)
 
-func _on_area_2d_body_entered(body:Node2D):
+		if distance_to_ritter > distance_to_target:
+			ritter_lost.emit()
+
+func _on_area_2d_body_entered(body: Node2D):
 	if body is Knight:
 		ritter = body
-		ritter_detected.emit()
+		ritter_detected.emit(ritter)
 
 

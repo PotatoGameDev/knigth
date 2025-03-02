@@ -5,6 +5,9 @@ class_name ClingingState
 
 var snapped_already := false
 
+func _init():
+	options.add_gravity = false
+
 func enter(ownr, _params: Dictionary = {}) -> void:
 	ownr.animation.play("cling")
 	ownr.velocity = Vector2.ZERO
@@ -25,7 +28,7 @@ func update(ownr: Knight, _delta: float) -> void:
 		return
 
 func physics_update(ownr: Knight, delta: float) -> void:
-	if not ownr.is_on_floor():
+	if not ownr.is_touching_floor():
 		ownr.velocity.y += gravity_coefficient * Global.gravity * delta
 
 	ownr.move_and_slide()
@@ -35,7 +38,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 			pass
 		snapped_already = true
 
-	if not ownr.is_on_floor():
+	if not ownr.is_touching_floor():
 		if not ownr.can_cling_right() and not ownr.can_cling_left():
 			ownr.change_state(ownr.falling_state)
 			return
@@ -60,7 +63,7 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 			ownr.change_state(ownr.jumping_state, {"forced_direction": -ownr.direction})
 			return
 	if event.is_action_pressed("smash"):
-		if ownr.is_on_floor():
+		if ownr.is_touching_floor():
 			ownr.change_state(ownr.idle_state)
 			return
 		else:

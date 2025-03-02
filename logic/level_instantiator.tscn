@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cct50u1iuwxrf" path="res://level_instantiator.gd" id="1_go3xl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mn1ce"]
+resource_local_to_scene = true
 radius = 1753.07
 
 [node name="LevelInstantiator" type="Area2D"]

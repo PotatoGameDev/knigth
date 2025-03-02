@@ -9,6 +9,9 @@ class_name SmashingState
 var controls_coefficient := 0.0
 const BOUNCE_POWER := 1.5
 
+func _init():
+	options.add_gravity = false
+
 func enter(ownr, _params: Dictionary = {}) -> void:
 	ownr.animation.play("smash")
 	controls_coefficient = min_controls_coefficient
@@ -33,7 +36,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 
 	ownr.move_and_slide()
 
-	if ownr.is_on_floor():
+	if ownr.is_touching_floor():
 		var collision = ownr.get_last_slide_collision()
 		if collision:
 			var enemy = collision.get_collider()
@@ -55,7 +58,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	else:
 		controls_coefficient = min_controls_coefficient
 
-	if ownr.is_on_floor():
+	if ownr.is_touching_floor():
  		# zero out queued jump timer to prevent double jumps when landing after smashing
 		ownr.queued_jump_timer = 0.0
 

@@ -46,6 +46,9 @@ var min_damage := 0.0
 var cling_blocker := false
 var potential_energy := 0.0
 
+@onready var camera: Camera2D = $Camera2D
+var min_camera_zoom := Vector2.ONE * 0.5
+var max_camera_zoom := Vector2.ONE * 1.0
 
 @onready var animation: AnimatedSprite2D = $Animation
 
@@ -91,15 +94,18 @@ func get_floor_friction() -> float:
 		var fl = floor_sensor_left.get_collider()
 		if fl is TileMapLayer:
 			return fl.tile_set.get_physics_layer_physics_material(0).friction
-		if fl is AnimatableBody2D: 
+		if fl is StaticBody2D: 
 			return fl.get_friction()
 	if floor_sensor_right.is_colliding():
 		var fl = floor_sensor_right.get_collider()
 		if fl is TileMapLayer:
 			return fl.tile_set.get_physics_layer_physics_material(0).friction
-		if fl is AnimatableBody2D: 
+		if fl is StaticBody2D: 
 			return fl.get_friction()
-	return 1.0
+	return 0.9
+
+func is_touching_floor() -> bool:
+	return floor_sensor_left.is_colliding() or floor_sensor_right.is_colliding()
 
 @onready var running_state: RunningState =  $States/Running
 @onready var idle_state: IdleState = $States/Idle
@@ -174,17 +180,31 @@ func _process(delta):
 func _physics_process(delta):
 	if not current_state:
 		return
+
+	if current_state.options.add_gravity:
+		velocity.y += Global.gravity * delta
+
 	current_state.physics_update(self, delta)
+
 
 	# RULE: Potential energy is a non-negative number that represents the amount of energy that can be used to smash enemies.
 	if velocity.y < 0.0:
 		potential_energy += -velocity.y
+		
 	# RULE: Potential energy does not decrease, it's consumable only.
 	#else:
 	#	potential_energy -= velocity.y
 	
 	potential_energy = clamp(potential_energy, 0.0, max_potential_energy)
 	update_potential_energy_bar()
+	
+	if velocity.length() > 100.0:
+		camera.zoom = lerp(camera.zoom, min_camera_zoom, clampf(velocity.length()/10000.0, 0.0, 1.0))
+	else:
+		camera.zoom = lerp(camera.zoom, max_camera_zoom, 0.01)
+
+	#if is_touching_floor():
+	#	velocity.y = 0.0
 
 func take_damage(damage: int, dir: Vector2) -> void:
 	current_state.take_damage(self, damage, dir)
@@ -207,5 +227,3 @@ func jump_slip(delta: float) -> void:
 		velocity.x += acceleration * delta
 	elif jump_ray_right_outer.is_colliding() and not jump_ray_right_inner.is_colliding():
 		velocity.x -= acceleration * delta
-
-

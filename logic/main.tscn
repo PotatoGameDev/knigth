@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://cux2tw0wvffkg"]
+[gd_scene load_steps=59 format=3 uid="uid://cux2tw0wvffkg"]
 
 [ext_resource type="Script" uid="uid://btrloldap2l5n" path="res://logic/main.gd" id="1_2bfyf"]
 [ext_resource type="Script" uid="uid://b0ky8ye32athn" path="res://logic/knight/knight.gd" id="3_hpcr4"]
@@ -14,11 +14,10 @@
 [ext_resource type="Script" uid="uid://do4mgq2osoheu" path="res://logic/knight/knight_pushback_state.gd" id="14_gj2wd"]
 [ext_resource type="Script" uid="uid://cx805rh2a2sx5" path="res://logic/pauser.gd" id="16_fegvt"]
 [ext_resource type="PackedScene" uid="uid://bqmopo6dshmdi" path="res://logic/world/level_0_0.tscn" id="16_gj2wd"]
-[ext_resource type="PackedScene" uid="uid://ksxw1oepr2oa" path="res://logic/millipedes/millipedes.tscn" id="16_kpjel"]
 [ext_resource type="PackedScene" uid="uid://dlxceewry8dqh" path="res://logic/level_instantiator.tscn" id="17_gj2wd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnin5"]
-size = Vector2(14, 27)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3g7ew"]
+radius = 7.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gj2wd"]
 atlas = ExtResource("3_o8x73")
@@ -314,8 +313,8 @@ animations = [{
 "speed": 20.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fegvt"]
-size = Vector2(14, 27)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fegvt"]
+radius = 7.0
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_3g7ew"]
 color = Color(0.180392, 0.180392, 0.180392, 1)
@@ -337,21 +336,29 @@ thickness = 2
 color = Color(0.885087, 0.42656, 0.897375, 1)
 thickness = 2
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3g7ew"]
+resource_local_to_scene = true
+radius = 1753.07
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fegvt"]
+resource_local_to_scene = true
+radius = 2336.07
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2bfyf")
 
 [node name="Ritter" type="CharacterBody2D" parent="."]
-position = Vector2(230, -55)
+position = Vector2(4246, 618)
 collision_mask = 194
 floor_block_on_wall = false
-platform_floor_layers = 4278190208
+platform_floor_layers = 4278190210
+platform_wall_layers = 128
 script = ExtResource("3_hpcr4")
 jump_force = 300.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape" type="CollisionShape2D" parent="Ritter"]
-position = Vector2(0, 2.5)
-shape = SubResource("RectangleShape2D_pnin5")
+shape = SubResource("CapsuleShape2D_3g7ew")
 
 [node name="Animation" type="AnimatedSprite2D" parent="Ritter"]
 sprite_frames = SubResource("SpriteFrames_4bo3m")
@@ -386,6 +393,7 @@ script = ExtResource("12_4lt1t")
 script = ExtResource("14_gj2wd")
 
 [node name="Camera2D" type="Camera2D" parent="Ritter"]
+zoom = Vector2(0.8, 0.8)
 limit_smoothed = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -445,7 +453,7 @@ collision_mask = 128
 collide_with_areas = true
 
 [node name="EnemySmashSensor" type="ShapeCast2D" parent="Ritter/Sensors"]
-shape = SubResource("RectangleShape2D_fegvt")
+shape = SubResource("CapsuleShape2D_fegvt")
 target_position = Vector2(0, 0)
 max_results = 1
 collision_mask = 2
@@ -453,12 +461,12 @@ collision_mask = 2
 [node name="FloorSensorLeft" type="RayCast2D" parent="Ritter/Sensors"]
 position = Vector2(-5, 14)
 target_position = Vector2(0, 6)
-collision_mask = 128
+collision_mask = 130
 
 [node name="FloorSensorRight" type="RayCast2D" parent="Ritter/Sensors"]
 position = Vector2(5, 14)
 target_position = Vector2(0, 6)
-collision_mask = 128
+collision_mask = 130
 
 [node name="LineDrawer" type="Node2D" parent="Ritter"]
 script = ExtResource("12_071tv")
@@ -506,12 +514,22 @@ script = ExtResource("16_fegvt")
 [node name="level0_0" parent="." instance=ExtResource("16_gj2wd")]
 
 [node name="level1_0" parent="." instance_placeholder="res://logic/world/level_1_0.tscn"]
-position = Vector2(2068, -4)
+position = Vector2(2048, 0)
 
 [node name="LevelInstantiator" parent="level1_0" instance=ExtResource("17_gj2wd")]
 position = Vector2(785, 708)
 
-[node name="Millipedes" parent="." node_paths=PackedStringArray("ritter") instance=ExtResource("16_kpjel")]
-ritter = NodePath("../Ritter")
+[node name="Sensor" parent="level1_0/LevelInstantiator" index="0"]
+shape = SubResource("CircleShape2D_3g7ew")
+
+[node name="Level2_0" parent="." instance_placeholder="res://logic/world/level_2_0.tscn"]
+position = Vector2(4096, 0)
+
+[node name="LevelInstantiator" parent="Level2_0" instance=ExtResource("17_gj2wd")]
+
+[node name="Sensor" parent="Level2_0/LevelInstantiator" index="0"]
+position = Vector2(2121, 1466)
+shape = SubResource("CircleShape2D_fegvt")
 
 [editable path="level1_0/LevelInstantiator"]
+[editable path="Level2_0/LevelInstantiator"]

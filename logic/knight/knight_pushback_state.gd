@@ -39,9 +39,5 @@ func update(ownr: Knight, delta: float) -> void:
 
 func physics_update(ownr: Knight, delta: float) -> void:
 	ownr.move_and_slide()
-
-	if not ownr.is_on_floor():
-		ownr.velocity.y += Global.gravity * delta
-
 	ownr.velocity.x = pushback_force * forced_direction
 

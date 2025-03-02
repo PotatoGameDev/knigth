@@ -21,9 +21,6 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		ownr.change_state(ownr.falling_state)
 		return
 
-	if not ownr.is_on_floor():
-		ownr.velocity.y += Global.gravity * delta
-
 	# Horizontal User Control
 	ownr.jump_slip(delta)
 

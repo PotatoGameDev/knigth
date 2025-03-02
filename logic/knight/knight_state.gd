@@ -25,3 +25,4 @@ class StateOptions:
 	var calculate_direction := true
 	var calculate_movement := true
 	var calculate_queued_jump_timer := true
+	var add_gravity := true

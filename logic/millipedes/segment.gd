@@ -1,5 +1,5 @@
 # segment.gd
-extends AnimatableBody2D
+extends AnimatableBody2D 
 
 @export var animation_delay := 0
 @export var path_follow : PathFollow2D = null

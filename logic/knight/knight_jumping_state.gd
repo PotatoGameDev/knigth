@@ -70,8 +70,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	else:
 		is_falling = true
 	
-	if not ownr.is_on_floor():
-		ownr.velocity.y += Global.gravity * delta
+	if not ownr.is_touching_floor():
 		ownr.jump_stamina_left -= delta * ownr.jump_stamina_depletion_multiplier
 		ownr.jump_stamina_left = max(ownr.jump_stamina_left, 0.0)
 
@@ -85,7 +84,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 	else:
 		if \
 		not ownr.cling_blocker \
-		and not ownr.is_on_floor() \
+		and not ownr.is_touching_floor() \
 		and not Input.is_action_pressed("up"): # This is to prevent the player from clinging immediately after jumping
 			if ownr.jump_stamina_left > 0.0 and (ownr.can_cling_left() and ownr.is_left()) or (ownr.can_cling_right() and ownr.is_right()):
 				ownr.change_state(ownr.clinging_state)

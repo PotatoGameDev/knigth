@@ -81,13 +81,13 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xthsj"]
-radius = 20.0
-height = 52.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5xe3a"]
+radius = 4.0
+height = 55.0
 
 [node name="Segment" type="AnimatableBody2D"]
+physics_interpolation_mode = 1
 collision_layer = 2
-sync_to_physics = false
 script = ExtResource("1_5xe3a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -97,8 +97,8 @@ animation = &"walking"
 autoplay = "walking"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
-shape = SubResource("CapsuleShape2D_xthsj")
+position = Vector2(-0.5, 2.5)
+shape = SubResource("CapsuleShape2D_5xe3a")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 update_position = false

@@ -55,7 +55,7 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		ownr.animation.play("run")
 		is_stepping = false
 
-	if not ownr.is_on_floor() and not is_stepping:
+	if not ownr.is_touching_floor() and not is_stepping:
 		ownr.change_state(ownr.falling_state)
 		return
 	
