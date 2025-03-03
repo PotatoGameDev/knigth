@@ -44,6 +44,7 @@ func enter(ownr, params: Dictionary = {}) -> void:
 	ownr.coyote_timer = 0.0
 	ownr.cling_blocker = true
 
+
 func update(_ownr: Knight, _delta: float) -> void:
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		options.calculate_direction = true
@@ -67,8 +68,21 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		if not is_falling:
 			ownr.jump_timer += delta
 			ownr.velocity.y = -ownr.jump_force
+
+			if ownr.added_force != Vector2.ZERO:
+				var abs_added_force = ownr.added_force.abs()
+				var sign_added_force = ownr.added_force.sign()
+
+				var boost = abs_added_force.minf(1000)
+
+				ownr.velocity += boost * sign_added_force
+				ownr.added_force -= boost * sign_added_force
+		else:
+			if ownr.velocity.y < -ownr.jump_force:
+				ownr.velocity.y = -ownr.jump_force
 	else:
 		is_falling = true
+	
 	
 	if not ownr.is_touching_floor():
 		ownr.jump_stamina_left -= delta * ownr.jump_stamina_depletion_multiplier

@@ -46,6 +46,8 @@ var min_damage := 0.0
 var cling_blocker := false
 var potential_energy := 0.0
 
+var added_force := Vector2.ZERO
+
 @onready var camera: Camera2D = $Camera2D
 var min_camera_zoom := Vector2.ONE * 0.5
 var max_camera_zoom := Vector2.ONE * 1.0
@@ -184,12 +186,16 @@ func _physics_process(delta):
 	if current_state.options.add_gravity:
 		velocity.y += Global.gravity * delta
 
+
+
 	current_state.physics_update(self, delta)
 
 
 	# RULE: Potential energy is a non-negative number that represents the amount of energy that can be used to smash enemies.
 	if velocity.y < 0.0:
 		potential_energy += -velocity.y
+	
+
 		
 	# RULE: Potential energy does not decrease, it's consumable only.
 	#else:
@@ -205,6 +211,8 @@ func _physics_process(delta):
 
 	#if is_touching_floor():
 	#	velocity.y = 0.0
+
+
 
 func take_damage(damage: int, dir: Vector2) -> void:
 	current_state.take_damage(self, damage, dir)
@@ -227,3 +235,10 @@ func jump_slip(delta: float) -> void:
 		velocity.x += acceleration * delta
 	elif jump_ray_right_outer.is_colliding() and not jump_ray_right_inner.is_colliding():
 		velocity.x -= acceleration * delta
+
+func add_force(force: Vector2) -> void:
+	added_force += force
+
+func replace_force(force: Vector2) -> void:
+	if force.length() > added_force.length():
+		added_force = force

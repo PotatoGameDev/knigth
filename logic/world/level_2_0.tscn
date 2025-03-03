@@ -105,7 +105,4 @@ rotation = 0.18902
 position = Vector2(230.68, 1124.29)
 rotation = 0.18902
 
-[node name="CollisionPolygon2D" parent="Millipedes" index="24"]
-build_mode = 1
-
 [editable path="Millipedes"]

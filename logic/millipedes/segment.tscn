@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cd42717mtba07"]
+[gd_scene load_steps=19 format=3 uid="uid://cd42717mtba07"]
 
 [ext_resource type="Texture2D" uid="uid://drv5lyxoo86kd" path="res://assets/sprites/millipede.png" id="1_0noab"]
 [ext_resource type="Script" uid="uid://b8aaqj6uwlh45" path="res://logic/millipedes/segment.gd" id="1_5xe3a"]
@@ -85,10 +85,52 @@ animations = [{
 radius = 4.0
 height = 55.0
 
-[node name="Segment" type="AnimatableBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v374w"]
+radius = 11.04
+height = 58.52
+
+[sub_resource type="Animation" id="Animation_5xe3a"]
+resource_name = "bounce"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:v_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.181338, 0.24),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, -1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_v374w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:v_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v374w"]
+_data = {
+&"RESET": SubResource("Animation_v374w"),
+&"bounce": SubResource("Animation_5xe3a")
+}
+
+[node name="Segment" type="StaticBody2D"]
 physics_interpolation_mode = 1
 collision_layer = 2
 script = ExtResource("1_5xe3a")
+v_offset_scale = 10.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 8)
@@ -104,3 +146,18 @@ shape = SubResource("CapsuleShape2D_5xe3a")
 update_position = false
 update_rotation = false
 update_scale = false
+
+[node name="RitterDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RitterDetector"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_v374w")
+one_way_collision = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_v374w")
+}
+
+[connection signal="body_entered" from="RitterDetector" to="." method="_on_ritter_detector_body_entered"]
+[connection signal="body_exited" from="RitterDetector" to="." method="_on_ritter_detector_body_exited"]
