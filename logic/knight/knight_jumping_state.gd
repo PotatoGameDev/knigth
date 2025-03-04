@@ -131,6 +131,7 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 func exit(_ownr: Knight) -> void:
 	options.calculate_direction = true
 	forced_direction = 0
+	added_force = Vector2.ZERO
 
 func add_force(_ownr: Knight, _force: Vector2) -> void:
 	print("Adding force state: ", _force)
