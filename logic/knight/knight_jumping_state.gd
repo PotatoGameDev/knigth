@@ -6,6 +6,7 @@ class_name JumpingState
 var is_bouncing := false
 var is_falling := false
 var forced_direction := 0
+var added_force := Vector2.ZERO
 
 func _init():
 	options.calculate_queued_jump_timer = false
@@ -69,14 +70,14 @@ func physics_update(ownr: Knight, delta: float) -> void:
 			ownr.jump_timer += delta
 			ownr.velocity.y = -ownr.jump_force
 
-			if ownr.added_force != Vector2.ZERO:
-				var abs_added_force = ownr.added_force.abs()
-				var sign_added_force = ownr.added_force.sign()
+			if added_force != Vector2.ZERO:
+				var abs_added_force = added_force.abs()
+				var sign_added_force = added_force.sign()
 
-				var boost = abs_added_force.minf(1000)
+				var boost = abs_added_force.minf(500)
 
 				ownr.velocity += boost * sign_added_force
-				ownr.added_force -= boost * sign_added_force
+				added_force -= boost * sign_added_force
 		else:
 			if ownr.velocity.y < -ownr.jump_force:
 				ownr.velocity.y = -ownr.jump_force
@@ -130,3 +131,7 @@ func handle_input(ownr: Knight, event: InputEvent) -> void:
 func exit(_ownr: Knight) -> void:
 	options.calculate_direction = true
 	forced_direction = 0
+
+func add_force(_ownr: Knight, _force: Vector2) -> void:
+	print("Adding force state: ", _force)
+	added_force = _force

@@ -21,6 +21,9 @@ func exit(_ownr) -> void:
 func take_damage(_ownr: Knight, _damage: int, _direction: Vector2) -> void:
 	pass
 
+func add_force(_ownr: Knight, _force: Vector2) -> void:
+	pass
+
 class StateOptions:
 	var calculate_direction := true
 	var calculate_movement := true

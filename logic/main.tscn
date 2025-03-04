@@ -17,7 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://dlxceewry8dqh" path="res://logic/level_instantiator.tscn" id="17_gj2wd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3g7ew"]
-radius = 7.0
+radius = 6.205
+height = 32.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gj2wd"]
 atlas = ExtResource("3_o8x73")

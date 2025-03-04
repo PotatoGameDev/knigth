@@ -40,4 +40,4 @@ func _process(delta):
 func _on_ritter_detector_body_exited(body):
 	if body is Knight:
 		if v_offset > 0:
-			body.replace_force(Vector2(0, -v_offset * 15000))
+			body.add_force(Vector2(0, -v_offset * 15000))

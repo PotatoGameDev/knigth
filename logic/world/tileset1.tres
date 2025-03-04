@@ -109,6 +109,7 @@ texture = ExtResource("1_n0axf")
 
 [resource]
 physics_layer_0/collision_layer = 128
+physics_layer_0/collision_priority = 100.0
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_va0kd")
 terrain_set_0/mode = 2
 terrain_set_0/terrain_0/name = "Terrain 0"

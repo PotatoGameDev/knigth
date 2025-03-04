@@ -46,8 +46,6 @@ var min_damage := 0.0
 var cling_blocker := false
 var potential_energy := 0.0
 
-var added_force := Vector2.ZERO
-
 @onready var camera: Camera2D = $Camera2D
 var min_camera_zoom := Vector2.ONE * 0.5
 var max_camera_zoom := Vector2.ONE * 1.0
@@ -237,8 +235,6 @@ func jump_slip(delta: float) -> void:
 		velocity.x -= acceleration * delta
 
 func add_force(force: Vector2) -> void:
-	added_force += force
+	print("Adding force: ", force)
+	current_state.add_force(self, force)
 
-func replace_force(force: Vector2) -> void:
-	if force.length() > added_force.length():
-		added_force = force
