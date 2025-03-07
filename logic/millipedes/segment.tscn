@@ -126,7 +126,7 @@ _data = {
 &"bounce": SubResource("Animation_5xe3a")
 }
 
-[node name="Segment" type="StaticBody2D"]
+[node name="Segment" type="AnimatableBody2D"]
 physics_interpolation_mode = 1
 collision_layer = 2
 collision_priority = 100.0

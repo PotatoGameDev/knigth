@@ -4,13 +4,16 @@ class_name Millipedes
 @export var segments : Array[Node2D] = []
 @export var distance_to_follower : float = 8.0
 @export var speed := 100.0
+@export var max_health := 10000.0
 
 @onready var skeleton: Skeleton2D = $Skeleton2D
 @onready var attack_target: Node2D = $AttackTarget
+@onready var life_bar: ProgressBar = $HUD/LifeBar
 
 @export var ritter: Knight = null
 
 var follow_ritter := false
+var health := 0.0
 
 func _on_antenna_ritter_detected(detected_ritter: Knight):
 	#ritter = detected_ritter
@@ -26,6 +29,7 @@ var head_index := 0
 
 func _ready() -> void:
 	follow_mode()
+	health = max_health
 
 func reset(fabrik: bool):
 	for i in range(0, segments.size()):
@@ -54,6 +58,14 @@ func reset(fabrik: bool):
 	skeleton.get_modification_stack().enabled = fabrik
 
 func _process(delta):
+	if health > 0.0 and Input.is_key_pressed(KEY_Y):
+		health = 0.0	 
+		death(10)
+		return
+
+	if health <= 0:
+		return
+
 	var current_progress = 0.0
 
 	for i in range(0, segments.size()):
@@ -86,3 +98,54 @@ func follow_mode() -> void:
 
 func get_friction() -> float:
 	return 1.0
+
+func update_life_bar() -> void:
+	life_bar.value = health / max_health
+	if health <= 0:
+		life_bar.visible = false
+
+func take_damage(damage: int) -> void:
+	var health_before = health
+	health -= damage
+	update_life_bar()
+
+	if (health <= 0):
+		death(health_before)
+
+func death(final_damage: int) -> void: # fun
+	var center : int = segments.size() / 2.0 as int
+	var center_segment = segments[center]
+
+	for i in range(0, segments.size()):
+		var old_node = segments[i]
+		var new_node = RigidBody2D.new()
+		new_node.name = old_node.name
+		new_node.position = old_node.position
+		new_node.rotation = old_node.rotation
+		new_node.collision_layer = old_node.collision_layer
+		new_node.collision_mask = 1 << 7
+
+		for child in old_node.get_children():
+			old_node.remove_child(child)
+			if child is AnimatedSprite2D or child is CollisionShape2D or child is Sprite2D:
+				new_node.add_child(child)
+			if child is CollisionShape2D:
+				child.one_way_collision = false
+
+		add_child(new_node)
+		remove_child(old_node)
+		
+		$HUD.queue_free()
+
+		# Explosion
+		var explosion_pos = center_segment.position + Vector2.DOWN * 10
+		var force_dir = old_node.position - explosion_pos
+		var max_length = 100
+		var force = (max_length - force_dir.length()) * final_damage
+		var max_force = 1000
+		var force_mag = clamp(force, 0, max_force)
+
+		new_node.apply_central_impulse(force_dir.normalized() * force_mag)
+
+
+		

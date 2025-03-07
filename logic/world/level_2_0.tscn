@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=4 uid="uid://ubg7e1wf2bc3"]
+[gd_scene load_steps=5 format=4 uid="uid://ubg7e1wf2bc3"]
 
 [ext_resource type="TileSet" uid="uid://c21f2onevmyrp" path="res://logic/world/tileset1.tres" id="1_diau5"]
 [ext_resource type="PackedScene" uid="uid://ksxw1oepr2oa" path="res://logic/millipedes/millipedes.tscn" id="3_7xr3g"]
+[ext_resource type="PackedScene" uid="uid://ci1vae7axbcve" path="res://logic/zombi/zombi.tscn" id="3_e34o8"]
 
 [sub_resource type="Curve2D" id="Curve2D_diau5"]
 resource_local_to_scene = true
@@ -18,7 +19,10 @@ tile_set = ExtResource("1_diau5")
 
 [node name="Millipedes" parent="." instance=ExtResource("3_7xr3g")]
 
-[node name="MillipedesPath" parent="Millipedes" index="22"]
+[node name="Segment" parent="Millipedes" index="2"]
+collision_mask = 129
+
+[node name="MillipedesPath" parent="Millipedes" index="23"]
 curve = SubResource("Curve2D_diau5")
 
 [node name="PathFollowHead" parent="Millipedes/MillipedesPath" index="0"]
@@ -104,5 +108,14 @@ rotation = 0.18902
 [node name="PathFollow20" parent="Millipedes/MillipedesPath" index="20"]
 position = Vector2(230.68, 1124.29)
 rotation = 0.18902
+
+[node name="Agira7" parent="." instance=ExtResource("3_e34o8")]
+position = Vector2(1723, 1377)
+
+[node name="pierogiDev" parent="." instance=ExtResource("3_e34o8")]
+position = Vector2(1402, 1453)
+
+[node name="BenCklyy" parent="." instance=ExtResource("3_e34o8")]
+position = Vector2(1238, 1276)
 
 [editable path="Millipedes"]

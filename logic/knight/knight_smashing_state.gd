@@ -31,6 +31,8 @@ func physics_update(ownr: Knight, delta: float) -> void:
 			var enemy = ownr.enemy_smashing_sensor.get_collider(e)
 			if enemy is Zombi:
 				smashed_enemy = enemy
+			elif enemy is MillipedesHead:
+				smashed_enemy = enemy.get_parent()
 
 		ownr.velocity = ownr.velocity * ownr.enemy_smashing_sensor.get_closest_collision_safe_fraction()
 

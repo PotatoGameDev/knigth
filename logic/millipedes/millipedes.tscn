@@ -1,10 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://ksxw1oepr2oa"]
+[gd_scene load_steps=12 format=3 uid="uid://ksxw1oepr2oa"]
 
 [ext_resource type="Script" uid="uid://tvu3a53u5pr2" path="res://logic/millipedes/millipedes.gd" id="1_8b0bt"]
 [ext_resource type="Texture2D" uid="uid://drv5lyxoo86kd" path="res://assets/sprites/millipede.png" id="2_03loo"]
 [ext_resource type="Script" uid="uid://c1ax32f7s8qho" path="res://logic/millipedes/head.gd" id="2_6nyub"]
 [ext_resource type="PackedScene" uid="uid://cd42717mtba07" path="res://logic/millipedes/segment.tscn" id="3_03loo"]
 [ext_resource type="PackedScene" uid="uid://dvd1h1iiiwbej" path="res://logic/millipedes/antenna.tscn" id="4_pwe2w"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_pwe2w"]
+color = Color(0.180005, 0.180005, 0.180005, 1)
+thickness = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_2byf2"]
+color = Color(0.885087, 0.42656, 0.897375, 1)
+thickness = 2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pwe2w"]
 height = 50.0
@@ -69,10 +77,23 @@ _data = {
 }
 point_count = 12
 
-[node name="Millipedes" type="AnimatableBody2D" node_paths=PackedStringArray("segments")]
-collision_layer = 2
+[node name="Millipedes" type="Node2D" node_paths=PackedStringArray("segments")]
 script = ExtResource("1_8b0bt")
 segments = [NodePath("Head"), NodePath("Segment"), NodePath("Segment2"), NodePath("Segment3"), NodePath("Segment4"), NodePath("Segment5"), NodePath("Segment6"), NodePath("Segment7"), NodePath("Segment8"), NodePath("Segment9"), NodePath("Segment10"), NodePath("Segment11"), NodePath("Segment12"), NodePath("Segment13"), NodePath("Segment14"), NodePath("Segment15"), NodePath("Segment16"), NodePath("Segment17"), NodePath("Segment18"), NodePath("Segment19"), NodePath("Segment20")]
+
+[node name="HUD" type="Node2D" parent="."]
+
+[node name="LifeBar" type="ProgressBar" parent="HUD"]
+offset_left = -16.0
+offset_top = -35.0
+offset_right = 2.0
+offset_bottom = -31.0
+scale = Vector2(2.72, 2.32)
+theme_override_styles/background = SubResource("StyleBoxLine_pwe2w")
+theme_override_styles/fill = SubResource("StyleBoxLine_2byf2")
+max_value = 1.0
+value = 1.0
+show_percentage = false
 
 [node name="Head" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone")]
 collision_layer = 2
@@ -95,7 +116,12 @@ shape = SubResource("CapsuleShape2D_pwe2w")
 [node name="Antenna2" parent="Head" instance=ExtResource("4_pwe2w")]
 position = Vector2(12, -18)
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Head"]
+[node name="BoneController" type="RemoteTransform2D" parent="Head"]
+update_scale = false
+
+[node name="HUDController" type="RemoteTransform2D" parent="Head"]
+remote_path = NodePath("../../HUD")
+update_rotation = false
 update_scale = false
 
 [node name="Segment" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
