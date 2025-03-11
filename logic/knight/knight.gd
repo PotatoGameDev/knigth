@@ -149,6 +149,7 @@ func _unhandled_input(event):
 		current_state.handle_input(self, event)
 
 func _process(delta):
+	print("Current jump: ", current_jump)
 	if not current_state:
 		return
 

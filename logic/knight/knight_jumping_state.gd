@@ -7,6 +7,7 @@ var is_bouncing := false
 var is_falling := false
 var forced_direction := 0
 var added_force := Vector2.ZERO
+var is_jump_released := false
 
 func _init():
 	options.calculate_queued_jump_timer = false
@@ -14,6 +15,7 @@ func _init():
 func enter(ownr, params: Dictionary = {}) -> void:
 	is_falling = false
 	is_bouncing = false
+	is_jump_released = false	
 	
 	ownr.queued_jump_timer = 0.0
 
@@ -46,10 +48,22 @@ func enter(ownr, params: Dictionary = {}) -> void:
 	ownr.cling_blocker = true
 
 
-func update(_ownr: Knight, _delta: float) -> void:
+func update(ownr: Knight, _delta: float) -> void:
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		options.calculate_direction = true
 		forced_direction = 0
+
+	if Input.is_action_just_pressed("smash") and ownr.can_smash():
+		ownr.change_state(ownr.smashing_state)
+		return
+
+	if Input.is_action_just_pressed("jump"):
+		if is_jump_released and ownr.current_jump < ownr.max_jumps:
+			ownr.change_state(ownr.jumping_state)
+			return
+	else:
+		is_jump_released = true
+
 
 func physics_update(ownr: Knight, delta: float) -> void:
 	ownr.jump_slip(delta)
@@ -112,21 +126,12 @@ func physics_update(ownr: Knight, delta: float) -> void:
 		ownr.change_state(ownr.falling_state, {"bouncing": is_bouncing, "forced_direction": forced_direction})
 		return
 
-
 func can_cling(ownr: Knight) -> bool:
 	#https://github.com/godotengine/godot/issues/76756
 	# TODO: This is a workaround for the above issue is to NOT TRUST the is_on_wall() function
 	#return ownr.is_on_wall() and (ownr.can_cling_left() or ownr.can_cling_right())
 	return ownr.can_cling_left() or ownr.can_cling_right()
 
-func handle_input(ownr: Knight, event: InputEvent) -> void:
-	if event.is_action_pressed("smash") and ownr.can_smash():
-		ownr.change_state(ownr.smashing_state)
-		return
-
-	if event.is_action_pressed("jump") and ownr.current_jump < ownr.max_jumps:
-		ownr.change_state(ownr.jumping_state)
-		return
 
 func exit(_ownr: Knight) -> void:
 	options.calculate_direction = true
@@ -134,5 +139,4 @@ func exit(_ownr: Knight) -> void:
 	added_force = Vector2.ZERO
 
 func add_force(_ownr: Knight, _force: Vector2) -> void:
-	print("Adding force state: ", _force)
 	added_force = _force

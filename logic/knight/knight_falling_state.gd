@@ -26,9 +26,20 @@ func enter(ownr, params: Dictionary = {}) -> void:
 	if not is_bouncing:
 		ownr.animation.play("fall")
 
-func update(_ownr: Knight, _delta: float) -> void:
+func update(ownr: Knight, _delta: float) -> void:
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		options.calculate_direction = true
+	
+	if (Input.is_action_just_pressed("left") and ownr.is_left()) or (Input.is_action_just_pressed("right") and ownr.is_right()):
+		ownr.cling_blocker = false
+		# TODO: I think we need to copy the stuff from jumping state here
+	if Input.is_action_just_pressed("jump") and (ownr.coyote_timer > 0.0 or ownr.current_jump < ownr.max_jumps):
+		ownr.change_state(ownr.jumping_state)
+		return
+
+	if Input.is_action_just_pressed("smash") and ownr.can_smash():
+		ownr.change_state(ownr.smashing_state)
+		return
 
 func physics_update(ownr: Knight, delta: float) -> void:
 	var current_speed = -ownr.velocity.length()
@@ -89,17 +100,6 @@ func physics_update(ownr: Knight, delta: float) -> void:
 
 	ownr.coyote_timer -= delta
 
-func handle_input(ownr: Knight, event: InputEvent) -> void:
-	if (Input.is_action_pressed("left") and ownr.is_left()) or (Input.is_action_pressed("right") and ownr.is_right()):
-		ownr.cling_blocker = false
-		# TODO: I think we need to copy the stuff from jumping state here
-	if event.is_action_pressed("jump") and (ownr.coyote_timer > 0.0 or ownr.current_jump < ownr.max_jumps):
-		ownr.change_state(ownr.jumping_state)
-		return
-
-	if event.is_action_pressed("smash") and ownr.can_smash():
-		ownr.change_state(ownr.smashing_state)
-		return
 
 func exit(ownr: Knight) -> void:
 	options.calculate_direction = true

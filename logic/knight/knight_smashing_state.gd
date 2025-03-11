@@ -16,8 +16,10 @@ func enter(ownr, _params: Dictionary = {}) -> void:
 	ownr.animation.play("smash")
 	controls_coefficient = min_controls_coefficient
 
-func update(_ownr: Knight, _delta: float) -> void:
-	pass
+func update(ownr: Knight, _delta: float) -> void:
+	if Input.is_action_just_pressed("jump") and ownr.coyote_timer > 0.0:
+		ownr.change_state(ownr.jumping_state)
+		return
 
 func physics_update(ownr: Knight, delta: float) -> void:
 	var current_speed = -ownr.velocity.length()
@@ -78,11 +80,6 @@ func physics_update(ownr: Knight, delta: float) -> void:
 			ownr.velocity.x = new_velocity_x
 
 	ownr.potential_energy -= ownr.velocity.y
-
-func handle_input(ownr: Knight, event: InputEvent) -> void:
-	if event.is_action_pressed("jump") and ownr.coyote_timer > 0.0:
-		ownr.change_state(ownr.jumping_state)
-		return
 	
 func exit(ownr: Knight) -> void:
 	ownr.enemy_smashing_sensor.target_position = Vector2.ZERO
