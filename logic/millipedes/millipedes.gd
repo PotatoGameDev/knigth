@@ -16,8 +16,8 @@ var follow_ritter := false
 var health := 0.0
 
 func _on_antenna_ritter_detected(detected_ritter: Knight):
-	#ritter = detected_ritter
-	#attack_mode()
+	ritter = detected_ritter
+	attack_mode()
 	pass
 
 func _on_antenna_ritter_lost():

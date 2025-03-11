@@ -67,7 +67,7 @@ joint_data/14/magnet_position = Vector2(0, 0)
 joint_data/14/use_target_rotation = false
 
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_pwe2w"]
-strength = 0.7
+strength = 0.0
 modification_count = 1
 modifications/0 = SubResource("SkeletonModification2DFABRIK_pwe2w")
 
@@ -272,23 +272,28 @@ rest = Transform2D(1, 0, 0, 1, 8, 0)
 
 [node name="Bone2D14" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15"]
 position = Vector2(8, 0)
-rest = Transform2D(1, 0, 0, 1, 8, 0)
+rotation = -0.744109
+rest = Transform2D(0.735692, -0.677317, 0.677317, 0.735692, 8, 0)
 
 [node name="Bone2D13" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14"]
 position = Vector2(8, 0)
-rest = Transform2D(1, 0, 0, 1, 8, 0)
+rotation = -0.294986
+rest = Transform2D(0.956806, -0.290726, 0.290726, 0.956806, 8, 0)
 
 [node name="Bone2D12" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13"]
 position = Vector2(8, 0)
-rest = Transform2D(1, 0, 0, 1, 8, 0)
+rotation = -0.400523
+rest = Transform2D(0.920857, -0.3899, 0.3899, 0.920857, 8, 0)
 
 [node name="Bone2D11" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12"]
 position = Vector2(8, 0)
-rest = Transform2D(1, 0, 0, 1, 8, 0)
+rotation = -0.25587
+rest = Transform2D(0.967444, -0.253087, 0.253087, 0.967444, 8, 0)
 
 [node name="Bone2D10" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11"]
 position = Vector2(8, 0)
-rest = Transform2D(1, 0, 0, 1, 8, 0)
+rotation = -0.0822388
+rest = Transform2D(0.99662, -0.0821461, 0.0821461, 0.99662, 8, 0)
 
 [node name="Bone2D9" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10"]
 position = Vector2(8, 0)
@@ -296,39 +301,49 @@ rest = Transform2D(1, 0, 0, 1, 8, 0)
 
 [node name="Bone2D8" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9"]
 position = Vector2(8, 0)
-rest = Transform2D(1, 0, 0, 1, 8, 0)
+rotation = 0.0221573
+rest = Transform2D(0.999755, 0.0221555, -0.0221555, 0.999755, 8, 0)
 
 [node name="Bone2D7" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8"]
 position = Vector2(8, 0)
-rest = Transform2D(1, 0, 0, 1, 8, 0)
+rotation = 0.273909
+rest = Transform2D(0.962721, 0.270497, -0.270497, 0.962721, 8, 0)
 
 [node name="Bone2D6" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7"]
 position = Vector2(8, 0)
-rest = Transform2D(1, 0, 0, 1, 8, 0)
+rotation = 0.290578
+rest = Transform2D(0.958078, 0.286506, -0.286506, 0.958078, 8, 0)
 
 [node name="Bone2D5" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6"]
 position = Vector2(8, 0)
-rest = Transform2D(1, 0, 0, 1, 8, 0)
+rotation = 0.25422
+rest = Transform2D(0.96786, 0.25149, -0.25149, 0.96786, 8, 0)
 
 [node name="Bone2D4" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5"]
 position = Vector2(8, 0)
-rest = Transform2D(1, 0, 0, 1, 8, 0)
+rotation = 0.307966
+scale = Vector2(1, 1)
+rest = Transform2D(0.952952, 0.303121, -0.303121, 0.952952, 8, 0)
 
 [node name="Bone2D3" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4"]
 position = Vector2(8, 0)
-rest = Transform2D(1, 0, 0, 1, 8, 0)
+rotation = 0.415863
+rest = Transform2D(0.914768, 0.40398, -0.40398, 0.914768, 8, 0)
 
 [node name="Bone2D2" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3"]
 position = Vector2(8, 0)
-rest = Transform2D(1, 0, 0, 1, 8, 0)
+rotation = 0.437702
+rest = Transform2D(0.905728, 0.423859, -0.423859, 0.905728, 8, 0)
 
 [node name="Bone2D1" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2"]
 position = Vector2(8, 0)
-rest = Transform2D(1, 0, 0, 1, 8, 0)
+rotation = 0.0847171
+rest = Transform2D(0.996414, 0.0846158, -0.0846158, 0.996414, 8, 0)
 
 [node name="BoneHead" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1"]
 position = Vector2(16, 0)
-rest = Transform2D(1, 0, 0, 1, 16, 0)
+rotation = 0.234542
+rest = Transform2D(0.972621, 0.232398, -0.232398, 0.972621, 16, 0)
 auto_calculate_length_and_angle = false
 length = 1.0
 bone_angle = 0.0
