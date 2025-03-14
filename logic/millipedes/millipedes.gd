@@ -14,11 +14,12 @@ class_name Millipedes
 
 var follow_ritter := false
 var health := 0.0
+var follow_path := true
 
 func _on_antenna_ritter_detected(detected_ritter: Knight):
 	ritter = detected_ritter
-	attack_mode()
-	pass
+	#attack_mode()
+	reset_to_ground_fight()
 
 func _on_antenna_ritter_lost():
 	ritter = null
@@ -32,7 +33,8 @@ func _ready() -> void:
 	health = max_health
 
 func reset(fabrik: bool):
-	for i in range(0, segments.size()):
+
+	for i in range(segments.size()):
 		var segment = segments[i]
 		segment.remote_transform_for_controlling_bone.update_position = head_index == i
 		segment.remote_transform_for_controlling_bone.update_rotation = head_index == i
@@ -66,9 +68,30 @@ func _process(delta):
 	if health <= 0:
 		return
 
+	if ritter:
+		attack_target.global_position = ritter.global_position
+
+	if not follow_path:
+		# TODO: actual gravity here
+		segments[-1].move_and_collide(Vector2.DOWN * Global.gravity * delta)
+		
+		if ritter.global_position.distance_to(segments[0].global_position) < 200:
+			skeleton.get_modification_stack().enabled = true
+			skeleton.get_modification_stack().strength = lerp(
+				skeleton.get_modification_stack().strength, 1.0, 0.1
+			)
+		else:
+			if skeleton.get_modification_stack().enabled:
+				skeleton.get_modification_stack().strength = lerp(
+					skeleton.get_modification_stack().strength, 0.0, 0.1
+				)
+				if skeleton.get_modification_stack().strength <= 0.0:
+					skeleton.get_modification_stack().enabled = false
+		return
+
 	var current_progress = 0.0
 
-	for i in range(0, segments.size()):
+	for i in range(segments.size()):
 		var segment = segments[i]
 		segment.animation.flip_h = direction == Global.LEFT
 
@@ -85,8 +108,6 @@ func _process(delta):
 	elif Input.is_key_pressed(KEY_6):
 		follow_mode()
 
-	if ritter:
-		attack_target.global_position = ritter.global_position
 
 func attack_mode() -> void:
 	head_index = 15
@@ -116,7 +137,7 @@ func death(final_damage: int) -> void: # fun
 	var center : int = segments.size() / 2.0 as int
 	var center_segment = segments[center]
 
-	for i in range(0, segments.size()):
+	for i in range(segments.size()):
 		var old_node = segments[i]
 		var new_node = RigidBody2D.new()
 		new_node.name = old_node.name
@@ -124,6 +145,7 @@ func death(final_damage: int) -> void: # fun
 		new_node.rotation = old_node.rotation
 		new_node.collision_layer = old_node.collision_layer
 		new_node.collision_mask = 1 << 7
+		print("Setting collision mask to: ", i)
 
 		for child in old_node.get_children():
 			old_node.remove_child(child)
@@ -147,5 +169,39 @@ func death(final_damage: int) -> void: # fun
 
 		new_node.apply_central_impulse(force_dir.normalized() * force_mag)
 
+func reset_to_ground_fight():
+	head_index = segments.size() - 1
 
-		
+	for i in range(segments.size()):
+		var segment = segments[i]
+		segment.remote_transform_for_controlling_bone.update_position = head_index == i
+		segment.remote_transform_for_controlling_bone.update_rotation = head_index == i
+
+		# for everything that's before the head, we enable bone controls
+		for c in segment.controlling_bone.get_children():
+			if c is RemoteTransform2D:
+				c.update_position = i < head_index
+				c.update_rotation = i < head_index
+				break
+
+		if segment.path_follow:
+			segment.path_follow.get_children()[0].update_position = false
+			segment.path_follow.get_children()[0].update_rotation = false
+
+		segment.sync_to_physics = false
+
+	# iterate over bones in skeleton and apply rest
+	for i in range(head_index, skeleton.get_bone_count()):
+		var bone = skeleton.get_bone(i)
+		bone.apply_rest()
+
+	skeleton.get_modification_stack().enabled = false
+
+	print("Setting collision elon mask to 2: ", head_index)
+	segments[head_index].collision_mask |= 1 << 7
+	segments[head_index].rotation = 0
+
+	follow_path = false
+
+	
+

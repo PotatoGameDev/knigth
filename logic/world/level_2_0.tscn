@@ -1,8 +1,64 @@
-[gd_scene load_steps=5 format=4 uid="uid://ubg7e1wf2bc3"]
+[gd_scene load_steps=7 format=4 uid="uid://ubg7e1wf2bc3"]
 
 [ext_resource type="TileSet" uid="uid://c21f2onevmyrp" path="res://logic/world/tileset1.tres" id="1_diau5"]
 [ext_resource type="PackedScene" uid="uid://ksxw1oepr2oa" path="res://logic/millipedes/millipedes.tscn" id="3_7xr3g"]
 [ext_resource type="PackedScene" uid="uid://ci1vae7axbcve" path="res://logic/zombi/zombi.tscn" id="3_e34o8"]
+
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_7xr3g"]
+resource_local_to_scene = true
+target_nodepath = NodePath("../AttackTarget")
+fabrik_data_chain_length = 15
+joint_data/0/bone_index = 6
+joint_data/0/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14")
+joint_data/1/bone_index = 7
+joint_data/1/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13")
+joint_data/1/magnet_position = Vector2(0, 0)
+joint_data/2/bone_index = 8
+joint_data/2/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12")
+joint_data/2/magnet_position = Vector2(0, 0)
+joint_data/3/bone_index = 9
+joint_data/3/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11")
+joint_data/3/magnet_position = Vector2(0, 0)
+joint_data/4/bone_index = 10
+joint_data/4/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10")
+joint_data/4/magnet_position = Vector2(0, 0)
+joint_data/5/bone_index = 11
+joint_data/5/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9")
+joint_data/5/magnet_position = Vector2(0, 0)
+joint_data/6/bone_index = 12
+joint_data/6/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8")
+joint_data/6/magnet_position = Vector2(0, 0)
+joint_data/7/bone_index = 13
+joint_data/7/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7")
+joint_data/7/magnet_position = Vector2(0, 0)
+joint_data/8/bone_index = 14
+joint_data/8/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6")
+joint_data/8/magnet_position = Vector2(0, 0)
+joint_data/9/bone_index = 15
+joint_data/9/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5")
+joint_data/9/magnet_position = Vector2(0, 0)
+joint_data/10/bone_index = 16
+joint_data/10/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4")
+joint_data/10/magnet_position = Vector2(0, 0)
+joint_data/11/bone_index = 17
+joint_data/11/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3")
+joint_data/11/magnet_position = Vector2(0, 0)
+joint_data/12/bone_index = 18
+joint_data/12/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2")
+joint_data/12/magnet_position = Vector2(0, 0)
+joint_data/13/bone_index = 19
+joint_data/13/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1")
+joint_data/13/magnet_position = Vector2(0, 0)
+joint_data/14/bone_index = 20
+joint_data/14/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1/BoneHead")
+joint_data/14/magnet_position = Vector2(0, 0)
+joint_data/14/use_target_rotation = true
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_e34o8"]
+resource_local_to_scene = true
+strength = 0.645
+modification_count = 1
+modifications/0 = SubResource("SkeletonModification2DFABRIK_7xr3g")
 
 [sub_resource type="Curve2D" id="Curve2D_diau5"]
 resource_local_to_scene = true
@@ -19,8 +75,15 @@ tile_set = ExtResource("1_diau5")
 
 [node name="Millipedes" parent="." instance=ExtResource("3_7xr3g")]
 
-[node name="Segment" parent="Millipedes" index="2"]
-collision_mask = 129
+[node name="Skeleton2D" parent="Millipedes" index="22"]
+modification_stack = SubResource("SkeletonModificationStack2D_e34o8")
+
+[node name="Bone2D13" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14" index="0"]
+scale = Vector2(1, 1)
+
+[node name="BoneHead" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1" index="0"]
+scale = Vector2(1, 1)
+bone_angle = 13.4383
 
 [node name="MillipedesPath" parent="Millipedes" index="23"]
 curve = SubResource("Curve2D_diau5")
