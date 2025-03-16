@@ -121,6 +121,8 @@ func is_touching_floor() -> bool:
 @onready var potential_energy_bar: ProgressBar = $HUD/PotentialEnergyBar
 
 func _ready() -> void:
+	Global.ritter = self
+
 	change_state(idle_state)
 	jump_stamina_left = max_stamina
 	health = max_health

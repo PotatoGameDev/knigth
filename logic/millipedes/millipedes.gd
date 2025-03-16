@@ -12,18 +12,31 @@ class_name Millipedes
 
 @export var ritter: Knight = null
 
-var follow_ritter := false
 var health := 0.0
-var follow_path := true
+var state := State.FOLLOW_PATH
+var action := Action.DEFAULT
+
+enum State {
+	FOLLOW_PATH,
+	ATTACK,
+}
+
+enum Action {
+	DEFAULT,
+	SPRING,
+	FOLLOW_RITTER,
+	COOLDOWN,
+	CHARGE,
+}
 
 func _on_antenna_ritter_detected(detected_ritter: Knight):
-	ritter = detected_ritter
-	#attack_mode()
+	if state == State.FOLLOW_PATH:
+		action = Action.SPRING
+
 	reset_to_ground_fight()
 
 func _on_antenna_ritter_lost():
-	ritter = null
-	follow_mode()
+	pass
 
 var direction := Global.RIGHT
 var head_index := 0
@@ -31,6 +44,8 @@ var head_index := 0
 func _ready() -> void:
 	follow_mode()
 	health = max_health
+
+	ritter = Global.ritter
 
 func reset(fabrik: bool):
 
@@ -68,13 +83,34 @@ func _process(delta):
 	if health <= 0:
 		return
 
-	if ritter:
+	if state == State.ATTACK:
 		attack_target.global_position = ritter.global_position
 
-	if not follow_path:
+	if state == State.FOLLOW_PATH:
+		var current_progress = 0.0
+
+		for i in range(segments.size()):
+			var segment = segments[i]
+			if i == 0:
+				if segment.path_follow:
+					segment.path_follow.progress += delta * speed * direction
+					current_progress = segment.path_follow.progress
+			else:
+				current_progress -= distance_to_follower * direction
+				segment.path_follow.progress = current_progress
+	
+		return
+	if state == State.ATTACK:
 		# TODO: actual gravity here
 		segments[-1].move_and_collide(Vector2.DOWN * Global.gravity * delta)
-		
+
+		if ritter.global_position.x > segments[0].global_position.x:
+			direction = Global.RIGHT
+			scale.x = 1
+		else:
+			direction = Global.LEFT
+			scale.x = 1 # TODO: flip
+	
 		if ritter.global_position.distance_to(segments[0].global_position) < 200:
 			skeleton.get_modification_stack().enabled = true
 			skeleton.get_modification_stack().strength = lerp(
@@ -87,32 +123,16 @@ func _process(delta):
 				)
 				if skeleton.get_modification_stack().strength <= 0.0:
 					skeleton.get_modification_stack().enabled = false
+
 		return
 
-	var current_progress = 0.0
 
-	for i in range(segments.size()):
-		var segment = segments[i]
-		segment.animation.flip_h = direction == Global.LEFT
-
-		if i == 0:
-			if segment.path_follow:
-				segment.path_follow.progress += delta * speed * direction
-				current_progress = segment.path_follow.progress
-		else:
-			current_progress -= distance_to_follower * direction
-			segment.path_follow.progress = current_progress
-	
-	if Input.is_key_pressed(KEY_0):
-		attack_mode()
-	elif Input.is_key_pressed(KEY_6):
-		follow_mode()
-
-
+# TODO: REMOVE
 func attack_mode() -> void:
 	head_index = 15
 	reset(true)
 
+# TODO: REMOVE
 func follow_mode() -> void:
 	head_index = 0
 	reset(false)
@@ -132,6 +152,12 @@ func take_damage(damage: int) -> void:
 
 	if (health <= 0):
 		death(health_before)
+		return
+	
+	if state == State.FOLLOW_PATH:
+		state = State.ATTACK
+		reset_to_ground_fight()
+		return
 
 func death(final_damage: int) -> void: # fun
 	var center : int = segments.size() / 2.0 as int
@@ -201,7 +227,4 @@ func reset_to_ground_fight():
 	segments[head_index].collision_mask |= 1 << 7
 	segments[head_index].rotation = 0
 
-	follow_path = false
-
-	
-
+	state = State.ATTACK
