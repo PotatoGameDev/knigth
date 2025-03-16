@@ -75,15 +75,51 @@ tile_set = ExtResource("1_diau5")
 
 [node name="Millipedes" parent="." instance=ExtResource("3_7xr3g")]
 
+[node name="HUD" parent="Millipedes" index="0"]
+position = Vector2(-69.0203, -73.2934)
+
+[node name="Head" parent="Millipedes" index="1"]
+position = Vector2(-69.0203, -73.2934)
+
+[node name="Segment" parent="Millipedes" index="2"]
+position = Vector2(-84.2606, -78.1649)
+scale = Vector2(1, 1)
+
+[node name="Segment2" parent="Millipedes" index="3"]
+position = Vector2(-92.0596, -79.9472)
+
+[node name="Segment3" parent="Millipedes" index="4"]
+position = Vector2(-99.8787, -78.2558)
+
+[node name="Segment4" parent="Millipedes" index="5"]
+position = Vector2(-106.348, -73.5498)
+
+[node name="Segment6" parent="Millipedes" index="7"]
+position = Vector2(-114.052, -59.674)
+
+[node name="Segment7" parent="Millipedes" index="8"]
+position = Vector2(-114.764, -51.7057)
+
+[node name="Segment8" parent="Millipedes" index="9"]
+position = Vector2(-113.294, -43.8419)
+
+[node name="Segment9" parent="Millipedes" index="10"]
+position = Vector2(-111.651, -36.0126)
+
+[node name="Segment10" parent="Millipedes" index="11"]
+position = Vector2(-110.007, -28.1833)
+
+[node name="Segment12" parent="Millipedes" index="13"]
+position = Vector2(-110.058, -12.3141)
+
+[node name="Segment13" parent="Millipedes" index="14"]
+scale = Vector2(1, 1)
+
 [node name="Skeleton2D" parent="Millipedes" index="22"]
 modification_stack = SubResource("SkeletonModificationStack2D_e34o8")
 
 [node name="Bone2D13" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14" index="0"]
 scale = Vector2(1, 1)
-
-[node name="BoneHead" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1" index="0"]
-scale = Vector2(1, 1)
-bone_angle = 13.4383
 
 [node name="MillipedesPath" parent="Millipedes" index="23"]
 curve = SubResource("Curve2D_diau5")
@@ -176,9 +212,9 @@ rotation = 0.18902
 position = Vector2(1723, 1377)
 
 [node name="pierogiDev" parent="." instance=ExtResource("3_e34o8")]
-position = Vector2(1402, 1453)
+position = Vector2(-23, 401)
 
 [node name="BenCklyy" parent="." instance=ExtResource("3_e34o8")]
-position = Vector2(1238, 1276)
+position = Vector2(1436, 410)
 
 [editable path="Millipedes"]
