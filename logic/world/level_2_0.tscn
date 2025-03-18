@@ -68,32 +68,109 @@ tile_set = ExtResource("1_diau5")
 
 [node name="Millipedes" parent="." instance=ExtResource("3_7xr3g")]
 
+[node name="HUD" parent="Millipedes" index="0"]
+position = Vector2(149.44, -115.318)
+
+[node name="Head" parent="Millipedes" index="1"]
+position = Vector2(149.44, -115.318)
+scale = Vector2(1, 1)
+
 [node name="CollisionShape2D" parent="Millipedes/Head" index="2"]
 one_way_collision = true
 
 [node name="Segment" parent="Millipedes" index="2"]
+position = Vector2(137.848, -118.424)
 scale = Vector2(1, 1)
+
+[node name="Segment2" parent="Millipedes" index="3"]
+position = Vector2(125.848, -118.424)
+scale = Vector2(1, 1)
+
+[node name="Segment3" parent="Millipedes" index="4"]
+position = Vector2(114.257, -115.318)
+scale = Vector2(0.999996, 0.999996)
+
+[node name="Segment4" parent="Millipedes" index="5"]
+position = Vector2(103.865, -109.318)
+scale = Vector2(0.999998, 0.999998)
 
 [node name="Segment5" parent="Millipedes" index="6"]
-scale = Vector2(1, 1)
+position = Vector2(95.3797, -100.833)
+scale = Vector2(0.999993, 0.999993)
 
 [node name="Segment6" parent="Millipedes" index="7"]
+position = Vector2(92.2738, -89.2421)
 scale = Vector2(1, 1)
 
+[node name="Segment7" parent="Millipedes" index="8"]
+position = Vector2(92.2738, -77.2421)
+scale = Vector2(0.999999, 0.999999)
+
 [node name="Segment8" parent="Millipedes" index="9"]
+position = Vector2(95.3796, -65.6509)
 scale = Vector2(1, 1)
 
 [node name="Segment9" parent="Millipedes" index="10"]
+position = Vector2(98.4854, -54.0598)
 scale = Vector2(1, 1)
 
 [node name="Segment10" parent="Millipedes" index="11"]
+position = Vector2(101.591, -42.4687)
 scale = Vector2(1, 1)
 
+[node name="Segment11" parent="Millipedes" index="12"]
+position = Vector2(101.591, -30.4687)
+scale = Vector2(0.999999, 0.999999)
+
+[node name="Segment12" parent="Millipedes" index="13"]
+position = Vector2(98.4853, -18.8776)
+scale = Vector2(0.999999, 0.999999)
+
 [node name="Segment13" parent="Millipedes" index="14"]
+position = Vector2(92.4853, -8.48527)
 scale = Vector2(1, 1)
+
+[node name="Segment14" parent="Millipedes" index="15"]
+scale = Vector2(0.999997, 1)
 
 [node name="Skeleton2D" parent="Millipedes" index="22"]
 modification_stack = SubResource("SkeletonModificationStack2D_e34o8")
+
+[node name="Bone2D20" parent="Millipedes/Skeleton2D" index="0"]
+scale = Vector2(1, 1)
+
+[node name="Bone2D14" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15" index="0"]
+scale = Vector2(1, 1)
+
+[node name="Bone2D13" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14" index="0"]
+scale = Vector2(1, 1)
+
+[node name="Bone2D12" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13" index="0"]
+scale = Vector2(1, 1)
+
+[node name="Bone2D11" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12" index="0"]
+scale = Vector2(1, 1)
+
+[node name="Bone2D10" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11" index="0"]
+scale = Vector2(1, 1)
+
+[node name="Bone2D7" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8" index="0"]
+scale = Vector2(1, 1)
+
+[node name="Bone2D6" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7" index="0"]
+scale = Vector2(1, 1)
+
+[node name="Bone2D4" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5" index="0"]
+scale = Vector2(1, 1)
+
+[node name="Bone2D3" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4" index="0"]
+scale = Vector2(1, 1)
+
+[node name="Bone2D2" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3" index="0"]
+scale = Vector2(1, 1)
+
+[node name="Bone2D1" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2" index="0"]
+scale = Vector2(1, 1)
 
 [node name="RemoteTransform2D" parent="Millipedes/MillipedesPath/PathFollowHead" index="0"]
 position = Vector2(-8.00004, 9.99982)

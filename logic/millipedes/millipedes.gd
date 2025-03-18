@@ -10,6 +10,8 @@ class_name Millipedes
 @onready var attack_target: Node2D = $AttackTarget
 @onready var life_bar: ProgressBar = $HUD/LifeBar
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 @export var ritter: Knight = null
 
 var health := 0.0
@@ -19,6 +21,7 @@ var action := Action.DEFAULT
 enum State {
 	FOLLOW_PATH,
 	ATTACK,
+	CURL,
 }
 
 enum Action {
@@ -31,9 +34,12 @@ enum Action {
 
 func _on_antenna_ritter_detected(detected_ritter: Knight):
 	if state == State.FOLLOW_PATH:
-		action = Action.SPRING
-
-	reset_to_ground_fight()
+		reset_to_curl()
+		animation_player.play("curl")
+	else:
+		animation_player.play_backwards("curl")
+	
+	#reset_to_ground_fight()
 
 func _on_antenna_ritter_lost():
 	pass
@@ -125,6 +131,9 @@ func _process(delta):
 					skeleton.get_modification_stack().enabled = false
 
 		return
+	if state == State.CURL:
+		# TODO: actual gravity here
+		segments[-1].move_and_collide(Vector2.DOWN * Global.gravity * delta)
 
 
 # TODO: REMOVE
@@ -223,8 +232,42 @@ func reset_to_ground_fight():
 
 	skeleton.get_modification_stack().enabled = false
 
-	print("Setting collision elon mask to 2: ", head_index)
 	segments[head_index].collision_mask |= 1 << 7
 	segments[head_index].rotation = 0
 
 	state = State.ATTACK
+
+func reset_to_curl():
+	head_index = segments.size() - 1
+
+	for i in range(segments.size()):
+		var segment = segments[i]
+		segment.remote_transform_for_controlling_bone.update_position = head_index == i
+		segment.remote_transform_for_controlling_bone.update_rotation = head_index == i
+
+		# for everything that's before the head, we enable bone controls
+		for c in segment.controlling_bone.get_children():
+			if c is RemoteTransform2D:
+				c.update_position = i < head_index
+				c.update_rotation = i < head_index
+				break
+
+		if segment.path_follow:
+			segment.path_follow.get_children()[0].update_position = false
+			segment.path_follow.get_children()[0].update_rotation = false
+
+
+		segment.sync_to_physics = false
+
+	skeleton.get_modification_stack().enabled = false
+
+	# iterate over bones in skeleton and apply rest
+	for i in range(head_index, skeleton.get_bone_count()):
+		var bone = skeleton.get_bone(i)
+		bone.apply_rest()
+
+	# TODO: Change to dedicated character controllers.
+	segments[head_index].collision_mask |= 1 << 7
+	segments[head_index].rotation = -90
+
+	state = State.CURL
