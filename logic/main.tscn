@@ -349,7 +349,7 @@ radius = 2336.07
 script = ExtResource("1_2bfyf")
 
 [node name="Ritter" type="CharacterBody2D" parent="."]
-position = Vector2(4246, 618)
+position = Vector2(4313, 571)
 collision_mask = 194
 floor_block_on_wall = false
 platform_floor_layers = 4278190210

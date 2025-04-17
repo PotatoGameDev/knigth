@@ -34,10 +34,41 @@ enum Action {
 
 func _on_antenna_ritter_detected(detected_ritter: Knight):
 	if state == State.FOLLOW_PATH:
-		reset_to_curl()
-		animation_player.play("curl")
+		head_index = segments.size() - 1
+
+		for i in range(segments.size()):
+			var segment = segments[i]
+			segment.remote_transform_for_controlling_bone.update_position = true
+			segment.remote_transform_for_controlling_bone.update_rotation = true
+
+			# for everything that's before the head, we enable bone controls
+			for c in segment.controlling_bone.get_children():
+				if c is RemoteTransform2D:
+					c.update_position = i < head_index
+					c.update_rotation = i < head_index
+					break
+
+			# disable path follow
+			if segment.path_follow:
+				segment.path_follow.get_children()[0].update_position = false
+				segment.path_follow.get_children()[0].update_rotation = false
+
+			segment.sync_to_physics = false
+
+		skeleton.get_modification_stack().enabled = false
+
+		# TODO: Change to dedicated character controllers.
+		segments[head_index].collision_mask |= 1 << 7
+
+		# Do not rotate instantly if you don't want it to be rotated instantly
+		#segments[head_index].rotation = -90
+
+		animation_player.play_with_capture("curl")
+		
+		state = State.CURL
+
 	else:
-		animation_player.play_backwards("curl")
+		pass
 	
 	#reset_to_ground_fight()
 
@@ -54,11 +85,13 @@ func _ready() -> void:
 	ritter = Global.ritter
 
 func reset(fabrik: bool):
-
+	print("Resetting ", head_index)
 	for i in range(segments.size()):
 		var segment = segments[i]
-		segment.remote_transform_for_controlling_bone.update_position = head_index == i
-		segment.remote_transform_for_controlling_bone.update_rotation = head_index == i
+		# segment.remote_transform_for_controlling_bone.update_position = head_index == i
+		# segment.remote_transform_for_controlling_bone.update_rotation = head_index == i
+		segment.remote_transform_for_controlling_bone.update_position = true
+		segment.remote_transform_for_controlling_bone.update_rotation = true
 
 		# for everything that's before the head, we enable bone controls
 		for c in segment.controlling_bone.get_children():
@@ -72,6 +105,7 @@ func reset(fabrik: bool):
 		if segment.path_follow:
 			segment.path_follow.get_children()[0].update_position = i >= head_index
 			segment.path_follow.get_children()[0].update_rotation = i >= head_index
+			pass
 
 	# iterate over bones in skeleton and apply rest
 	for i in range(head_index, skeleton.get_bone_count()):
@@ -131,9 +165,9 @@ func _process(delta):
 					skeleton.get_modification_stack().enabled = false
 
 		return
-	if state == State.CURL:
+	#if state == State.CURL:
 		# TODO: actual gravity here
-		segments[-1].move_and_collide(Vector2.DOWN * Global.gravity * delta)
+		#segments[-1].move_and_collide(Vector2.DOWN * Global.gravity * delta)
 
 
 # TODO: REMOVE
@@ -242,14 +276,15 @@ func reset_to_curl():
 
 	for i in range(segments.size()):
 		var segment = segments[i]
-		segment.remote_transform_for_controlling_bone.update_position = head_index == i
-		segment.remote_transform_for_controlling_bone.update_rotation = head_index == i
+		segment.remote_transform_for_controlling_bone.update_position = true
+		segment.remote_transform_for_controlling_bone.update_rotation = true
 
 		# for everything that's before the head, we enable bone controls
 		for c in segment.controlling_bone.get_children():
 			if c is RemoteTransform2D:
-				c.update_position = i < head_index
-				c.update_rotation = i < head_index
+				# Commenting those out makes the animations work, go figure:
+				#c.update_position = i < head_index
+				#c.update_rotation = i < head_index
 				break
 
 		if segment.path_follow:
@@ -261,13 +296,9 @@ func reset_to_curl():
 
 	skeleton.get_modification_stack().enabled = false
 
-	# iterate over bones in skeleton and apply rest
-	for i in range(head_index, skeleton.get_bone_count()):
-		var bone = skeleton.get_bone(i)
-		bone.apply_rest()
-
 	# TODO: Change to dedicated character controllers.
 	segments[head_index].collision_mask |= 1 << 7
 	segments[head_index].rotation = -90
 
 	state = State.CURL
+
