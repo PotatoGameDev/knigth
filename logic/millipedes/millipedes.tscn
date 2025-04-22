@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ksxw1oepr2oa"]
+[gd_scene load_steps=16 format=3 uid="uid://ksxw1oepr2oa"]
 
 [ext_resource type="Script" uid="uid://tvu3a53u5pr2" path="res://logic/millipedes/millipedes.gd" id="1_8b0bt"]
 [ext_resource type="Texture2D" uid="uid://drv5lyxoo86kd" path="res://assets/sprites/millipede.png" id="2_03loo"]
@@ -566,6 +566,20 @@ tracks/19/keys = {
 "update": 2,
 "values": [0.174533]
 }
+tracks/20/type = "method"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath(".")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"set_wheel_enabled"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qg3aa"]
 _data = {
@@ -573,13 +587,16 @@ _data = {
 &"curl": SubResource("Animation_pwe2w")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pwe2w"]
+radius = 61.0328
+
 [node name="Millipedes" type="Node2D" node_paths=PackedStringArray("segments")]
 script = ExtResource("1_8b0bt")
 segments = [NodePath("Head"), NodePath("Segment"), NodePath("Segment2"), NodePath("Segment3"), NodePath("Segment4"), NodePath("Segment5"), NodePath("Segment6"), NodePath("Segment7"), NodePath("Segment8"), NodePath("Segment9"), NodePath("Segment10"), NodePath("Segment11"), NodePath("Segment12"), NodePath("Segment13"), NodePath("Segment14"), NodePath("Segment15"), NodePath("Segment16"), NodePath("Segment17"), NodePath("Segment18"), NodePath("Segment19"), NodePath("Segment20")]
 distance_to_follower = 12.0
 
 [node name="HUD" type="Node2D" parent="."]
-position = Vector2(149.41, -115.284)
+position = Vector2(37.6534, 63.4183)
 
 [node name="LifeBar" type="ProgressBar" parent="HUD"]
 offset_left = -16.0
@@ -594,9 +611,9 @@ value = 1.0
 show_percentage = false
 
 [node name="Head" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone")]
-position = Vector2(149.41, -115.284)
-rotation = 0.261799
-scale = Vector2(0.999905, 0.999905)
+position = Vector2(37.6534, 63.4183)
+rotation = -2.79252
+scale = Vector2(0.999901, 0.999901)
 collision_layer = 2
 script = ExtResource("2_6nyub")
 path_follow = NodePath("../MillipedesPath/PathFollowHead")
@@ -625,138 +642,142 @@ update_rotation = false
 update_scale = false
 
 [node name="Segment" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(137.824, -118.389)
-rotation = 0.261799
+position = Vector2(48.9246, 59.316)
+rotation = 2.79253
 scale = Vector2(0.999952, 0.999952)
 path_follow = NodePath("../MillipedesPath/PathFollow1")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1")
 
 [node name="Segment2" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(125.829, -118.389)
-scale = Vector2(0.999937, 0.999937)
+position = Vector2(54.922, 48.9282)
+rotation = 2.0944
+scale = Vector2(0.999997, 0.999997)
 animation_delay = 1
 path_follow = NodePath("../MillipedesPath/PathFollow2")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2")
 
 [node name="Segment3" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(114.243, -115.284)
-rotation = -0.261799
-scale = Vector2(0.999931, 0.999931)
+position = Vector2(52.8391, 37.1155)
+rotation = 1.39626
+scale = Vector2(0.999927, 0.999927)
 animation_delay = 2
 path_follow = NodePath("../MillipedesPath/PathFollow3")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3")
 
 [node name="Segment4" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(103.855, -109.286)
-rotation = -0.523598
-scale = Vector2(0.999867, 0.999867)
+position = Vector2(43.6503, 29.4051)
+rotation = 0.698133
+scale = Vector2(0.999865, 0.999865)
 animation_delay = 3
 path_follow = NodePath("../MillipedesPath/PathFollow4")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4")
 
 [node name="Segment5" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(95.3728, -100.804)
-rotation = -0.785397
+position = Vector2(31.6549, 29.4051)
 scale = Vector2(0.99996, 0.99996)
 animation_delay = 4
 path_follow = NodePath("../MillipedesPath/PathFollow5")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5")
 
 [node name="Segment6" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(92.2681, -89.2176)
-rotation = -1.309
+position = Vector2(22.2023, 36.7903)
+rotation = -0.663224
 scale = Vector2(0.999915, 0.999915)
 animation_delay = 5
 path_follow = NodePath("../MillipedesPath/PathFollow6")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6")
 
 [node name="Segment7" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(92.2681, -77.2218)
-rotation = -1.57079
+position = Vector2(18.8958, 48.3213)
+rotation = -1.29154
 scale = Vector2(0.999908, 0.999908)
 animation_delay = 6
 path_follow = NodePath("../MillipedesPath/PathFollow7")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7")
 
 [node name="Segment8" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(95.3728, -65.6346)
-rotation = -1.83259
+position = Vector2(22.6028, 59.7302)
+rotation = -1.88496
 scale = Vector2(0.999941, 0.999941)
 animation_delay = 7
 path_follow = NodePath("../MillipedesPath/PathFollow8")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8")
 
 [node name="Segment9" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(98.4776, -54.0471)
-rotation = -1.83259
+position = Vector2(31.7924, 67.4412)
+rotation = -2.44346
 scale = Vector2(0.999971, 0.999971)
 animation_delay = 8
 path_follow = NodePath("../MillipedesPath/PathFollow9")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9")
 
 [node name="Segment10" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(101.583, -42.4593)
-rotation = -1.83259
+position = Vector2(43.6067, 69.5244)
+rotation = -2.96706
 scale = Vector2(0.99995, 0.99995)
 animation_delay = 9
 path_follow = NodePath("../MillipedesPath/PathFollow10")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10")
 
 [node name="Segment11" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(101.583, -30.4624)
-rotation = -1.57079
-scale = Vector2(0.999938, 0.999938)
+position = Vector2(55.0165, 65.8172)
+rotation = 2.82743
+scale = Vector2(0.999936, 0.999936)
 animation_delay = 10
 path_follow = NodePath("../MillipedesPath/PathFollow11")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11")
 
 [node name="Segment12" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(98.4774, -18.874)
-rotation = -1.309
+position = Vector2(63.6465, 57.4832)
+rotation = 2.37365
 scale = Vector2(0.999915, 0.999915)
 animation_delay = 11
 path_follow = NodePath("../MillipedesPath/PathFollow12")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12")
 
 [node name="Segment13" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(92.4786, -8.48382)
-rotation = -1.0472
+position = Vector2(68.1409, 46.3592)
+rotation = 1.95477
 scale = Vector2(0.999968, 0.999968)
 animation_delay = 12
 path_follow = NodePath("../MillipedesPath/PathFollow13")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13")
 
 [node name="Segment14" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(83.9947, 0)
-rotation = -0.785397
+position = Vector2(68.1409, 34.3613)
+rotation = 1.5708
 scale = Vector2(0.999979, 0.999979)
 animation_delay = 13
 path_follow = NodePath("../MillipedesPath/PathFollow14")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14")
 
 [node name="Segment15" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(71.9965, 0)
+position = Vector2(64.0373, 23.0866)
+rotation = 1.22173
 scale = Vector2(0.999961, 0.999961)
 animation_delay = 14
 path_follow = NodePath("../MillipedesPath/PathFollow15")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15")
 
 [node name="Segment16" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(59.9978, 0)
+position = Vector2(56.6502, 13.6315)
+rotation = 0.907572
 scale = Vector2(0.999939, 0.999939)
 animation_delay = 15
 path_follow = NodePath("../MillipedesPath/PathFollow16")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16")
 
 [node name="Segment17" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(47.9989, 0)
+position = Vector2(46.9429, 6.57873)
+rotation = 0.628319
 scale = Vector2(0.999997, 0.999997)
 animation_delay = 16
 path_follow = NodePath("../MillipedesPath/PathFollow17")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17")
 
 [node name="Segment18" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(35.9996, 0)
+position = Vector2(35.8173, 2.08371)
+rotation = 0.383973
 scale = Vector2(0.999997, 0.999997)
 animation_delay = 17
 path_follow = NodePath("../MillipedesPath/PathFollow18")
@@ -764,6 +785,7 @@ controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18")
 
 [node name="Segment19" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(24, 0)
+rotation = 0.174533
 scale = Vector2(0.99999, 0.99999)
 animation_delay = 18
 path_follow = NodePath("../MillipedesPath/PathFollow19")
@@ -1206,6 +1228,27 @@ libraries = {
 &"": SubResource("AnimationLibrary_qg3aa")
 }
 autoplay = "RESET"
+
+[node name="MilipedesWheel" type="RigidBody2D" parent="."]
+collision_layer = 4
+collision_mask = 128
+mass = 100.0
+sleeping = true
+can_sleep = false
+freeze = true
+freeze_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MilipedesWheel"]
+position = Vector2(40, 35)
+shape = SubResource("CircleShape2D_pwe2w")
+disabled = true
+debug_color = Color(0, 0.0666667, 0.701961, 0.419608)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MilipedesWheel"]
+remote_path = NodePath("../../Segment20")
+update_position = false
+update_rotation = false
+update_scale = false
 
 [connection signal="ritter_detected" from="Head/Antenna" to="." method="_on_antenna_ritter_detected"]
 [connection signal="ritter_detected" from="Head/Antenna2" to="." method="_on_antenna_ritter_detected"]

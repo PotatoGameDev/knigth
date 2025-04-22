@@ -157,6 +157,7 @@ rotation = 0.0
 [node name="Segment16" parent="Millipedes" index="17"]
 position = Vector2(60, 0)
 rotation = 0.0
+scale = Vector2(0.999939, 0.999939)
 
 [node name="Segment17" parent="Millipedes" index="18"]
 position = Vector2(48, 0)
@@ -165,6 +166,7 @@ rotation = 0.0
 [node name="Segment18" parent="Millipedes" index="19"]
 position = Vector2(36, 0)
 rotation = 0.0
+scale = Vector2(0.999997, 0.999997)
 
 [node name="Segment19" parent="Millipedes" index="20"]
 rotation = 0.0
@@ -232,9 +234,6 @@ scale = Vector2(1, 1)
 [node name="BoneHead" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1" index="0"]
 scale = Vector2(1, 1)
 
-[node name="PathFollowHead" parent="Millipedes/MillipedesPath" index="0"]
-position = Vector2(241.038, 992.596)
-
 [node name="RemoteTransform2D" parent="Millipedes/MillipedesPath/PathFollowHead" index="0"]
 position = Vector2(-8.00004, 9.99982)
 
@@ -300,6 +299,9 @@ visible = false
 
 [node name="RemoteTransform2D" parent="Millipedes/MillipedesPath/PathFollow20" index="0"]
 visible = false
+
+[node name="MilipedesWheel" parent="Millipedes" index="26"]
+position = Vector2(583, 1425)
 
 [node name="Agira7" parent="." instance=ExtResource("3_e34o8")]
 position = Vector2(1723, 1377)

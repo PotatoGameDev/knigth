@@ -209,6 +209,9 @@ func _physics_process(delta):
 	else:
 		camera.zoom = lerp(camera.zoom, max_camera_zoom, 0.01)
 
+	camera.zoom = 0.1 * Vector2.ONE 
+	
+
 	#if is_touching_floor():
 	#	velocity.y = 0.0
 
@@ -237,6 +240,5 @@ func jump_slip(delta: float) -> void:
 		velocity.x -= acceleration * delta
 
 func add_force(force: Vector2) -> void:
-	print("Adding force: ", force)
 	current_state.add_force(self, force)
 

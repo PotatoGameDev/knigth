@@ -12,11 +12,18 @@ class_name Millipedes
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@onready var wheel: RigidBody2D = $MilipedesWheel
+@onready var wheelCollisionShape: CollisionShape2D = $MilipedesWheel/CollisionShape2D
+@onready var wheelRemoteTransform: RemoteTransform2D = $MilipedesWheel/RemoteTransform2D
+
 @export var ritter: Knight = null
 
 var health := 0.0
 var state := State.FOLLOW_PATH
 var action := Action.DEFAULT
+
+@export var roll_speed := 1000
+var roll_direction := 1
 
 enum State {
 	FOLLOW_PATH,
@@ -34,39 +41,7 @@ enum Action {
 
 func _on_antenna_ritter_detected(detected_ritter: Knight):
 	if state == State.FOLLOW_PATH:
-		head_index = segments.size() - 1
-
-		for i in range(segments.size()):
-			var segment = segments[i]
-			segment.remote_transform_for_controlling_bone.update_position = true
-			segment.remote_transform_for_controlling_bone.update_rotation = true
-
-			# for everything that's before the head, we enable bone controls
-			for c in segment.controlling_bone.get_children():
-				if c is RemoteTransform2D:
-					c.update_position = i < head_index
-					c.update_rotation = i < head_index
-					break
-
-			# disable path follow
-			if segment.path_follow:
-				segment.path_follow.get_children()[0].update_position = false
-				segment.path_follow.get_children()[0].update_rotation = false
-
-			segment.sync_to_physics = false
-
-		skeleton.get_modification_stack().enabled = false
-
-		# TODO: Change to dedicated character controllers.
-		segments[head_index].collision_mask |= 1 << 7
-
-		# Do not rotate instantly if you don't want it to be rotated instantly
-		#segments[head_index].rotation = -90
-
-		animation_player.play_with_capture("curl")
-		
-		state = State.CURL
-
+		reset_to_curl()
 	else:
 		pass
 	
@@ -85,7 +60,6 @@ func _ready() -> void:
 	ritter = Global.ritter
 
 func reset(fabrik: bool):
-	print("Resetting ", head_index)
 	for i in range(segments.size()):
 		var segment = segments[i]
 		# segment.remote_transform_for_controlling_bone.update_position = head_index == i
@@ -113,6 +87,30 @@ func reset(fabrik: bool):
 		bone.apply_rest()
 
 	skeleton.get_modification_stack().enabled = fabrik
+
+func _physics_process(delta):
+	var space_state = get_world_2d().direct_space_state
+	# use global coordinates, not local to node
+	var query = PhysicsRayQueryParameters2D.create(
+		wheelCollisionShape.global_position, 
+		wheelCollisionShape.global_position + Vector2.RIGHT * 100,
+		1 << 7,
+		[self]
+		)
+	var result = space_state.intersect_ray(query)
+	if result:
+		roll_direction = -1
+
+	query = PhysicsRayQueryParameters2D.create(
+		wheelCollisionShape.global_position, 
+		wheelCollisionShape.global_position + Vector2.LEFT * 100,
+		1 << 7,
+		[self]
+		)
+	result = space_state.intersect_ray(query)
+	if result:
+		roll_direction = 1
+
 
 func _process(delta):
 	if health > 0.0 and Input.is_key_pressed(KEY_Y):
@@ -163,11 +161,10 @@ func _process(delta):
 				)
 				if skeleton.get_modification_stack().strength <= 0.0:
 					skeleton.get_modification_stack().enabled = false
-
 		return
-	#if state == State.CURL:
-		# TODO: actual gravity here
-		#segments[-1].move_and_collide(Vector2.DOWN * Global.gravity * delta)
+	if state == State.CURL:
+		wheel.apply_central_impulse(roll_direction * Vector2.RIGHT * roll_speed)
+		return
 
 
 # TODO: REMOVE
@@ -272,6 +269,8 @@ func reset_to_ground_fight():
 	state = State.ATTACK
 
 func reset_to_curl():
+	state = State.CURL
+
 	head_index = segments.size() - 1
 
 	for i in range(segments.size()):
@@ -282,23 +281,26 @@ func reset_to_curl():
 		# for everything that's before the head, we enable bone controls
 		for c in segment.controlling_bone.get_children():
 			if c is RemoteTransform2D:
-				# Commenting those out makes the animations work, go figure:
-				#c.update_position = i < head_index
-				#c.update_rotation = i < head_index
+				c.update_position = i < head_index
+				c.update_rotation = i < head_index
 				break
 
+		# disable path follow
 		if segment.path_follow:
 			segment.path_follow.get_children()[0].update_position = false
 			segment.path_follow.get_children()[0].update_rotation = false
-
 
 		segment.sync_to_physics = false
 
 	skeleton.get_modification_stack().enabled = false
 
-	# TODO: Change to dedicated character controllers.
-	segments[head_index].collision_mask |= 1 << 7
-	segments[head_index].rotation = -90
+	animation_player.play_with_capture("curl")
 
-	state = State.CURL
-
+func set_wheel_enabled(enabled: bool):
+	if enabled:
+		wheel.global_position = segments[head_index].global_position
+		wheelRemoteTransform.update_position = true
+		wheelRemoteTransform.update_rotation = true
+		wheelCollisionShape.disabled = false
+		wheel.sleeping = false
+		wheel.freeze = false
