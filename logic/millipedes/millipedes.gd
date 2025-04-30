@@ -20,7 +20,8 @@ class_name Millipedes
 
 var health := 0.0
 var state := State.FOLLOW_PATH
-var action := Action.DEFAULT
+
+var transition := false
 
 @export var roll_speed := 1000
 var roll_direction := 1
@@ -31,21 +32,17 @@ enum State {
 	CURL,
 }
 
-enum Action {
-	DEFAULT,
-	SPRING,
-	FOLLOW_RITTER,
-	COOLDOWN,
-	CHARGE,
-}
-
 func _on_antenna_ritter_detected(detected_ritter: Knight):
+	if transition:
+		return
+
 	if state == State.FOLLOW_PATH:
 		reset_to_curl()
-	else:
-		pass
-	
-	#reset_to_ground_fight()
+		return
+
+	if state == State.CURL:
+		reset_to_ground_fight()
+		return
 
 func _on_antenna_ritter_lost():
 	pass
@@ -113,6 +110,9 @@ func _physics_process(delta):
 
 
 func _process(delta):
+	if transition:
+		return
+
 	if health > 0.0 and Input.is_key_pressed(KEY_Y):
 		health = 0.0	 
 		death(10)
@@ -120,9 +120,6 @@ func _process(delta):
 
 	if health <= 0:
 		return
-
-	if state == State.ATTACK:
-		attack_target.global_position = ritter.global_position
 
 	if state == State.FOLLOW_PATH:
 		var current_progress = 0.0
@@ -138,16 +135,24 @@ func _process(delta):
 				segment.path_follow.progress = current_progress
 	
 		return
+
 	if state == State.ATTACK:
+
+		if segments[-1].rotation != 0:
+			segments[-1].rotation = lerp_angle(segments[-1].rotation, 0, 0.1)
+
+		attack_target.global_position = ritter.global_position
+
 		# TODO: actual gravity here
 		segments[-1].move_and_collide(Vector2.DOWN * Global.gravity * delta)
 
+		# This probably doesn't work
 		if ritter.global_position.x > segments[0].global_position.x:
 			direction = Global.RIGHT
 			scale.x = 1
 		else:
 			direction = Global.LEFT
-			scale.x = 1 # TODO: flip
+			scale.x = 1 # TODO: flip (first figure out how to do this)
 	
 		if ritter.global_position.distance_to(segments[0].global_position) < 200:
 			skeleton.get_modification_stack().enabled = true
@@ -162,6 +167,7 @@ func _process(delta):
 				if skeleton.get_modification_stack().strength <= 0.0:
 					skeleton.get_modification_stack().enabled = false
 		return
+
 	if state == State.CURL:
 		wheel.apply_central_impulse(roll_direction * Vector2.RIGHT * roll_speed)
 		return
@@ -211,7 +217,6 @@ func death(final_damage: int) -> void: # fun
 		new_node.rotation = old_node.rotation
 		new_node.collision_layer = old_node.collision_layer
 		new_node.collision_mask = 1 << 7
-		print("Setting collision mask to: ", i)
 
 		for child in old_node.get_children():
 			old_node.remove_child(child)
@@ -236,6 +241,10 @@ func death(final_damage: int) -> void: # fun
 		new_node.apply_central_impulse(force_dir.normalized() * force_mag)
 
 func reset_to_ground_fight():
+	transition = true
+
+	state = State.ATTACK
+
 	head_index = segments.size() - 1
 
 	for i in range(segments.size()):
@@ -256,19 +265,17 @@ func reset_to_ground_fight():
 
 		segment.sync_to_physics = false
 
-	# iterate over bones in skeleton and apply rest
-	for i in range(head_index, skeleton.get_bone_count()):
-		var bone = skeleton.get_bone(i)
-		bone.apply_rest()
-
 	skeleton.get_modification_stack().enabled = false
 
 	segments[head_index].collision_mask |= 1 << 7
-	segments[head_index].rotation = 0
+	segments[head_index].global_rotation = 0
 
-	state = State.ATTACK
+	animation_player.play_with_capture("stand_up")
+
 
 func reset_to_curl():
+	transition = true
+
 	state = State.CURL
 
 	head_index = segments.size() - 1
@@ -297,10 +304,18 @@ func reset_to_curl():
 	animation_player.play_with_capture("curl")
 
 func set_wheel_enabled(enabled: bool):
+	transition = false
 	if enabled:
 		wheel.global_position = segments[head_index].global_position
+		wheel.rotation = segments[head_index].rotation
 		wheelRemoteTransform.update_position = true
 		wheelRemoteTransform.update_rotation = true
 		wheelCollisionShape.disabled = false
 		wheel.sleeping = false
 		wheel.freeze = false
+	else:
+		wheelRemoteTransform.update_position = false
+		wheelRemoteTransform.update_rotation = false
+		wheelCollisionShape.disabled = true
+		wheel.sleeping = true
+		wheel.freeze = true
