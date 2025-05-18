@@ -1,64 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://ubg7e1wf2bc3"]
+[gd_scene load_steps=4 format=4 uid="uid://ubg7e1wf2bc3"]
 
 [ext_resource type="TileSet" uid="uid://c21f2onevmyrp" path="res://logic/world/tileset1.tres" id="1_diau5"]
 [ext_resource type="PackedScene" uid="uid://ksxw1oepr2oa" path="res://logic/millipedes/millipedes.tscn" id="3_7xr3g"]
 [ext_resource type="PackedScene" uid="uid://ci1vae7axbcve" path="res://logic/zombi/zombi.tscn" id="3_e34o8"]
-
-[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_7xr3g"]
-resource_local_to_scene = true
-target_nodepath = NodePath("../AttackTarget")
-fabrik_data_chain_length = 15
-joint_data/0/bone_index = 6
-joint_data/0/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14")
-joint_data/1/bone_index = 7
-joint_data/1/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13")
-joint_data/1/magnet_position = Vector2(0, 0)
-joint_data/2/bone_index = 8
-joint_data/2/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12")
-joint_data/2/magnet_position = Vector2(0, 0)
-joint_data/3/bone_index = 9
-joint_data/3/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11")
-joint_data/3/magnet_position = Vector2(0, 0)
-joint_data/4/bone_index = 10
-joint_data/4/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10")
-joint_data/4/magnet_position = Vector2(0, 0)
-joint_data/5/bone_index = 11
-joint_data/5/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9")
-joint_data/5/magnet_position = Vector2(0, 0)
-joint_data/6/bone_index = 12
-joint_data/6/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8")
-joint_data/6/magnet_position = Vector2(0, 0)
-joint_data/7/bone_index = 13
-joint_data/7/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7")
-joint_data/7/magnet_position = Vector2(0, 0)
-joint_data/8/bone_index = 14
-joint_data/8/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6")
-joint_data/8/magnet_position = Vector2(0, 0)
-joint_data/9/bone_index = 15
-joint_data/9/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5")
-joint_data/9/magnet_position = Vector2(0, 0)
-joint_data/10/bone_index = 16
-joint_data/10/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4")
-joint_data/10/magnet_position = Vector2(0, 0)
-joint_data/11/bone_index = 17
-joint_data/11/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3")
-joint_data/11/magnet_position = Vector2(0, 0)
-joint_data/12/bone_index = 18
-joint_data/12/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2")
-joint_data/12/magnet_position = Vector2(0, 0)
-joint_data/13/bone_index = 19
-joint_data/13/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1")
-joint_data/13/magnet_position = Vector2(0, 0)
-joint_data/14/bone_index = 20
-joint_data/14/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1/BoneHead")
-joint_data/14/magnet_position = Vector2(0, 0)
-joint_data/14/use_target_rotation = false
-
-[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_e34o8"]
-resource_local_to_scene = true
-strength = 0.645
-modification_count = 1
-modifications/0 = SubResource("SkeletonModification2DFABRIK_7xr3g")
 
 [node name="Level2_0" type="Node2D"]
 
@@ -89,7 +33,7 @@ scale = Vector2(1, 1)
 
 [node name="Segment3" parent="Millipedes" index="4"]
 position = Vector2(114.257, -115.318)
-scale = Vector2(0.999993, 0.999993)
+scale = Vector2(0.999992, 0.999992)
 
 [node name="Segment4" parent="Millipedes" index="5"]
 position = Vector2(103.865, -109.318)
@@ -147,68 +91,91 @@ position = Vector2(48, 0)
 [node name="Segment18" parent="Millipedes" index="19"]
 position = Vector2(36, 0)
 
-[node name="Skeleton2D" parent="Millipedes" index="22"]
-modification_stack = SubResource("SkeletonModificationStack2D_e34o8")
-
 [node name="Bone2D19" parent="Millipedes/Skeleton2D/Bone2D20" index="0"]
 scale = Vector2(1, 1)
+target_rotation = 0.0
 
 [node name="Bone2D18" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19" index="0"]
 scale = Vector2(1, 1)
+target_rotation = 0.0
 
 [node name="Bone2D17" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18" index="0"]
 scale = Vector2(1, 1)
+target_rotation = 0.0
 
 [node name="Bone2D16" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17" index="0"]
 scale = Vector2(1, 1)
+target_rotation = 0.0
 
 [node name="Bone2D15" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16" index="0"]
 scale = Vector2(1, 1)
+target_rotation = 0.0
 
 [node name="Bone2D14" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15" index="0"]
 scale = Vector2(1, 1)
+target_rotation = -0.785397
 
 [node name="Bone2D13" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14" index="0"]
 scale = Vector2(1, 1)
+target_rotation = -0.261799
 
 [node name="Bone2D12" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13" index="0"]
 scale = Vector2(1, 1)
+target_rotation = -0.261799
 
 [node name="Bone2D11" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12" index="0"]
 scale = Vector2(1, 1)
+target_rotation = -0.261799
 
 [node name="Bone2D10" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11" index="0"]
 scale = Vector2(1, 1)
+target_rotation = -0.261799
 
 [node name="Bone2D9" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10" index="0"]
 scale = Vector2(1, 1)
+target_rotation = 0.0
 
 [node name="Bone2D8" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9" index="0"]
 scale = Vector2(1, 1)
+target_rotation = 0.0
 
 [node name="Bone2D7" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8" index="0"]
 scale = Vector2(1, 1)
+target_rotation = 0.261799
 
 [node name="Bone2D6" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7" index="0"]
 scale = Vector2(1, 1)
+target_rotation = 0.261799
 
 [node name="Bone2D5" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6" index="0"]
 scale = Vector2(1, 1)
+target_rotation = 0.523598
 
 [node name="Bone2D4" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5" index="0"]
 scale = Vector2(1, 1)
+target_rotation = 0.261799
 
 [node name="Bone2D3" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4" index="0"]
 scale = Vector2(1, 1)
+target_rotation = 0.261799
 
 [node name="Bone2D2" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3" index="0"]
 scale = Vector2(1, 1)
+target_rotation = 0.261799
 
 [node name="Bone2D1" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2" index="0"]
 scale = Vector2(1, 1)
+target_rotation = 0.261799
 
 [node name="BoneHead" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1" index="0"]
 scale = Vector2(1, 1)
+target_rotation = 0.0
+
+[node name="Bone2D" parent="Millipedes/Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1/BoneHead" index="1"]
+scale = Vector2(1, 1)
+
+[node name="PathFollowHead" parent="Millipedes/MillipedesPath" index="0"]
+position = Vector2(241.038, 992.596)
 
 [node name="RemoteTransform2D" parent="Millipedes/MillipedesPath/PathFollowHead" index="0"]
 position = Vector2(-8.00004, 9.99982)

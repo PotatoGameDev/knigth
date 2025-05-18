@@ -15,6 +15,7 @@ class_name Millipedes
 @onready var wheel: RigidBody2D = $MilipedesWheel
 @onready var wheelCollisionShape: CollisionShape2D = $MilipedesWheel/CollisionShape2D
 @onready var wheelRemoteTransform: RemoteTransform2D = $MilipedesWheel/RemoteTransform2D
+@onready var fabrikComponent: SoupFABRIK = $Fabrik
 
 @export var ritter: Knight = null
 
@@ -83,7 +84,14 @@ func reset(fabrik: bool):
 		var bone = skeleton.get_bone(i)
 		bone.apply_rest()
 
-	skeleton.get_modification_stack().enabled = fabrik
+	fabrikComponent.enabled = fabrik
+	for i in range(segments.size()):
+		var segment = segments[i]
+		if fabrik:
+			segment.controlling_bone.transform_mode = SoupBone2D.TransformMode.IK
+		else:
+			segment.controlling_bone.transform_mode = SoupBone2D.TransformMode.MANUAL
+
 
 func _physics_process(delta):
 	var space_state = get_world_2d().direct_space_state
@@ -138,10 +146,18 @@ func _process(delta):
 
 	if state == State.ATTACK:
 
+		attack_target.global_position = ritter.global_position
+
+		if not fabrikComponent.enabled:
+			print("Enabling Fabrik")
+			fabrikComponent.enabled = true
+			for i in range(segments.size()):
+				var segment = segments[i]
+				segment.controlling_bone.transform_mode = SoupBone2D.TransformMode.IK
+
+
 		if segments[-1].rotation != 0:
 			segments[-1].rotation = lerp_angle(segments[-1].rotation, 0, 0.1)
-
-		attack_target.global_position = ritter.global_position
 
 		# TODO: actual gravity here
 		segments[-1].move_and_collide(Vector2.DOWN * Global.gravity * delta)
@@ -155,17 +171,18 @@ func _process(delta):
 			scale.x = 1 # TODO: flip (first figure out how to do this)
 	
 		if ritter.global_position.distance_to(segments[0].global_position) < 200:
-			skeleton.get_modification_stack().enabled = true
-			skeleton.get_modification_stack().strength = lerp(
-				skeleton.get_modification_stack().strength, 1.0, 0.1
-			)
+			#fabrikComponent.strength = lerp(
+			#	fabrikComponent.strength, 1.0, 0.1
+			#)
+			pass
 		else:
-			if skeleton.get_modification_stack().enabled:
-				skeleton.get_modification_stack().strength = lerp(
-					skeleton.get_modification_stack().strength, 0.0, 0.1
-				)
-				if skeleton.get_modification_stack().strength <= 0.0:
-					skeleton.get_modification_stack().enabled = false
+			if fabrikComponent.enabled:
+				#fabrikComponent.strength = lerp(
+				#	fabrikComponent.strength, 0.0, 0.1
+				#)
+				#if fabrikComponent.strength <= 0.0:
+				#	fabrikComponent.enabled = false
+				pass
 		return
 
 	if state == State.CURL:
@@ -265,7 +282,10 @@ func reset_to_ground_fight():
 
 		segment.sync_to_physics = false
 
-	skeleton.get_modification_stack().enabled = false
+	fabrikComponent.enabled = false
+	for i in range(segments.size()):
+		var segment = segments[i]
+		segment.controlling_bone.transform_mode = SoupBone2D.TransformMode.MANUAL
 
 	segments[head_index].collision_mask |= 1 << 7
 	segments[head_index].global_rotation = 0
@@ -299,7 +319,10 @@ func reset_to_curl():
 
 		segment.sync_to_physics = false
 
-	skeleton.get_modification_stack().enabled = false
+	fabrikComponent.enabled = false
+	for i in range(segments.size()):
+		var segment = segments[i]
+		segment.controlling_bone.transform_mode = SoupBone2D.TransformMode.MANUAL
 
 	animation_player.play_with_capture("curl")
 

@@ -1,10 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://ksxw1oepr2oa"]
+[gd_scene load_steps=32 format=3 uid="uid://ksxw1oepr2oa"]
 
 [ext_resource type="Script" uid="uid://tvu3a53u5pr2" path="res://logic/millipedes/millipedes.gd" id="1_8b0bt"]
 [ext_resource type="Texture2D" uid="uid://drv5lyxoo86kd" path="res://assets/sprites/millipede.png" id="2_03loo"]
 [ext_resource type="Script" uid="uid://c1ax32f7s8qho" path="res://logic/millipedes/head.gd" id="2_6nyub"]
 [ext_resource type="PackedScene" uid="uid://cd42717mtba07" path="res://logic/millipedes/segment.tscn" id="3_03loo"]
 [ext_resource type="PackedScene" uid="uid://dvd1h1iiiwbej" path="res://logic/millipedes/antenna.tscn" id="4_pwe2w"]
+[ext_resource type="Script" uid="uid://bnp483fqttx48" path="res://addons/soupik/modifications/soup_fabrik.gd" id="6_2byf2"]
+[ext_resource type="Script" uid="uid://dblp3q3oabmmp" path="res://addons/soupik/utility/soup_bone.gd" id="6_qg3aa"]
+[ext_resource type="Script" uid="uid://bts0ou7t3qtjt" path="res://addons/soupik/resources/zm_easing_params.gd" id="7_8ndee"]
+[ext_resource type="Script" uid="uid://dwy2vp7orkseq" path="res://addons/soupik/resources/zm_easing_rotational_params.gd" id="7_jgnnd"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_pwe2w"]
 color = Color(0.180005, 0.180005, 0.180005, 1)
@@ -17,61 +21,78 @@ thickness = 2
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pwe2w"]
 height = 50.0
 
-[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_pwe2w"]
-resource_local_to_scene = true
-target_nodepath = NodePath("../AttackTarget")
-fabrik_data_chain_length = 15
-joint_data/0/bone_index = 6
-joint_data/0/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14")
-joint_data/1/bone_index = 7
-joint_data/1/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13")
-joint_data/1/magnet_position = Vector2(0, 0)
-joint_data/2/bone_index = 8
-joint_data/2/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12")
-joint_data/2/magnet_position = Vector2(0, 0)
-joint_data/3/bone_index = 9
-joint_data/3/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11")
-joint_data/3/magnet_position = Vector2(0, 0)
-joint_data/4/bone_index = 10
-joint_data/4/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10")
-joint_data/4/magnet_position = Vector2(0, 0)
-joint_data/5/bone_index = 11
-joint_data/5/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9")
-joint_data/5/magnet_position = Vector2(0, 0)
-joint_data/6/bone_index = 12
-joint_data/6/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8")
-joint_data/6/magnet_position = Vector2(0, 0)
-joint_data/7/bone_index = 13
-joint_data/7/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7")
-joint_data/7/magnet_position = Vector2(0, 0)
-joint_data/8/bone_index = 14
-joint_data/8/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6")
-joint_data/8/magnet_position = Vector2(0, 0)
-joint_data/9/bone_index = 15
-joint_data/9/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5")
-joint_data/9/magnet_position = Vector2(0, 0)
-joint_data/10/bone_index = 16
-joint_data/10/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4")
-joint_data/10/magnet_position = Vector2(0, 0)
-joint_data/11/bone_index = 17
-joint_data/11/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3")
-joint_data/11/magnet_position = Vector2(0, 0)
-joint_data/12/bone_index = 18
-joint_data/12/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2")
-joint_data/12/magnet_position = Vector2(0, 0)
-joint_data/13/bone_index = 19
-joint_data/13/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1")
-joint_data/13/magnet_position = Vector2(0, 0)
-joint_data/14/bone_index = 20
-joint_data/14/bone2d_node = NodePath("Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1/BoneHead")
-joint_data/14/magnet_position = Vector2(0, 0)
-joint_data/14/use_target_rotation = false
+[sub_resource type="Resource" id="Resource_ak342"]
+script = ExtResource("7_8ndee")
+frequency = 1.0
+damping = 1.0
+reaction = 1.0
+gravity = Vector2(0, 0)
+metadata/_custom_type_script = "uid://bts0ou7t3qtjt"
 
-[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_pwe2w"]
-resource_local_to_scene = true
-strength = 0.645
-modification_count = 1
-modifications/0 = SubResource("SkeletonModification2DFABRIK_pwe2w")
+[sub_resource type="Resource" id="Resource_8ndee"]
+script = ExtResource("7_jgnnd")
+velocity_effect = 1.0
+params = SubResource("Resource_ak342")
+metadata/_custom_type_script = "uid://dwy2vp7orkseq"
+
+[sub_resource type="Resource" id="Resource_pt7e5"]
+script = ExtResource("7_jgnnd")
+velocity_effect = 1.0
+metadata/_custom_type_script = "uid://dwy2vp7orkseq"
+
+[sub_resource type="Resource" id="Resource_sg1lk"]
+script = ExtResource("7_jgnnd")
+velocity_effect = 1.0
+metadata/_custom_type_script = "uid://dwy2vp7orkseq"
+
+[sub_resource type="Resource" id="Resource_86cgl"]
+script = ExtResource("7_jgnnd")
+velocity_effect = 1.0
+metadata/_custom_type_script = "uid://dwy2vp7orkseq"
+
+[sub_resource type="Resource" id="Resource_xthsj"]
+script = ExtResource("7_jgnnd")
+velocity_effect = 1.0
+metadata/_custom_type_script = "uid://dwy2vp7orkseq"
+
+[sub_resource type="Resource" id="Resource_p2fdg"]
+script = ExtResource("7_jgnnd")
+velocity_effect = 1.0
+metadata/_custom_type_script = "uid://dwy2vp7orkseq"
+
+[sub_resource type="Resource" id="Resource_wdhm1"]
+script = ExtResource("7_jgnnd")
+velocity_effect = 1.0
+metadata/_custom_type_script = "uid://dwy2vp7orkseq"
+
+[sub_resource type="Resource" id="Resource_bvxbl"]
+script = ExtResource("7_jgnnd")
+velocity_effect = 1.0
+metadata/_custom_type_script = "uid://dwy2vp7orkseq"
+
+[sub_resource type="Resource" id="Resource_v8gx4"]
+script = ExtResource("7_jgnnd")
+velocity_effect = 1.0
+metadata/_custom_type_script = "uid://dwy2vp7orkseq"
+
+[sub_resource type="Resource" id="Resource_q6nme"]
+script = ExtResource("7_8ndee")
+frequency = 1.0
+damping = 1.0
+reaction = 1.0
+gravity = Vector2(0, 0)
+metadata/_custom_type_script = "uid://bts0ou7t3qtjt"
+
+[sub_resource type="Resource" id="Resource_hb5ao"]
+script = ExtResource("7_jgnnd")
+velocity_effect = 1.0
+params = SubResource("Resource_q6nme")
+metadata/_custom_type_script = "uid://dwy2vp7orkseq"
+
+[sub_resource type="Resource" id="Resource_qgbwv"]
+script = ExtResource("7_jgnnd")
+velocity_effect = 1.0
+metadata/_custom_type_script = "uid://dwy2vp7orkseq"
 
 [sub_resource type="Curve2D" id="Curve2D_2byf2"]
 _data = {
@@ -855,7 +876,7 @@ segments = [NodePath("Head"), NodePath("Segment"), NodePath("Segment2"), NodePat
 distance_to_follower = 12.0
 
 [node name="HUD" type="Node2D" parent="."]
-position = Vector2(149.41, -115.284)
+position = Vector2(146.594, -110.148)
 
 [node name="LifeBar" type="ProgressBar" parent="HUD"]
 offset_left = -16.0
@@ -870,9 +891,9 @@ value = 1.0
 show_percentage = false
 
 [node name="Head" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone")]
-position = Vector2(149.41, -115.284)
-rotation = 0.261798
-scale = Vector2(0.999901, 0.999901)
+position = Vector2(146.594, -110.148)
+rotation = -0.180991
+scale = Vector2(0.999823, 0.999823)
 collision_layer = 2
 script = ExtResource("2_6nyub")
 path_follow = NodePath("../MillipedesPath/PathFollowHead")
@@ -901,274 +922,397 @@ update_rotation = false
 update_scale = false
 
 [node name="Segment" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(137.824, -118.389)
-rotation = 0.261798
-scale = Vector2(0.999931, 0.999931)
+position = Vector2(134.762, -108.178)
+rotation = -0.164993
+scale = Vector2(0.999906, 0.999906)
 path_follow = NodePath("../MillipedesPath/PathFollow1")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1")
 
 [node name="Segment2" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(125.829, -118.389)
+position = Vector2(122.903, -106.38)
+rotation = -0.150473
 scale = Vector2(0.999997, 0.999997)
 animation_delay = 1
 path_follow = NodePath("../MillipedesPath/PathFollow2")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2")
 
 [node name="Segment3" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(114.243, -115.284)
-rotation = -0.2618
-scale = Vector2(0.999924, 0.999924)
+position = Vector2(111.021, -104.738)
+rotation = -0.137321
+scale = Vector2(0.999764, 0.999764)
 animation_delay = 2
 path_follow = NodePath("../MillipedesPath/PathFollow3")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3")
 
 [node name="Segment4" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(103.855, -109.286)
-rotation = -0.523599
-scale = Vector2(0.999865, 0.999865)
+position = Vector2(99.12, -103.237)
+rotation = -0.125431
+scale = Vector2(0.999796, 0.999796)
 animation_delay = 3
 path_follow = NodePath("../MillipedesPath/PathFollow4")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4")
 
 [node name="Segment5" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(95.3728, -100.804)
-rotation = -0.785398
-scale = Vector2(0.99996, 0.99996)
+position = Vector2(87.2034, -101.864)
+rotation = -0.114707
+scale = Vector2(0.999832, 0.999832)
 animation_delay = 4
 path_follow = NodePath("../MillipedesPath/PathFollow5")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5")
 
 [node name="Segment6" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(92.2681, -89.2176)
-rotation = -1.309
-scale = Vector2(0.999915, 0.999915)
+position = Vector2(75.274, -100.607)
+rotation = -0.105056
+scale = Vector2(0.999865, 0.999865)
 animation_delay = 5
 path_follow = NodePath("../MillipedesPath/PathFollow6")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6")
 
 [node name="Segment7" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(92.268, -77.2218)
-rotation = -1.57079
-scale = Vector2(0.999908, 0.999908)
+position = Vector2(77.4098, -88.8025)
+rotation = -1.7498
+scale = Vector2(0.99992, 0.99992)
 animation_delay = 6
 path_follow = NodePath("../MillipedesPath/PathFollow7")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7")
 
 [node name="Segment8" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(95.3728, -65.6346)
-rotation = -1.83259
-scale = Vector2(0.999922, 0.999922)
+position = Vector2(82.528, -77.9532)
+rotation = -2.0116
+scale = Vector2(0.99982, 0.99982)
 animation_delay = 7
 path_follow = NodePath("../MillipedesPath/PathFollow8")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8")
 
 [node name="Segment9" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(98.4776, -54.0471)
-rotation = -1.83259
-scale = Vector2(0.999969, 0.999969)
+position = Vector2(87.6464, -67.1037)
+rotation = -2.0116
+scale = Vector2(0.999843, 0.999843)
 animation_delay = 8
 path_follow = NodePath("../MillipedesPath/PathFollow9")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9")
 
 [node name="Segment10" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(101.583, -42.4594)
-rotation = -1.83259
-scale = Vector2(0.99995, 0.99995)
+position = Vector2(92.7649, -56.2539)
+rotation = -2.0116
+scale = Vector2(0.999911, 0.999911)
 animation_delay = 9
 path_follow = NodePath("../MillipedesPath/PathFollow10")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10")
 
 [node name="Segment11" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(101.583, -30.4625)
-rotation = -1.57079
-scale = Vector2(0.999936, 0.999936)
+position = Vector2(94.9009, -44.4487)
+rotation = -1.7498
+scale = Vector2(0.999961, 0.999961)
 animation_delay = 10
 path_follow = NodePath("../MillipedesPath/PathFollow11")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11")
 
 [node name="Segment12" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(98.4774, -18.874)
-rotation = -1.309
-scale = Vector2(0.999829, 0.999829)
+position = Vector2(93.9087, -32.4926)
+rotation = -1.488
+scale = Vector2(0.999786, 0.999786)
 animation_delay = 11
 path_follow = NodePath("../MillipedesPath/PathFollow12")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12")
 
 [node name="Segment13" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(92.4786, -8.48383)
-rotation = -1.0472
-scale = Vector2(0.999968, 0.999968)
+position = Vector2(89.8557, -21.2003)
+rotation = -1.2262
+scale = Vector2(0.999835, 0.999835)
 animation_delay = 12
 path_follow = NodePath("../MillipedesPath/PathFollow13")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13")
 
 [node name="Segment14" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(83.9947, 0)
-rotation = -0.785397
-scale = Vector2(0.999979, 0.999979)
+position = Vector2(83.018, -11.3415)
+rotation = -0.964402
+scale = Vector2(0.999897, 0.999897)
 animation_delay = 13
 path_follow = NodePath("../MillipedesPath/PathFollow14")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14")
 
 [node name="Segment15" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(71.9965, 0)
-scale = Vector2(0.999961, 0.999961)
+position = Vector2(71.0378, -10.6823)
+rotation = -0.0549701
+scale = Vector2(0.999862, 0.999862)
 animation_delay = 14
 path_follow = NodePath("../MillipedesPath/PathFollow15")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15")
 
 [node name="Segment16" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(59.9978, 0)
-scale = Vector2(0.999939, 0.999939)
+position = Vector2(59.2309, -8.54595)
+rotation = -0.179003
+scale = Vector2(0.999887, 0.999887)
 animation_delay = 15
 path_follow = NodePath("../MillipedesPath/PathFollow16")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16")
 
 [node name="Segment17" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(47.9989, 0)
-scale = Vector2(0.999997, 0.999997)
+position = Vector2(47.4237, -6.40955)
+rotation = -0.179003
+scale = Vector2(0.999957, 0.999957)
 animation_delay = 16
 path_follow = NodePath("../MillipedesPath/PathFollow17")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17")
 
 [node name="Segment18" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(35.9996, 0)
-scale = Vector2(0.999997, 0.999997)
+position = Vector2(35.6162, -4.2731)
+rotation = -0.179003
+scale = Vector2(0.999968, 0.999968)
 animation_delay = 17
 path_follow = NodePath("../MillipedesPath/PathFollow18")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18")
 
 [node name="Segment19" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(24, 0)
-scale = Vector2(0.99999, 0.99999)
+position = Vector2(23.8083, -2.13658)
+rotation = -0.179003
+scale = Vector2(0.999986, 0.999986)
 animation_delay = 18
 path_follow = NodePath("../MillipedesPath/PathFollow19")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19")
 
 [node name="Segment20" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(12, 0)
+rotation = -0.179003
 animation_delay = 19
 path_follow = NodePath("../MillipedesPath/PathFollow20")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
-modification_stack = SubResource("SkeletonModificationStack2D_pwe2w")
 
 [node name="Bone2D20" type="Bone2D" parent="Skeleton2D"]
 position = Vector2(12, 0)
+rotation = -0.179003
 rest = Transform2D(1, 0, 0, 1, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 1
+target_rotation = -0.0478551
+target_position = Vector2(12, 0)
 
 [node name="Bone2D19" type="Bone2D" parent="Skeleton2D/Bone2D20"]
 position = Vector2(12, 0)
 scale = Vector2(0.999969, 0.999969)
 rest = Transform2D(1, 0, 0, 1, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 1
+target_rotation = 0.130684
+target_position = Vector2(12, 0)
 
 [node name="Bone2D18" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19"]
 position = Vector2(12, 0)
 scale = Vector2(0.999971, 0.999971)
 rest = Transform2D(1, 0, 0, 1, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 1
+target_rotation = 0.129751
+target_position = Vector2(12, 0)
 
 [node name="Bone2D17" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18"]
 position = Vector2(12, 0)
 scale = Vector2(0.999972, 0.999972)
 rest = Transform2D(1, 0, 0, 1, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 1
+target_rotation = 0.128342
+target_position = Vector2(12, 0)
 
 [node name="Bone2D16" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17"]
 position = Vector2(12, 0)
-scale = Vector2(0.999972, 0.999972)
+scale = Vector2(0.999971, 0.999971)
 rest = Transform2D(1, 0, 0, 1, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 1
+target_rotation = 0.126442
+target_position = Vector2(12, 0)
 
 [node name="Bone2D15" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16"]
 position = Vector2(12, 0)
 scale = Vector2(0.999973, 0.999973)
 rest = Transform2D(1, 0, 0, 1, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 0
+target_rotation = 0.124033
+target_position = Vector2(12, 0)
+ease_rotation = true
+rotation_easing_params = SubResource("Resource_8ndee")
 
 [node name="Bone2D14" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15"]
 position = Vector2(12, 0)
 rotation = -0.785397
 scale = Vector2(0.999973, 0.999973)
 rest = Transform2D(0.707108, -0.707106, 0.707106, 0.707108, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 0
+target_rotation = -0.00294104
+target_position = Vector2(12, 0)
+ease_rotation = true
+rotation_easing_params = SubResource("Resource_pt7e5")
 
 [node name="Bone2D13" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14"]
 position = Vector2(12, 0)
 rotation = -0.261799
 scale = Vector2(0.999969, 0.999969)
 rest = Transform2D(0.965926, -0.258819, 0.258819, 0.965926, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 0
+target_rotation = 0.902991
+target_position = Vector2(12, 0)
+ease_rotation = true
+rotation_easing_params = SubResource("Resource_sg1lk")
 
 [node name="Bone2D12" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13"]
 position = Vector2(12, 0)
 rotation = -0.261799
 scale = Vector2(0.99997, 0.99997)
 rest = Transform2D(0.965926, -0.258819, 0.258819, 0.965926, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 0
+target_rotation = 1.1607
+target_position = Vector2(12, 0)
+ease_rotation = true
+rotation_easing_params = SubResource("Resource_86cgl")
 
 [node name="Bone2D11" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12"]
 position = Vector2(12, 0)
 rotation = -0.261799
 scale = Vector2(0.999973, 0.999973)
 rest = Transform2D(0.965926, -0.258819, 0.258819, 0.965926, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 0
+target_rotation = 1.41777
+target_position = Vector2(12, 0)
+ease_rotation = true
+rotation_easing_params = SubResource("Resource_xthsj")
 
 [node name="Bone2D10" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11"]
 position = Vector2(12, 0)
 rotation = -0.261799
 scale = Vector2(0.999972, 0.999972)
 rest = Transform2D(0.965926, -0.258819, 0.258819, 0.965926, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 0
+target_rotation = 1.67417
+target_position = Vector2(12, 0)
+ease_rotation = true
+rotation_easing_params = SubResource("Resource_p2fdg")
 
 [node name="Bone2D9" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10"]
 position = Vector2(12, 0)
-scale = Vector2(0.999975, 0.999975)
+scale = Vector2(0.999974, 0.999974)
 rest = Transform2D(1, 0, 0, 1, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 0
+target_rotation = 1.92985
+target_position = Vector2(12, 0)
+ease_rotation = true
+rotation_easing_params = SubResource("Resource_wdhm1")
 
 [node name="Bone2D8" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9"]
 position = Vector2(12, 0)
 scale = Vector2(0.999975, 0.999975)
 rest = Transform2D(1, 0, 0, 1, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 0
+target_rotation = 1.92295
+target_position = Vector2(12, 0)
+ease_rotation = true
+rotation_easing_params = SubResource("Resource_bvxbl")
 
 [node name="Bone2D7" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8"]
 position = Vector2(12, 0)
 rotation = 0.261799
 scale = Vector2(0.999983, 0.999983)
 rest = Transform2D(0.965926, 0.258819, -0.258819, 0.965926, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 0
+target_rotation = 1.9152
+target_position = Vector2(12, 0)
+ease_rotation = true
+rotation_easing_params = SubResource("Resource_v8gx4")
 
 [node name="Bone2D6" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7"]
 position = Vector2(12, 0)
 rotation = 0.261799
 scale = Vector2(0.999983, 0.999983)
 rest = Transform2D(0.965926, 0.258819, -0.258819, 0.965926, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 0
+target_rotation = 1.64474
+target_position = Vector2(12, 0)
+ease_rotation = true
+rotation_easing_params = SubResource("Resource_hb5ao")
 
 [node name="Bone2D5" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6"]
 position = Vector2(12, 0)
 rotation = 0.523598
 scale = Vector2(0.999986, 0.999986)
 rest = Transform2D(0.866026, 0.499999, -0.499999, 0.866026, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 0
+target_rotation = -0.00965094
+target_position = Vector2(12, 0)
+ease_rotation = true
+rotation_easing_params = SubResource("Resource_hb5ao")
 
 [node name="Bone2D4" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5"]
 position = Vector2(12, 0)
 rotation = 0.261799
 scale = Vector2(0.999983, 0.999983)
 rest = Transform2D(0.965926, 0.258819, -0.258819, 0.965926, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 0
+target_rotation = -0.0107239
+target_position = Vector2(12, 0)
+ease_rotation = true
+rotation_easing_params = SubResource("Resource_hb5ao")
 
 [node name="Bone2D3" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4"]
 position = Vector2(12, 0)
 rotation = 0.261799
 scale = Vector2(0.999983, 0.999983)
 rest = Transform2D(0.965926, 0.258819, -0.258819, 0.965926, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 0
+target_rotation = -0.011891
+target_position = Vector2(12, 0)
+ease_rotation = true
+rotation_easing_params = SubResource("Resource_hb5ao")
 
 [node name="Bone2D2" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3"]
 position = Vector2(12, 0)
 rotation = 0.261799
 scale = Vector2(0.999983, 0.999983)
 rest = Transform2D(0.965926, 0.258819, -0.258819, 0.965926, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 0
+target_rotation = -0.0131518
+target_position = Vector2(12, 0)
+ease_rotation = true
+rotation_easing_params = SubResource("Resource_hb5ao")
 
 [node name="Bone2D1" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2"]
 position = Vector2(12, 0)
 rotation = 0.261799
 scale = Vector2(0.999983, 0.999983)
 rest = Transform2D(0.965926, 0.258819, -0.258819, 0.965926, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 0
+target_rotation = -0.0145205
+target_position = Vector2(12, 0)
+ease_rotation = true
+rotation_easing_params = SubResource("Resource_hb5ao")
 
 [node name="BoneHead" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1"]
 position = Vector2(12, 0)
-scale = Vector2(0.999976, 0.999976)
+scale = Vector2(0.999975, 0.999975)
 rest = Transform2D(1, 0, 0, 1, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 0
+target_rotation = -0.0159979
+target_position = Vector2(12, 0)
+ease_rotation = true
+rotation_easing_params = SubResource("Resource_hb5ao")
 
 [node name="RemoteTransformHead" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1/BoneHead"]
 remote_path = NodePath("../../../../../../../../../../../../../../../../../../../../../../../Head")
@@ -1176,7 +1320,14 @@ update_scale = false
 
 [node name="Bone2D" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1/BoneHead"]
 position = Vector2(12, 0)
+rotation = 0.265419
 rest = Transform2D(1, 0, 0, 1, 12, 0)
+script = ExtResource("6_qg3aa")
+transform_mode = 0
+target_rotation = -0.0243813
+target_position = Vector2(12, 0)
+ease_rotation = true
+rotation_easing_params = SubResource("Resource_qgbwv")
 
 [node name="RemoteTransform1" type="RemoteTransform2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1"]
 remote_path = NodePath("../../../../../../../../../../../../../../../../../../../../../../Segment")
@@ -1476,6 +1627,7 @@ update_rotation = false
 update_scale = false
 
 [node name="AttackTarget" type="Node2D" parent="."]
+position = Vector2(391, -49)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1502,6 +1654,14 @@ remote_path = NodePath("../../Segment20")
 update_position = false
 update_rotation = false
 update_scale = false
+
+[node name="Fabrik" type="Node" parent="." node_paths=PackedStringArray("target_node", "chain_root", "chain_tip")]
+script = ExtResource("6_2byf2")
+target_node = NodePath("../AttackTarget")
+enabled = true
+chain_root = NodePath("../Skeleton2D/Bone2D20")
+chain_tip = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1/BoneHead/Bone2D")
+determenistic = true
 
 [connection signal="ritter_detected" from="Head/Antenna" to="." method="_on_antenna_ritter_detected"]
 [connection signal="ritter_detected" from="Head/Antenna2" to="." method="_on_antenna_ritter_detected"]

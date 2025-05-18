@@ -26,6 +26,7 @@ func _ready() -> void:
 
 	base_v_offset = path_follow.v_offset
 
+
 func get_friction() -> float:
 	return friction
 
@@ -36,8 +37,9 @@ func _on_ritter_detector_body_entered(body:Node2D):
 func _process(delta):
 	path_follow.v_offset = base_v_offset + v_offset * v_offset_scale
 
-
 func _on_ritter_detector_body_exited(body):
 	if body is Knight:
 		if v_offset > 0:
 			body.add_force(Vector2(0, -v_offset * 15000))
+
+
