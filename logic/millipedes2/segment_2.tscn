@@ -1,0 +1,156 @@
+[gd_scene load_steps=19 format=3 uid="uid://dh7ltssl0bmpq"]
+
+[ext_resource type="Texture2D" uid="uid://drv5lyxoo86kd" path="res://assets/sprites/millipede.png" id="1_jevdu"]
+[ext_resource type="Script" uid="uid://dddshp4ja1h2s" path="res://logic/millipedes2/segment_2.gd" id="2_83r3f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83r3f"]
+atlas = ExtResource("1_jevdu")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vyf5"]
+atlas = ExtResource("1_jevdu")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4m8v"]
+atlas = ExtResource("1_jevdu")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ium7o"]
+atlas = ExtResource("1_jevdu")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77k45"]
+atlas = ExtResource("1_jevdu")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_276jm"]
+atlas = ExtResource("1_jevdu")
+region = Rect2(320, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omyx4"]
+atlas = ExtResource("1_jevdu")
+region = Rect2(384, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x22tl"]
+atlas = ExtResource("1_jevdu")
+region = Rect2(448, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km3vv"]
+atlas = ExtResource("1_jevdu")
+region = Rect2(512, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyqmg"]
+atlas = ExtResource("1_jevdu")
+region = Rect2(576, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yquud"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83r3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vyf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4m8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ium7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77k45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_276jm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omyx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x22tl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km3vv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyqmg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_v374w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:v_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0005, 0.00103906),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5xe3a"]
+resource_name = "bounce"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:v_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.266667, 0.3, 0.33, 0.36, 0.39),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, -1.0, 0.0, -0.5, 0.2, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v374w"]
+_data = {
+&"RESET": SubResource("Animation_v374w"),
+&"bounce": SubResource("Animation_5xe3a")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jevdu"]
+radius = 4.0
+height = 55.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_83r3f"]
+radius = 11.04
+height = 58.52
+
+[node name="Segment2" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_yquud")
+autoplay = "default"
+frame_progress = 0.895503
+script = ExtResource("2_83r3f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimatableBody2D")
+libraries = {
+&"": SubResource("AnimationLibrary_v374w")
+}
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+position = Vector2(0, -6)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("CapsuleShape2D_jevdu")
+one_way_collision = true
+one_way_collision_margin = 14.8
+
+[node name="RitterDetector" type="Area2D" parent="AnimatableBody2D"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D/RitterDetector"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_83r3f")

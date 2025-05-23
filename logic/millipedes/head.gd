@@ -14,4 +14,3 @@ func _ready() -> void:
 
 func get_friction() -> float:
 	return friction
-

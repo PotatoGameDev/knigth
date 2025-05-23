@@ -15,7 +15,8 @@ class_name Millipedes
 @onready var wheel: RigidBody2D = $MilipedesWheel
 @onready var wheelCollisionShape: CollisionShape2D = $MilipedesWheel/CollisionShape2D
 @onready var wheelRemoteTransform: RemoteTransform2D = $MilipedesWheel/RemoteTransform2D
-@onready var fabrikComponent: SoupFABRIK = $Fabrik
+@onready var fabrikComponent: SoupFABRIK = $SoupFabrik
+
 
 @export var ritter: Knight = null
 
@@ -58,6 +59,7 @@ func _ready() -> void:
 	ritter = Global.ritter
 
 func reset(fabrik: bool):
+	print("reset ", fabrik)
 	for i in range(segments.size()):
 		var segment = segments[i]
 		# segment.remote_transform_for_controlling_bone.update_position = head_index == i
@@ -94,30 +96,44 @@ func reset(fabrik: bool):
 
 
 func _physics_process(delta):
-	var space_state = get_world_2d().direct_space_state
-	# use global coordinates, not local to node
-	var query = PhysicsRayQueryParameters2D.create(
-		wheelCollisionShape.global_position, 
-		wheelCollisionShape.global_position + Vector2.RIGHT * 100,
-		1 << 7,
-		[self]
-		)
-	var result = space_state.intersect_ray(query)
-	if result:
-		roll_direction = -1
+	if transition:
+		return
+	
+	if state == State.CURL:
+		var space_state = get_world_2d().direct_space_state
+		var query = PhysicsRayQueryParameters2D.create(
+			wheelCollisionShape.global_position, 
+			wheelCollisionShape.global_position + Vector2.RIGHT * 100,
+			1 << 7,
+			[self]
+			)
+		var result = space_state.intersect_ray(query)
+		if result:
+			roll_direction = -1
 
-	query = PhysicsRayQueryParameters2D.create(
-		wheelCollisionShape.global_position, 
-		wheelCollisionShape.global_position + Vector2.LEFT * 100,
-		1 << 7,
-		[self]
-		)
-	result = space_state.intersect_ray(query)
-	if result:
-		roll_direction = 1
+		query = PhysicsRayQueryParameters2D.create(
+			wheelCollisionShape.global_position, 
+			wheelCollisionShape.global_position + Vector2.LEFT * 100,
+			1 << 7,
+			[self]
+			)
+		result = space_state.intersect_ray(query)
+		if result:
+			roll_direction = 1
 
 
 func _process(delta):
+	#for segment in segments:
+	#	print("SS: ", segment.scale)
+	for segment in segments:
+		var t = segment.global_transform
+		var det = t.x.x * t.y.y - t.x.y * t.y.x
+		if abs(det) < 0.0001:
+			print("⚠️ BAD TRANSFORM on: ", segment.name)
+			print("Transform2D: ", t)
+			print("scale: ", segment.scale, " rotation: ", segment.rotation)
+			get_tree().paused = true
+
 	if transition:
 		return
 
@@ -134,13 +150,13 @@ func _process(delta):
 
 		for i in range(segments.size()):
 			var segment = segments[i]
-			if i == 0:
-				if segment.path_follow:
+			if segment.path_follow:
+				if i == 0:
 					segment.path_follow.progress += delta * speed * direction
 					current_progress = segment.path_follow.progress
-			else:
-				current_progress -= distance_to_follower * direction
-				segment.path_follow.progress = current_progress
+				else:
+					current_progress -= distance_to_follower * direction
+					segment.path_follow.progress = current_progress
 	
 		return
 
@@ -149,7 +165,6 @@ func _process(delta):
 		attack_target.global_position = ritter.global_position
 
 		if not fabrikComponent.enabled:
-			print("Enabling Fabrik")
 			fabrikComponent.enabled = true
 			for i in range(segments.size()):
 				var segment = segments[i]
@@ -168,7 +183,7 @@ func _process(delta):
 			scale.x = 1
 		else:
 			direction = Global.LEFT
-			scale.x = 1 # TODO: flip (first figure out how to do this)
+			scale.x = -1 # TODO: flip (first figure out how to do this)
 	
 		if ritter.global_position.distance_to(segments[0].global_position) < 200:
 			#fabrikComponent.strength = lerp(
@@ -192,11 +207,13 @@ func _process(delta):
 
 # TODO: REMOVE
 func attack_mode() -> void:
+	print("attack mode")
 	head_index = 15
 	reset(true)
 
 # TODO: REMOVE
 func follow_mode() -> void:
+	print("follow mode")
 	head_index = 0
 	reset(false)
 
@@ -209,6 +226,7 @@ func update_life_bar() -> void:
 		life_bar.visible = false
 
 func take_damage(damage: int) -> void:
+	print("take damage: ", damage)
 	var health_before = health
 	health -= damage
 	update_life_bar()
@@ -258,6 +276,7 @@ func death(final_damage: int) -> void: # fun
 		new_node.apply_central_impulse(force_dir.normalized() * force_mag)
 
 func reset_to_ground_fight():
+	print("reset to ground fight")
 	transition = true
 
 	state = State.ATTACK
@@ -294,6 +313,7 @@ func reset_to_ground_fight():
 
 
 func reset_to_curl():
+	print("reset to curl")
 	transition = true
 
 	state = State.CURL
@@ -302,9 +322,6 @@ func reset_to_curl():
 
 	for i in range(segments.size()):
 		var segment = segments[i]
-		segment.remote_transform_for_controlling_bone.update_position = true
-		segment.remote_transform_for_controlling_bone.update_rotation = true
-
 		# for everything that's before the head, we enable bone controls
 		for c in segment.controlling_bone.get_children():
 			if c is RemoteTransform2D:
@@ -312,21 +329,45 @@ func reset_to_curl():
 				c.update_rotation = i < head_index
 				break
 
+	await get_tree().process_frame
+
+	for i in range(segments.size()):
+		var segment = segments[i]
+		segment.remote_transform_for_controlling_bone.update_position = false
+		segment.remote_transform_for_controlling_bone.update_rotation = false
+
+	await get_tree().process_frame
+
+	for i in range(segments.size()):
+		var segment = segments[i]
 		# disable path follow
 		if segment.path_follow:
 			segment.path_follow.get_children()[0].update_position = false
 			segment.path_follow.get_children()[0].update_rotation = false
 
-		segment.sync_to_physics = false
+		#segment.sync_to_physics = false
 
+	await get_tree().process_frame
+
+	print("disabling fabrik")
 	fabrikComponent.enabled = false
 	for i in range(segments.size()):
 		var segment = segments[i]
 		segment.controlling_bone.transform_mode = SoupBone2D.TransformMode.MANUAL
 
+	print("playing curl animation")
+
+	await get_tree().process_frame
+
+	for segment in segments:
+		segment.sync_to_physics = false
+
+	await get_tree().process_frame
+
 	animation_player.play_with_capture("curl")
 
 func set_wheel_enabled(enabled: bool):
+	print("wheel enabled: ", enabled)
 	transition = false
 	if enabled:
 		wheel.global_position = segments[head_index].global_position
@@ -336,9 +377,15 @@ func set_wheel_enabled(enabled: bool):
 		wheelCollisionShape.disabled = false
 		wheel.sleeping = false
 		wheel.freeze = false
+
+		for i in range(segments.size()):
+			var segment = segments[i]
+			segment.remote_transform_for_controlling_bone.update_position = true
+			segment.remote_transform_for_controlling_bone.update_rotation = true 
 	else:
 		wheelRemoteTransform.update_position = false
 		wheelRemoteTransform.update_rotation = false
 		wheelCollisionShape.disabled = true
 		wheel.sleeping = true
 		wheel.freeze = true
+

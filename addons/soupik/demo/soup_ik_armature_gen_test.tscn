@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d04d8ocoy1v4x"]
 
-[ext_resource type="Script" uid="uid://4dlniwotge22" path="res://addons/soupik/utility/armature_generator.gd" id="1_nopwf"]
+[ext_resource type="Script" uid="uid://cy6ayi4nyqqbg" path="res://addons/soupik/utility/armature_generator.gd" id="1_nopwf"]
 [ext_resource type="Texture2D" uid="uid://xw3jo41h3y76" path="res://addons/soupik/demo/soup_ik_demo.png" id="2_ygfp6"]
 
 [node name="SoupIkArmatureGenTest" type="Node2D"]
@@ -11,39 +11,6 @@ skeleton = NodePath("../Skelly")
 sprite_root = NodePath("../Sprites")
 
 [node name="Sprites" type="Node" parent="."]
-
-[node name="ArmL" type="Node2D" parent="Sprites"]
-modulate = Color(0.67, 0.536, 0.6298, 1)
-position = Vector2(-2, -14)
-rotation = -1.57079
-
-[node name="ForeArmL" type="Sprite2D" parent="Sprites/ArmL"]
-position = Vector2(1.00002, 11)
-rotation = 1.57079
-texture = ExtResource("2_ygfp6")
-centered = false
-offset = Vector2(-2, -2)
-region_enabled = true
-region_rect = Rect2(1, 47, 20, 5)
-
-[node name="HandL" type="Sprite2D" parent="Sprites/ArmL"]
-position = Vector2(1.00006, 26)
-rotation = 1.57079
-texture = ExtResource("2_ygfp6")
-centered = false
-offset = Vector2(-2, -5)
-region_enabled = true
-region_rect = Rect2(38, 14, 7, 7)
-
-[node name="ArmL" type="Sprite2D" parent="Sprites/ArmL"]
-position = Vector2(-9.53674e-07, 0)
-rotation = 1.57079
-texture = ExtResource("2_ygfp6")
-centered = false
-offset = Vector2(-3, -3)
-flip_h = true
-region_enabled = true
-region_rect = Rect2(1, 39, 18, 6)
 
 [node name="LegL" type="Node2D" parent="Sprites"]
 modulate = Color(0.67, 0.536, 0.6298, 1)
@@ -65,6 +32,39 @@ centered = false
 offset = Vector2(-3, -3)
 region_enabled = true
 region_rect = Rect2(0, 23, 25, 6)
+
+[node name="ArmL" type="Node2D" parent="Sprites/LegL"]
+modulate = Color(0.67, 0.536, 0.6298, 1)
+position = Vector2(-2, -19)
+rotation = -1.57079
+
+[node name="ForeArmL" type="Sprite2D" parent="Sprites/LegL/ArmL"]
+position = Vector2(1.00002, 11)
+rotation = 1.57079
+texture = ExtResource("2_ygfp6")
+centered = false
+offset = Vector2(-2, -2)
+region_enabled = true
+region_rect = Rect2(1, 47, 20, 5)
+
+[node name="HandL" type="Sprite2D" parent="Sprites/LegL/ArmL"]
+position = Vector2(1.00006, 26)
+rotation = 1.57079
+texture = ExtResource("2_ygfp6")
+centered = false
+offset = Vector2(-2, -5)
+region_enabled = true
+region_rect = Rect2(38, 14, 7, 7)
+
+[node name="ArmL" type="Sprite2D" parent="Sprites/LegL/ArmL"]
+position = Vector2(-9.53674e-07, 0)
+rotation = 1.57079
+texture = ExtResource("2_ygfp6")
+centered = false
+offset = Vector2(-3, -3)
+flip_h = true
+region_enabled = true
+region_rect = Rect2(1, 39, 18, 6)
 
 [node name="Head" type="Node2D" parent="Sprites"]
 position = Vector2(-4, -16)
@@ -206,6 +206,212 @@ region_rect = Rect2(1, 39, 18, 6)
 
 [node name="Skelly" type="Skeleton2D" parent="."]
 position = Vector2(-3, -5)
+
+[node name="HipLBone" type="Bone2D" parent="Skelly"]
+position = Vector2(3, 10)
+rotation = 1.57079
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="HipLRT" type="RemoteTransform2D" parent="Skelly/HipLBone"]
+remote_path = NodePath("../../../Sprites/LegL/HipL")
+
+[node name="CalveLBone" type="Bone2D" parent="Skelly"]
+position = Vector2(3, 21)
+rotation = 1.57079
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="CalveLRT" type="RemoteTransform2D" parent="Skelly/CalveLBone"]
+remote_path = NodePath("../../../Sprites/LegL/CalveL")
+
+[node name="ForeArmLBone" type="Bone2D" parent="Skelly"]
+position = Vector2(12, -9.99995)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="ForeArmLRT" type="RemoteTransform2D" parent="Skelly/ForeArmLBone"]
+remote_path = NodePath("../../../Sprites/LegL/ArmL/ForeArmL")
+
+[node name="HandLBone" type="Bone2D" parent="Skelly"]
+position = Vector2(27, -9.9999)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="HandLRT" type="RemoteTransform2D" parent="Skelly/HandLBone"]
+remote_path = NodePath("../../../Sprites/LegL/ArmL/HandL")
+
+[node name="ArmLBone" type="Bone2D" parent="Skelly"]
+position = Vector2(1, -9)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="ArmLRT" type="RemoteTransform2D" parent="Skelly/ArmLBone"]
+remote_path = NodePath("../../../Sprites/LegL/ArmL/ArmL")
+
+[node name="Neck5Bone" type="Bone2D" parent="Skelly"]
+position = Vector2(-1.99998, -11)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="Neck5RT" type="RemoteTransform2D" parent="Skelly/Neck5Bone"]
+remote_path = NodePath("../../../Sprites/Head/Neck5")
+
+[node name="Neck4Bone" type="Bone2D" parent="Skelly"]
+position = Vector2(-4.99998, -11)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="Neck4RT" type="RemoteTransform2D" parent="Skelly/Neck4Bone"]
+remote_path = NodePath("../../../Sprites/Head/Neck4")
+
+[node name="Neck3Bone" type="Bone2D" parent="Skelly"]
+position = Vector2(-7.99998, -11)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="Neck3RT" type="RemoteTransform2D" parent="Skelly/Neck3Bone"]
+remote_path = NodePath("../../../Sprites/Head/Neck3")
+
+[node name="Neck2Bone" type="Bone2D" parent="Skelly"]
+position = Vector2(-11, -11)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="Neck2RT" type="RemoteTransform2D" parent="Skelly/Neck2Bone"]
+remote_path = NodePath("../../../Sprites/Head/Neck2")
+
+[node name="Neck1Bone" type="Bone2D" parent="Skelly"]
+position = Vector2(-14, -11)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="Neck1RT" type="RemoteTransform2D" parent="Skelly/Neck1Bone"]
+remote_path = NodePath("../../../Sprites/Head/Neck1")
+
+[node name="Neck0Bone" type="Bone2D" parent="Skelly"]
+position = Vector2(-17, -11)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="Neck0RT" type="RemoteTransform2D" parent="Skelly/Neck0Bone"]
+remote_path = NodePath("../../../Sprites/Head/Neck0")
+
+[node name="HeadBone" type="Bone2D" parent="Skelly"]
+position = Vector2(-21, -11)
+rotation = 3.14159
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="HeadRT" type="RemoteTransform2D" parent="Skelly/HeadBone"]
+remote_path = NodePath("../../../Sprites/Head/Head")
+
+[node name="SpineBone" type="Bone2D" parent="Skelly"]
+position = Vector2(3, 3)
+rotation = -1.5708
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="SpineRT" type="RemoteTransform2D" parent="Skelly/SpineBone"]
+remote_path = NodePath("../../../Sprites/Body/Spine")
+
+[node name="TorsoBone" type="Bone2D" parent="Skelly"]
+position = Vector2(2, -7)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="TorsoRT" type="RemoteTransform2D" parent="Skelly/TorsoBone"]
+remote_path = NodePath("../../../Sprites/Body/Torso")
+
+[node name="PelvisBone" type="Bone2D" parent="Skelly"]
+position = Vector2(3, 5)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="PelvisRT" type="RemoteTransform2D" parent="Skelly/PelvisBone"]
+remote_path = NodePath("../../../Sprites/Body/Pelvis")
+
+[node name="HipRBone" type="Bone2D" parent="Skelly"]
+position = Vector2(3, 10)
+rotation = 1.57079
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="HipRRT" type="RemoteTransform2D" parent="Skelly/HipRBone"]
+remote_path = NodePath("../../../Sprites/LegR/HipR")
+
+[node name="CalveRBone" type="Bone2D" parent="Skelly"]
+position = Vector2(3, 21)
+rotation = 1.57079
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="CalveRRT" type="RemoteTransform2D" parent="Skelly/CalveRBone"]
+remote_path = NodePath("../../../Sprites/LegR/CalveR")
+
+[node name="ForeArmRBone" type="Bone2D" parent="Skelly"]
+position = Vector2(12, -9.99995)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="ForeArmRRT" type="RemoteTransform2D" parent="Skelly/ForeArmRBone"]
+remote_path = NodePath("../../../Sprites/ArmR/ForeArmR")
+
+[node name="HandRBone" type="Bone2D" parent="Skelly"]
+position = Vector2(27, -9.9999)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="HandRRT" type="RemoteTransform2D" parent="Skelly/HandRBone"]
+remote_path = NodePath("../../../Sprites/ArmR/HandR")
+
+[node name="ArmRBone" type="Bone2D" parent="Skelly"]
+position = Vector2(1, -9)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="ArmRRT" type="RemoteTransform2D" parent="Skelly/ArmRBone"]
+remote_path = NodePath("../../../Sprites/ArmR/ArmR")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_right = 40.0

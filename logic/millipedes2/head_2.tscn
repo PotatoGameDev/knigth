@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://8xpg4y0dmysl"]
+
+[ext_resource type="Texture2D" uid="uid://drv5lyxoo86kd" path="res://assets/sprites/millipede.png" id="1_5akg2"]
+[ext_resource type="Script" uid="uid://dfl5x1p22wvj" path="res://logic/millipedes2/head_2.gd" id="2_ilfn3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilfn3"]
+atlas = ExtResource("1_5akg2")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t1075"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilfn3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f3wq0"]
+height = 50.0
+
+[node name="Head2" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_t1075")
+script = ExtResource("2_ilfn3")
+
+[node name="Head" type="AnimatableBody2D" parent="."]
+scale = Vector2(0.999809, 0.999809)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+shape = SubResource("CapsuleShape2D_f3wq0")
+
+[node name="HUDController" type="RemoteTransform2D" parent="Head"]
+remote_path = NodePath("../../HUD")
+update_rotation = false
+update_scale = false
