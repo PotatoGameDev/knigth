@@ -14,6 +14,8 @@ var bone_remote_transforms: Array[RemoteTransform2D]
 var current_state = null
 var next_state = null
 
+var wheel_enabled := true
+
 var transition := false
 
 var direction := Global.RIGHT
@@ -22,7 +24,6 @@ var speed := 100.0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var skeleton: Skeleton2D = $Skeleton2D
-@onready var soupFabrik: SoupFABRIK = $SoupFabrik
 
 @onready var wheel: RigidBody2D = $MilipedesWheel
 @onready var wheelCollisionShape: CollisionShape2D = $MilipedesWheel/CollisionShape2D
@@ -72,11 +73,11 @@ func _ready() -> void:
 	var path_follow_remote_transforms_map = {}
 	for p in get_tree().get_nodes_in_group("path_follow_remote_transforms") as Array[RemoteTransform2D]:
 		if p.get_parent().name == "PathFollowHead":
-			p.remote_path = p.get_path_to(segments[HEAD_INDEX])
+			#p.remote_path = get_path_to(segments[HEAD_INDEX])
 			path_follow_remote_transforms_map[HEAD_INDEX] = p
 		else:
 			var segment_id = p.get_parent().name.trim_prefix("PathFollow").to_int()
-			p.remote_path = p.get_path_to(segments[segment_id])
+			#p.remote_path = get_path_to(segments[segment_id])
 			path_follow_remote_transforms_map[segment_id] = p
 
 	var path_follow_ids = path_follow_remote_transforms_map.keys()
@@ -91,7 +92,7 @@ func _ready() -> void:
 	var bone_remote_transforms_map = {}
 	for p in get_tree().get_nodes_in_group("bone_remote_transforms") as Array[RemoteTransform2D]:
 		if p.name == "Head2RT":
-			#p.remote_path = p.get_path_to(segments[HEAD_INDEX])
+			p.remote_path = get_path_to(segments[HEAD_INDEX])
 			bone_remote_transforms_map[HEAD_INDEX] = p
 		else:
 			var segment_id = p.name.trim_prefix("Segment").trim_suffix("RT").to_int()
@@ -106,6 +107,7 @@ func _ready() -> void:
 
 	# Set initial state
 	next_state = State.FOLLOW_PATH
+
 
 func _process(delta: float) -> void:
 	if next_state != null:
@@ -143,17 +145,14 @@ func follow_path_process(delta: float) -> void:
 				current_progress -= distance_to_follower * direction
 				segment.path_follow.progress = current_progress
 
-	if Input.is_key_pressed(KEY_B):
-		next_state = State.CURL
-
+	return
 
 func attack_process(delta: float) -> void:
-	if Global.ritter != null:
-		$Target.global_position = Global.ritter.global_position
+	pass
 
 func curl_process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_B):
-		next_state = State.ATTACK
+		next_state = State.FOLLOW_PATH
 
 # State enter
 
@@ -162,43 +161,39 @@ func follow_path_enter() -> void:
 	# The animation to set the segments in the correct positions
 	# would be too complex, due to the way the segments follow the path
 	# using offsets.
-	set_bone_controls_enabled(false)
-
-	set_path_follow_enabled(true)
+	for bone_remote_transform in bone_remote_transforms:
+		bone_remote_transform.update_position = false
+		bone_remote_transform.update_rotation = false
+		bone_remote_transform.update_scale =  false
+	for path_follow_remote_transform in path_follow_remote_transforms:
+		path_follow_remote_transform.update_position = true
+		path_follow_remote_transform.update_rotation = true
+		path_follow_remote_transform.update_scale = true
 
 func attack_enter() -> void:
 	animation_player.play("attack")
 	transition = true
-	
-	for bone_remote_transform in bone_remote_transforms:
-		var bone = bone_remote_transform.get_parent()
-		bone.transform_mode = SoupBone2D.TransformMode.RECORDING_TARGET
-		print("Setting ", bone_remote_transform, " to RECORDING_TARGET", bone.transform_mode)
 
 func curl_enter() -> void:
-	var segment = segments[-1]
-	var bone = bone_remote_transforms[-1].get_parent()
-	bone.global_position = segment.global_position
-	bone.rotation = segment.rotation
-
-	set_bone_controls_enabled(true)
-
 	animation_player.play("curl")
 	transition = true
+	wheel_enabled = true
 
 # State exit
 func follow_path_exit() -> void:
-	set_path_follow_enabled(false)
+	for path_follow_remote_transform in path_follow_remote_transforms:
+		path_follow_remote_transform.update_position = false
+		path_follow_remote_transform.update_rotation = false
 
 func attack_exit() -> void:
 	pass
 
 func curl_exit() -> void:
-	pass
+	wheel_enabled = false
 
 # other functions
 
-func animation_ended(wheel_enabled: bool, fabrik_enabled: bool, bones_enabled: bool) -> void:
+func animation_ended() -> void:
 	transition = false
 
 	if wheel_enabled:
@@ -215,32 +210,5 @@ func animation_ended(wheel_enabled: bool, fabrik_enabled: bool, bones_enabled: b
 		wheelCollisionShape.disabled = true
 		wheel.sleeping = true
 		wheel.freeze = true
-	
-	if fabrik_enabled:
-		soupFabrik.enabled = true
-		for bone_remote_transform in bone_remote_transforms:
-			var bone = bone_remote_transform.get_parent()
-			bone.transform_mode = SoupBone2D.TransformMode.IK
-			print("Setting ", bone_remote_transform, " to IK ", bone.transform_mode)
-	else:
-		soupFabrik.enabled = false
-		for bone_remote_transform in bone_remote_transforms:
-			var bone = bone_remote_transform.get_parent()
-			bone.transform_mode = SoupBone2D.TransformMode.MANUAL
-			print("Setting ", bone_remote_transform, " to MANUAL ", bone.transform_mode)
-
-	set_bone_controls_enabled(bones_enabled)
-
-func set_path_follow_enabled(enabled: bool):
-	for path_follow_remote_transform in path_follow_remote_transforms:
-		path_follow_remote_transform.update_position = enabled
-		path_follow_remote_transform.update_rotation = enabled
-		path_follow_remote_transform.update_scale = enabled
-
-func set_bone_controls_enabled(enabled: bool):
-	for bone_remote_transform in bone_remote_transforms:
-		bone_remote_transform.update_position = enabled
-		bone_remote_transform.update_rotation = enabled
-		bone_remote_transform.update_scale = enabled
 
 # =============================================================================

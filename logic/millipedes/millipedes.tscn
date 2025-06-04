@@ -827,7 +827,7 @@ segments = [NodePath("Head"), NodePath("Segment"), NodePath("Segment2"), NodePat
 distance_to_follower = 12.0
 
 [node name="HUD" type="Node2D" parent="."]
-position = Vector2(130.049, -135.037)
+position = Vector2(130.049, -135.038)
 
 [node name="LifeBar" type="ProgressBar" parent="HUD"]
 offset_left = -16.0
@@ -842,8 +842,8 @@ value = 1.0
 show_percentage = false
 
 [node name="Head" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone")]
-position = Vector2(130.049, -135.037)
-rotation = 0.107445
+position = Vector2(130.049, -135.038)
+rotation = 0.107435
 scale = Vector2(0.999809, 0.999809)
 collision_layer = 2
 script = ExtResource("2_6nyub")
@@ -874,30 +874,30 @@ update_scale = false
 
 [node name="Segment" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(118.124, -136.324)
-rotation = 0.107445
-scale = Vector2(0.999946, 0.999946)
+rotation = 0.107436
+scale = Vector2(0.999943, 0.999943)
 path_follow = NodePath("../MillipedesPath/PathFollow1")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2/Bone2D1")
 
 [node name="Segment2" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(106.273, -134.48)
-rotation = -0.154354
+rotation = -0.154362
 scale = Vector2(0.999837, 0.999837)
 animation_delay = 1
 path_follow = NodePath("../MillipedesPath/PathFollow2")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3/Bone2D2")
 
 [node name="Segment3" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(95.3019, -129.631)
-rotation = -0.416154
-scale = Vector2(0.999884, 0.999884)
+position = Vector2(95.3018, -129.631)
+rotation = -0.416159
+scale = Vector2(0.99988, 0.99988)
 animation_delay = 2
 path_follow = NodePath("../MillipedesPath/PathFollow3")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5/Bone2D4/Bone2D3")
 
 [node name="Segment4" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(85.9597, -122.108)
-rotation = -0.677953
+rotation = -0.677955
 scale = Vector2(1, 1)
 animation_delay = 3
 path_follow = NodePath("../MillipedesPath/PathFollow4")
@@ -906,7 +906,7 @@ controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/B
 [node name="Segment5" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(78.8828, -112.423)
 rotation = -0.939752
-scale = Vector2(0.999626, 0.999626)
+scale = Vector2(0.99962, 0.99962)
 animation_delay = 4
 path_follow = NodePath("../MillipedesPath/PathFollow5")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7/Bone2D6/Bone2D5")
@@ -928,9 +928,9 @@ path_follow = NodePath("../MillipedesPath/PathFollow7")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8/Bone2D7")
 
 [node name="Segment8" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
-position = Vector2(84.2898, -77.6724)
+position = Vector2(84.2898, -77.6723)
 rotation = -1.98695
-scale = Vector2(0.999912, 0.999912)
+scale = Vector2(0.999914, 0.999914)
 animation_delay = 7
 path_follow = NodePath("../MillipedesPath/PathFollow8")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8")
@@ -946,7 +946,7 @@ controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/B
 [node name="Segment10" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(93.9885, -55.7278)
 rotation = -1.98695
-scale = Vector2(0.999852, 0.999852)
+scale = Vector2(0.999853, 0.999853)
 animation_delay = 9
 path_follow = NodePath("../MillipedesPath/PathFollow10")
 controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10")
@@ -977,7 +977,7 @@ controlling_bone = NodePath("../Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/B
 
 [node name="Segment14" parent="." node_paths=PackedStringArray("path_follow", "controlling_bone") instance=ExtResource("3_03loo")]
 position = Vector2(83.1381, -11.0697)
-rotation = -0.939767
+rotation = -0.939766
 scale = Vector2(0.999817, 0.999817)
 animation_delay = 13
 path_follow = NodePath("../MillipedesPath/PathFollow14")
@@ -1161,7 +1161,7 @@ metadata/_custom_type_script = "uid://1ij3mgpk40fh"
 [node name="Bone2D11" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12"]
 position = Vector2(12, 0)
 rotation = 6.02139
-scale = Vector2(0.999971, 0.999971)
+scale = Vector2(0.999972, 0.999972)
 rest = Transform2D(0.965926, -0.258819, 0.258819, 0.965926, 12, 0)
 script = ExtResource("6_qg3aa")
 transform_mode = 0
@@ -1217,7 +1217,7 @@ metadata/_custom_type_script = "uid://1ij3mgpk40fh"
 [node name="Bone2D7" type="Bone2D" parent="Skeleton2D/Bone2D20/Bone2D19/Bone2D18/Bone2D17/Bone2D16/Bone2D15/Bone2D14/Bone2D13/Bone2D12/Bone2D11/Bone2D10/Bone2D9/Bone2D8"]
 position = Vector2(12, 0)
 rotation = 0.261799
-scale = Vector2(0.999979, 0.999979)
+scale = Vector2(0.999978, 0.999978)
 rest = Transform2D(0.965926, 0.258819, -0.258819, 0.965926, 12, 0)
 script = ExtResource("6_qg3aa")
 transform_mode = 0

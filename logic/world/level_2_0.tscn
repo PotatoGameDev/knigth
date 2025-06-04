@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=4 uid="uid://ubg7e1wf2bc3"]
 
 [ext_resource type="TileSet" uid="uid://c21f2onevmyrp" path="res://logic/world/tileset1.tres" id="1_diau5"]
-[ext_resource type="PackedScene" uid="uid://ksxw1oepr2oa" path="res://logic/millipedes/millipedes.tscn" id="3_7xr3g"]
+[ext_resource type="PackedScene" uid="uid://dw1qhcn1eh54w" path="res://logic/millipedes2/millipedes2.tscn" id="3_7xr3g"]
 [ext_resource type="PackedScene" uid="uid://ci1vae7axbcve" path="res://logic/zombi/zombi.tscn" id="3_e34o8"]
 
 [node name="Level2_0" type="Node2D"]
@@ -19,4 +19,88 @@ position = Vector2(-23, 401)
 [node name="BenCklyy" parent="." instance=ExtResource("3_e34o8")]
 position = Vector2(1436, 410)
 
-[node name="Millipedes" parent="." instance=ExtResource("3_7xr3g")]
+[node name="Millipedes2" parent="." instance=ExtResource("3_7xr3g")]
+
+[node name="Segment17Bone" parent="Millipedes2/Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone" index="0"]
+scale = Vector2(0.999981, 0.999981)
+
+[node name="Segment16Bone" parent="Millipedes2/Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone" index="0"]
+scale = Vector2(0.999984, 0.999984)
+
+[node name="Segment15Bone" parent="Millipedes2/Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone" index="0"]
+scale = Vector2(0.999984, 0.999984)
+
+[node name="Segment9Bone" parent="Millipedes2/Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone" index="0"]
+scale = Vector2(0.99999, 0.99999)
+
+[node name="Segment17" parent="Millipedes2/Segments" index="3"]
+scale = Vector2(0.999975, 0.999975)
+
+[node name="Segment16" parent="Millipedes2/Segments" index="4"]
+scale = Vector2(0.99996, 0.99996)
+
+[node name="Segment15" parent="Millipedes2/Segments" index="5"]
+position = Vector2(95.9974, -0.427016)
+scale = Vector2(0.999944, 0.999944)
+
+[node name="Segment14" parent="Millipedes2/Segments" index="6"]
+position = Vector2(111.995, -0.631969)
+scale = Vector2(0.999944, 0.999944)
+
+[node name="Segment13" parent="Millipedes2/Segments" index="7"]
+position = Vector2(127.992, -0.929218)
+scale = Vector2(0.999944, 0.999944)
+
+[node name="Segment12" parent="Millipedes2/Segments" index="8"]
+position = Vector2(143.985, -1.36212)
+scale = Vector2(0.999944, 0.999944)
+
+[node name="Segment11" parent="Millipedes2/Segments" index="9"]
+position = Vector2(159.971, -1.99368)
+scale = Vector2(0.999943, 0.999943)
+
+[node name="Segment10" parent="Millipedes2/Segments" index="10"]
+position = Vector2(175.944, -2.91549)
+scale = Vector2(0.99994, 0.99994)
+
+[node name="Segment9" parent="Millipedes2/Segments" index="11"]
+position = Vector2(191.886, -4.25999)
+scale = Vector2(0.999931, 0.999931)
+
+[node name="Segment8" parent="Millipedes2/Segments" index="12"]
+position = Vector2(207.765, -6.21688)
+scale = Vector2(0.999926, 0.999926)
+
+[node name="Segment7" parent="Millipedes2/Segments" index="13"]
+position = Vector2(223.511, -9.05157)
+scale = Vector2(0.999922, 0.999922)
+
+[node name="Segment6" parent="Millipedes2/Segments" index="14"]
+position = Vector2(238.984, -13.1182)
+scale = Vector2(0.999917, 0.999917)
+
+[node name="Segment5" parent="Millipedes2/Segments" index="15"]
+position = Vector2(253.923, -18.8454)
+scale = Vector2(0.999914, 0.999914)
+
+[node name="Segment4" parent="Millipedes2/Segments" index="16"]
+position = Vector2(267.883, -26.6596)
+scale = Vector2(0.999912, 0.999912)
+
+[node name="Segment3" parent="Millipedes2/Segments" index="17"]
+position = Vector2(280.233, -36.8303)
+scale = Vector2(0.99991, 0.99991)
+
+[node name="Segment2" parent="Millipedes2/Segments" index="18"]
+position = Vector2(290.251, -49.3036)
+scale = Vector2(0.999908, 0.999908)
+
+[node name="Segment1" parent="Millipedes2/Segments" index="19"]
+position = Vector2(297.335, -63.6481)
+scale = Vector2(0.999907, 0.999907)
+
+[node name="Head2" parent="Millipedes2/Segments" index="20"]
+position = Vector2(301.195, -79.1741)
+scale = Vector2(0.999904, 0.999904)
+
+[editable path="Millipedes2"]

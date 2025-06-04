@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dw1qhcn1eh54w"]
+[gd_scene load_steps=19 format=3 uid="uid://dw1qhcn1eh54w"]
 
 [ext_resource type="Script" uid="uid://bwj06sprqsjb6" path="res://logic/millipedes2/millipedes_2.gd" id="1_bca6t"]
 [ext_resource type="Script" uid="uid://cy6ayi4nyqqbg" path="res://addons/soupik/utility/armature_generator.gd" id="1_o73x0"]
@@ -293,8 +293,6 @@ tracks/20/keys = {
 
 [sub_resource type="Animation" id="Animation_01r5m"]
 resource_name = "attack"
-length = 2.0
-loop_mode = 1
 step = 0.0333
 capture_included = true
 tracks/0/type = "value"
@@ -559,7 +557,7 @@ tracks/21/keys = {
 "times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
+"args": [false, true, true],
 "method": &"animation_ended"
 }]
 }
@@ -567,7 +565,6 @@ tracks/21/keys = {
 [sub_resource type="Animation" id="Animation_a5iev"]
 resource_name = "curl"
 length = 2.0
-loop_mode = 1
 step = 0.0333
 capture_included = true
 tracks/0/type = "value"
@@ -832,7 +829,7 @@ tracks/21/keys = {
 "times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
+"args": [true, false, true],
 "method": &"animation_ended"
 }]
 }
@@ -843,6 +840,12 @@ _data = {
 &"attack": SubResource("Animation_01r5m"),
 &"curl": SubResource("Animation_a5iev")
 }
+
+[sub_resource type="Curve2D" id="Curve2D_bca6t"]
+_data = {
+"points": PackedVector2Array(-24.8623, 1.74089, 24.8623, -1.74089, 233.756, 1003.13, -159.34, -3.25081, 159.34, 3.25081, 479.814, 1003.13, 46.4881, 3.43545, -46.4881, -3.43545, 1250.8, 1003.13, -48.2835, 0.775432, 48.2835, -0.775432, 2825.57, 1020.59, -71.7755, -0.503715, 71.7755, 0.503715, 3883.62, 1020.59, -67.6117, 1.17731, 67.6117, -1.17731, 4400.35, 1029.32, -1.03897, -42.4474, 1.03897, 42.4474, 4449.56, 1090.45, 0, 0, 0, 0, 4408.55, 1142.84, 0, 0, 0, 0, 3957.44, 1142.84, 26.9037, -0.468826, -26.9037, 0.468826, 3891.82, 1142.84, 124.393, 3.27389, -124.393, -3.27389, 307.573, 1142.84, 2.07883, 80.3098, -2.07883, -80.3098, 168.14, 1081.72, 0, 0, 0, 0, 233.756, 1003.13)
+}
+point_count = 13
 
 [node name="Millipedes2" type="Node2D"]
 script = ExtResource("1_bca6t")
@@ -859,14 +862,13 @@ metadata/_custom_type_script = "uid://cy6ayi4nyqqbg"
 [node name="Segment20Bone" type="Bone2D" parent="Skeleton2D"]
 position = Vector2(16, 0)
 rotation = 6.28001
-scale = Vector2(0.999999, 0.999999)
+scale = Vector2(0.999995, 0.999995)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.00317944
+target_rotation = -0.220257
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -882,8 +884,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.000464526
+target_rotation = -0.218976
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -899,8 +900,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.000997068
+target_rotation = -0.222313
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -910,14 +910,13 @@ constraint_data = SubResource("Resource_bca6t")
 [node name="Segment17Bone" type="Bone2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone"]
 position = Vector2(16, 0)
 rotation = 6.28151
-scale = Vector2(0.999989, 0.999989)
+scale = Vector2(0.999981, 0.999981)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.00167535
+target_rotation = -0.227036
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -927,14 +926,13 @@ constraint_data = SubResource("Resource_bca6t")
 [node name="Segment16Bone" type="Bone2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone"]
 position = Vector2(16, 0)
 rotation = 6.28059
-scale = Vector2(0.99999, 0.99999)
+scale = Vector2(0.999984, 0.999984)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.00259813
+target_rotation = -0.233028
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -944,14 +942,13 @@ constraint_data = SubResource("Resource_bca6t")
 [node name="Segment15Bone" type="Bone2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone"]
 position = Vector2(16, 0)
 rotation = 6.27929
-scale = Vector2(0.99999, 0.99999)
+scale = Vector2(0.999984, 0.999984)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.0039
+target_rotation = -0.240082
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -967,8 +964,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.00577074
+target_rotation = -0.247865
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -984,8 +980,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.00848221
+target_rotation = -0.255862
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1001,8 +996,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.012426
+target_rotation = -0.263292
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1018,8 +1012,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.0181642
+target_rotation = -0.268984
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1029,14 +1022,13 @@ constraint_data = SubResource("Resource_bca6t")
 [node name="Segment10Bone" type="Bone2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone"]
 position = Vector2(16, 0)
 rotation = 6.2567
-scale = Vector2(0.999997, 0.999997)
+scale = Vector2(0.999996, 0.999996)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.0264902
+target_rotation = -0.271204
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1046,14 +1038,13 @@ constraint_data = SubResource("Resource_bca6t")
 [node name="Segment9Bone" type="Bone2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone"]
 position = Vector2(16, 0)
 rotation = 6.2447
-scale = Vector2(0.999996, 0.999996)
+scale = Vector2(0.99999, 0.99999)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.0384866
+target_rotation = -0.267422
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1069,8 +1060,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.0555028
+target_rotation = -0.254016
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1086,8 +1076,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.078884
+target_rotation = -0.226004
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1103,8 +1092,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.109103
+target_rotation = -0.177043
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1120,8 +1108,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.144189
+target_rotation = -0.100299
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1137,8 +1124,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.178656
+target_rotation = 0.00911593
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1148,14 +1134,13 @@ constraint_data = SubResource("Resource_bca6t")
 [node name="Segment3Bone" type="Bone2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone/Segment6Bone/Segment5Bone/Segment4Bone"]
 position = Vector2(16, 0)
 rotation = 6.07803
-scale = Vector2(0.999998, 0.999998)
+scale = Vector2(0.999997, 0.999997)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.205163
+target_rotation = 0.150627
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1165,14 +1150,13 @@ constraint_data = SubResource("Resource_bca6t")
 [node name="Segment2Bone" type="Bone2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone/Segment6Bone/Segment5Bone/Segment4Bone/Segment3Bone"]
 position = Vector2(16, 0)
 rotation = 6.06522
-scale = Vector2(0.999999, 0.999999)
+scale = Vector2(0.999998, 0.999998)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.21797
+target_rotation = 0.316346
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1188,8 +1172,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.215088
+target_rotation = 0.492673
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1205,75 +1188,74 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-transform_mode = 1
-target_rotation = -0.198722
+target_rotation = 0.664041
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
 limit_rotation = true
 constraint_data = SubResource("Resource_bca6t")
 
-[node name="Head2RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone/Segment6Bone/Segment5Bone/Segment4Bone/Segment3Bone/Segment2Bone/Segment1Bone/Head2Bone"]
+[node name="Head2RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone/Segment6Bone/Segment5Bone/Segment4Bone/Segment3Bone/Segment2Bone/Segment1Bone/Head2Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../../../../../../../../../../../../../../../../../../Segments/Head2")
 
-[node name="Segment1RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone/Segment6Bone/Segment5Bone/Segment4Bone/Segment3Bone/Segment2Bone/Segment1Bone"]
+[node name="Segment1RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone/Segment6Bone/Segment5Bone/Segment4Bone/Segment3Bone/Segment2Bone/Segment1Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../../../../../../../../../../../../../../../../../Segments/Segment1")
 
-[node name="Segment2RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone/Segment6Bone/Segment5Bone/Segment4Bone/Segment3Bone/Segment2Bone"]
+[node name="Segment2RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone/Segment6Bone/Segment5Bone/Segment4Bone/Segment3Bone/Segment2Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../../../../../../../../../../../../../../../../Segments/Segment2")
 
-[node name="Segment3RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone/Segment6Bone/Segment5Bone/Segment4Bone/Segment3Bone"]
+[node name="Segment3RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone/Segment6Bone/Segment5Bone/Segment4Bone/Segment3Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../../../../../../../../../../../../../../../Segments/Segment3")
 
-[node name="Segment4RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone/Segment6Bone/Segment5Bone/Segment4Bone"]
+[node name="Segment4RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone/Segment6Bone/Segment5Bone/Segment4Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../../../../../../../../../../../../../../Segments/Segment4")
 
-[node name="Segment5RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone/Segment6Bone/Segment5Bone"]
+[node name="Segment5RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone/Segment6Bone/Segment5Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../../../../../../../../../../../../../Segments/Segment5")
 
-[node name="Segment6RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone/Segment6Bone"]
+[node name="Segment6RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone/Segment6Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../../../../../../../../../../../../Segments/Segment6")
 
-[node name="Segment7RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone"]
+[node name="Segment7RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone/Segment7Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../../../../../../../../../../../Segments/Segment7")
 
-[node name="Segment8RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone"]
+[node name="Segment8RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../../../../../../../../../../Segments/Segment8")
 
-[node name="Segment9RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone"]
+[node name="Segment9RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../../../../../../../../../Segments/Segment9")
 
-[node name="Segment10RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone"]
+[node name="Segment10RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../../../../../../../../Segments/Segment10")
 
-[node name="Segment11RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone"]
+[node name="Segment11RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../../../../../../../Segments/Segment11")
 
-[node name="Segment12RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone"]
+[node name="Segment12RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../../../../../../Segments/Segment12")
 
-[node name="Segment13RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone"]
+[node name="Segment13RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../../../../../Segments/Segment13")
 
-[node name="Segment14RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone"]
+[node name="Segment14RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../../../../Segments/Segment14")
 
-[node name="Segment15RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone"]
+[node name="Segment15RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../../../Segments/Segment15")
 
-[node name="Segment16RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone"]
+[node name="Segment16RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../../Segments/Segment16")
 
-[node name="Segment17RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone"]
+[node name="Segment17RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../../Segments/Segment17")
 
-[node name="Segment18RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone"]
+[node name="Segment18RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../../Segments/Segment18")
 
-[node name="Segment19RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone"]
+[node name="Segment19RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone/Segment19Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../../Segments/Segment19")
 
-[node name="Segment20RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone"]
+[node name="Segment20RT" type="RemoteTransform2D" parent="Skeleton2D/Segment20Bone" groups=["bone_remote_transforms"]]
 remote_path = NodePath("../../../Segments/Segment20")
 
 [node name="Segments" type="Node2D" parent="."]
@@ -1281,126 +1263,134 @@ remote_path = NodePath("../../../Segments/Segment20")
 [node name="Segment20" parent="Segments" instance=ExtResource("2_6ymqo")]
 position = Vector2(16, 0)
 rotation = -0.00317938
-scale = Vector2(0.999999, 0.999999)
+scale = Vector2(0.999995, 0.999995)
 frame_progress = 0.300104
 
 [node name="Segment19" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(31.9999, -0.0508699)
+position = Vector2(31.9998, -0.0508697)
 rotation = -0.00364364
-scale = Vector2(0.999999, 0.999999)
+scale = Vector2(0.999994, 0.999994)
 frame_progress = 0.300104
 
 [node name="Segment18" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(47.9998, -0.109168)
+position = Vector2(47.9996, -0.109167)
 rotation = -0.00464005
-scale = Vector2(0.999998, 0.999998)
+scale = Vector2(0.999993, 0.999993)
 frame_progress = 0.300104
 
 [node name="Segment17" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(63.9996, -0.183408)
+position = Vector2(63.9994, -0.183408)
 rotation = -0.00631453
-scale = Vector2(0.999987, 0.999987)
+scale = Vector2(0.999974, 0.999974)
 frame_progress = 0.300104
 
 [node name="Segment16" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(79.9991, -0.284439)
+position = Vector2(79.9986, -0.284437)
 rotation = -0.00891169
-scale = Vector2(0.999977, 0.999977)
-frame_progress = 0.300104
-
-[node name="Segment15" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(95.9981, -0.427021)
-rotation = -0.0128106
-scale = Vector2(0.999966, 0.999966)
-frame_progress = 0.300104
-
-[node name="Segment14" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(111.996, -0.631978)
-rotation = -0.0185802
-scale = Vector2(0.999966, 0.999966)
-frame_progress = 0.300104
-
-[node name="Segment13" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(127.993, -0.929234)
-rotation = -0.027061
-scale = Vector2(0.999966, 0.999966)
-frame_progress = 0.300104
-
-[node name="Segment12" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(143.987, -1.36214)
-rotation = -0.0394853
-scale = Vector2(0.999966, 0.999966)
-frame_progress = 0.300104
-
-[node name="Segment11" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(159.973, -1.99372)
-rotation = -0.0576479
-scale = Vector2(0.999966, 0.999966)
-frame_progress = 0.300104
-
-[node name="Segment10" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(175.946, -2.91555)
-rotation = -0.084136
-scale = Vector2(0.999963, 0.999963)
-frame_progress = 0.300104
-
-[node name="Segment9" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(191.889, -4.26008)
-rotation = -0.122621
 scale = Vector2(0.999958, 0.999958)
 frame_progress = 0.300104
 
-[node name="Segment8" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(207.768, -6.21702)
-rotation = -0.178122
-scale = Vector2(0.999954, 0.999954)
-frame_progress = 0.300104
-
-[node name="Segment7" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(223.515, -9.05179)
-rotation = -0.257004
-scale = Vector2(0.99995, 0.99995)
-frame_progress = 0.300104
-
-[node name="Segment6" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(238.988, -13.1185)
-rotation = -0.366104
-scale = Vector2(0.999945, 0.999945)
-frame_progress = 0.300104
-
-[node name="Segment5" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(253.927, -18.8459)
-rotation = -0.510291
+[node name="Segment15" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(95.9973, -0.427016)
+rotation = -0.0128106
 scale = Vector2(0.999942, 0.999942)
 frame_progress = 0.300104
 
-[node name="Segment4" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(267.888, -26.6604)
-rotation = -0.688944
-scale = Vector2(0.99994, 0.99994)
+[node name="Segment14" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(111.995, -0.631968)
+rotation = -0.0185802
+scale = Vector2(0.999942, 0.999942)
 frame_progress = 0.300104
 
-[node name="Segment3" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(280.238, -36.8313)
-rotation = -0.894104
+[node name="Segment13" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(127.991, -0.929217)
+rotation = -0.027061
+scale = Vector2(0.999942, 0.999942)
+frame_progress = 0.300104
+
+[node name="Segment12" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(143.985, -1.36212)
+rotation = -0.0394853
+scale = Vector2(0.999941, 0.999941)
+frame_progress = 0.300104
+
+[node name="Segment11" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(159.971, -1.99368)
+rotation = -0.0576479
+scale = Vector2(0.999941, 0.999941)
+frame_progress = 0.300104
+
+[node name="Segment10" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(175.944, -2.91548)
+rotation = -0.084136
 scale = Vector2(0.999938, 0.999938)
 frame_progress = 0.300104
 
+[node name="Segment9" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(191.886, -4.25998)
+rotation = -0.122621
+scale = Vector2(0.999928, 0.999928)
+frame_progress = 0.300104
+
+[node name="Segment8" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(207.765, -6.21686)
+rotation = -0.178122
+scale = Vector2(0.999923, 0.999923)
+frame_progress = 0.300104
+
+[node name="Segment7" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(223.51, -9.05155)
+rotation = -0.257004
+scale = Vector2(0.999919, 0.999919)
+frame_progress = 0.300104
+
+[node name="Segment6" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(238.984, -13.1182)
+rotation = -0.366104
+scale = Vector2(0.999913, 0.999913)
+frame_progress = 0.300104
+
+[node name="Segment5" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(253.922, -18.8454)
+rotation = -0.510291
+scale = Vector2(0.99991, 0.99991)
+frame_progress = 0.300104
+
+[node name="Segment4" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(267.882, -26.6596)
+rotation = -0.688944
+scale = Vector2(0.999908, 0.999908)
+frame_progress = 0.300104
+
+[node name="Segment3" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(280.232, -36.8302)
+rotation = -0.894104
+scale = Vector2(0.999905, 0.999905)
+frame_progress = 0.300104
+
 [node name="Segment2" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(290.257, -49.3049)
+position = Vector2(290.251, -49.3034)
 rotation = -1.11207
-scale = Vector2(0.999937, 0.999937)
+scale = Vector2(0.999904, 0.999904)
 frame_progress = 0.300104
 
 [node name="Segment1" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(297.341, -63.6499)
+position = Vector2(297.335, -63.6479)
 rotation = -1.32716
-scale = Vector2(0.999935, 0.999935)
+scale = Vector2(0.999902, 0.999902)
 
 [node name="Head2" parent="Segments" instance=ExtResource("3_li15j")]
-position = Vector2(301.201, -79.1763)
+position = Vector2(301.194, -79.1738)
 rotation = -1.52587
-scale = Vector2(0.999933, 0.999933)
+scale = Vector2(0.9999, 0.9999)
+
+[node name="Camera2D" type="Camera2D" parent="Segments/Head2"]
+position = Vector2(-92.6284, -297.361)
+rotation = 1.52587
+scale = Vector2(1.00007, 1.00007)
+zoom = Vector2(0.155, 0.155)
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
 
 [node name="SoupFabrik" type="Node" parent="." node_paths=PackedStringArray("target_node", "chain_root", "chain_tip")]
 script = ExtResource("4_fcyho")
@@ -1412,7 +1402,7 @@ determenistic = true
 metadata/_custom_type_script = "uid://bvfur5yecqtae"
 
 [node name="Target" type="Node2D" parent="."]
-position = Vector2(303, -119)
+position = Vector2(446, -214)
 
 [node name="MilipedesWheel" type="RigidBody2D" parent="."]
 collision_layer = 4
@@ -1439,5 +1429,198 @@ libraries = {
 &"": SubResource("AnimationLibrary_01r5m")
 }
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.455, 0.455)
+[node name="MillipedesPath" type="Path2D" parent="."]
+position = Vector2(20, 1)
+scale = Vector2(0.975378, 0.916136)
+curve = SubResource("Curve2D_bca6t")
+
+[node name="PathFollowHead" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(241.038, 992.596)
+rotation = -0.0699078
+h_offset = 8.0
+v_offset = -10.0
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollowHead" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow1" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow1" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow2" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow2" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow3" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow3" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow4" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow4" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow5" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow5" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow6" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow6" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow7" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow7" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow8" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow8" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow9" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow9" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow10" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow10" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow11" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow11" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow12" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow12" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow13" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow13" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow14" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow14" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow15" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow15" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow16" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow16" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow17" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow17" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow18" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow18" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow19" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow19" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow20" type="PathFollow2D" parent="MillipedesPath"]
+position = Vector2(233.756, 1003.13)
+rotation = -0.0699078
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MillipedesPath/PathFollow20" groups=["path_follow_remote_transforms"]]
+update_position = false
+update_rotation = false
+update_scale = false

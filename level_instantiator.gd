@@ -12,7 +12,6 @@ func _ready():
 
 	connect("body_entered", _on_body_entered)
 
-
 func _process(_delta):
 	var status = ResourceLoader.load_threaded_get_status(level_path)
 	if status != ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
