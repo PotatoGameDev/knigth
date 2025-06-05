@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://8xpg4y0dmysl"]
+[gd_scene load_steps=7 format=3 uid="uid://8xpg4y0dmysl"]
 
 [ext_resource type="Texture2D" uid="uid://drv5lyxoo86kd" path="res://assets/sprites/millipede.png" id="1_5akg2"]
 [ext_resource type="Script" uid="uid://dfl5x1p22wvj" path="res://logic/millipedes2/head_2.gd" id="2_ilfn3"]
+[ext_resource type="Script" uid="uid://c4aobv160dvx6" path="res://logic/millipedes2/head_collider.gd" id="3_py1e0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ilfn3"]
 atlas = ExtResource("1_5akg2")
@@ -28,6 +29,8 @@ script = ExtResource("2_ilfn3")
 [node name="Head" type="AnimatableBody2D" parent="."]
 scale = Vector2(0.999809, 0.999809)
 collision_layer = 2
+sync_to_physics = false
+script = ExtResource("3_py1e0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
 shape = SubResource("CapsuleShape2D_f3wq0")

@@ -173,8 +173,7 @@ func attack_enter() -> void:
 	for bone_remote_transform in bone_remote_transforms:
 		var bone = bone_remote_transform.get_parent()
 		bone.transform_mode = SoupBone2D.TransformMode.RECORDING_TARGET
-		print("Setting ", bone_remote_transform, " to RECORDING_TARGET", bone.transform_mode)
-
+	
 func curl_enter() -> void:
 	var segment = segments[-1]
 	var bone = bone_remote_transforms[-1].get_parent()
@@ -194,7 +193,7 @@ func attack_exit() -> void:
 	pass
 
 func curl_exit() -> void:
-	pass
+	set_wheel_enabled(false)
 
 # other functions
 
@@ -204,30 +203,18 @@ func animation_ended(wheel_enabled: bool, fabrik_enabled: bool, bones_enabled: b
 	if wheel_enabled:
 		wheelCollisionShape.global_position = segments[HEAD_INDEX].global_position
 		wheelCollisionShape.rotation = segments[HEAD_INDEX].rotation
-		wheelCollisionShape.disabled = false
-		wheelRemoteTransform.update_position = true
-		wheelRemoteTransform.update_rotation = true
-		wheel.sleeping = false
-		wheel.freeze = false
-	else:
-		wheelRemoteTransform.update_position = false
-		wheelRemoteTransform.update_rotation = false
-		wheelCollisionShape.disabled = true
-		wheel.sleeping = true
-		wheel.freeze = true
+		set_wheel_enabled(true)
 	
 	if fabrik_enabled:
 		soupFabrik.enabled = true
 		for bone_remote_transform in bone_remote_transforms:
 			var bone = bone_remote_transform.get_parent()
 			bone.transform_mode = SoupBone2D.TransformMode.IK
-			print("Setting ", bone_remote_transform, " to IK ", bone.transform_mode)
 	else:
 		soupFabrik.enabled = false
 		for bone_remote_transform in bone_remote_transforms:
 			var bone = bone_remote_transform.get_parent()
 			bone.transform_mode = SoupBone2D.TransformMode.MANUAL
-			print("Setting ", bone_remote_transform, " to MANUAL ", bone.transform_mode)
 
 	set_bone_controls_enabled(bones_enabled)
 
@@ -242,5 +229,12 @@ func set_bone_controls_enabled(enabled: bool):
 		bone_remote_transform.update_position = enabled
 		bone_remote_transform.update_rotation = enabled
 		bone_remote_transform.update_scale = enabled
+
+func set_wheel_enabled(enabled: bool):
+	wheelRemoteTransform.update_position = enabled
+	wheelRemoteTransform.update_rotation = enabled
+	wheelCollisionShape.disabled = not enabled
+	wheel.sleeping = not enabled
+	wheel.freeze = not enabled
 
 # =============================================================================
