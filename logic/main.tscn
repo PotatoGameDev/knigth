@@ -343,7 +343,7 @@ radius = 1753.07
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fegvt"]
 resource_local_to_scene = true
-radius = 2336.07
+radius = 3000.0
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2bfyf")

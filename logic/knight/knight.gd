@@ -241,4 +241,3 @@ func jump_slip(delta: float) -> void:
 
 func add_force(force: Vector2) -> void:
 	current_state.add_force(self, force)
-

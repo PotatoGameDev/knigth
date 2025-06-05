@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://dh7ltssl0bmpq"]
+[gd_scene load_steps=20 format=3 uid="uid://dh7ltssl0bmpq"]
 
 [ext_resource type="Texture2D" uid="uid://drv5lyxoo86kd" path="res://assets/sprites/millipede.png" id="1_jevdu"]
 [ext_resource type="Script" uid="uid://dddshp4ja1h2s" path="res://logic/millipedes2/segment_2.gd" id="2_83r3f"]
+[ext_resource type="Script" uid="uid://dgklhmruhh0xl" path="res://logic/millipedes2/segment_collider.gd" id="3_5vyf5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_83r3f"]
 atlas = ExtResource("1_jevdu")
@@ -141,6 +142,8 @@ libraries = {
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
 position = Vector2(0, -6)
 collision_layer = 2
+sync_to_physics = false
+script = ExtResource("3_5vyf5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
 position = Vector2(-0.5, 2.5)
