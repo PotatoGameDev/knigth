@@ -290,6 +290,18 @@ tracks/20/keys = {
 "update": 0,
 "values": [-0.198719]
 }
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Skeleton2D:rotation")
+tracks/21/interp = 3
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_01r5m"]
 resource_name = "attack"
@@ -560,6 +572,18 @@ tracks/21/keys = {
 "args": [false, true, true],
 "method": &"animation_ended"
 }]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Skeleton2D:rotation")
+tracks/22/interp = 3
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_a5iev"]
@@ -862,12 +886,13 @@ metadata/_custom_type_script = "uid://cy6ayi4nyqqbg"
 [node name="Segment20Bone" type="Bone2D" parent="Skeleton2D"]
 position = Vector2(16, 0)
 rotation = 6.28001
-scale = Vector2(0.999994, 0.999994)
+scale = Vector2(0.99999, 0.99999)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
+target_rotation = -0.00317938
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -877,13 +902,12 @@ constraint_data = SubResource("Resource_bca6t")
 [node name="Segment19Bone" type="Bone2D" parent="Skeleton2D/Segment20Bone"]
 position = Vector2(16, 0)
 rotation = 6.28272
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = -0.286234
+target_rotation = -0.000464265
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -899,7 +923,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = -0.0314158
+target_rotation = -0.000996415
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -909,13 +933,13 @@ constraint_data = SubResource("Resource_bca6t")
 [node name="Segment17Bone" type="Bone2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone"]
 position = Vector2(16, 0)
 rotation = 6.28151
-scale = Vector2(0.999979, 0.999979)
+scale = Vector2(0.999975, 0.999975)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = -0.31765
+target_rotation = -0.00167448
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -931,7 +955,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = -0.349066
+target_rotation = -0.00259716
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -947,7 +971,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = 0.704351
+target_rotation = -0.33792
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -963,7 +987,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = 1.30571
+target_rotation = -0.336866
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -973,13 +997,12 @@ constraint_data = SubResource("Resource_bca6t")
 [node name="Segment13Bone" type="Bone2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone"]
 position = Vector2(16, 0)
 rotation = 6.2747
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = 1.64973
+target_rotation = -0.336766
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -989,13 +1012,12 @@ constraint_data = SubResource("Resource_bca6t")
 [node name="Segment12Bone" type="Bone2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone"]
 position = Vector2(16, 0)
 rotation = 6.27076
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = 1.80099
+target_rotation = -0.336769
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1005,13 +1027,12 @@ constraint_data = SubResource("Resource_bca6t")
 [node name="Segment11Bone" type="Bone2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone"]
 position = Vector2(16, 0)
 rotation = 6.26502
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = 1.80329
+target_rotation = -0.335638
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1027,7 +1048,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = 1.6946
+target_rotation = -0.331581
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1043,7 +1064,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = 1.58329
+target_rotation = -0.322009
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1059,7 +1080,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = 1.40649
+target_rotation = -0.303251
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1069,13 +1090,13 @@ constraint_data = SubResource("Resource_bca6t")
 [node name="Segment7Bone" type="Bone2D" parent="Skeleton2D/Segment20Bone/Segment19Bone/Segment18Bone/Segment17Bone/Segment16Bone/Segment15Bone/Segment14Bone/Segment13Bone/Segment12Bone/Segment11Bone/Segment10Bone/Segment9Bone/Segment8Bone"]
 position = Vector2(16, 0)
 rotation = 6.2043
-scale = Vector2(0.999994, 0.999994)
+scale = Vector2(0.999993, 0.999993)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = 1.35442
+target_rotation = -0.270277
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1091,7 +1112,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = 1.23504
+target_rotation = -0.2167
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1107,7 +1128,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = 1.05008
+target_rotation = -0.135648
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1123,7 +1144,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = 0.712284
+target_rotation = -0.022199
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1139,7 +1160,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = 0.537554
+target_rotation = 0.123104
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1155,7 +1176,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = 0.375836
+target_rotation = 0.292399
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1171,7 +1192,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = 0.148653
+target_rotation = 0.472108
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1187,7 +1208,7 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 script = ExtResource("2_li15j")
-target_rotation = -0.588959
+target_rotation = 0.646683
 target_position = Vector2(16, 0)
 ease_rotation = true
 rotation_easing_params = SubResource("Resource_a5iev")
@@ -1261,126 +1282,127 @@ remote_path = NodePath("../../../Segments/Segment20")
 
 [node name="Segment20" parent="Segments" instance=ExtResource("2_6ymqo")]
 position = Vector2(16, 0)
-scale = Vector2(0.999994, 0.999994)
+rotation = -0.00317938
+scale = Vector2(0.99999, 0.99999)
 frame_progress = 0.300104
 
 [node name="Segment19" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(31.9999, 0)
-rotation = -0.286234
-scale = Vector2(0.999993, 0.999993)
+position = Vector2(31.9998, -0.0508694)
+rotation = -0.00364364
+scale = Vector2(0.99999, 0.99999)
 frame_progress = 0.300104
 
 [node name="Segment18" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(47.3488, -4.51743)
-rotation = -0.317649
-scale = Vector2(0.999992, 0.999992)
+position = Vector2(47.9995, -0.109167)
+rotation = -0.00464005
+scale = Vector2(0.999989, 0.999989)
 frame_progress = 0.300104
 
 [node name="Segment17" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(62.5483, -9.51474)
-rotation = -0.635299
-scale = Vector2(0.999971, 0.999971)
+position = Vector2(63.9992, -0.183407)
+rotation = -0.00631453
+scale = Vector2(0.999964, 0.999964)
 frame_progress = 0.300104
 
 [node name="Segment16" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(75.4262, -19.0092)
-rotation = -0.984365
-scale = Vector2(0.999954, 0.999954)
+position = Vector2(79.9983, -0.284435)
+rotation = -0.00891169
+scale = Vector2(0.999947, 0.999947)
 frame_progress = 0.300104
 
 [node name="Segment15" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(84.2801, -32.3353)
-rotation = -1.58825
-scale = Vector2(0.999937, 0.999937)
-frame_progress = 0.300104
-
-[node name="Segment14" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(84.0009, -48.3318)
-rotation = -1.93731
-scale = Vector2(0.999936, 0.999936)
-frame_progress = 0.300104
-
-[node name="Segment13" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(78.2673, -63.2682)
-rotation = -2.09614
-scale = Vector2(0.999936, 0.999936)
-frame_progress = 0.300104
-
-[node name="Segment12" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(70.2437, -77.1097)
-rotation = -2.10856
-scale = Vector2(0.999936, 0.999936)
-frame_progress = 0.300104
-
-[node name="Segment11" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(62.0487, -90.8505)
-rotation = -2.01257
-scale = Vector2(0.999936, 0.999936)
-frame_progress = 0.300104
-
-[node name="Segment10" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(55.2084, -105.313)
-rotation = -1.91658
+position = Vector2(95.9968, -0.427013)
+rotation = -0.0128106
 scale = Vector2(0.99993, 0.99993)
 frame_progress = 0.300104
 
-[node name="Segment9" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(49.7859, -120.365)
-rotation = -1.75775
-scale = Vector2(0.999918, 0.999918)
+[node name="Segment14" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(111.994, -0.631962)
+rotation = -0.0185802
+scale = Vector2(0.999929, 0.999929)
 frame_progress = 0.300104
 
-[node name="Segment8" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(46.8123, -136.085)
-rotation = -1.72634
+[node name="Segment13" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(127.99, -0.929207)
+rotation = -0.027061
+scale = Vector2(0.999929, 0.999929)
+frame_progress = 0.300104
+
+[node name="Segment12" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(143.983, -1.3621)
+rotation = -0.0394853
+scale = Vector2(0.999929, 0.999929)
+frame_progress = 0.300104
+
+[node name="Segment11" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(159.97, -1.99366)
+rotation = -0.0576479
+scale = Vector2(0.999929, 0.999929)
+frame_progress = 0.300104
+
+[node name="Segment10" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(175.942, -2.91545)
+rotation = -0.084136
+scale = Vector2(0.999923, 0.999923)
+frame_progress = 0.300104
+
+[node name="Segment9" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(191.884, -4.25993)
+rotation = -0.122621
 scale = Vector2(0.999911, 0.999911)
 frame_progress = 0.300104
 
-[node name="Segment7" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(44.3339, -151.891)
-rotation = -1.63034
+[node name="Segment8" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(207.763, -6.21678)
+rotation = -0.178122
 scale = Vector2(0.999905, 0.999905)
 frame_progress = 0.300104
 
-[node name="Segment6" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(43.3817, -167.861)
-rotation = -1.47152
-scale = Vector2(0.9999, 0.9999)
-frame_progress = 0.300104
-
-[node name="Segment5" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(44.9674, -183.781)
-rotation = -1.1626
+[node name="Segment7" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(223.508, -9.05141)
+rotation = -0.257004
 scale = Vector2(0.999897, 0.999897)
 frame_progress = 0.300104
 
+[node name="Segment6" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(238.981, -13.1179)
+rotation = -0.366104
+scale = Vector2(0.999892, 0.999892)
+frame_progress = 0.300104
+
+[node name="Segment5" parent="Segments" instance=ExtResource("2_6ymqo")]
+position = Vector2(253.919, -18.845)
+rotation = -0.510291
+scale = Vector2(0.999889, 0.999889)
+frame_progress = 0.300104
+
 [node name="Segment4" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(51.3181, -198.464)
-rotation = -1.01948
-scale = Vector2(0.999894, 0.999894)
+position = Vector2(267.879, -26.659)
+rotation = -0.688944
+scale = Vector2(0.999886, 0.999886)
 frame_progress = 0.300104
 
 [node name="Segment3" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(59.6982, -212.092)
-rotation = -0.89207
-scale = Vector2(0.99989, 0.99989)
+position = Vector2(280.228, -36.8295)
+rotation = -0.894104
+scale = Vector2(0.999882, 0.999882)
 frame_progress = 0.300104
 
 [node name="Segment2" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(69.7419, -224.545)
-rotation = -0.701829
-scale = Vector2(0.999888, 0.999888)
+position = Vector2(290.247, -49.3024)
+rotation = -1.11207
+scale = Vector2(0.999881, 0.999881)
 frame_progress = 0.300104
 
 [node name="Segment1" parent="Segments" instance=ExtResource("2_6ymqo")]
-position = Vector2(81.9591, -234.874)
-rotation = -0.00369714
-scale = Vector2(0.999887, 0.999887)
+position = Vector2(297.331, -63.6465)
+rotation = -1.32716
+scale = Vector2(0.999879, 0.999879)
 
 [node name="Head2" parent="Segments" instance=ExtResource("3_li15j")]
-position = Vector2(97.9572, -234.933)
-rotation = 0.694435
-scale = Vector2(0.999884, 0.999884)
+position = Vector2(301.19, -79.1721)
+rotation = -1.52587
+scale = Vector2(0.999878, 0.999878)
 
 [node name="Camera2D" type="Camera2D" parent="Segments/Head2"]
 position = Vector2(-92.6284, -297.361)

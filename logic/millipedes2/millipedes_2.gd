@@ -175,13 +175,10 @@ func attack_enter() -> void:
 		bone.transform_mode = SoupBone2D.TransformMode.RECORDING_TARGET
 	
 func curl_enter() -> void:
-	var segment = segments[-1]
-	var bone = bone_remote_transforms[-1].get_parent()
-	bone.global_position = segment.global_position
-	bone.rotation = segment.rotation
+	skeleton.global_position = segments[-1].global_position
+	skeleton.rotation = segments[-1].rotation
 
 	set_bone_controls_enabled(true)
-
 	animation_player.play("curl")
 	transition = true
 
@@ -201,9 +198,30 @@ func animation_ended(wheel_enabled: bool, fabrik_enabled: bool, bones_enabled: b
 	transition = false
 
 	if wheel_enabled:
+		# Sequence is needed to avoid glitches
+		# First we update the skeleton position, because it's being moved by the remote transform
+		# Then we reset the skeletons first child, which controls the rest through the bones.
+		# Finally we move the wheel to the skeleton position, to keep things in sync.
+
+		skeleton.global_position = segments[-1].global_position
+		segments[-1].global_position = skeleton.global_position
+
+		wheel.global_position = skeleton.global_position
+		wheel.rotation = skeleton.rotation
+
+		# Now we can enable the wheel
+		set_wheel_enabled(true)
+		
+		# Wait for the remote transform to update 
+		# so we move the collider to the right position
+		await get_tree().process_frame
+
+		# Finally, move the collider to the skeleton position
 		wheelCollisionShape.global_position = segments[HEAD_INDEX].global_position
 		wheelCollisionShape.rotation = segments[HEAD_INDEX].rotation
-		set_wheel_enabled(true)
+		# It should be the perfection now!
+	else:
+		set_wheel_enabled(false)
 	
 	if fabrik_enabled:
 		soupFabrik.enabled = true
