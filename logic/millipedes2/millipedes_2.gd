@@ -20,13 +20,26 @@ var direction := Global.RIGHT
 var distance_to_follower := 8.0
 var speed := 100.0
 
+# Helpers
+var attack_idle_target_position : Vector2
+enum AttackPhase {
+	IDLE,
+	BITE	
+}
+var attack_phase : AttackPhase
+var attack_bite_tween : Tween
+@onready var attack_timer: Timer = $AttackTimer
+
+# General nodes
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var skeleton: Skeleton2D = $Skeleton2D
-@onready var soupFabrik: SoupFABRIK = $SoupFabrik
+@onready var soup_fabrik: SoupFABRIK = $SoupFabrik
+@onready var fabrik_target: Node2D = $FabrikTarget
 
 @onready var wheel: RigidBody2D = $MilipedesWheel
-@onready var wheelCollisionShape: CollisionShape2D = $MilipedesWheel/CollisionShape2D
-@onready var wheelRemoteTransform: RemoteTransform2D = $MilipedesWheel/RemoteTransform2D
+@onready var wheel_collision_shape: CollisionShape2D = $MilipedesWheel/CollisionShape2D
+@onready var wheel_remote_transform: RemoteTransform2D = $MilipedesWheel/RemoteTransform2D
+
 
 const HEAD_INDEX := 0
 
@@ -107,6 +120,9 @@ func _ready() -> void:
 	# Set initial state
 	next_state = State.FOLLOW_PATH
 
+	# other
+	attack_timer.timeout.connect(attack_timer_timeout)
+
 func _process(delta: float) -> void:
 	if next_state != null:
 		if current_state != null:
@@ -148,8 +164,35 @@ func follow_path_process(delta: float) -> void:
 
 
 func attack_process(delta: float) -> void:
-	if Global.ritter != null:
-		$Target.global_position = Global.ritter.global_position
+	# For debugging purposes
+	if Global.ritter == null:
+		return
+
+	if attack_phase == AttackPhase.IDLE:
+		# Phase 1: Play "florish" animation
+		if attack_timer.is_stopped():
+			set_fabrik_enabled(false)
+			attack_timer.wait_time = randf_range(5.0, 5.0)
+			attack_timer.start()
+		else:
+			if not animation_player.is_playing():
+				animation_player.play("attack_florish")
+
+	elif attack_phase == AttackPhase.BITE:
+		# Phase 2: Move target to ritter position (like a bite)
+		if attack_bite_tween == null:
+			attack_bite_tween = create_tween()
+			attack_bite_tween.tween_property(
+				fabrik_target,
+				"global_position",
+				Global.ritter.global_position,
+				0.5
+				)
+		elif not attack_bite_tween.is_running():
+			attack_bite_tween = null
+			attack_phase = AttackPhase.IDLE
+			animation_player.play("attack_no_callback")
+
 
 func curl_process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_B):
@@ -167,12 +210,12 @@ func follow_path_enter() -> void:
 	set_path_follow_enabled(true)
 
 func attack_enter() -> void:
+	set_fabrik_enabled(false)
+
 	animation_player.play("attack")
 	transition = true
 	
-	for bone_remote_transform in bone_remote_transforms:
-		var bone = bone_remote_transform.get_parent()
-		bone.transform_mode = SoupBone2D.TransformMode.RECORDING_TARGET
+	attack_phase = AttackPhase.IDLE
 	
 func curl_enter() -> void:
 	skeleton.global_position = segments[-1].global_position
@@ -217,22 +260,14 @@ func animation_ended(wheel_enabled: bool, fabrik_enabled: bool, bones_enabled: b
 		await get_tree().process_frame
 
 		# Finally, move the collider to the skeleton position
-		wheelCollisionShape.global_position = segments[HEAD_INDEX].global_position
-		wheelCollisionShape.rotation = segments[HEAD_INDEX].rotation
+		wheel_collision_shape.global_position = segments[HEAD_INDEX].global_position
+		wheel_collision_shape.rotation = segments[HEAD_INDEX].rotation
 		# It should be the perfection now!
 	else:
 		set_wheel_enabled(false)
 	
-	if fabrik_enabled:
-		soupFabrik.enabled = true
-		for bone_remote_transform in bone_remote_transforms:
-			var bone = bone_remote_transform.get_parent()
-			bone.transform_mode = SoupBone2D.TransformMode.IK
-	else:
-		soupFabrik.enabled = false
-		for bone_remote_transform in bone_remote_transforms:
-			var bone = bone_remote_transform.get_parent()
-			bone.transform_mode = SoupBone2D.TransformMode.MANUAL
+	if soup_fabrik.enabled != fabrik_enabled:
+		set_fabrik_enabled(fabrik_enabled)
 
 	set_bone_controls_enabled(bones_enabled)
 
@@ -249,10 +284,29 @@ func set_bone_controls_enabled(enabled: bool):
 		bone_remote_transform.update_scale = enabled
 
 func set_wheel_enabled(enabled: bool):
-	wheelRemoteTransform.update_position = enabled
-	wheelRemoteTransform.update_rotation = enabled
-	wheelCollisionShape.disabled = not enabled
+	wheel_remote_transform.update_position = enabled
+	wheel_remote_transform.update_rotation = enabled
+	wheel_collision_shape.disabled = not enabled
 	wheel.sleeping = not enabled
 	wheel.freeze = not enabled
+
+func set_fabrik_enabled(fabrik_enabled: bool):
+	if fabrik_enabled:
+		soup_fabrik.enabled = true
+		for bone_remote_transform in bone_remote_transforms:
+			var bone = bone_remote_transform.get_parent()
+			bone.transform_mode = SoupBone2D.TransformMode.IK
+	else:
+		soup_fabrik.enabled = false
+		for bone_remote_transform in bone_remote_transforms:
+			var bone = bone_remote_transform.get_parent()
+			bone.transform_mode = SoupBone2D.TransformMode.MANUAL
+
+
+func attack_timer_timeout() -> void:
+	fabrik_target.global_position = segments[HEAD_INDEX].global_position
+	attack_phase = AttackPhase.BITE
+	animation_player.stop()
+	set_fabrik_enabled(true)
 
 # =============================================================================
