@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbqb1br78kyry"]
+
+[ext_resource type="Script" path="res://logic/test/bug3.gd" id="1_d87rb"]
+[ext_resource type="Script" path="res://logic/test/bug4.gd" id="2_mn68c"]
+[ext_resource type="Script" path="res://logic/test/bug5.gd" id="3_2umn8"]
+[ext_resource type="Script" path="res://logic/test/fabrik_centipede.gd" id="4_ors5t"]
+[ext_resource type="Script" uid="uid://bpjpfisqjjlar" path="res://logic/test/fabrik_fixed.gd" id="5_hh7rn"]
+[ext_resource type="Script" path="res://logic/test/fabrik_test.gd" id="6_kmvjf"]
+[ext_resource type="Script" path="res://logic/test/worm2.gd" id="7_ayv5e"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("1_d87rb")
+
+[node name="Node2D2" type="Node2D" parent="."]
+script = ExtResource("2_mn68c")
+
+[node name="Node2D3" type="Node2D" parent="."]
+script = ExtResource("3_2umn8")
+
+[node name="Node2D4" type="Node2D" parent="."]
+script = ExtResource("4_ors5t")
+
+[node name="Node2D5" type="Node2D" parent="."]
+script = ExtResource("5_hh7rn")
+
+[node name="Node2D6" type="Node2D" parent="."]
+script = ExtResource("6_kmvjf")
+
+[node name="Node2D7" type="Node2D" parent="."]
+script = ExtResource("7_ayv5e")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.435, 0.435)

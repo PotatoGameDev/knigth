@@ -21,7 +21,6 @@ var distance_to_follower := 8.0
 var speed := 100.0
 
 # Helpers
-var attack_idle_target_position : Vector2
 enum AttackPhase {
 	IDLE,
 	BITE	
@@ -180,18 +179,17 @@ func attack_process(delta: float) -> void:
 
 	elif attack_phase == AttackPhase.BITE:
 		# Phase 2: Move target to ritter position (like a bite)
-		if attack_bite_tween == null:
-			attack_bite_tween = create_tween()
-			attack_bite_tween.tween_property(
-				fabrik_target,
-				"global_position",
-				Global.ritter.global_position,
-				0.5
-				)
-		elif not attack_bite_tween.is_running():
+		if fabrik_target.global_position.is_equal_approx(Global.ritter.global_position):
 			attack_bite_tween = null
 			attack_phase = AttackPhase.IDLE
 			animation_player.play("attack_no_callback")
+		else:
+			fabrik_target.global_position = fabrik_target.global_position.lerp(
+				Global.ritter.global_position,
+				0.5
+				)
+
+			fabrik()
 
 
 func curl_process(delta: float) -> void:
@@ -307,6 +305,29 @@ func attack_timer_timeout() -> void:
 	fabrik_target.global_position = segments[HEAD_INDEX].global_position
 	attack_phase = AttackPhase.BITE
 	animation_player.stop()
-	set_fabrik_enabled(true)
 
 # =============================================================================
+
+
+func fabrik() -> void:
+	var SEGMENT_COUNT = segments.size()
+	var HEAD_DAMPING = 0.9
+	var BONE_LENGTH = 16.0
+	var root_position = segments[-1].global_position
+	var target = fabrik_target.global_position
+
+	segments[0].global_position = segments[0].global_position.lerp(target, HEAD_DAMPING)
+	for i in range(1, SEGMENT_COUNT):
+		var dir = (segments[i].global_position - segments[i - 1].global_position).normalized()
+		segments[i].global_position = segments[i - 1].global_position + dir * BONE_LENGTH
+
+	segments[-1].global_position = root_position
+
+	for i in range(SEGMENT_COUNT - 2, -1, -1):
+		var dir = (segments[i].global_position - segments[i + 1].global_position).normalized()
+		segments[i].global_position = segments[i + 1].global_position + dir * BONE_LENGTH
+		segments[i].look_at(segments[i - 1].global_position)
+
+	segments[HEAD_INDEX].look_at(target)
+
+	
